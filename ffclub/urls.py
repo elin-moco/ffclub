@@ -1,5 +1,6 @@
+from django.http import HttpResponse
 from django.conf import settings
-from django.conf.urls.defaults import patterns, include
+from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .examples import urls
@@ -14,7 +15,7 @@ patch()
 urlpatterns = patterns('',
     # Example:
     (r'', include(urls)),
-    
+
     # Generate a robots.txt
     (r'^robots\.txt$', 
         lambda r: HttpResponse(

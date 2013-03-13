@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 import bleach
 import commonware
+# from commonware import log
 from funfactory.log import log_cef
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf
