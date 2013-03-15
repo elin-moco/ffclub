@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from .examples import urls
+# from examples import urls
 
 from funfactory.monkeypatches import patch
 patch()
@@ -14,7 +14,7 @@ patch()
 
 urlpatterns = patterns('',
     # Example:
-    (r'', include(urls)),
+    (r'', include('ffclub.examples.urls')),
 
     # Generate a robots.txt
     (r'^robots\.txt$', 
