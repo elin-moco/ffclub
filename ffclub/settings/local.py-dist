@@ -9,7 +9,7 @@ from . import base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'playdoh_app',
+        'NAME': 'ffclub',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
@@ -50,15 +50,17 @@ DEV = True
 
 # Playdoh ships with Bcrypt+HMAC by default because it's the most secure.
 # To use bcrypt, fill in a secret HMAC key. It cannot be blank.
+# TODO: change this while going online
 HMAC_KEYS = {
-    #'2012-06-06': 'some secret',
+    '2013-03-08': 'a101ba2097967f417e51ea0b4e364e381a11c8a8af521b86f890b2f3e547f7a5',
 }
 
 from django_sha2 import get_password_hashers
 PASSWORD_HASHERS = get_password_hashers(base.BASE_PASSWORD_HASHERS, HMAC_KEYS)
 
 # Make this unique, and don't share it with anybody.  It cannot be blank.
-SECRET_KEY = ''
+# TODO: change this while going online
+SECRET_KEY = '8860aca847b5ae714faa3892aa30b951199f05322cbf249a607231ff0ad33b97'
 
 # Should robots.txt allow web crawlers?  Set this to True for production
 ENGAGE_ROBOTS = True
