@@ -10,6 +10,12 @@ from session_csrf import anonymous_csrf
 
 log = commonware.log.getLogger('ffclub')
 
+def index(request, template=None):
+    """Main view."""
+    data = {}  # You'd add data here that you're sending to the template.
+    log.debug(template)
+    return render(request, 'intro/index.html', data)
+
 def home(request, template=None):
     """Main view."""
     data = {}  # You'd add data here that you're sending to the template.
