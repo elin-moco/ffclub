@@ -17,6 +17,12 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
     '%s.examples' % PROJECT_MODULE,
+    '%s.intro' % PROJECT_MODULE,
+    '%s.person' % PROJECT_MODULE,
+    '%s.product' % PROJECT_MODULE,
+    '%s.event' % PROJECT_MODULE,
+
+    'jingo_minify',
 ]
 
 LOCALE_PATHS = (
@@ -77,4 +83,45 @@ DOMAIN_METHODS['messages'] = [
 #    ('media/js/**.js', 'javascript'),
 # ]
 
-LOGGING = dict(loggers=dict(playdoh = {'level': logging.DEBUG}))
+LOGGING = dict(loggers=dict(ffclub = {'level': logging.DEBUG}))
+
+# jingo-minify settings
+MINIFY_BUNDLES = {
+    'css': {
+        # 'site' is automatically included across whole site
+        'site': (
+            'css/normalize.css',
+        ),
+        'base': (
+        ),
+        'intro': (
+            'css/intro/main.css',
+        ),
+        'person': (
+        ),
+        'event': (
+        ),
+        'product': (
+        ),
+        'upload': (
+        ),
+        },
+    'js': {
+        # 'site' is automatically included across whole site
+        'site': (
+            'js/libs/jquery-1.4.4.min.js',
+        ),
+        'base': (
+        ),
+        'intro': (
+        ),
+        'person': (
+        ),
+        'event': (
+        ),
+        'product': (
+        ),
+        'upload': (
+        ),
+        }
+}

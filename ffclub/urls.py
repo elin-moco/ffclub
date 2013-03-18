@@ -11,10 +11,14 @@ patch()
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
+PROJECT_MODULE = 'ffclub'
 
 urlpatterns = patterns('',
     # Example:
-    (r'', include('ffclub.examples.urls')),
+    (r'', include('%s.intro.urls' % PROJECT_MODULE)),
+    (r'', include('%s.person.urls' % PROJECT_MODULE)),
+    (r'', include('%s.event.urls' % PROJECT_MODULE)),
+    (r'', include('%s.product.urls' % PROJECT_MODULE)),
 
     # Generate a robots.txt
     (r'^robots\.txt$', 

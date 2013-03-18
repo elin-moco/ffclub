@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>{% block page_title %}playdoh examples{% endblock %}</title>
+
+    {{ css('site') }}
+    {% block site_css %}
+        {{ css('base') }}
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    <div id="footer">
+    </div>
+
+    {{ js('site') }}
+    {% block site_js %}
+        {{ js('base') }}
+    {% endblock %}
+  </body>
+</html>
