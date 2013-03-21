@@ -3,6 +3,8 @@
 
 from funfactory.settings_base import *
 
+USE_I18N = False
+USE_L10N = False
 # Name of the top-level module where you put all your apps.
 # If you did not install Playdoh with the funfactory installer script
 # you may need to edit this value. See the docs about installing from a
@@ -16,7 +18,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Application base, containing global templates.
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
-    '%s.examples' % PROJECT_MODULE,
+    '%s.upload' % PROJECT_MODULE,
     '%s.intro' % PROJECT_MODULE,
     '%s.person' % PROJECT_MODULE,
     '%s.product' % PROJECT_MODULE,
@@ -34,7 +36,10 @@ LOCALE_PATHS = (
 JINGO_EXCLUDE_APPS = [
     'admin',
     'registration',
+    'browserid',
 ]
+
+AUTH_PROFILE_MODULE = "person.Person"
 
 # BrowserID configuration
 AUTHENTICATION_BACKENDS = [
@@ -42,10 +47,10 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-SITE_URL = 'http://127.0.0.1:8000'
+# SITE_URL = 'http://127.0.0.1:8000'
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = 'examples.home'
-LOGIN_REDIRECT_URL_FAILURE = 'examples.home'
+LOGIN_REDIRECT_URL = 'intro.home'
+LOGIN_REDIRECT_URL_FAILURE = 'intro.home'
 
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
     'django_browserid.context_processors.browserid_form',
@@ -83,8 +88,19 @@ DOMAIN_METHODS['messages'] = [
 #    ('media/js/**.js', 'javascript'),
 # ]
 
-LOGGING = dict(loggers=dict(ffclub = {'level': logging.DEBUG}))
+# LOGGING = dict(loggers=dict(ffclub = {'level': logging.DEBUG}))
+LOGGING = {
 
+    'loggers': {
+        'ffclub' : {
+            'level' : 'DEBUG',
+        },
+        'django_browserid': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            }
+    },
+    }
 # jingo-minify settings
 MINIFY_BUNDLES = {
     'css': {

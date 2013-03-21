@@ -1,3 +1,23 @@
-from django.db import models
+from datetime import datetime
 
-# Create your models here.
+from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
+
+from ffclub.upload.models import ImageUpload
+
+class Event(models.Model):
+
+    title = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    start_time = models.DateTimeField(default=datetime.now)
+    end_time = models.DateTimeField(default=datetime.now)
+    create_user = models.ForeignKey(User, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
+    location = models.CharField(max_length=255)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    photos = generic.GenericRelation(ImageUpload)
+
+    def __unicode__(self):
+        return unicode(self.title)

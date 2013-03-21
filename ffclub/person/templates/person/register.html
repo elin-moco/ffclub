@@ -10,8 +10,8 @@
     </h1>
 
   {% if request.user.is_active %}
-      <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-          <a href="{{ url('examples.logout') }}">{{ _('Log out') }}</a></p>
+      <p>{{ _('You are logged in as {username}')|f(username=request.user.username) }}.
+          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
   {% else %}
       <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
       <form method="POST" action="{{ url('browserid_verify') }}">
@@ -19,6 +19,11 @@
         {{ browserid_form.as_p() }}
       </form>
   {% endif %}
+    <form method="post" action="">
+      {{ csrf() }}
+      {{ form }}
+      <input type="submit" value="註冊會員">
+    </form>
 
 {% endblock %}
 
