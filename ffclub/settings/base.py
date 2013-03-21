@@ -107,11 +107,12 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
+            'css/ffcstyle.css',    
         ),
         'base': (
         ),
         'intro': (
-            'css/intro/main.css',
+            #'css/intro/main.css',
         ),
         'person': (
         ),
@@ -126,6 +127,7 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'js/libs/jquery-1.4.4.min.js',
+            'js/main.js',
         ),
         'base': (
         ),
