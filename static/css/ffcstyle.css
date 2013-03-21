@@ -1,0 +1,304 @@
+@charset "utf-8";
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular") format("svg");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: bold;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold") format("svg");
+}
+@font-face {
+  font-family: "Open Sans Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Light-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.svg#OpenSansLight") format("svg");
+}
+* {
+  font-family: "Open Sans", Arial, Helvetica, "Microsoft JhengHei", "Apple LiGothic Medium", sans-serif;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.12em;
+}
+p {
+  font-size: 13px;
+  color: #787878;
+  text-shadow: 1px 1px #fff;
+}
+a,
+a:hover,
+a:link,
+a:visited {
+  outline: 0px;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 1px 1px #fff;
+}
+a:hover {
+  text-decoration: underline;
+}
+ul,
+ol {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul li,
+ol li {
+  list-style: none;
+  background: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", Arial, Helvetica, "Microsoft JhengHei", "Apple LiGothic Medium", sans-serif;
+  font-weight: normal;
+  font-style: italic;
+  color: #484848;
+  text-shadow: 1px 1px #fff;
+}
+body {
+  background: #fff;
+}
+#tabzilla-panel {
+  overflow: hidden;
+  width: 100%;
+  padding: 2px 0 0 0;
+  height: 180px;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  transition-property: height;
+  -webkit-transition-property: height;
+  -moz-transition-property: height;
+  -o-transition-property: height;
+  -ms-transition-property: height;
+  /*end of #tabzilla-contents*/
+
+}
+#tabzilla-panel.close-nav {
+  height: 2px;
+}
+#tabzilla-panel #tabzilla-contents {
+  width: 980px;
+  margin: 0 auto;
+  /* end of tabzilla-promo */
+
+  /*end of tabzilla-nav */
+
+}
+#tabzilla-panel #tabzilla-contents:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-promo {
+  float: left;
+  display: inline;
+  margin: 10px 10px;
+  background: none repeat scroll 0% 0% #f8f8f8;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.5;
+  background: #fff;
+  /* end of promo-block */
+
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-promo div#promo-block {
+  /* end of promo-android-ff*/
+
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-promo div#promo-block a {
+  width: 200px;
+  height: 154px;
+  display: block;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-promo div#promo-block a h4,
+#tabzilla-panel #tabzilla-contents #tabzilla-promo div#promo-block a p {
+  text-indent: -99999px;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-promo div#promo-block.promo-android-ff a {
+  background: url(http://mozilla.com.tw/assets/pic/FirefoxforAndroid.png);
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav {
+  /* end of ul */
+
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav ul {
+  margin: 0px;
+  padding: 0px;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap {
+  width: 160px;
+  margin: 20px 0 0 20px;
+  float: left;
+  border-right: 1px dotted #eee;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.last {
+  border: 0px;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap > a {
+  font-weight: bold;
+}
+#tabzilla-panel #tabzilla-contents #tabzilla-nav ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#tabzilla-panel a {
+  color: #000;
+}
+/*end of #tabzilla-panel */
+#outer-wrapper {
+  width: 100%;
+  height: 800px;
+  background: #fff;
+}
+#wrapper {
+  background: url(/static/images/css/bg-sand.png) left top repeat;
+  padding-bottom: 50px;
+}
+#masthead {
+  width: 800px;
+  margin: 0 auto;
+}
+#masthead:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#masthead h1 {
+  width: 185px;
+  background: url(/static/images/css/logo.png) left top no-repeat;
+  margin: 30px 0 0 0;
+  padding: 0px;
+  float: left;
+}
+#masthead h1 a {
+  width: 185px;
+  height: 73px;
+  display: block;
+  text-indent: -99999px;
+}
+#masthead a#tabzilla {
+  position: relative;
+  float: right;
+  display: block;
+  height: 45px;
+  width: 150px;
+  background: url('/static/images/css/tab.png') no-repeat;
+  text-indent: -200px;
+  overflow: hidden;
+}
+#masthead a#tabzilla[aria-expanded=flase] {
+  background-position: 100% 0;
+}
+#masthead a#tabzilla[aria-expanded=true] {
+  background-position: 100% -45px;
+}
+#main-feature {
+  margin: 0px auto;
+}
+#main-feature h1,
+#main-feature h2,
+#main-feature p {
+  text-indent: -99999px;
+}
+#main-feature.huge {
+  width: 1000px;
+  height: 370px;
+}
+#main-feature.meduim {
+  width: 800px;
+  height: 275px;
+}
+#main-feature.intro {
+  background: url('/static/images/css/banner_intro.jpg') top center no-repeat;
+}
+#main-content {
+  width: 800px;
+  margin: 0 auto 40px auto;
+}
+#footer {
+  width: 100%;
+  background: #fff;
+  padding: 30px 0;
+  /* end of footer-wrapper */
+
+}
+#footer a {
+  color: #000;
+}
+#footer #footer-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  /* end of footer-logo */
+
+  /* end of sub-footer */
+
+  /* end of copyright */
+}
+#footer #footer-wrapper:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#footer #footer-wrapper #footer-logo,
+#footer #footer-wrapper #copyright,
+#footer #footer-wrapper #sub-footer {
+  float: left;
+}
+#footer #footer-wrapper #footer-logo a {
+  margin-top: 20px;
+  text-indent: -99999px;
+  width: 95px;
+  height: 30px;
+  display: block;
+  background: url('/static/images/css/footer-mozilla.png') top center no-repeat;
+}
+#footer #footer-wrapper #sub-footer {
+  width: 240px;
+  margin: 0 80px;
+}
+#footer #footer-wrapper #sub-footer ul li {
+  width: 80px;
+  float: left;
+}
+#footer #footer-wrapper #sub-footer ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#footer #footer-wrapper #copyright {
+  margin: 0px;
+}
+#footer #footer-wrapper #copyright ul li {
+  display: inline-block;
+  float: left;
+}
+#footer #footer-wrapper #copyright ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

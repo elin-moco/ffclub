@@ -1,0 +1,301 @@
+@charset "utf-8";
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular") format("svg");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: bold;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold") format("svg");
+}
+@font-face {
+  font-family: "Open Sans Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("http://www.mozilla.org/img/fonts/OpenSans-Light-webfont.eot?#iefix") format("embedded-opentype"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.woff") format("woff"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.ttf") format("truetype"), url("//www.mozilla.org/img/fonts/OpenSans-Light-webfont.svg#OpenSansLight") format("svg");
+}
+@body_size:13px;
+@body_color:#4d4d4f;
+@h_color:#484848;
+@body_family:"Open Sans", Arial, Helvetica, "Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
+@h_family:"Open Sans", Arial, Helvetica, "Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
+*{
+  font-family:@body_family;
+  margin:0;
+  padding:0;
+  letter-spacing:0.12em;
+}
+
+p{
+  font-size:13px;
+  color:#787878;
+  text-shadow: 1px 1px #fff;
+}
+
+a, a:hover, a:link, a:visited{
+  outline: 0px;
+  font-size:12px;
+  color:#fff;
+  text-decoration:none;
+  text-shadow: 1px 1px #fff;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+ul, ol {
+	margin: 0px;
+	padding: 0px;
+	list-style:none;
+	li {
+    list-style: none;
+    background: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: @h_family;
+	font-weight: normal;
+	font-style: italic;
+	color: @h_color;
+	text-shadow: 1px 1px #fff;
+}
+
+.rounded_corners (@radius: 4px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.after_close () {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.transition_block (@duration:1s, @time:ease-in-out, @property:'all') {
+//.transition_block (@property:transform) {
+  transition:@duration @time;
+  -webkit-transition:@duration @time;
+  -moz-transition:@duration @time;
+  -o-transition:@duration @time;
+  -ms-transition:@duration @time;
+  transition-property: @property;
+  -webkit-transition-property: @property;
+  -moz-transition-property: @property;
+  -o-transition-property: @property;
+  -ms-transition-property: @property;
+}
+.BoxShadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+body{
+  background:#fff;
+}
+#tabzilla-panel{
+  overflow:hidden;
+  width:100%;
+  padding:2px 0 0 0;
+  height:180px;
+  .transition_block (0.2s, ease-in-out, height);
+  &.close-nav{
+    height:2px;
+  }
+  #tabzilla-contents{
+    width:980px;
+    margin:0 auto;
+    &:after{
+      .after_close;
+    }
+
+    #tabzilla-promo {
+      float: left;
+      display: inline;
+      margin: 10px 10px;
+      background: none repeat scroll 0% 0% rgb(248, 248, 248);
+      position: relative;
+      font-size: 13px;
+      line-height: 1.5;
+      background:#fff;
+      div#promo-block{
+        a{
+          width:200px;
+          height:154px;
+          display:block;
+          h4, p{
+            text-indent:-99999px;
+          }
+        }
+        &.promo-android-ff{
+          a{
+            background:url(http://mozilla.com.tw/assets/pic/FirefoxforAndroid.png);
+          }
+        }/* end of promo-android-ff*/
+      }/* end of promo-block */
+    }/* end of tabzilla-promo */
+
+    #tabzilla-nav{
+      ul{
+        margin: 0px;
+        padding: 0px;
+        li.sitemap{
+          width:160px;
+          margin:20px 0 0 20px;
+          float:left;
+          border-right:1px dotted #eee;
+        }
+        li.last{
+          border:0px;
+        }
+        li.sitemap > a{
+          font-weight:bold;
+        }
+        &:after{
+          .after_close;
+        };
+      }/* end of ul */
+      
+    }/*end of tabzilla-nav */
+
+  } /*end of #tabzilla-contents*/
+  //http://mozilla.com.tw/assets/pic/FirefoxforAndroid.png
+
+  a{
+    color:#000;
+  }
+}/*end of #tabzilla-panel */
+
+#outer-wrapper{
+  width:100%;
+  height:800px;
+  background:#fff;
+}
+#wrapper{
+  background:url(/static/images/css/bg-sand.png) left top repeat;
+  padding-bottom:50px;
+}
+#masthead{
+  width:800px;
+  margin:0 auto;
+  &:after{
+    .after_close;
+  };
+  h1{
+    width:185px;
+    background:url(/static/images/css/logo.png) left top no-repeat;
+    margin:30px 0 0 0;
+    padding:0px;
+    float:left;
+    a{
+      width:185px;
+      height:73px;
+      display:block;
+      text-indent:-99999px;
+    }
+  }
+  a#tabzilla{
+    position: relative;
+    float:right;
+    display: block;
+    height:45px;
+    width: 150px;
+    background: url('/static/images/css/tab.png') no-repeat;
+    text-indent: -200px;
+    overflow: hidden;
+    &[aria-expanded=flase]{
+      background-position:100% 0;
+    }
+    &[aria-expanded=true]{
+      background-position:100% -45px;
+    }
+  }
+}
+
+#main-feature{
+  margin:0px auto;
+  h1, h2, p{
+    text-indent:-99999px;
+  }
+  &.huge{
+    width:1000px;
+    height:370px;
+  }
+  &.meduim{
+    width:800px;
+    height:275px;
+  }
+  &.intro{
+    background: url('/static/images/css/banner_intro.jpg') top center no-repeat;
+  }
+}
+
+#main-content{
+  width:800px;
+  margin:0 auto 40px auto;
+}
+#footer{
+  width:100%;
+  background:#fff;
+  padding:30px 0;
+  a{
+    color:#000;
+  }
+  #footer-wrapper{
+    width:1000px;
+    margin:0 auto;
+    &:after{
+      .after_close; 
+    }
+    #footer-logo, #copyright, #sub-footer{
+      float:left;
+    }
+    #footer-logo{
+      a{
+        margin-top:20px;
+        text-indent:-99999px;
+        width:95px;
+        height:30px;
+        display:block;
+        background: url('/static/images/css/footer-mozilla.png') top center no-repeat;
+      }
+    }/* end of footer-logo */
+
+    #sub-footer{
+      width:240px;
+      margin:0 80px;
+      ul{
+        li{
+          width:80px;
+          float:left;
+        }
+        &:after{
+          .after_close;
+        }  
+      }
+    }/* end of sub-footer */
+
+    #copyright{
+      margin:0px;
+      ul{
+        li{
+          display:inline-block;
+          float:left;
+        }
+        &:after{
+          .after_close;
+        }  
+      }
+    }/* end of copyright */  
+  }/* end of footer-wrapper */
+
+}
