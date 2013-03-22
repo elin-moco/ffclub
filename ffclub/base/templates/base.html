@@ -34,7 +34,7 @@
     </script>
 
     {{ css('site') }}
-    {% block site_css %}
+    {% block base_css %}
         {{ css('base') }}
     {% endblock %}
   </head>
@@ -157,8 +157,11 @@
       </footer> <!-- end of footer -->
     </div> <!-- end of outer-wrapper-->
     {{ js('site') }}
-    {% block site_js %}
-        {{ js('base') }}
+    {% block base_js %}
+      {{ js('base') }}
+      {% if not request.user.is_active %}
+        {{ browserid_form.media }}
+      {% endif %}
     {% endblock %}
   </body>
 </html>

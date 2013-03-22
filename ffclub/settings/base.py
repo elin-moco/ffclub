@@ -3,6 +3,7 @@
 
 from funfactory.settings_base import *
 
+
 USE_I18N = False
 USE_L10N = False
 # Name of the top-level module where you put all your apps.
@@ -15,6 +16,7 @@ PROJECT_MODULE = 'ffclub'
 ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
+    'django.contrib.admin',
     # Application base, containing global templates.
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
@@ -112,7 +114,6 @@ MINIFY_BUNDLES = {
         'base': (
         ),
         'intro': (
-            #'css/intro/main.css',
         ),
         'person': (
         ),

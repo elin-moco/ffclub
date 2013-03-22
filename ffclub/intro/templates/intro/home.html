@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block site_css %}
-    {{ css('intro') }}
-{% endblock %}
+{{ css('intro') }}
 
 {% block content %}
     <h1>
@@ -22,9 +20,4 @@
 
 {% endblock %}
 
-{% block site_js %}
-  {{ js('intro') }}
-  {% if not request.user.is_active %}
-    {{ browserid_form.media }}
-  {% endif %}
-{% endblock %}
+{{ js('intro') }}

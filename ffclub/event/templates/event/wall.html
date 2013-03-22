@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block site_css %}
-  {{ css('event') }}
-{% endblock %}
+{{ css('event') }}
 
 {% block content %}
     <h1>
@@ -26,7 +24,7 @@
     </form>
 {% endblock %}
 
-{% block site_js %}
+{% block base_js %}
   {{ js('event') }}
   {% if not request.user.is_active %}
     {{ browserid_form.media }}

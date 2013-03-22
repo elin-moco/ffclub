@@ -10,6 +10,8 @@ from django.db import models
 class ImageUpload(models.Model):
     """An image uploaded to an object using content type generic links."""
 
+    description = models.CharField(max_length=255)
+
     data_file = models.ImageField(upload_to=settings.FILE_PATH, max_length=255, db_index=True)
 
     create_user = models.ForeignKey(User, related_name='+')
