@@ -1,23 +1,56 @@
 {% extends "base.html" %}
 
-{{ css('intro') }}
+{% block base_css %}
+  {{ css('intro') }}
+{% endblock %}
 
 {% block content %}
-    <h1>
-        <a href="/">{{ _('Hello world') }}</a>
-    </h1>
-
-  {% if request.user.is_active %}
+  <div id="intro-login">
+    {% if request.user.is_active %}
       <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
-  {% else %}
+        <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+    {% else %}
       <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
       <form method="POST" action="{{ url('browserid_verify') }}">
         {{ csrf() }}
         {{ browserid_form.as_p() }}
       </form>
-  {% endif %}
+    {% endif %}
+  </div>
+  <div id="intro-content">
+    <h3>歡迎加入活力軍</h3>
 
+    <p>
+      使用Persona帳號登入，您會經由Persona 網路身份識別系統登入
+      帳號,請您安心登入。 認識Persona
+
+    <h4>開放的信念，靠你我傳遞。現在就加入 Firefox 活力軍</h4>
+
+    <p>
+      推廣 Firefox 需要你我的大力參與！只要你/妳熱愛 Firefox, 認同 Mozilla 推動網路自由、開放、創新的理念,
+      並且是 Firefox 的愛用者, 請立即申請成為 Firefox 活力軍。
+    </p>
+
+    <b>在日常生活中體現推廣 Firefox 的樂趣：</b>
+
+    <ul>
+      <li>跟朋友組成 Firefox 同好會</li>
+      <li>在社區、公司、教室、圖書館… 各公共空間置放 Firefox 宣傳品</li>
+      <li>在各地組織 Firefox 推廣活動</li>
+    </ul>
+
+    <b>申請資格：</b>
+
+    <ul>
+      <li>年滿 6 歲以上</li>
+      <li>具備中華民國公民身份</li>
+      <li>熱愛 Firefox 且充滿熱忱</li>
+    </ul>
+    <p>
+      <a href="{{ url('product.wall') }}">宣傳品介紹</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
+    </p>
+
+  </div>
 {% endblock %}
 
 {{ js('intro') }}

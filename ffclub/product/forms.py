@@ -10,6 +10,7 @@ class ProductForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
+        fields = ('usage', 'fullname', 'address', 'occupation')
 
 
 class OrderDetailForm(ModelForm):

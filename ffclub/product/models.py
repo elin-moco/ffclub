@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.db import models
@@ -9,10 +10,10 @@ from ffclub.upload.models import ImageUpload
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    quantity = models.IntegerField()
-    photos = generic.GenericRelation(ImageUpload)
+    title = models.CharField(max_length=255, verbose_name='品名')
+    description = models.CharField(max_length=255, verbose_name='描述')
+    quantity = models.IntegerField(verbose_name='數量')
+    photos = generic.GenericRelation(ImageUpload, content_type_field='content_type', object_id_field='entity_id')
 
     def __unicode__(self):
         return unicode(self.title)
@@ -20,11 +21,10 @@ class Product(models.Model):
 
 class Order(models.Model):
 
-    usage = models.TextField(max_length=512)
-    user = models.OneToOneField(User, primary_key=True)
-    fullname = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    occupation = models.CharField(max_length=255)
+    usage = models.TextField(max_length=512, verbose_name='用途說明')
+    fullname = models.CharField(max_length=255, verbose_name='姓名')
+    address = models.CharField(max_length=255, verbose_name='地址')
+    occupation = models.CharField(max_length=255, verbose_name='職業', blank=True, default='')
     create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now)
     event = models.ForeignKey(Event, related_name='+')

@@ -3,20 +3,9 @@
 {{ css('product') }}
 
 {% block content %}
-    <h1>
-        <a href="/">{{ _('Order complete') }}</a>
-    </h1>
-
-  {% if request.user.is_active %}
-      <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
-  {% else %}
-      <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
-  {% endif %}
+  您的申請流程已經完成，恭喜您成為 Firefox 活力軍！<br>
+  歡迎您將推廣的成果與照片上傳至活力軍成果展<br>
+  <a href="https://www.facebook.com/MozillaTaiwan?fref=ts">按讚 Mozilla Taiwan 與我們互動</a>
 
 {% endblock %}
 

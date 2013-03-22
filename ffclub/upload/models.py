@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import datetime
 
 from django.conf import settings
@@ -10,9 +12,13 @@ from django.db import models
 class ImageUpload(models.Model):
     """An image uploaded to an object using content type generic links."""
 
-    description = models.CharField(max_length=255)
+    usage = models.CharField(max_length=20,
+                             choices=(('original', '原始圖'), ('preview', '預覽圖'), ('mobile', '行動版')),
+                             default='original')
 
-    data_file = models.ImageField(upload_to=settings.FILE_PATH, max_length=255, db_index=True)
+    description = models.CharField(max_length=255, verbose_name='相片說明')
+
+    data_file = models.ImageField(upload_to=settings.FILE_PATH, max_length=255, db_index=True, verbose_name='相片檔案')
 
     create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now)
@@ -23,6 +29,7 @@ class ImageUpload(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.data_file.name
+
 
 class ImageUploadPool(models.Model):
     """Image working pool for post writing, will move to ImageUpload later."""

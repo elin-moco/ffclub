@@ -5,3 +5,4 @@ from ffclub.upload.models import ImageUpload
 class ImageUploadForm(ModelForm):
     class Meta:
         model = ImageUpload
+        fields = ('description', 'data_file')

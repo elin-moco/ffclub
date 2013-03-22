@@ -1,27 +1,49 @@
 {% extends "base.html" %}
 
-{{ css('event') }}
+{% block base_css %}
+  {{ css('event') }}
+{% endblock %}
 
 {% block content %}
-    <h1>
-        <a href="/">{{ _('Event wall') }}</a>
-    </h1>
+  <h3>
+    您可以立即上傳推廣相片與大家分享，並欣賞每個人的作品！
+  </h3>
 
   {% if request.user.is_active %}
-      <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+    <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
+      <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
   {% else %}
-      <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
-  {% endif %}
-    <form method="post" action="">
-      {{ form }}
-      <input id="sigle.upload" type="file" accept="image/*">
-        <input id="multile.upload" type="file" accept="image/*" multiple="">
+    <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
+    <form method="POST" action="{{ url('browserid_verify') }}">
+      {{ csrf() }}
+      {{ browserid_form.as_p() }}
     </form>
+  {% endif %}
+  <form enctype="multipart/form-data" method="post" action="">
+    {{ csrf() }}
+    {{ form }}
+    {{ upload_form }}
+    <input type="submit" value="我要上傳">
+  </form>
+
+  <ul class="eventPhotos">
+    {% if event_photos|length == 0 %}
+      <p>目前没有任何宣傳品</p>
+    {% else %}
+      {% for event_photo in event_photos %}
+        <li class="eventPhoto">
+          <img src="/static/{{ event_photo }}" alt=""/>
+
+          <p>{{ event_photo.create_user }}</p>
+
+          <p>{{ event_photo.create_time }}</p>
+
+          <p>{{ event_photo.description }}</p>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+
 {% endblock %}
 
 {% block base_js %}

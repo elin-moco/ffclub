@@ -3,25 +3,27 @@
 {{ css('person') }}
 
 {% block content %}
-    <h1>
-        <a href="/">{{ _('Register') }}</a>
-    </h1>
+  <h3>申請Firefox 活力軍</h3>
 
+  <h4>想為網路開放自由理念的推廣進一份心力? 加入 Firefox 活力軍就對了！</h4>
+
+  <form method="post" action="">
+    <b> 充滿活力的你，請填寫以下會員資料：</b>
+    {{ csrf() }}
+    {{ form }}
+    若繼續，代表您接受 Firefox 的 使用條款 與 隱私權保護政策。
+    <input type="submit" value="註冊會員">
+  </form>
   {% if request.user.is_active %}
-      <p>{{ _('You are logged in as {username}')|f(username=request.user.username) }}.
-          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+    <p>{{ _('You are logged in as {username}')|f(username=request.user.username) }}.
+      <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
   {% else %}
-      <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
-  {% endif %}
-    <form method="post" action="">
+    <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
+    <form method="POST" action="{{ url('browserid_verify') }}">
       {{ csrf() }}
-      {{ form }}
-      <input type="submit" value="註冊會員">
+      {{ browserid_form.as_p() }}
     </form>
+  {% endif %}
 
 {% endblock %}
 

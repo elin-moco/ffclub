@@ -1,21 +1,59 @@
 {% extends "base.html" %}
 
-{{ css('product') }}
+{% block base_css %}
+  {{ css('product') }}
+{% endblock %}
 
 {% block content %}
-    <h1>
-        <a href="/">{{ _('Place order') }}</a>
-    </h1>
+  <h1>申請 Firefox 活力宣傳品</h1>
+
+  <p>
+    只要你/妳願意舉辦任何與 Firefox 相關的推廣活動，
+    或協助在自己的學校、社區、公司、健身房、圖書館… 等公共空間幫忙置放 Firefox 活力宣傳品，
+    我們都十分歡迎並將全力協助。你/妳能做的事情包括：貼海報、發明信片、或是將 Firefox 的 Logo 貼紙貼滿佈告欄 。
+  </p>
+
+  <p><b>選擇您需要的活力宣傳品:</b></p>
+  <ul class="products">
+    {% if products|length == 0 %}
+      <p>目前没有任何宣傳品</p>
+    {% else %}
+      {% for product in products %}
+        <li class="product">
+          <img src="/static/{{ product.photos.get(usage='preview') }}" alt=""/>
+
+          <h3>{{ product.title }}</h3>
+
+          <p>{{ product.description }}</p>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+  （申請項目將不定期更新，請時常回來看看）
+  <form method="post" action="">
+    {{ csrf() }}
+
+    您的宣傳活動名稱:
+
+    {{ event_form }}
+
+    預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
+
+    申請審核通過後，我們會將宣傳品寄送給您，請確認以下收件人:
+
+    {{ order_form }}
+    <input type="submit" value="送件申請">
+  </form>
 
   {% if request.user.is_active %}
-      <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-          <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+    <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
+      <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
   {% else %}
-      <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
+    <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
+    <form method="POST" action="{{ url('browserid_verify') }}">
+      {{ csrf() }}
+      {{ browserid_form.as_p() }}
+    </form>
   {% endif %}
 
 {% endblock %}

@@ -231,8 +231,23 @@ body {
   background: url('/static/images/css/banner_intro.jpg') top center no-repeat;
 }
 #main-content {
-  width: 800px;
+  color: #000;
   margin: 0 auto 40px auto;
+}
+#main-content p,
+#main-content b,
+#main-content ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#main-content a {
+  color: blue;
+}
+#main-content ul li,
+#main-content ol li {
+  font-size: 13px;
+  list-style-type: disc;
+  margin-left: 20px;
 }
 #footer {
   width: 100%;
