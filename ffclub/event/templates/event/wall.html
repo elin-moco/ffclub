@@ -23,6 +23,7 @@
     <form method="POST" action="{{ url('browserid_verify') }}">
       {{ csrf() }}
       {{ browserid_form.as_p() }}
+        <input type="hidden" name="next" value="{{ url('event.wall') }}">
     </form>
   {% endif %}
 

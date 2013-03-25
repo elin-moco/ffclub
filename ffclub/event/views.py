@@ -1,18 +1,21 @@
 from django.contrib import auth
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import commonware
 
 from forms import EventForm
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
+from ffclub.person.models import Person
 
 
 log = commonware.log.getLogger('ffclub')
 
 
 def wall(request):
+    if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
+        return redirect('user.register')
     eventForm = EventForm()
     uploadForm = ImageUploadForm()
 

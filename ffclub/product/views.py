@@ -11,6 +11,7 @@ from ffclub.upload.forms import *
 from forms import *
 from models import *
 from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL
+from ffclub.person.models import Person
 from utils import *
 import logging
 
@@ -18,6 +19,8 @@ log = logging.getLogger('ffclub')
 
 
 def wall(request):
+    if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
+        return redirect('user.register')
     if request.method == 'POST':
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
