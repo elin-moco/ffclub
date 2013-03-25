@@ -27,6 +27,13 @@ DATABASES = {
     # },
 }
 
+DEFAULT_FROM_EMAIL = 'elin@mozilla.com'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'moz2000tw'
+EMAIL_HOST_PASSWORD = 'mozillaNEW2013'
+EMAIL_USE_TLS = True
+
 # Uncomment this and set to all slave DBs in use on the site.
 # SLAVE_DATABASES = ['slave']
 
@@ -85,4 +92,19 @@ ENGAGE_ROBOTS = True
 
 # Uncomment this line if you are running a local development install without
 # HTTPS to disable HTTPS-only cookies.
-#SESSION_COOKIE_SECURE = False
+# SESSION_COOKIE_SECURE = False
+
+FILE_PATH = 'uploads/'
+
+LOGGING = {
+    'loggers': {
+        'ffclub': {
+            'level': 'DEBUG',
+        },
+        'django_browserid': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        }
+    },
+
+}
