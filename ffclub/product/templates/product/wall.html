@@ -20,8 +20,9 @@
     {% else %}
       {% for product in products %}
         <li class="product">
+        {% if product.photos.filter(usage='preview').exists() %}
           <img src="/static/{{ product.photos.get(usage='preview') }}" alt=""/>
-
+        {% endif %}
           <h3>{{ product.title }}</h3>
 
           <p>{{ product.description }}</p>
@@ -30,22 +31,22 @@
     {% endif %}
   </ul>
   （申請項目將不定期更新，請時常回來看看）
-  <form method="post" action="">
-    {{ csrf() }}
-
-    您的宣傳活動名稱:
-
-    {{ event_form }}
-
-    預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
-
-    申請審核通過後，我們會將宣傳品寄送給您，請確認以下收件人:
-
-    {{ order_form }}
-    <input type="submit" value="送件申請">
-  </form>
 
   {% if request.user.is_active %}
+      <form method="post" action="">
+        {{ csrf() }}
+
+          您的宣傳活動名稱:<br>
+
+        {{ event_form }}
+
+          預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
+
+          申請審核通過後，我們會將宣傳品寄送給您，請確認以下收件人:
+
+        {{ order_form }}
+          <input type="submit" value="送件申請">
+      </form>
     <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
       <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
   {% else %}

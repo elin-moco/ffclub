@@ -12,6 +12,12 @@
   {% if request.user.is_active %}
     <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
       <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+      <form enctype="multipart/form-data" method="post" action="">
+        {{ csrf() }}
+        {{ form }}
+        {{ upload_form }}
+          <input type="submit" value="我要上傳">
+      </form>
   {% else %}
     <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
     <form method="POST" action="{{ url('browserid_verify') }}">
@@ -19,12 +25,6 @@
       {{ browserid_form.as_p() }}
     </form>
   {% endif %}
-  <form enctype="multipart/form-data" method="post" action="">
-    {{ csrf() }}
-    {{ form }}
-    {{ upload_form }}
-    <input type="submit" value="我要上傳">
-  </form>
 
   <ul class="eventPhotos">
     {% if event_photos|length == 0 %}

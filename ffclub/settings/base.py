@@ -69,7 +69,7 @@ CEF_DEVICE_VERSION = '0'
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Asia/Taipei'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -87,7 +87,7 @@ TOWER_ADD_HEADERS = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-US'
+LANGUAGE_CODE = 'zh-TW'
 
 ## Accepted locales
 
@@ -116,7 +116,7 @@ except OSError:
 # On stage/prod, the list of accepted locales is manually maintained.  Only
 # locales whose localizers have signed off on their work should be listed here.
 PROD_LANGUAGES = (
-    'en-US',
+    'zh-TW',
 )
 
 
@@ -164,7 +164,7 @@ DOMAIN_METHODS = {
 }
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = ['media', 'static', 'admin']
+SUPPORTED_NONLOCALES = ['media', 'static', 'admin', '', 'users', 'events', 'products', 'uploads']
 
 
 ## Media and templates.
