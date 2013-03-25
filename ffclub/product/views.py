@@ -19,7 +19,6 @@ log = logging.getLogger('ffclub')
 
 def wall(request):
     if request.method == 'POST':
-
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
         if eventForm.is_valid() and orderForm.is_valid():
@@ -52,17 +51,27 @@ def wall(request):
             mail.send()
             return redirect('product.order.verify')
     else:
-        profile = request.user.get_profile()
-        initialValues = {
-            'fullname': profile.fullname,
-            'email': request.user.email,
-            'address': profile.address,
-            'occupation': profile.occupation,
-        }
+        if request.user.is_active:
+            profile = request.user.get_profile()
+            initialValues = {
+                'fullname': profile.fullname,
+                'email': request.user.email,
+                'address': profile.address,
+                'occupation': profile.occupation,
+            }
+        else:
+            initialValues = {}
         eventForm = EventForm()
         orderForm = OrderForm(initial=initialValues)
+
+    orderDetailFormset = OrderDetailFormset()
+
+    products = Product.objects.all()
+    for product in products:
+        orderDetailForm = OrderDetailForm(initial={'product': product})
+        product.orderDetailForm = orderDetailForm
     data = {
-        'products': Product.objects.all(),
+        'products': products,
         'event_form': eventForm,
         'order_form': orderForm,
     }

@@ -41,7 +41,8 @@ class Order(models.Model):
 class OrderDetail(models.Model):
 
     description = models.CharField(max_length=255)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(choices=((0, 0), (10, 10), (30, 30), (60, 60), (100, 100)),
+                                   default=0, verbose_name='數量')
     order = models.ForeignKey(Order, related_name='details')
     product = models.ForeignKey(Product, related_name='+')
 

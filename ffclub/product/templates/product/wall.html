@@ -13,6 +13,11 @@
     我們都十分歡迎並將全力協助。你/妳能做的事情包括：貼海報、發明信片、或是將 Firefox 的 Logo 貼紙貼滿佈告欄 。
   </p>
 
+  {% if request.user.is_active %}
+    <form method="post" action="">
+    {{ csrf() }}
+  {% endif %}
+
   <p><b>選擇您需要的活力宣傳品:</b></p>
   <ul class="products">
     {% if products|length == 0 %}
@@ -23,6 +28,10 @@
         {% if product.photos.filter(usage='preview').exists() %}
           <img src="/static/{{ product.photos.get(usage='preview') }}" alt=""/>
         {% endif %}
+          {% if request.user.is_active %}
+            {{ product.orderDetailForm }}
+          {% endif %}
+
           <h3>{{ product.title }}</h3>
 
           <p>{{ product.description }}</p>
@@ -33,8 +42,6 @@
   （申請項目將不定期更新，請時常回來看看）
 
   {% if request.user.is_active %}
-      <form method="post" action="">
-        {{ csrf() }}
 
           您的宣傳活動名稱:<br>
 

@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.forms.formsets import formset_factory
 from ffclub.product.models import Product, Order, OrderDetail
 
 
@@ -16,3 +17,7 @@ class OrderForm(ModelForm):
 class OrderDetailForm(ModelForm):
     class Meta:
         model = OrderDetail
+        fields = ('quantity',)
+
+
+OrderDetailFormset = formset_factory(OrderDetailForm)
