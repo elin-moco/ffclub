@@ -23,8 +23,8 @@ class Order(models.Model):
 
     usage = models.TextField(max_length=512, verbose_name='用途說明')
     fullname = models.CharField(max_length=255, verbose_name='姓名')
-    email = models.EmailField()
-    address = models.CharField(max_length=255, verbose_name='地址')
+    email = models.EmailField(verbose_name='電子郵件')
+    address = models.CharField(max_length=255, verbose_name='寄送地址')
     occupation = models.CharField(max_length=255, verbose_name='職業', blank=True, default='')
     create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now)

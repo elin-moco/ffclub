@@ -1,0 +1,52 @@
+Babel==0.9.6
+Django==1.4
+GitPython==0.1.7
+Jinja2==2.5.5
+MySQL-python==1.2.3c1
+PIL==1.1.7
+Pygments==1.6
+Sphinx==1.0.7
+amqp==1.0.9
+anyjson==0.3.3
+billiard==2.7.3.22
+-e git://github.com/jsocol/bleach.git@ab7c8b3f0a4c169b94da3248dfd60d6fc33b263c#egg=bleach-dev
+cef==0.3
+celery==3.0.16
+certifi==0.0.8
+chardet==2.1.1
+-e git://github.com/jsocol/commonware.git@b5544185b2d24adc1eb512735990752400ce9cbd#egg=commonware-dev
+django-autocomplete-light==1.1.25
+django-browserid==0.7.1
+django-celery==3.0.11
+-e git://github.com/jsocol/django-cronjobs.git@dd56a60a3f63f5080dc0552e14eb891e0fedeaa4#egg=django_cronjobs-dev
+-e git://github.com/jbalogh/django-mobility@644e0c1c58ce6a57d93043d39f2d3d65236fe04c#egg=django_mobility-dev
+-e git://github.com/fwenzel/django-mozilla-product-details@36ef06539d6b34c4f345fd0d3e16937d0db9a752#egg=django_mozilla_product_details-dev
+-e git://github.com/jbalogh/django-multidb-router.git@4f78662026b21cfff1ecfddc487fa0f0c31a0215#egg=django_multidb_router-dev
+django-multiuploader==0.2.3
+-e git://github.com/jbalogh/django-nose.git@9d5f341958106733326986d5bf9a1c8ebdcdcd2a#egg=django_nose-dev
+-e git://github.com/mozilla/django-session-csrf.git@94e2858a427a6b278e41c051643f3c226f096f21#egg=django_session_csrf-dev
+-e git://github.com/fwenzel/django-sha2.git@f4519bf0cc9b1dd7a7d78394fa4aec4504bc86e9#egg=django_sha2-dev
+docutils==0.10
+funfactory==2.2.0
+-e git://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms-dev
+html5lib==0.95
+-e git://github.com/jbalogh/jingo.git@c2d04ff28b21d730a8d18c720fb03496532c9633#egg=jingo-dev
+-e git://github.com/jsocol/jingo-minify.git@54bb1c9ccc2d7c6b7462b6014b2f0ea789b8c045#egg=jingo_minify-dev
+kombu==2.5.7
+libmagic==1.0
+mock==0.7.2
+nose==1.0.0
+-e git://github.com/mozilla/nuggets.git@85ae4d0b649fb4a745707054aa831071abe1729a#egg=nuggets-dev
+oauthlib==0.1.3
+py-bcrypt==0.2
+pyasn1==0.1.6
+python-dateutil==1.5
+python-magic==0.4.3
+pytz==2012j
+requests==0.13.0
+rsa==3.1.1
+sorl-thumbnail==11.12
+-e git://github.com/jbalogh/test-utils.git@ce5136a257cd44a1c663319124a255c1d10a9834#egg=test_utils-dev
+-e git://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
+translate-toolkit==1.8.0
+wsgiref==0.1.2

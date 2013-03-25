@@ -18,8 +18,8 @@ log = logging.getLogger('ffclub')
 
 
 def wall(request):
-    """Main view."""
     if request.method == 'POST':
+
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
         if eventForm.is_valid() and orderForm.is_valid():
@@ -52,8 +52,15 @@ def wall(request):
             mail.send()
             return redirect('product.order.verify')
     else:
+        profile = request.user.get_profile()
+        initialValues = {
+            'fullname': profile.fullname,
+            'email': request.user.email,
+            'address': profile.address,
+            'occupation': profile.occupation,
+        }
         eventForm = EventForm()
-        orderForm = OrderForm()
+        orderForm = OrderForm(initial=initialValues)
     data = {
         'products': Product.objects.all(),
         'event_form': eventForm,
@@ -79,7 +86,7 @@ def order_verify(request):
                 v.status = 'confirmed'
                 v.save()
             return redirect('product.order.complete')
-    # You'd add data here that you're sending to the template.
+            # You'd add data here that you're sending to the template.
     return render(request, 'product/order_verify.html', data)
 
 
