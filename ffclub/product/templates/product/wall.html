@@ -16,54 +16,56 @@
   {% if request.user.is_active %}
     <form method="post" action="">
     {{ csrf() }}
+    {{ order_detail_formset.management_form }}
   {% endif %}
 
-  <p><b>選擇您需要的活力宣傳品:</b></p>
-  <ul class="products">
-    {% if products|length == 0 %}
-      <p>目前没有任何宣傳品</p>
-    {% else %}
-      {% for product in products %}
-        <li class="product">
-        {% if product.photos.filter(usage='preview').exists() %}
-          <img src="/static/{{ product.photos.get(usage='preview') }}" alt=""/>
-        {% endif %}
-          {% if request.user.is_active %}
-            {{ product.orderDetailForm }}
-          {% endif %}
-
-          <h3>{{ product.title }}</h3>
-
-          <p>{{ product.description }}</p>
-        </li>
-      {% endfor %}
-    {% endif %}
-  </ul>
-  （申請項目將不定期更新，請時常回來看看）
-
-  {% if request.user.is_active %}
-
-          您的宣傳活動名稱:<br>
-
-        {{ event_form }}
-
-          預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
-
-          申請審核通過後，我們會將宣傳品寄送給您，請確認以下收件人:
-
-        {{ order_form }}
-          <input type="submit" value="送件申請">
-      </form>
-    <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-      <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+<p><b>選擇您需要的活力宣傳品:</b></p>
+<ul class="products">
+  {% if order_detail_formset|length == 0 %}
+    <p>目前没有任何宣傳品</p>
   {% else %}
-    <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
-    <form method="POST" action="{{ url('browserid_verify') }}">
-      {{ csrf() }}
-      {{ browserid_form.as_p() }}
-        <input type="hidden" name="next" value="{{ url('product.wall') }}">
-    </form>
+    {% for order_detail_form in order_detail_formset %}
+      <li class="product">
+        {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
+          <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
+        {% endif %}
+        {% if request.user.is_active %}
+          {{ order_detail_form.quantity }}
+          {{ order_detail_form.product.as_hidden() }}
+        {% endif %}
+
+        <h3>{{ order_detail_form.initial.product.title }}</h3>
+
+        <p>{{ order_detail_form.initial.product.description }}</p>
+      </li>
+    {% endfor %}
   {% endif %}
+</ul>
+（申請項目將不定期更新，請時常回來看看）
+
+{% if request.user.is_active %}
+
+  您的宣傳活動名稱:<br>
+
+  {{ event_form }}
+
+  預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
+
+  申請審核通過後，我們會將宣傳品寄送給您，請確認以下收件人:
+
+  {{ order_form }}
+  <input type="submit" value="送件申請">
+  </form>
+  <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
+    <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
+{% else %}
+  <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
+  <form method="POST" action="{{ url('browserid_verify') }}">
+    {{ csrf() }}
+    {{ browserid_form.as_p() }}
+    <input type="hidden" name="next" value="{{ url('product.wall') }}">
+  </form>
+{% endif %}
 
 {% endblock %}
 

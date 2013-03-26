@@ -40,8 +40,8 @@ class Order(models.Model):
 
 class OrderDetail(models.Model):
 
-    description = models.CharField(max_length=255)
-    quantity = models.IntegerField(choices=((0, 0), (10, 10), (30, 30), (60, 60), (100, 100)),
+    description = models.CharField(max_length=255, blank=True, default='')
+    quantity = models.IntegerField(choices=((0, 0), (1, 1), (2, 2), (3, 3), (5, 5), (10, 10), (20, 20), (30, 30)),
                                    default=0, verbose_name='數量')
     order = models.ForeignKey(Order, related_name='details')
     product = models.ForeignKey(Product, related_name='+')
@@ -61,4 +61,4 @@ class OrderVerification(models.Model):
     order = models.ForeignKey(Order, related_name='+')
 
     def __unicode__(self):
-        return unicode(self.quantity)
+        return unicode(self.code)

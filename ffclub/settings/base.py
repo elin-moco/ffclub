@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # This is your project's main settings file that can be committed to your
 # repo. If you need to override a setting locally, use settings_local.py
 
@@ -514,3 +516,10 @@ MINIFY_BUNDLES = {
 
 LESS_PREPROCESS = False
 LESS_BIN = 'lessc'
+
+CUSTOM_ORDER_DETAIL_CHOICES = {
+    1: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),
+    2: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),
+    3: ((0, '0張'), (1, '1張'), (2, '2張'), (3, '3張')),
+    4: ((0, '0份'), (5, '5份'), (10, '10份')),
+}

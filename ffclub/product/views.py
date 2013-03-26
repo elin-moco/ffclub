@@ -8,9 +8,10 @@ from django.template.loader import render_to_string
 
 from ffclub.event.forms import *
 from ffclub.upload.forms import *
+from django.forms.models import inlineformset_factory
 from forms import *
 from models import *
-from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL
+from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES
 from ffclub.person.models import Person
 from utils import *
 import logging
@@ -21,6 +22,7 @@ log = logging.getLogger('ffclub')
 def wall(request):
     if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
         return redirect('user.register')
+    orderDetailFormset = None
     if request.method == 'POST':
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
@@ -32,6 +34,19 @@ def wall(request):
             event.save()
             order.event = event
             order.save()
+            log.debug(request.POST)
+            OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
+                                                       extra=0, can_delete=False, form=OrderDetailForm)
+            orderDetailFormset = OrderDetailFormset(request.POST, instance=order)
+            for orderDetailForm in orderDetailFormset:
+                log.debug('Ya!!!')
+                if orderDetailForm.is_valid():
+                    orderDetail = orderDetailForm.save(commit=False)
+                    log.debug('Valid!!!')
+                    if orderDetail.quantity > 0:
+                        log.debug('Save!!!')
+                        orderDetail.save()
+
             verification_code = generate_random_string(36, string.ascii_letters + string.digits)
             verification = OrderVerification(order=order, create_user=auth.get_user(request),
                                              code=verification_code)
@@ -67,16 +82,25 @@ def wall(request):
         eventForm = EventForm()
         orderForm = OrderForm(initial=initialValues)
 
-    orderDetailFormset = OrderDetailFormset()
+        products = Product.objects.all()
+        OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
+                                                   extra=products.count(), can_delete=False, form=OrderDetailForm)
+        orderDetailData = []
 
-    products = Product.objects.all()
-    for product in products:
-        orderDetailForm = OrderDetailForm(initial={'product': product})
-        product.orderDetailForm = orderDetailForm
+        for product in products:
+            orderDetailData.append({'product': product})
+
+        orderDetailFormset = OrderDetailFormset(initial=orderDetailData)
+
+    for orderDetailForm in orderDetailFormset:
+        product_id = orderDetailForm.initial['product'].id
+        if product_id in CUSTOM_ORDER_DETAIL_CHOICES:
+            orderDetailForm.fields['quantity'].choices = CUSTOM_ORDER_DETAIL_CHOICES[product_id]
+
     data = {
-        'products': products,
         'event_form': eventForm,
         'order_form': orderForm,
+        'order_detail_formset': orderDetailFormset,
     }
     return render(request, 'product/wall.html', data)
 
@@ -97,6 +121,8 @@ def order_verify(request):
             for v in verifications:
                 v.status = 'confirmed'
                 v.save()
+                v.order.status = 'confirmed'
+                v.order.save()
             return redirect('product.order.complete')
             # You'd add data here that you're sending to the template.
     return render(request, 'product/order_verify.html', data)
