@@ -22,7 +22,17 @@ log = logging.getLogger('ffclub')
 def wall(request):
     if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
         return redirect('user.register')
-    orderDetailFormset = None
+
+    products = Product.objects.all()
+    OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
+                                               extra=products.count(), can_delete=False, form=OrderDetailForm)
+    orderDetailData = []
+
+    for product in products:
+        orderDetailData.append({'product': product})
+
+    orderDetailFormset = OrderDetailFormset(initial=orderDetailData)
+
     if request.method == 'POST':
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
@@ -81,16 +91,6 @@ def wall(request):
             initialValues = {}
         eventForm = EventForm()
         orderForm = OrderForm(initial=initialValues)
-
-        products = Product.objects.all()
-        OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
-                                                   extra=products.count(), can_delete=False, form=OrderDetailForm)
-        orderDetailData = []
-
-        for product in products:
-            orderDetailData.append({'product': product})
-
-        orderDetailFormset = OrderDetailFormset(initial=orderDetailData)
 
     for orderDetailForm in orderDetailFormset:
         product_id = orderDetailForm.initial['product'].id

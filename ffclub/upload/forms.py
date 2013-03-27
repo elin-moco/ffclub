@@ -2,7 +2,7 @@
 import commonware
 
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, ModelChoiceField
+from django.forms import ModelForm, ModelChoiceField, Select
 from django.forms.util import ErrorList
 from ffclub.upload.models import ImageUpload
 from ffclub.event.models import Event
@@ -16,14 +16,21 @@ class ImageUploadForm(ModelForm):
                  label_suffix=':', empty_permitted=False, instance=None):
         super(ImageUploadForm, self).__init__(data, files, auto_id, prefix, initial, error_class, label_suffix,
                                               empty_permitted, instance)
-        if data is not None:
+        if data is not None and 'event' in data and data['event'] != '':
             self.event = Event.objects.get(id=data['event'])
         self.user = user
+        # Choose from events user created
+        userEvents = Event.objects.filter(create_user=user).order_by('-create_time')
+        # Default newest event
+        userDefaultEvent = userEvents[:1].get() if userEvents.count() > 0 else None
         self.fields['event'] = ModelChoiceField(
-            queryset=Event.objects.filter(create_user=user), label='活動名稱')
+            queryset=userEvents, label='活動名稱', initial=userDefaultEvent)
+        # Set field order as first
+        fieldOrder = self.fields.keyOrder
+        fieldOrder.pop(fieldOrder.index('event'))
+        fieldOrder.insert(0, 'event')
 
     def save(self, commit=True):
-        log.debug(self.event)
         self.instance.entity_object = self.event
         return super(ImageUploadForm, self).save(commit)
 
@@ -38,4 +45,4 @@ class ImageUploadForm(ModelForm):
 
     class Meta:
         model = ImageUpload
-        fields = ('description', 'image_large')
+        fields = ('image_large', 'description')
