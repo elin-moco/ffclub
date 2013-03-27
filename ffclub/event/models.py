@@ -12,12 +12,13 @@ class Event(models.Model):
 
     title = models.CharField(max_length=255, verbose_name='活動名稱')
     description = models.CharField(max_length=255, blank=True, default='')
-    start_time = models.DateTimeField(default=datetime.now)
-    end_time = models.DateTimeField(default=datetime.now)
+    location = models.CharField(max_length=255, blank=True, default='', verbose_name='舉辦地點')
+    num_of_ppl = models.IntegerField(null=True, blank=True, verbose_name='預計人數')
+
     create_user = models.ForeignKey(User, related_name='events')
     create_time = models.DateTimeField(default=datetime.now)
-    location = models.CharField(max_length=255, blank=True, default='', verbose_name='舉辦地點')
-    num_of_ppl = models.IntegerField(null=True, verbose_name='預計人數')
+    start_time = models.DateTimeField(default=datetime.now)
+    end_time = models.DateTimeField(default=datetime.now)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     photos = generic.GenericRelation(ImageUpload)

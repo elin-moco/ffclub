@@ -19,16 +19,17 @@ class ImageUploadForm(ModelForm):
         if data is not None and 'event' in data and data['event'] != '':
             self.event = Event.objects.get(id=data['event'])
         self.user = user
-        # Choose from events user created
-        userEvents = Event.objects.filter(create_user=user).order_by('-create_time')
-        # Default newest event
-        userDefaultEvent = userEvents[:1].get() if userEvents.count() > 0 else None
-        self.fields['event'] = ModelChoiceField(
-            queryset=userEvents, label='活動名稱', initial=userDefaultEvent)
-        # Set field order as first
-        fieldOrder = self.fields.keyOrder
-        fieldOrder.pop(fieldOrder.index('event'))
-        fieldOrder.insert(0, 'event')
+        if user.is_authenticated():
+            # Choose from events user created
+            userEvents = Event.objects.filter(create_user=user).order_by('-create_time')
+            # Default newest event
+            userDefaultEvent = userEvents[:1].get() if userEvents.count() > 0 else None
+            self.fields['event'] = ModelChoiceField(
+                queryset=userEvents, label='活動名稱', initial=userDefaultEvent)
+            # Set field order as first
+            fieldOrder = self.fields.keyOrder
+            fieldOrder.pop(fieldOrder.index('event'))
+            fieldOrder.insert(0, 'event')
 
     def save(self, commit=True):
         self.instance.entity_object = self.event
