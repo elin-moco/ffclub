@@ -11,6 +11,9 @@ class Person(models.Model):
                               choices=(('unknown', '未知'), ('male', '男性'), ('female', '女性')), default='unknown')
     address = models.CharField(max_length=255, verbose_name='地址')
     occupation = models.CharField(max_length=255, verbose_name='職業')
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('spam', '垃圾')),
+                              default='normal')
 
     def __unicode__(self):
         return unicode(self.fullname)

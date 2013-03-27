@@ -14,7 +14,6 @@
       <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
       <form enctype="multipart/form-data" method="post" action="">
         {{ csrf() }}
-        {{ form }}
         {{ upload_form }}
           <input type="submit" value="我要上傳">
       </form>
@@ -33,7 +32,7 @@
     {% else %}
       {% for event_photo in event_photos %}
         <li class="eventPhoto">
-          <img src="/static/{{ event_photo }}" alt=""/>
+          <img width="320" src="/static/{{ event_photo }}" alt=""/>
 
           <p>{{ event_photo.create_user }}</p>
 

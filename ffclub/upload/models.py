@@ -21,6 +21,9 @@ class ImageUpload(models.Model):
                              default='original')
 
     description = models.CharField(max_length=255, verbose_name='相片說明')
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('spam', '垃圾')),
+                              default='normal')
 
     image_large = models.ImageField(upload_to=settings.FILE_PATH,
                                     width_field='image_large_width', height_field='image_large_height',
@@ -81,12 +84,3 @@ class ImageUpload(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.image_large.name
-
-
-class ImageUploadPool(models.Model):
-    """Image working pool for post writing, will move to ImageUpload later."""
-
-    data_file = models.ImageField(upload_to=settings.FILE_PATH, max_length=255, db_index=True)
-    create_user = models.ForeignKey(User, related_name='+')
-    create_time = models.DateTimeField(default=datetime.now)
-

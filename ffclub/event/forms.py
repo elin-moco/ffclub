@@ -5,4 +5,4 @@ from ffclub.event.models import Event
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = ('title',)
+        fields = ('title', 'location', 'num_of_ppl')

@@ -5,4 +5,4 @@ from ffclub.person.models import Person
 class PersonForm(ModelForm):
     class Meta:
         model = Person
-        exclude = ('user',)
+        fields = ('fullname', 'gender', 'address', 'occupation')
