@@ -16,7 +16,43 @@
             "email": "elin@mozilla.com", 
             "date_joined": "2013-03-21T03:37:47"
         }
-    }, 
+    },
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "eliu",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2013-03-28T17:24:28",
+            "groups": [],
+            "user_permissions": [],
+            "password": "bcrypt2013_03_08$2a$12$QtDGXvEMNMK4HOpSgsOrWebdW4IZz8DwMx8vlXDNJPkJo0UiQEiIa$2013-03-08",
+            "email": "eliu@mozilla.com",
+            "date_joined": "2013-03-28T16:47:42"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "auth.user",
+        "fields": {
+            "username": "nma",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2013-03-28T17:29:21",
+            "groups": [],
+            "user_permissions": [],
+            "password": "bcrypt2013_03_08$2a$12$M799zXygAUH9c160EhiLQOCLH8BOnGAw5sU7gUBIT0dWNLZEJPdCK$2013-03-08",
+            "email": "nma@mozilla.com",
+            "date_joined": "2013-03-28T17:29:21"
+        }
+    },
     {
         "pk": 1, 
         "model": "product.product", 
