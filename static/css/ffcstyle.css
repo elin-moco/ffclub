@@ -339,9 +339,11 @@ span.toggle {
 /* back, initially hidden pane */
 /*mobile css*/
 @media only screen and (max-width: 600px) {
+  html {
+    overflow: hidden;
+  }
   body {
     background: #000;
-    overflow: hidden;
     /* end of opennav */
   
   }
@@ -362,14 +364,14 @@ span.toggle {
   
   }
   body.opennav #outer-wrapper {
-    transform: rotateX(0deg) rotateY(-180deg);
-    -webkit-transform: rotateX(0deg) rotateY(-180deg);
+    transform: translate(80%, 0);
+    -webkit-transform: translate(80%, 0);
     /** Chrome & Safari **/
   
-    -o-transform: rotateX(0deg) rotateY(-180deg);
+    -o-transform: translate(80%, 0);
     /** Opera **/
   
-    -moz-transform: rotateX(0deg) rotateY(-180deg);
+    -moz-transform: translate(80%, 0);
     /** Firefox **/
   
   }
