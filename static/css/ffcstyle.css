@@ -331,87 +331,124 @@ span.toggle {
   overflow: hidden;
   cursor: pointer;
 }
+/* hide back of pane during swap */
+/* front pane, placed above back */
+/* back, initially hidden pane */
 /*mobile css*/
 @media only screen and (max-width: 600px) {
-  #outer-wrapper {
-    transition: 0.2s ease-in-out;
-    -webkit-transition: 0.2s ease-in-out;
-    -moz-transition: 0.2s ease-in-out;
-    -o-transition: 0.2s ease-in-out;
-    -ms-transition: 0.2s ease-in-out;
-    transition-property: 'all';
-    -webkit-transition-property: 'all';
-    -moz-transition-property: 'all';
-    -o-transition-property: 'all';
-    -ms-transition-property: 'all';
+  body {
+    background: #000;
+    position: relative;
+    /* end of opennav */
+  
   }
   body.opennav {
     height: 480px;
+    width: 100%;
     overflow: hidden;
   }
   body.opennav #tabzilla-panel {
     z-index: 101;
-    height: 100%;
-    overflow-y: auto;
-    opacity: 1;
-    filter: alpha(opacity=100);
-    transform: translate(0px, 0px);
-    -webkit-transform: translate(0px, 0px);
+    transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
   
-    -o-transform: translate(0px, 0px);
+    -o-transform: rotateX(0deg) rotateY(0deg);
     /** Opera **/
   
-    -moz-transform: translate(0px, 0px);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
     /** Firefox **/
   
   }
   body.opennav #outer-wrapper {
-    transform: translate(330px, 0px);
-    -webkit-transform: translate(330px, 0px);
+    z-index: -101;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     /** Chrome & Safari **/
   
-    -o-transform: translate(330px, 0px);
+    -o-transform: rotateY(180deg);
     /** Opera **/
   
-    -moz-transform: translate(330px, 0px);
+    -moz-transform: rotateY(180deg);
     /** Firefox **/
   
   }
-  #main-feature.huge {
-    width: 100%;
-    height: 118px;
-  }
-  #main-feature.intro {
-    background: url('/static/images/css/mobile/banner_1.jpg') top center no-repeat;
-  }
-  /* end of main-feature */
-  #tabzilla-panel {
+  #outer-wrapper {
+    position: absolute;
     transition: 1s ease-in-out;
     -webkit-transition: 1s ease-in-out;
     -moz-transition: 1s ease-in-out;
     -o-transition: 1s ease-in-out;
     -ms-transition: 1s ease-in-out;
-    transition-property: 'transform';
-    -webkit-transition-property: 'transform';
-    -moz-transition-property: 'transform';
-    -o-transition-property: 'transform';
-    -ms-transition-property: 'transform';
-    position: absolute;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    z-index: -100;
-    width: 320px;
-    margin: 10px;
-    height: auto;
-    transform: translate(-320px, 0px);
-    -webkit-transform: translate(-320px, 0px);
+    transition-property: transform;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    z-index: 101;
+    transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
   
-    -o-transform: translate(-320px, 0px);
+    -o-transform: rotateX(0deg) rotateY(0deg);
     /** Opera **/
   
-    -moz-transform: translate(-320px, 0px);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    /** Firefox **/
+  
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Chrome and Safari */
+  
+    -moz-backface-visibility: hidden;
+    /* Firefox */
+  
+    -ms-backface-visibility: hidden;
+    /* Internet Explorer */
+  
+  }
+  #tabzilla-panel {
+    background: #fff;
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    transition-property: transform;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    position: absolute;
+    width: 100%;
+    margin: 10px auto;
+    height: 480px;
+    overflow-y: auto;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Chrome and Safari */
+  
+    -moz-backface-visibility: hidden;
+    /* Firefox */
+  
+    -ms-backface-visibility: hidden;
+    /* Internet Explorer */
+  
+    z-index: -101;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    /** Chrome & Safari **/
+  
+    -o-transform: rotateY(180deg);
+    /** Opera **/
+  
+    -moz-transform: rotateY(180deg);
     /** Firefox **/
   
     /* end of tabzilla-contents */
@@ -421,7 +458,8 @@ span.toggle {
     height: auto;
   }
   #tabzilla-panel #tabzilla-contents {
-    width: 100%;
+    width: 220px;
+    margin: 10px auto;
     /* end of tabzilla-nav */
   
   }
@@ -470,6 +508,14 @@ span.toggle {
     display: none;
   }
   /* end of masthead */
+  #main-feature.huge {
+    width: 100%;
+    height: 118px;
+  }
+  #main-feature.intro {
+    background: url('/static/images/css/mobile/banner_1.jpg') top center no-repeat;
+  }
+  /* end of main-feature */
   #footer {
     padding: 0px;
     /* end of footer-wrapper */

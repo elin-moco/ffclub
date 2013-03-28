@@ -18,10 +18,10 @@ $(function(){
 		e.preventDefault();
 		if ( $(this).attr('data-nav') ==='opened' ){
 			$('body').removeClass('opennav');
-			$(this).attr('data-nav', 'closed');
+			$('span.toggle').attr('data-nav', 'closed');
 		}else{
 			$('body').addClass('opennav');
-			$(this).attr('data-nav', 'opened');
+			$('span.toggle').attr('data-nav', 'opened');
 		}
 	});
 
