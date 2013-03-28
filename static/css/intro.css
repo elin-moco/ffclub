@@ -14,3 +14,11 @@
   padding-left: 55px;
   padding-right: 55px;
 }
+@media only screen and (max-width: 600px) {
+  #intro-login {
+    margin-top: 20px;
+  }
+  #main-content {
+    width: 100%;
+  }
+}

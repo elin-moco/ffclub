@@ -14,4 +14,15 @@ $(function(){
 		
 	});
 
+	$('span.toggle').click(function(e){
+		e.preventDefault();
+		if ( $(this).attr('data-nav') ==='opened' ){
+			$('body').removeClass('opennav');
+			$('span.toggle').attr('data-nav', 'closed');
+		}else{
+			$('body').addClass('opennav');
+			$('span.toggle').attr('data-nav', 'opened');
+		}
+	});
+
 });
