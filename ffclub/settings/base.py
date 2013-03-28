@@ -496,7 +496,8 @@ MINIFY_BUNDLES = {
     'js': {
         # 'site' is automatically included across whole site
         'site': (
-            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/zepto.js',
+            # 'js/libs/jquery-1.9.1.js',
             'js/main.js',
         ),
         'base': (
