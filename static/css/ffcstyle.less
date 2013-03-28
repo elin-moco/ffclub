@@ -336,11 +336,12 @@ span.toggle {
   -webkit-backface-visibility:hidden; /* Chrome and Safari */
   -moz-backface-visibility:hidden; /* Firefox */
   -ms-backface-visibility:hidden; /* Internet Explorer */
+  top:0px;
+  left:0px;
 }
 
 /* front pane, placed above back */
 .front () {
-  z-index: 101;
   transform: rotateX(0deg) rotateY(0deg);
   -webkit-transform: rotateX(0deg) rotateY(0deg); /** Chrome & Safari **/
   -o-transform:  rotateX(0deg) rotateY(0deg); /** Opera **/
@@ -349,24 +350,21 @@ span.toggle {
 
 /* back, initially hidden pane */
 .back (){
-  z-index: -101;
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg); /** Chrome & Safari **/
-  -o-transform:  rotateY(180deg); /** Opera **/
-  -moz-transform: rotateY(180deg); /** Firefox **/
+  transform: rotateX(0deg) rotateY(-180deg);
+  -webkit-transform: rotateX(0deg) rotateY(-180deg); /** Chrome & Safari **/
+  -o-transform: rotateX(0deg) rotateY(-180deg); /** Opera **/
+  -moz-transform: rotateX(0deg) rotateY(-180deg); /** Firefox **/
 }
 /*mobile css*/
 @media only screen and (max-width: 600px){
   body{
     background:#000;
-    position: relative;
+    overflow:hidden;
     &.opennav{
       height:480px;
-      width:100%;
-      overflow:hidden;
-
+      width:320px;
       #tabzilla-panel{
-        .front;
+        .front;  
       }
       #outer-wrapper{
         .back;
@@ -381,19 +379,19 @@ span.toggle {
     .backfacehide;
   }
   
-  #tabzilla-panel{
+  #tabzilla-panel.close-nav{
+    position:absolute;
+    top:0px;
+    left:0px;
     background:#fff;
     .transition_block (1s, ease-in-out, transform);
-    position:absolute;
-    width:100%;
+    width:320px;
     margin:10px auto;
     height:480px;
     overflow-y:auto;
     .backfacehide;
     .back;
-    &.close-nav{
-      height:auto;
-    }
+  
     #tabzilla-contents{
       width:220px;
       margin:10px auto;
