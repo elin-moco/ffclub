@@ -338,17 +338,15 @@ span.toggle {
 @media only screen and (max-width: 600px) {
   body {
     background: #000;
-    position: relative;
+    overflow: hidden;
     /* end of opennav */
   
   }
   body.opennav {
     height: 480px;
-    width: 100%;
-    overflow: hidden;
+    width: 320px;
   }
   body.opennav #tabzilla-panel {
-    z-index: 101;
     transform: rotateX(0deg) rotateY(0deg);
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
@@ -361,15 +359,14 @@ span.toggle {
   
   }
   body.opennav #outer-wrapper {
-    z-index: -101;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateX(0deg) rotateY(-180deg);
+    -webkit-transform: rotateX(0deg) rotateY(-180deg);
     /** Chrome & Safari **/
   
-    -o-transform: rotateY(180deg);
+    -o-transform: rotateX(0deg) rotateY(-180deg);
     /** Opera **/
   
-    -moz-transform: rotateY(180deg);
+    -moz-transform: rotateX(0deg) rotateY(-180deg);
     /** Firefox **/
   
   }
@@ -385,7 +382,6 @@ span.toggle {
     -moz-transition-property: transform;
     -o-transition-property: transform;
     -ms-transition-property: transform;
-    z-index: 101;
     transform: rotateX(0deg) rotateY(0deg);
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
@@ -409,8 +405,11 @@ span.toggle {
     -ms-backface-visibility: hidden;
     /* Internet Explorer */
   
+    top: 0px;
+    left: 0px;
   }
-  #tabzilla-panel {
+  #tabzilla-panel.close-nav {
+    position: absolute;
     background: #fff;
     transition: 1s ease-in-out;
     -webkit-transition: 1s ease-in-out;
@@ -422,8 +421,7 @@ span.toggle {
     -moz-transition-property: transform;
     -o-transition-property: transform;
     -ms-transition-property: transform;
-    position: absolute;
-    width: 100%;
+    width: 320px;
     margin: 10px auto;
     height: 480px;
     overflow-y: auto;
@@ -440,58 +438,56 @@ span.toggle {
     -ms-backface-visibility: hidden;
     /* Internet Explorer */
   
-    z-index: -101;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    top: 0px;
+    left: 0px;
+    transform: rotateX(0deg) rotateY(-180deg);
+    -webkit-transform: rotateX(0deg) rotateY(-180deg);
     /** Chrome & Safari **/
   
-    -o-transform: rotateY(180deg);
+    -o-transform: rotateX(0deg) rotateY(-180deg);
     /** Opera **/
   
-    -moz-transform: rotateY(180deg);
+    -moz-transform: rotateX(0deg) rotateY(-180deg);
     /** Firefox **/
   
     /* end of tabzilla-contents */
   
   }
-  #tabzilla-panel.close-nav {
-    height: auto;
-  }
-  #tabzilla-panel #tabzilla-contents {
+  #tabzilla-panel.close-nav #tabzilla-contents {
     width: 220px;
     margin: 10px auto;
     /* end of tabzilla-nav */
   
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav {
     margin-left: 10px;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul {
     width: 200px;
     text-align: center;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul a {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul a {
     font-size: 16px;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul li.sitemap {
     width: 100%;
     margin: 0px;
     padding: 0px;
     border: 0px;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap > a {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul li.sitemap > a {
     display: block;
     background: #efefef;
     padding: 5px;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap > a:hover {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul li.sitemap > a:hover {
     background: #cccccc;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap ul li {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul li.sitemap ul li {
     border: 1px solid #efefef;
     padding: 5px;
   }
-  #tabzilla-panel #tabzilla-contents #tabzilla-nav ul li.sitemap ul li:hover {
+  #tabzilla-panel.close-nav #tabzilla-contents #tabzilla-nav ul li.sitemap ul li:hover {
     background: #cccccc;
     border: 1px solid #cccccc;
   }
