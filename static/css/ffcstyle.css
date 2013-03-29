@@ -336,19 +336,26 @@ span.toggle {
 /* back, initially hidden pane */
 /*mobile css*/
 @media only screen and (max-width: 600px) {
-  html {
+  body {
+    width: 100%;
+    height: 480px;
     overflow: hidden;
   }
-  body {
-    background: #000;
+  #body_wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
     /* end of opennav */
   
   }
-  body.opennav {
-    height: 480px;
-    width: 320px;
+  #body_wrapper.opennav {
+    width: 100%;
   }
-  body.opennav #tabzilla-panel {
+  #body_wrapper.opennav #tabzilla-panel.close-nav {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     transform: rotateX(0deg) rotateY(0deg);
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
@@ -360,7 +367,7 @@ span.toggle {
     /** Firefox **/
   
   }
-  body.opennav #outer-wrapper {
+  #body_wrapper.opennav #outer-wrapper {
     transform: translate(80%, 0);
     -webkit-transform: translate(80%, 0);
     /** Chrome & Safari **/
@@ -373,27 +380,20 @@ span.toggle {
   
   }
   #outer-wrapper {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: absolute;
-    transition: 1s ease-in-out;
-    -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    -ms-transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
+    -webkit-transition: 0.8s ease-in-out;
+    -moz-transition: 0.8s ease-in-out;
+    -o-transition: 0.8s ease-in-out;
+    -ms-transition: 0.8s ease-in-out;
     transition-property: transform;
     -webkit-transition-property: transform;
     -moz-transition-property: transform;
     -o-transition-property: transform;
     -ms-transition-property: transform;
-    transform: rotateX(0deg) rotateY(0deg);
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-    /** Chrome & Safari **/
-  
-    -o-transform: rotateX(0deg) rotateY(0deg);
-    /** Opera **/
-  
-    -moz-transform: rotateX(0deg) rotateY(0deg);
-    /** Firefox **/
-  
     transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
@@ -412,12 +412,11 @@ span.toggle {
   }
   #tabzilla-panel.close-nav {
     position: absolute;
-    background: #fff;
-    transition: 1s ease-in-out;
-    -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    -ms-transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
+    -webkit-transition: 0.8s ease-in-out;
+    -moz-transition: 0.8s ease-in-out;
+    -o-transition: 0.8s ease-in-out;
+    -ms-transition: 0.8s ease-in-out;
     transition-property: transform;
     -webkit-transition-property: transform;
     -moz-transition-property: transform;
@@ -425,7 +424,7 @@ span.toggle {
     -ms-transition-property: transform;
     width: 320px;
     margin: 10px auto;
-    height: 480px;
+    height: 500px;
     overflow-y: auto;
     transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;

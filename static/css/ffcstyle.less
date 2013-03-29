@@ -357,20 +357,26 @@ span.toggle {
 }
 /*mobile css*/
 @media only screen and (max-width: 600px){
-  html{
+  body{
+    width:100%;
+    height:480px;
     overflow:hidden;
   }
-  body{
-    background:#000;
-    //overflow:hidden;
+  #body_wrapper{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:relative;
     &.opennav{
-      height:480px;
-      width:320px;
-      #tabzilla-panel{
-        .front;  
+      width:100%;
+      #tabzilla-panel.close-nav{
+        height:100%;
+        overflow-x:hidden;
+        overflow-y:auto;
+        .front;
       }
-      #outer-wrapper{
-        //.back;
+       #outer-wrapper{
+        //.back;  
         transform: translate(80%,0);
         -webkit-transform: translate(80%,0); /** Chrome & Safari **/
         -o-transform: translate(80%,0); /** Opera **/
@@ -378,11 +384,13 @@ span.toggle {
       }
     }/* end of opennav */
   }
-
+  
   #outer-wrapper{
+    height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
     position:absolute;
-    .transition_block (1s, ease-in-out, transform);
-    .front;
+    .transition_block (0.8s, ease-in-out, transform);
     .backfacehide;
   }
   
@@ -390,11 +398,10 @@ span.toggle {
     position:absolute;
     top:0px;
     left:0px;
-    background:#fff;
-    .transition_block (1s, ease-in-out, transform);
+    .transition_block (0.8s, ease-in-out, transform);
     width:320px;
     margin:10px auto;
-    height:480px;
+    height:500px;
     overflow-y:auto;
     .backfacehide;
     .back;
