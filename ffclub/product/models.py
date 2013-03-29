@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
-
+from ffclub.settings import ALL_ORDER_DETAIL_CHOICES
 from ffclub.event.models import Event
 from ffclub.upload.models import ImageUpload
 
@@ -43,7 +43,7 @@ class Order(models.Model):
 class OrderDetail(models.Model):
 
     description = models.CharField(max_length=255, blank=True, default='')
-    quantity = models.IntegerField(choices=((0, 0), (1, 1), (2, 2), (3, 3), (5, 5), (10, 10), (20, 20), (30, 30)),
+    quantity = models.IntegerField(choices=ALL_ORDER_DETAIL_CHOICES,
                                    default=0, verbose_name='數量')
     order = models.ForeignKey(Order, related_name='details')
     product = models.ForeignKey(Product, related_name='+')

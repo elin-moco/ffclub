@@ -1,6 +1,5 @@
 from django.forms import ModelForm
 from ffclub.product.models import Product, Order, OrderDetail
-from django import forms
 
 
 class ProductForm(ModelForm):

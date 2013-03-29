@@ -44,17 +44,13 @@ def wall(request):
             event.save()
             order.event = event
             order.save()
-            log.debug(request.POST)
             OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
                                                        extra=0, can_delete=False, form=OrderDetailForm)
             orderDetailFormset = OrderDetailFormset(request.POST, instance=order)
             for orderDetailForm in orderDetailFormset:
-                log.debug('Ya!!!')
                 if orderDetailForm.is_valid():
                     orderDetail = orderDetailForm.save(commit=False)
-                    log.debug('Valid!!!')
                     if orderDetail.quantity > 0:
-                        log.debug('Save!!!')
                         orderDetail.save()
 
             verification_code = generate_random_string(36, string.ascii_letters + string.digits)
@@ -76,7 +72,7 @@ def wall(request):
 
             mail = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
             mail.attach_alternative(html_content, 'text/html')
-            mail.send()
+            MailThread(mail).start()
             return redirect('product.order.verify')
     else:
         if request.user.is_active:

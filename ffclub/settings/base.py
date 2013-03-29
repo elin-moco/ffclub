@@ -524,3 +524,12 @@ CUSTOM_ORDER_DETAIL_CHOICES = {
     3: ((0, '0張'), (1, '1張'), (2, '2張'), (3, '3張')),
     4: ((0, '0份'), (5, '5份'), (10, '10份')),
 }
+
+ALL_ORDER_DETAIL_CHOICES = []
+for product_id in CUSTOM_ORDER_DETAIL_CHOICES:
+    for choice in CUSTOM_ORDER_DETAIL_CHOICES[product_id]:
+        (value, label) = choice
+        defaultChoice = (value, value)
+        if defaultChoice not in ALL_ORDER_DETAIL_CHOICES:
+            ALL_ORDER_DETAIL_CHOICES.append(defaultChoice)
+ALL_ORDER_DETAIL_CHOICES = tuple(ALL_ORDER_DETAIL_CHOICES)
