@@ -474,21 +474,22 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
-            'css/ffcstyle.css',
+            'css/ffcstyle.less',
         ),
         'base': (
-            'css/base.css',
+            'css/base.less',
         ),
         'intro': (
-            'css/intro.css',
+            'css/intro.less',
         ),
         'person': (
         ),
         'event': (
-            'css/intro.css',
+            'css/intro.less',
+            'css/slides.css',
         ),
         'product': (
-            'css/product.css',
+            'css/product.less',
         ),
         'upload': (
         ),
@@ -507,6 +508,7 @@ MINIFY_BUNDLES = {
         'person': (
         ),
         'event': (
+            'js/slides.js',
         ),
         'product': (
         ),
@@ -515,8 +517,8 @@ MINIFY_BUNDLES = {
     }
 }
 
-LESS_PREPROCESS = False
-LESS_BIN = 'lessc'
+LESS_PREPROCESS = True
+LESS_BIN = '/usr/local/bin/lessc'
 
 CUSTOM_ORDER_DETAIL_CHOICES = {
     1: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),
