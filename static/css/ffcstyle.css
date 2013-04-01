@@ -339,19 +339,27 @@ span.toggle {
 /* back, initially hidden pane */
 /*mobile css*/
 @media only screen and (max-width: 600px) {
-  html {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
   }
-  body {
-    background: #000;
+  #body_wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
     /* end of opennav */
   
   }
-  body.opennav {
-    height: 480px;
-    width: 320px;
+  #body_wrapper.opennav {
+    width: 100%;
   }
-  body.opennav #tabzilla-panel {
+  #body_wrapper.opennav #tabzilla-panel.close-nav {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     transform: rotateX(0deg) rotateY(0deg);
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     /** Chrome & Safari **/
@@ -363,40 +371,33 @@ span.toggle {
     /** Firefox **/
   
   }
-  body.opennav #outer-wrapper {
-    transform: translate(80%, 0);
-    -webkit-transform: translate(80%, 0);
+  #body_wrapper.opennav #outer-wrapper {
+    transform: translate(85%, 0);
+    -webkit-transform: translate(85%, 0);
     /** Chrome & Safari **/
   
-    -o-transform: translate(80%, 0);
+    -o-transform: translate(85%, 0);
     /** Opera **/
   
-    -moz-transform: translate(80%, 0);
+    -moz-transform: translate(85%, 0);
     /** Firefox **/
   
   }
   #outer-wrapper {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: absolute;
-    transition: 1s ease-in-out;
-    -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    -ms-transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
+    -webkit-transition: 0.8s ease-in-out;
+    -moz-transition: 0.8s ease-in-out;
+    -o-transition: 0.8s ease-in-out;
+    -ms-transition: 0.8s ease-in-out;
     transition-property: transform;
     -webkit-transition-property: transform;
     -moz-transition-property: transform;
     -o-transition-property: transform;
     -ms-transition-property: transform;
-    transform: rotateX(0deg) rotateY(0deg);
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-    /** Chrome & Safari **/
-  
-    -o-transform: rotateX(0deg) rotateY(0deg);
-    /** Opera **/
-  
-    -moz-transform: rotateX(0deg) rotateY(0deg);
-    /** Firefox **/
-  
     transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
@@ -415,20 +416,19 @@ span.toggle {
   }
   #tabzilla-panel.close-nav {
     position: absolute;
-    background: #fff;
-    transition: 1s ease-in-out;
-    -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    -ms-transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
+    -webkit-transition: 0.8s ease-in-out;
+    -moz-transition: 0.8s ease-in-out;
+    -o-transition: 0.8s ease-in-out;
+    -ms-transition: 0.8s ease-in-out;
     transition-property: transform;
     -webkit-transition-property: transform;
     -moz-transition-property: transform;
     -o-transition-property: transform;
     -ms-transition-property: transform;
-    width: 320px;
+    width: 100%;
     margin: 10px auto;
-    height: 480px;
+    height: 100%;
     overflow-y: auto;
     transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
@@ -523,8 +523,8 @@ span.toggle {
   
   }
   #footer #footer-wrapper {
-    width: 300px;
-    margin: 0px auto;
+    width: 85%;
+    margin: 10px auto;
   }
   #footer #footer-wrapper #footer-logo {
     display: none;

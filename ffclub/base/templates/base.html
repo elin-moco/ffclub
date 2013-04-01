@@ -39,9 +39,9 @@
     {% endblock %}
   </head>
   <body>
+    <div id="body_wrapper">
     <div id="tabzilla-panel" class="close-nav">
       <div id="tabzilla-contents">
-        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0" data-nav="closed" >Menu</span>
         <div id="tabzilla-promo">
           <div id="promo-block" class="promo-android-ff"> <!--ex: promo-firefox, promo-MWC, promo-flicks -->
             <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">
@@ -176,6 +176,7 @@
         </div> <!-- end of footer-wrapper -->
       </footer> <!-- end of footer -->
     </div> <!-- end of outer-wrapper-->
+    </div><!--end of body_warpper-->
     {{ js('site') }}
     {% block base_js %}
       {{ js('base') }}

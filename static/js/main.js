@@ -17,10 +17,14 @@ $(function(){
 	$('span.toggle').click(function(e){
 		e.preventDefault();
 		if ( $(this).attr('data-nav') ==='opened' ){
-			$('body').removeClass('opennav');
+			$('#body_wrapper').removeClass('opennav');
+			//$('#tabzilla-panel').removeClass('open');
+			//$('#outer-wrapper').removeClass('open');
 			$('span.toggle').attr('data-nav', 'closed');
 		}else{
-			$('body').addClass('opennav');
+			$('#body_wrapper').addClass('opennav');
+			//$('#tabzilla-panel').addClass('open');
+			//$('#outer-wrapper').addClass('open');
 			$('span.toggle').attr('data-nav', 'opened');
 		}
 	});
