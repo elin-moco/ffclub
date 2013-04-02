@@ -35,7 +35,7 @@
       <input type="submit" value="我要上傳">
     </form>
   {% else %}
-    <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
+    <p><a id="browserid" href="javascript:void(0)"><span class="loginButton">分享成果請先登入</span></a></p>
     <form method="POST" action="{{ url('browserid_verify') }}">
       {{ csrf() }}
       {{ browserid_form.as_p() }}

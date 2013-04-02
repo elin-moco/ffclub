@@ -166,7 +166,8 @@ DOMAIN_METHODS = {
 }
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = ['media', 'static', 'admin', '', 'users', 'events', 'products', 'uploads']
+SUPPORTED_NONLOCALES = ['media', 'static', 'admin', '', 'users', 'events', 'products', 'uploads',
+                        'browserid', 'login', 'logout']
 
 
 ## Media and templates.
