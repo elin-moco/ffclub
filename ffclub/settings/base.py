@@ -474,10 +474,10 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
-            'css/ffcstyle.less',
+            'css/ffcstyle.css',
         ),
         'base': (
-            'css/base.less',
+            'css/base.css',
         ),
         'intro': (
             'css/intro.css',
@@ -485,11 +485,11 @@ MINIFY_BUNDLES = {
         'person': (
         ),
         'event': (
-            'css/event.less',
+            'css/event.css',
             'css/slides.css',
         ),
         'product': (
-            'css/product.less',
+            'css/product.css',
             'css/slides.css',
         ),
         'upload': (

@@ -1,16 +1,33 @@
-div.carousel {
+ul.carousel {
   width: 100%;
   height: 370px;
+  position: relative;
+  overflow: hidden;
+  display: block;
 }
 
-div.banner1 {
+ul.carousel > li{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*	-webkit-transition: -webkit-transform 1s ease-in-out;*/
+}
+
+li.banner1 {
   background: url('/static/images/css/banner_intro.jpg') top center no-repeat;
 }
-div.banner2 {
+li.banner2 {
   background: url('/static/images/css/banner_intro_2.jpg') top center no-repeat;
 }
-div.banner3 {
+li.banner3 {
   background: url('/static/images/css/banner_intro_3.jpg') top center no-repeat;
+}
+
+#main-feature > hgroup {
+  display: none;
 }
 
 #main-content{
@@ -18,12 +35,14 @@ div.banner3 {
 }
 
 #intro-login {
+  position: relative;
   height: 58px;
   margin-top: -29px;
   margin-bottom: 20px;
   background: #fff;
 }
 #intro-content {
+  position: relative;
   background: #fff;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -39,3 +58,4 @@ div.banner3 {
     width: 100%;
   }
 }
+

@@ -18,7 +18,7 @@ window.saw = (function($){
         slideData =[],
 
         boundingBox = [0,0],
-
+        carousel,
         slideMap = {};
 
 
@@ -33,9 +33,13 @@ window.saw = (function($){
         e.preventDefault();
         var targ = $(e.target);
         if(targ.hasClass('next')) {
-            goTo(currentSlide + 1);
+            if (!goTo(currentSlide + 1)) {
+                jumpToStart();
+            }
         } else if(targ.hasClass('prev')){
-            goTo(currentSlide - 1);
+            if (!goTo(currentSlide - 1)) {
+                jumpToEnd();
+            }
         } else {
             hide();
         }
@@ -44,6 +48,8 @@ window.saw = (function($){
 
     function attachEvents(){
         wrapper.on('click', handleClicks);
+        var bd = document.querySelector('html');
+        bd.addEventListener('keyup', handleKeyEvents);
     }
 
 
@@ -68,43 +74,91 @@ window.saw = (function($){
     }
 
     function init_carousel(){
+        carousel = true;
+        wrapper = container_node;
         var slides = container_node.find('li');
         slides.each(function(i, el){
-            var thisSlide = {}, thisImg = $(el).find('img');
+            var thisSlide = {}, thisImg = $(el);
 
-//            thisSlide.url = thisImg.attr('src').replace(/_s|_q/, '_z');
-            thisSlide.url = $(el).find('a').attr('href');
+            var url = thisImg.css('background-image');
+            url = url.substring(5, url.length - 2);
+            thisSlide.url = url;
             thisSlide.height = thisImg.attr('data-full-height');
             thisSlide.width = thisImg.attr('data-full-width');
-            thisSlide.link = $(el).find('a').attr('href');
+            thisSlide.link = url;
+            thisSlide.node = thisImg;
+            slideData.push(thisSlide);
 
-            slideMap[thisSlide.link] = slideData.push(thisSlide) - 1;
-            thisSlide.id = slideMap[thisSlide.link];
+            attachEvents();
+            boundingBox = [ window.innerWidth, window.innerHeight ];
+
+            jumpToStart(slideData.length - 1);
+            attachTouchEvents();
         });
+    }
+
+    function jumpTo(to, from) {
+        if (from == undefined) {
+            from = currentSlide;
+        }
+        if (to > from) {
+            for (; from <= to; from++) {
+                goTo(from);
+            }
+        }
+        else if (from > to) {
+            for (; from >= to; from--) {
+                goTo(from);
+            }
+        }
+    }
+
+    function jumpToStart(i) {
+        if (i == undefined) {
+            i = currentSlide;
+        }
+        for (; i >= 0; i--) {
+            goTo(i);
+        }
+    }
+
+    function jumpToEnd(i) {
+        if (i == undefined) {
+            i = currentSlide;
+        }
+        for (; i < slideData.length; i++) {
+            goTo(i);
+        }
     }
 
     function buildSlide (slideNum) {
 
-        var thisSlide, s, img, scaleFactor = 1, w, h;
+        var thisSlide, s, img;
 
         if(!slideData[slideNum] || slideData[slideNum].node){
             return false;
         }
 
         var thisSlide = slideData[slideNum];
+
         var s = $(slideTemplate(thisSlide));
 
-        var img = s.children('div');
+        img = s.children('div');
 
+        checkImageSize(thisSlide, img);
+
+        thisSlide.node = s;
+        wrapper.append(s);
+        setPosition(s, boundingBox[0]);
+
+        return s;
+    }
+
+    function checkImageSize(thisSlide, img) {
+        var scaleFactor = 1, w, h;
         //image is too big! scale it!
         if(thisSlide.width > boundingBox[0] || thisSlide.height > boundingBox[1]){
-
-            if(thisSlide.width > thisSlide.height) {
-                scaleFactor = boundingBox[0]/thisSlide.width;
-            } else {
-                scaleFactor = boundingBox[1]/thisSlide.height;
-            }
-
+            scaleFactor = Math.min(boundingBox[0]/thisSlide.width, boundingBox[1]/thisSlide.height)
             w = Math.round(thisSlide.width * scaleFactor);
             h = Math.round(thisSlide.height * scaleFactor);
             img.css('height', h + 'px');
@@ -114,14 +168,6 @@ window.saw = (function($){
             img.css('height', thisSlide.height + 'px');
             img.css('width', thisSlide.width + 'px');
         }
-
-
-
-        thisSlide.node = s;
-        wrapper.append(s);
-        setPosition(s, boundingBox[0]);
-
-        return s;
     }
 
     var i =0;
@@ -197,6 +243,22 @@ window.saw = (function($){
 
     }
 
+    function handleKeyEvents(e) {
+        if (37 == e.keyCode) {
+            if (!goTo(currentSlide - 1)) {
+                jumpToEnd();
+            }
+        }
+        else if (39 == e.keyCode) {
+            if (!goTo(currentSlide + 1)) {
+                jumpToStart();
+            }
+        }
+        else if (27 == e.keyCode) {
+            hide();
+        }
+    }
+
     function attachTouchEvents() {
 
         var bd = document.querySelector('html');
@@ -248,10 +310,8 @@ window.saw = (function($){
     function goTo(slideNum){
         var thisSlide;
         //failure
-        console.info('GOTO: '+slideData);
         if(!slideData[slideNum]){
-            goTo(currentSlide);
-            return;
+            return false;
         }
 
         if(Math.abs(currentSlide - slideNum) !== 1 && slideData[currentSlide] && slideData[currentSlide].node){
@@ -281,13 +341,15 @@ window.saw = (function($){
 
 
         currentSlide = slideNum;
+
+        return true;
     }
 
     function showLightbox(startSlide){
         if(!chromeBuilt){
             buildChrome();
-            attachEvents();
         }
+        attachEvents();
         wrapper.show();
         boundingBox = [ window.innerWidth, window.innerHeight ];
 
@@ -322,13 +384,11 @@ window.saw = (function($){
                         thisSlide.link = $(el).find('a').attr('href');
 
                         slideData.push(thisSlide);
-
-                        console.info(slideData);
                     });
                     if(!chromeBuilt){
                         buildChrome();
-                        attachEvents();
                     }
+                    attachEvents();
                     wrapper.show();
                     boundingBox = [ window.innerWidth, window.innerHeight ];
 
@@ -338,29 +398,44 @@ window.saw = (function($){
             );
         }
         else {
+            attachEvents();
             wrapper.show();
+            boundingBox = [ window.innerWidth, window.innerHeight ];
             goTo(0);
             attachTouchEvents();
         }
     }
 
-    function startCarousel() {
-
+    function startCarousel(interval) {
+        if (interval == undefined) {
+            interval = 5000;
+        }
+        setInterval(function() {
+            if (!goTo(currentSlide + 1)) {
+                jumpToStart();
+            }
+        }, interval);
     }
 
     function hide(){
+        if (carousel) {
+            return;
+        }
         wrapper.hide();
         var bd = document.querySelector('html');
         bd.removeEventListener('touchmove', handleTouchEvents);
         bd.removeEventListener('touchstart', handleTouchEvents);
         bd.removeEventListener('touchend', handleTouchEvents);
+        wrapper.off('click', handleClicks);
+        bd.removeEventListener('keyup',handleKeyEvents);
     }
 
     function Carousel(selector) {
         container_node = $(selector);
         init_carousel();
         return {
-            start: startCarousel
+            start: startCarousel,
+            goTo: goTo
         };
     }
 
