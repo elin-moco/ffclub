@@ -93,7 +93,7 @@
         "pk": 1, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5c0f_1.jpg", 
+            "image_large": "uploads/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5c0f.jpg",
             "image_large_height": 111, 
             "entity_id": 1, 
             "image_medium": "uploads/m/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5c0f.jpg", 
@@ -119,7 +119,7 @@
         "pk": 2, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5927_1.jpg", 
+            "image_large": "uploads/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5927.jpg",
             "image_large_height": 463, 
             "entity_id": 1, 
             "image_medium": "uploads/m/Firefox\u6d3b\u529b\u8cbc\u7d19_\u5927.jpg", 
@@ -145,7 +145,7 @@
         "pk": 3, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u6b63_\u5c0f_1.jpg", 
+            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u6b63_\u5c0f.jpg",
             "image_large_height": 111, 
             "entity_id": 2, 
             "image_medium": "uploads/m/Firefox_\u660e\u4fe1\u7247_\u6b63_\u5c0f.jpg", 
@@ -171,7 +171,7 @@
         "pk": 4, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u6b63_1.jpg", 
+            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u6b63.jpg",
             "image_large_height": 563, 
             "entity_id": 2, 
             "image_medium": "uploads/m/Firefox_\u660e\u4fe1\u7247_\u6b63.jpg", 
@@ -197,7 +197,7 @@
         "pk": 5, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u53cd_1.jpg", 
+            "image_large": "uploads/Firefox_\u660e\u4fe1\u7247_\u53cd.jpg",
             "image_large_height": 567, 
             "entity_id": 2, 
             "image_medium": "uploads/m/Firefox_\u660e\u4fe1\u7247_\u53cd.jpg", 
@@ -223,7 +223,7 @@
         "pk": 6, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/rapidreleasecycle_poster_\u5c0f_1.jpg", 
+            "image_large": "uploads/rapidreleasecycle_poster_\u5c0f.jpg",
             "image_large_height": 111, 
             "entity_id": 3, 
             "image_medium": "uploads/m/rapidreleasecycle_poster_\u5c0f.jpg", 
@@ -249,7 +249,7 @@
         "pk": 7, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/rapidreleasecycle_poster_\u5927_1.jpg", 
+            "image_large": "uploads/rapidreleasecycle_poster_\u5927.jpg",
             "image_large_height": 767, 
             "entity_id": 3, 
             "image_medium": "uploads/m/rapidreleasecycle_poster_\u5927.jpg", 
@@ -275,7 +275,7 @@
         "pk": 8, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-cover-\u5c0f_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-cover-\u5c0f.jpg",
             "image_large_height": 111, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-cover-\u5c0f.jpg", 
@@ -301,7 +301,7 @@
         "pk": 9, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-cover-\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-cover-\u5927.jpg",
             "image_large_height": 373, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-cover-\u5927.jpg", 
@@ -327,7 +327,7 @@
         "pk": 10, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-P1P2_\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-P1P2_\u5927.jpg",
             "image_large_height": 560, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-P1P2_\u5927.jpg", 
@@ -353,7 +353,7 @@
         "pk": 11, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-P3P4_\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-P3P4_\u5927.jpg",
             "image_large_height": 560, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-P3P4_\u5927.jpg", 
@@ -379,7 +379,7 @@
         "pk": 12, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-P5P6_\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-P5P6_\u5927.jpg",
             "image_large_height": 560, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-P5P6_\u5927.jpg", 
@@ -405,7 +405,7 @@
         "pk": 13, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-P7P8_\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-P7P8_\u5927.jpg",
             "image_large_height": 560, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-P7P8_\u5927.jpg", 
@@ -431,7 +431,7 @@
         "pk": 14, 
         "model": "upload.imageupload", 
         "fields": {
-            "image_large": "uploads/mozilla_brochure-P9P10_\u5927_1.jpg", 
+            "image_large": "uploads/mozilla_brochure-P9P10_\u5927.jpg",
             "image_large_height": 373, 
             "entity_id": 4, 
             "image_medium": "uploads/m/mozilla_brochure-P9P10_\u5927.jpg", 
