@@ -15,14 +15,14 @@ ul.carousel > li {
   /*	-webkit-transition: -webkit-transform 1s ease-in-out;*/
 
 }
-li.banner1 {
-  background: url('/static/images/css/banner_intro.jpg') top center no-repeat;
+li.bannerWelcome {
+  background: url('/static/images/css/intro_banner_welcome.jpg') top center no-repeat;
 }
-li.banner2 {
-  background: url('/static/images/css/banner_intro_2.jpg') top center no-repeat;
+li.bannerFree {
+  background: url('/static/images/css/intro_banner_free.jpg') top center no-repeat;
 }
-li.banner3 {
-  background: url('/static/images/css/banner_intro_3.jpg') top center no-repeat;
+li.bannerSupport {
+  background: url('/static/images/css/intro_banner_support.jpg') top center no-repeat;
 }
 #main-feature > hgroup {
   display: none;

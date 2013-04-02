@@ -1,8 +1,37 @@
-div#main-content{
-  width: 1000px;
+div.eventShowHead {
+  background-color: #2162A9;
+  width: 100%;
+  height: 100px;
 }
-@media only screen and (max-width: 1000px){
-  div#main-content{
+
+header#masthead {
+  height: 100%;
+}
+
+header#masthead > h1 {
+  background-image: none;
+  text-align: right;
+  margin: 0;
+  width: 600px;
+  height: 100%;
+  &>a {
+    line-height: 120px;
+    text-indent: 0;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    font-size: 36px;
+  }
+}
+
+div#main-content {
+  position: relative;
+  width: 1000px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 1000px) {
+  div#main-content {
     width: 100%;
   }
 }

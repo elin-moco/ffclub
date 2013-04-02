@@ -434,8 +434,7 @@ window.saw = (function($){
         container_node = $(selector);
         init_carousel();
         return {
-            start: startCarousel,
-            goTo: goTo
+            start: startCarousel
         };
     }
 

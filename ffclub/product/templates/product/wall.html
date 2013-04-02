@@ -4,6 +4,13 @@
   {{ css('product') }}
 {% endblock %}
 
+{% block banner %}
+<hgroup id="main-feature" class="default order">
+    <h1>歡迎加入 Firefox 活力軍</h1>
+    <h2>Welcom to you</h2>
+</hgroup>
+{% endblock %}
+
 {% block content %}
   <h1>申請 Firefox 活力宣傳品</h1>
 
@@ -58,8 +65,6 @@
   {{ order_form }}
   <input type="submit" value="送件申請">
   </form>
-  <p>{{ _('You are logged in as {username}')|f(username=request.user) }}.
-    <a href="{{ url('intro.logout') }}">{{ _('Log out') }}</a></p>
 {% else %}
   <p><a id="browserid" href="#">{{ _('Log in with BrowserID') }}</a></p>
   <form method="POST" action="{{ url('browserid_verify') }}">

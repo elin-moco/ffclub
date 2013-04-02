@@ -131,14 +131,16 @@
   <!-- end of tabzilla-panel -->
   <div id="outer-wrapper">
     <div id="wrapper">
+      {% block head %}
       <header id="masthead">
         <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0" data-nav="closed">Menu</span>
 
         <h1><a href="/">Firefox 活力軍</a></h1>
         <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>
       </header>
+      {% endblock %}
       {% block banner %}
-        <hgroup id="main-feature" class="huge intro">
+        <hgroup id="main-feature" class="default intro">
           <h1>歡迎加入 Firefox 活力軍</h1>
           <h2>Welcom to you</h2>
         </hgroup>

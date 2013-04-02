@@ -2,6 +2,13 @@
 
 {{ css('product') }}
 
+{% block banner %}
+    <hgroup id="main-feature" class="default orderComplete">
+        <h1>歡迎加入 Firefox 活力軍</h1>
+        <h2>Welcom to you</h2>
+    </hgroup>
+{% endblock %}
+
 {% block content %}
   您的申請流程已經完成，恭喜您成為 Firefox 活力軍！<br>
   歡迎您將推廣的成果與照片上傳至<a href="{{ url('event.wall') }}">活力軍成果展</a><br>

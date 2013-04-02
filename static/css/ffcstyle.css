@@ -173,8 +173,9 @@ body {
   background: #fff;
 }
 #wrapper {
-  background: url(/static/images/css/bg-sand.png) left top repeat;
+  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
   padding-bottom: 50px;
+  z-index: -1;
 }
 #masthead {
   width: 800px;
@@ -224,6 +225,10 @@ body {
 #main-feature p {
   text-indent: -99999px;
 }
+#main-feature.default {
+  width: 800px;
+  height: 275px;
+}
 #main-feature.huge {
   width: 100%;
   height: 370px;
@@ -232,7 +237,31 @@ body {
   height: 275px;
 }
 #main-feature.intro {
-  background: url('/static/images/css/banner_intro_2.jpg') top center no-repeat;
+  background: url('/static/images/css/banner_default.jpg') top center no-repeat;
+  background-size: 800px, 275px;
+}
+#main-feature.order {
+  background: url('/static/images/css/order_banner.jpg') top center no-repeat;
+}
+#main-feature.orderComplete {
+  background: url('/static/images/css/order_complete_banner.jpg') top center no-repeat;
+}
+#main-feature.register {
+  background: url('/static/images/css/register_banner.jpg') top center no-repeat;
+}
+#main-feature.registerComplete {
+  background: url('/static/images/css/register_complete_banner.jpg') top center no-repeat;
+}
+#main-feature.eventShow {
+  height: 75px;
+  text-align: center;
+}
+#main-feature.eventShow > h1,
+#main-feature.eventShow h2 {
+  display: none;
+}
+#main-feature.eventShow > h3 {
+  line-height: 75px;
 }
 #main-content {
   color: #000;
@@ -511,7 +540,7 @@ span.toggle {
     height: 118px;
   }
   #main-feature.intro {
-    background: url('/static/images/css/mobile/banner_1.jpg') top center no-repeat;
+    background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
   }
   /* end of main-feature */
   #footer {
