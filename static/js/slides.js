@@ -324,11 +324,16 @@ window.saw = (function($){
         else {
             wrapper.show();
             goTo(0);
+            attachTouchEvents();
         }
     }
 
     function hide(){
         wrapper.hide();
+        var bd = document.querySelector('html');
+        bd.removeEventListener('touchmove', handleTouchEvents);
+        bd.removeEventListener('touchstart', handleTouchEvents);
+        bd.removeEventListener('touchend', handleTouchEvents);
     }
 
     function Carousel(selector) {
