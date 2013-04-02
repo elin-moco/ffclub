@@ -27,7 +27,9 @@
     {% for order_detail_form in order_detail_formset %}
       <li class="product">
         {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
-          <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
+          <a class="productPhotosLink" href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
+            <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
+          </a>
         {% endif %}
         {% if request.user.is_active %}
           {{ order_detail_form.quantity }}
@@ -69,4 +71,9 @@
 
 {% endblock %}
 
-{{ js('product') }}
+{% block base_js %}
+  {{ js('product') }}
+  {% if not request.user.is_active %}
+    {{ browserid_form.media }}
+  {% endif %}
+{% endblock %}

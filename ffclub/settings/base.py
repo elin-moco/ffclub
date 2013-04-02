@@ -485,11 +485,12 @@ MINIFY_BUNDLES = {
         'person': (
         ),
         'event': (
-            'css/intro.less',
+            'css/event.less',
             'css/slides.css',
         ),
         'product': (
             'css/product.less',
+            'css/slides.css',
         ),
         'upload': (
         ),
@@ -497,20 +498,26 @@ MINIFY_BUNDLES = {
     'js': {
         # 'site' is automatically included across whole site
         'site': (
-            'js/libs/zepto.js',
-            # 'js/libs/jquery-1.9.1.js',
+            'js/libs/jquery-1.9.1.js',
             'js/main.js',
         ),
         'base': (
         ),
         'intro': (
+            'js/slides.js',
         ),
         'person': (
         ),
         'event': (
+            'js/libs/jquery.masonry.min.js',
+            'js/libs/jquery.imagesloaded.min.js',
             'js/slides.js',
+            'js/pretty.date.js',
+            'js/event.js',
         ),
         'product': (
+            'js/slides.js',
+            'js/product.js',
         ),
         'upload': (
         ),

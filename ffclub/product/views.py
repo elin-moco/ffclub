@@ -101,6 +101,12 @@ def wall(request):
     return render(request, 'product/wall.html', data)
 
 
+def product_photos(request, product_id):
+    product = Product.objects.get(id=product_id)
+    data = {'photos': product.photos.filter(usage='original')}
+    return render(request, 'product/product_photos.html', data)
+
+
 def order_complete(request):
     data = {}
     # You'd add data here that you're sending to the template.

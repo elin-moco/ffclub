@@ -6,6 +6,7 @@ from . import views
 urlpatterns = patterns(
     '',
     url(r'^products/$', views.wall, name='product.wall'),
+    url(r'^products/(?P<product_id>\d+)/photos$', views.product_photos, name='product.photos'),
     url(r'^products/order/verify/$', views.order_verify, name='product.order.verify'),
     url(r'^products/order/complete/$', views.order_complete, name='product.order.complete'),
 
