@@ -480,7 +480,7 @@ MINIFY_BUNDLES = {
             'css/base.less',
         ),
         'intro': (
-            'css/intro.less',
+            'css/intro.css',
         ),
         'person': (
         ),
@@ -505,6 +505,7 @@ MINIFY_BUNDLES = {
         ),
         'intro': (
             'js/slides.js',
+            'js/intro.js',
         ),
         'person': (
         ),

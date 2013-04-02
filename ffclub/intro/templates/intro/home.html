@@ -4,6 +4,20 @@
   {{ css('intro') }}
 {% endblock %}
 
+{% block banner %}
+    <div id="main-feature" class="huge">
+      <hgroup>
+        <h1>歡迎加入 Firefox 活力軍</h1>
+        <h2>Welcom to you</h2>
+      </hgroup>
+      <ul class="carousel">
+          <li class="banner1"></li>
+          <li class="banner2"></li>
+          <li class="banner3"></li>
+      </ul>
+    </div>
+{% endblock %}
+
 {% block content %}
   <div id="intro-login">
     {% if request.user.is_active %}
@@ -52,5 +66,10 @@
 
   </div>
 {% endblock %}
+{% block base_js %}
+  {{ js('intro') }}
+  {% if not request.user.is_active %}
+    {{ browserid_form.media }}
+  {% endif %}
+{% endblock %}
 
-{{ js('intro') }}

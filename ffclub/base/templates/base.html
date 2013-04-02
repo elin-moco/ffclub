@@ -1,188 +1,209 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-    <!-- webmaster -->
-    <meta name="google-site-verification" content="" /> 
-    <meta name="msvalidate.01" content="" />
-    <!-- metadata and facebook open graph -->
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content=""/>
-    <title>歡迎加入 Firefox 活力軍！</title>
-    <link rel="canonical" href="" />
-    <link rel="shortcut icon" href="http://mozilla.com/favicon.ico" />
-    <!--[if lte IE 8]>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name='viewport'
+        content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <!-- webmaster -->
+  <meta name="google-site-verification" content=""/>
+  <meta name="msvalidate.01" content=""/>
+  <!-- metadata and facebook open graph -->
+  <meta name="description" content=""/>
+  <meta name="keywords" content=""/>
+  <meta property="og:title" content=""/>
+  <meta property="og:description" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <title>歡迎加入 Firefox 活力軍！</title>
+  <link rel="canonical" href=""/>
+  <link rel="shortcut icon" href="http://mozilla.com/favicon.ico"/>
+  <!--[if lte IE 8]>
     <script src="/js/libs/html5shiv.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-      /*************************** GA tracking code
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '']);
-      _gaq.push(['_trackPageview']);
-      
-      (function() {
+  <script type="text/javascript">
+    /*************************** GA tracking code
+     var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', '']);
+     _gaq.push(['_trackPageview']);
+
+     (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-      *****************************/
-    </script>
+     *****************************/
+  </script>
 
-    {{ css('site') }}
-    {% block base_css %}
-        {{ css('base') }}
-    {% endblock %}
-  </head>
-  <body>
-    <div id="body_wrapper">
-    <div id="tabzilla-panel" class="close-nav">
-      <div id="tabzilla-contents">
-        <div id="tabzilla-promo">
-          <div id="promo-block" class="promo-android-ff"> <!--ex: promo-firefox, promo-MWC, promo-flicks -->
-            <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">
-              <h4>Firefox for Android</h4>
-              <p>我會說中文了！</p>
-            </a>
-          </div><!-- end of promo-name -->
-        </div><!-- end of tabzilla-promo -->
-        <div id="tabzilla-nav">
-          <ul>
-            <li class="sitemap">
-              <a href="/community/" title="社群參與">社群參與</a>
-              <ul>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-              </ul>
-            </li> <!-- end of sitemap -->
-            <li class="sitemap">
-              <a href="/community/" title="社群參與">社群參與</a>
-              <ul>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-              </ul>
-            </li> <!-- end of sitemap -->
-            <li class="sitemap">
-              <a href="/community/" title="社群參與">社群參與</a>
-              <ul>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-              </ul>
-            </li> <!-- end of sitemap -->
-            <li class="sitemap last">
-              <a href="/community/" title="社群參與">社群參與</a>
-              <ul>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-                <li>
-                  <a href="/community/student/" title="校園大使">校園大使</a>
-                </li>
-                <li>
-                  <a href="/community/contribute/" title="社群專案">社群專案</a>
-                </li>
-              </ul>
-            </li> <!-- end of sitemap -->
-          </ul>
-        </div><!-- end of tabzilla-nav -->
-      </div><!-- end of tabzilla-content -->
-    </div><!-- end of tabzilla-panel -->
-    <div id="outer-wrapper">
-      <div id="wrapper">
-        <header id="masthead">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0" data-nav="closed" >Menu</span>
-          <h1><a href="/">Firefox 活力軍</a></h1>
-          <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>
-        </header>
+  {{ css('site') }}
+  {% block base_css %}
+    {{ css('base') }}
+  {% endblock %}
+</head>
+<body>
+<div id="body_wrapper">
+  <div id="tabzilla-panel" class="close-nav">
+    <div id="tabzilla-contents">
+      <div id="tabzilla-promo">
+        <div id="promo-block" class="promo-android-ff"> <!--ex: promo-firefox, promo-MWC, promo-flicks -->
+          <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">
+            <h4>Firefox for Android</h4>
+
+            <p>我會說中文了！</p>
+          </a>
+        </div>
+        <!-- end of promo-name -->
+      </div>
+      <!-- end of tabzilla-promo -->
+      <div id="tabzilla-nav">
+        <ul>
+          <li class="sitemap">
+            <a href="/community/" title="社群參與">社群參與</a>
+            <ul>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of sitemap -->
+          <li class="sitemap">
+            <a href="/community/" title="社群參與">社群參與</a>
+            <ul>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of sitemap -->
+          <li class="sitemap">
+            <a href="/community/" title="社群參與">社群參與</a>
+            <ul>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of sitemap -->
+          <li class="sitemap last">
+            <a href="/community/" title="社群參與">社群參與</a>
+            <ul>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+              <li>
+                <a href="/community/student/" title="校園大使">校園大使</a>
+              </li>
+              <li>
+                <a href="/community/contribute/" title="社群專案">社群專案</a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of sitemap -->
+        </ul>
+      </div>
+      <!-- end of tabzilla-nav -->
+    </div>
+    <!-- end of tabzilla-content -->
+  </div>
+  <!-- end of tabzilla-panel -->
+  <div id="outer-wrapper">
+    <div id="wrapper">
+      <header id="masthead">
+        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0" data-nav="closed">Menu</span>
+
+        <h1><a href="/">Firefox 活力軍</a></h1>
+        <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>
+      </header>
+      {% block banner %}
         <hgroup id="main-feature" class="huge intro">
           <h1>歡迎加入 Firefox 活力軍</h1>
           <h2>Welcom to you</h2>
         </hgroup>
-        <div id="main-content">
-          {% block content %}{% endblock %}
+      {% endblock %}
+      <div id="main-content">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+    <!-- end of wrapper-->
+    <footer id="footer">
+      <div id="footer-wrapper">
+        <div id="footer-logo" class="footer-content">
+          <a href="http://mozilla.org/en-US/" target="_blank" title="mozilla taiwan">
+            mozilla taiwan
+          </a>
         </div>
-      </div> <!-- end of wrapper-->
-      <footer id="footer">
-        <div id="footer-wrapper">
-          <div id="footer-logo" class="footer-content">
-            <a href="http://mozilla.org/en-US/" target="_blank" title="mozilla taiwan">
-             mozilla taiwan
-            </a>
-          </div>
-          <div id="sub-footer" class="footer-content">
-            <strong>與我們為友</strong>
-              <ul>
-                <li id="footer-Facebook">
-                  <a href="https://www.facebook.com/MozillaTaiwan">Facebook</a>
-                </li>
-                <li id="footer-Google+">
-                  <a href="https://plus.google.com/u/0/114653167240123163859/posts">Google+</a>
-                </li>
-                <li id="footer-Plurk">
-                  <a href="http://plurk.com/MozillaTaiwan">Plurk</a>
-                </li>
-                <li id="footer-Youtube">
-                  <a href="http://www.youtube.com/user/MozillaTaiwan">Youtube</a>
-                </li>
-                <li id="footer-Flickr">
-                  <a href="http://www.flickr.com/photos/mozillataiwan/">Flickr</a>
-                </li>
-                <li id="footer-電子報">
-                  <a href="http://mozilla.com.tw/join_us/">電子報</a>
-                </li>
-              </ul>
-          </div><!--end sub-footer-->
-          <div id="copyright" class="footer-content">
-            <ul>
-              <li><a href="http://www.mozilla.org/zh-TW/privacy-policy.html">隱私資料政策</a>&nbsp;|</li> 
-              <li><a href="http://www.mozilla.org/zh-TW/about/legal.html">法律資訊</a>&nbsp;|</li> 
-              <li><a href="http://www.mozilla.org/zh-TW/legal/fraud-report/index.html">回報商標濫用</a>&nbsp;|</li>
-              <li><a href="http://mozilla.com.tw/join_us/un_subscribe/">取消訂閱電子報</a>&nbsp;|</li>
-            </ul>
-            <p>除另有<a href="http://www.mozilla.org/zh-TW/about/legal.html#site">註明</a>外，本站內容皆採用<br>
+        <div id="sub-footer" class="footer-content">
+          <strong>與我們為友</strong>
+          <ul>
+            <li id="footer-Facebook">
+              <a href="https://www.facebook.com/MozillaTaiwan">Facebook</a>
+            </li>
+            <li id="footer-Google+">
+              <a href="https://plus.google.com/u/0/114653167240123163859/posts">Google+</a>
+            </li>
+            <li id="footer-Plurk">
+              <a href="http://plurk.com/MozillaTaiwan">Plurk</a>
+            </li>
+            <li id="footer-Youtube">
+              <a href="http://www.youtube.com/user/MozillaTaiwan">Youtube</a>
+            </li>
+            <li id="footer-Flickr">
+              <a href="http://www.flickr.com/photos/mozillataiwan/">Flickr</a>
+            </li>
+            <li id="footer-電子報">
+              <a href="http://mozilla.com.tw/join_us/">電子報</a>
+            </li>
+          </ul>
+        </div>
+        <!--end sub-footer-->
+        <div id="copyright" class="footer-content">
+          <ul>
+            <li><a href="http://www.mozilla.org/zh-TW/privacy-policy.html">隱私資料政策</a>&nbsp;|</li>
+            <li><a href="http://www.mozilla.org/zh-TW/about/legal.html">法律資訊</a>&nbsp;|</li>
+            <li><a href="http://www.mozilla.org/zh-TW/legal/fraud-report/index.html">回報商標濫用</a>&nbsp;|</li>
+            <li><a href="http://mozilla.com.tw/join_us/un_subscribe/">取消訂閱電子報</a>&nbsp;|</li>
+          </ul>
+          <p>除另有<a href="http://www.mozilla.org/zh-TW/about/legal.html#site">註明</a>外，本站內容皆採用<br>
             <a href="http://creativecommons.org/licenses/by-sa/3.0/">創用 CC 姓名標示—相同方式分享條款 3.0 </a>或更新版本授權大眾使用。</p>
-          </div><!-- end copyright-->
-        </div> <!-- end of footer-wrapper -->
-      </footer> <!-- end of footer -->
-    </div> <!-- end of outer-wrapper-->
-    </div><!--end of body_warpper-->
-    {{ js('site') }}
-    {% block base_js %}
-      {{ js('base') }}
-      {% if not request.user.is_active %}
-        {{ browserid_form.media }}
-      {% endif %}
-    {% endblock %}
-  </body>
+        </div>
+        <!-- end copyright-->
+      </div>
+      <!-- end of footer-wrapper -->
+    </footer>
+    <!-- end of footer -->
+  </div>
+  <!-- end of outer-wrapper-->
+</div>
+<!--end of body_warpper-->
+{{ js('site') }}
+{% block base_js %}
+  {{ js('base') }}
+  {% if not request.user.is_active %}
+    {{ browserid_form.media }}
+  {% endif %}
+{% endblock %}
+</body>
 </html>
