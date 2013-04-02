@@ -2,3 +2,42 @@
   width: 800px;
   background-color: #fff;
 }
+
+#main-content ul.products {
+  display: block;
+  width: 100%;
+}
+
+#main-content ul.products li.product {
+  display: block;
+  list-style: none;
+  height: 120px;
+  border-bottom: 1px dotted grey;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+}
+#main-content ul.products li.product:first-child:before {
+  content: "";
+  display: block;
+  border-top: 1px dotted grey;
+}
+
+div.productPreview {
+  margin-left: 40px;
+  float: left;
+  width: 120px;
+  height: 100%;
+}
+
+div.productDescription {
+  float: left;
+  width: 480px;
+  height: 100%;
+}
+
+div.productQuantity {
+  float: left;
+  width: 120px;
+  height: 100%;
+}

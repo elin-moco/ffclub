@@ -34,25 +34,34 @@
     {% for order_detail_form in order_detail_formset %}
       <li class="product">
         {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
-          <a class="productPhotosLink" href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
-            <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
-          </a>
+          <div class="productPreview">
+            <a class="productPhotosLink" href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
+              <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
+            </a>
+          </div>
         {% endif %}
+
+        <div class="productDescription">
+          <h3>{{ order_detail_form.initial.product.title }}</h3>
+          <p>{{ order_detail_form.initial.product.description }}</p>
+        </div>
         {% if request.user.is_active %}
+          <div class="productQuantity">
           {{ order_detail_form.quantity }}
           {{ order_detail_form.product.as_hidden() }}
+          </div>
         {% endif %}
-
-        <h3>{{ order_detail_form.initial.product.title }}</h3>
-
-        <p>{{ order_detail_form.initial.product.description }}</p>
       </li>
     {% endfor %}
   {% endif %}
 </ul>
-（申請項目將不定期更新，請時常回來看看）
+    <div>
+        （申請項目將不定期更新，請時常回來看看）
+    </div>
 
 {% if request.user.is_active %}
+
+    <div>
 
   你的宣傳活動名稱:<br>
 
@@ -64,6 +73,7 @@
 
   {{ order_form }}
   <input type="submit" value="送件申請">
+    </div>
   </form>
 {% else %}
   <p><a id="browserid" href="javascript:void(0)"><span class="loginButton">申請宣傳品請先登入</span></a></p>
