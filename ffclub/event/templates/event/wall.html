@@ -29,11 +29,15 @@
 {% block content %}
 
   {% if request.user.is_active %}
-    <form enctype="multipart/form-data" method="post" action="">
-      {{ csrf() }}
-      {{ upload_form }}
-      <input type="submit" value="我要上傳">
-    </form>
+    {% if upload_form.hasEvent %}
+      <form enctype="multipart/form-data" method="post" action="">
+        {{ csrf() }}
+        {{ upload_form }}
+        <input type="submit" value="我要上傳">
+      </form>
+    {% else %}
+        <a href="{{ url('product.wall') }}"><div class="orderProducts">還沒申請宣傳品嗎？趕快去申請，再回來和大家分享成果吧！</div></a>
+    {% endif %}
   {% else %}
     <p><a id="browserid" href="javascript:void(0)"><span class="loginButton">分享成果請先登入</span></a></p>
     <form method="POST" action="{{ url('browserid_verify') }}">
@@ -60,7 +64,8 @@
 
             <p>{{ event_photo.description }}</p>
 
-            <p><span class="time" title="{{ event_photo.create_time }}"></span> by {{ event_photo.create_user.get_profile().fullname }}</p>
+            <p><span class="time" title="{{ event_photo.create_time }}"></span>
+              by {{ event_photo.create_user.get_profile().fullname }}</p>
 
           </li>
         {% endfor %}

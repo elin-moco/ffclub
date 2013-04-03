@@ -24,6 +24,7 @@ class ImageUploadForm(ModelForm):
             userEvents = Event.objects.filter(create_user=user).order_by('-create_time')
             # Default newest event
             userDefaultEvent = userEvents[:1].get() if userEvents.count() > 0 else None
+            self.hasEvent = userDefaultEvent is not None
             self.fields['event'] = ModelChoiceField(
                 queryset=userEvents, label='活動名稱', initial=userDefaultEvent)
             # Set field order as first

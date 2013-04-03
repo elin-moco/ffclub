@@ -33,7 +33,7 @@ def wall(request):
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
-        content_type=ContentType.objects.get(model='event')).order_by('create_time')
+        content_type=ContentType.objects.get(model='event')).order_by('-create_time')
     data = {
         # 'form': eventForm,
         'upload_form': uploadForm,
