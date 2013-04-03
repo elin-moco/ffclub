@@ -128,16 +128,3 @@ def order_verify(request):
             return redirect('product.order.complete')
             # You'd add data here that you're sending to the template.
     return render(request, 'product/order_verify.html', data)
-
-
-def add_product(request):
-    data = {'form': ProductForm(), 'upload_form': ImageUploadForm()}
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        uploadForm = ImageUploadForm(request.POST)
-        if form.is_valid():
-            form.save()
-            log.debug(form)
-        else:
-            data = {'form': form, 'upload_form': uploadForm}
-    return render(request, 'product/add_product.html', data)

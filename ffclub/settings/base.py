@@ -502,6 +502,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.9.1.js',
             'js/main.js',
         ),
+        'browserid': (
+            'js/browserid.js',
+            'https://browserid.org/include.js',
+        ),
         'base': (
         ),
         'intro': (

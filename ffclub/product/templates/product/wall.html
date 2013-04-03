@@ -76,7 +76,7 @@
     </div>
   </form>
 {% else %}
-  <p><a id="browserid" href="javascript:void(0)"><span class="loginButton">申請宣傳品請先登入</span></a></p>
+  <p><a class="browserid" href="javascript:void(0)"><span class="loginButton">申請宣傳品請先登入</span></a></p>
   <form method="POST" action="{{ url('browserid_verify') }}">
     {{ csrf() }}
     {{ browserid_form.as_p() }}
@@ -89,6 +89,7 @@
 {% block base_js %}
   {{ js('product') }}
   {% if not request.user.is_active %}
-    {{ browserid_form.media }}
+    {{ js('browserid') }}
+{#    {{ browserid_form.media }}#}
   {% endif %}
 {% endblock %}

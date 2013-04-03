@@ -8,7 +8,9 @@
   <div id="main-feature" class="huge">
     <hgroup>
       <h1>歡迎加入 Firefox 活力軍</h1>
+
       <h2>Welcom to you</h2>
+
       <h3>歡迎加入活力軍</h3>
     </hgroup>
     <ul class="carousel">
@@ -23,13 +25,13 @@
   {% if not request.user.is_active %}
     <div id="intro-login">
       <span>
-        <a id="browserid" href="javascript:void(0)">
+        <a class="browserid" href="javascript:void(0)">
           <span class="loginButton">使用 Persona 帳號登入</span>
         </a>
       </span>
       <span>
         你會經由 Persona 網路身份識別系統登入帳號，請安心登入。<p>
-          <a href="https://login.persona.org/about" target="_blank">認識 Persona</a>
+        <a href="https://login.persona.org/about" target="_blank">認識 Persona</a>
       </span>
 
       <form method="POST" action="{{ url('browserid_verify') }}">
@@ -41,6 +43,7 @@
   <div id="intro-content">
 
     <h4>開放的信念，靠你我傳遞。現在就加入 Firefox 活力軍</h4>
+
     <div class="introPicture"></div>
     <p>
       推廣 Firefox 需要你我的大力參與！只要你/妳熱愛 Firefox, 認同 Mozilla 推動網路自由、開放、創新的理念,
@@ -64,9 +67,15 @@
     <b>申請方式：</b>
     <ul>
       <li>如果你還沒有Persona帳號，請先建立一組Persona帳號，並填寫加入活力軍申請單即完成申請流程。<br>
-      建立Persona帳號 | 認識Persona</li>
-      <li>如果你已經有Persona帳號，登入後請填寫活力軍申請單，填寫完成即可成為Firefox活力軍！<br>
-           現在就加入 Firefox 活力軍</li>
+        {% if not request.user.is_active %}
+          <a class="browserid" href="javascript:void(0)">建立Persona帳號</a> |
+        {% endif %}
+        <a href="https://login.persona.org/about" target="_blank">認識Persona</a></li>
+      <li>如果你已經有Persona帳號，登入後請填寫活力軍申請單，填寫完成即可成為Firefox活力軍！
+        {% if not request.user.is_active %}
+          <br>
+          <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍</a></li>
+        {% endif %}
     </ul>
     <p>
       <a href="{{ url('product.wall') }}">宣傳品介紹</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
@@ -77,7 +86,8 @@
 {% block base_js %}
   {{ js('intro') }}
   {% if not request.user.is_active %}
-    {{ browserid_form.media }}
+    {{ js('browserid') }}
+    {#    {{ browserid_form.media }}#}
   {% endif %}
 {% endblock %}
 

@@ -203,9 +203,9 @@
 {{ js('site') }}
 {% block base_js %}
   {{ js('base') }}
-  {% if not request.user.is_active %}
-    {{ browserid_form.media }}
-  {% endif %}
+{#  {% if not request.user.is_active %}#}
+{#    {{ browserid_form.media }}#}
+{#  {% endif %}#}
 {% endblock %}
 </body>
 </html>
