@@ -9,13 +9,12 @@
 #main-content ul.products li.product {
   display: block;
   list-style: none;
-  height: 120px;
+  height: 130px;
   border-bottom: 1px dotted grey;
   margin-top: 20px;
-  padding-bottom: 10px;
   margin-right: 20px;
 }
-#main-content ul.products li.product:first-child:before {
+#main-content ul.products:before {
   content: "";
   display: block;
   border-top: 1px dotted grey;
