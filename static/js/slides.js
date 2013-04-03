@@ -194,7 +194,9 @@ window.saw = (function($){
             }
 
         }else if(e.type == 'touchmove'){
-            e.preventDefault();
+            if (!carousel) {
+                e.preventDefault();
+            }
             if(lastPos > startPos){
                 direction = -1;
             }else{
