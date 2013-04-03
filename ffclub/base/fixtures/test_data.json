@@ -1,5 +1,93 @@
 [
     {
+        "pk": 1,
+        "model": "person.person",
+        "fields": {
+            "status": "normal",
+            "gender": "male",
+            "fullname": "\u6797\u85dd\u8ed2",
+            "occupation": "\u7db2\u7ad9\u5de5\u7a0b\u5e2b",
+            "address": "\u65b0\u5317\u5e02\u4fdd\u798f\u8def\u4e8c\u6bb526\u5df715\u865f"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "product.order",
+        "fields": {
+            "status": "confirmed",
+            "feedback": "\u7121",
+            "event": 1,
+            "create_user": [
+                "elin"
+            ],
+            "create_time": "2013-04-02T23:43:45",
+            "address": "\u65b0\u5317\u5e02\u4fdd\u798f\u8def\u4e8c\u6bb526\u5df715\u865f",
+            "usage": "\u8cbc\u8cbc\u8cbc",
+            "fullname": "\u6797\u85dd\u8ed2",
+            "email": "yshlin@gmail.com",
+            "occupation": "\u7db2\u7ad9\u5de5\u7a0b\u5e2b"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "product.orderdetail",
+        "fields": {
+            "product": 1,
+            "order": 1,
+            "description": "",
+            "quantity": 10
+        }
+    },
+    {
+        "pk": 2,
+        "model": "product.orderdetail",
+        "fields": {
+            "product": 2,
+            "order": 1,
+            "description": "",
+            "quantity": 20
+        }
+    },
+    {
+        "pk": 3,
+        "model": "product.orderdetail",
+        "fields": {
+            "product": 3,
+            "order": 1,
+            "description": "",
+            "quantity": 3
+        }
+    },
+    {
+        "pk": 4,
+        "model": "product.orderdetail",
+        "fields": {
+            "product": 4,
+            "order": 1,
+            "description": "",
+            "quantity": 5
+        }
+    },
+    {
+        "pk": 1,
+        "model": "event.event",
+        "fields": {
+            "status": "normal",
+            "num_of_ppl": 20,
+            "description": "",
+            "title": "\u5c0fy\u7684\u8f5f\u8db4",
+            "start_time": "2013-04-02T23:43:45",
+            "longitude": null,
+            "create_user": [
+                "elin"
+            ],
+            "create_time": "2013-04-02T23:43:45",
+            "location": "\u5c0fy\u5bb6",
+            "latitude": null,
+            "end_time": "2013-04-02T23:43:45"
+        }
+    },
+    {
         "pk": 15, 
         "model": "upload.imageupload", 
         "fields": {
