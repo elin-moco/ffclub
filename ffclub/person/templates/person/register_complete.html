@@ -1,19 +1,27 @@
 {% extends "base.html" %}
 
-{{ css('person') }}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('person') }}
+  {{ css('register.complete') }}
+{% endblock %}
 
 {% block banner %}
 <hgroup id="main-feature" class="default registerComplete">
-    <h1>歡迎加入 Firefox 活力軍</h1>
-    <h2>Welcom to you</h2>
+    <h1>申請Firefox 活力軍</h1>
+    <h2>想為網路開放自由理念的推廣進一份心力?<br>加入 Firefox 活力軍就對了！</h2>
 </hgroup>
 {% endblock %}
 
 {% block content %}
-    <h3>恭禧你 會員申請流程已完成!</h3>
-    <p><b>謝謝你加入我們的行列，成為 Mozilla 社群的一份子，讓我們一起致力令網際網路更好。</b></p>
-    <h4>要申請 Firefox 活力宣傳品嗎？</h4>
-    <a href="{{ url('product.wall') }}">我要申請</a>
+    <div class="loveCircle"></div>
+    <div class="completeMessage">
+        <h3>恭禧你 會員申請流程已完成!</h3><br>
+        <p><b>謝謝你加入我們的行列，成為 Mozilla 社群的一份子，<br>
+            讓我們一起致力令網際網路更好。</b></p><br>
+        <h4>要申請 Firefox 活力宣傳品嗎？</h4><br>
+        <a href="{{ url('product.wall') }}" class="submitButton" value="1">我要申請</a>
+    </div>
 
 {% endblock %}
 

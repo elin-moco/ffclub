@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
-{{ css('product') }}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('product') }}
+  {{ css('order.verify') }}
+{% endblock %}
 
 {% block content %}
-  申請資料已送出，請打開確認信裡的驗證連結以完成申請。
+  <div class="verifyMessage">
+    申請資料已送出，請打開確認信裡的驗證連結以完成申請。
     <p>
-  部分的網路信箱可能誤將確認信判定為垃圾郵件，請檢查你的電子郵件信箱，<br>
-  如果在垃圾郵件資料夾發現確認信，請將它加入安全名單。<br>
-  若無法收到確認信件，請<a href="mailto:tw-mktg@mozilla.com">聯絡我們</a>。
+      部分的網路信箱可能誤將確認信判定為垃圾郵件，請檢查你的電子郵件信箱，<br>
+      如果在垃圾郵件資料夾發現確認信，請將它加入安全名單。<br>
+      若無法收到確認信件，請<a href="mailto:tw-mktg@mozilla.com">聯絡我們</a>。
+  </div>
 {% endblock %}
 
 {{ js('product') }}

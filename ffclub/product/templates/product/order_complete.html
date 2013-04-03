@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
-{{ css('product') }}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('product') }}
+  {{ css('order.complete') }}
+{% endblock %}
 
 {% block banner %}
   <hgroup id="main-feature" class="default orderComplete">
@@ -11,37 +15,41 @@
 {% endblock %}
 
 {% block content %}
-  您的申請流程已經完成，恭喜您成為 Firefox 活力軍！<br>
-  歡迎您將推廣的成果與照片上傳至<a href="{{ url('event.wall') }}">活力軍成果展</a><br>
-
-  <p>
-    <b>歡迎加入Mozilla與我們互動：</b>
-  <ul>
-    <li>
-      <a href="https://www.facebook.com/MozillaTaiwan">Facebook</a>
-    </li>
-    <li>
-      <a href="https://plus.google.com/u/0/114653167240123163859/posts">Google+</a>
-    </li>
-    <li>
-      <a href="http://plurk.com/MozillaTaiwan">Plurk</a>
-    </li>
-    <li>
-      <a href="http://www.youtube.com/user/MozillaTaiwan">Youtube</a>
-    </li>
-    <li>
-      <a href="http://www.flickr.com/photos/mozillataiwan/">Flickr</a>
-    </li>
-    <li>
-      <a href="http://mozilla.com.tw/join_us/">電子報</a>
-    </li>
-    <li>
-      <a href="http://blog.mozilla.com.tw/main">部落格</a>
-    </li>
-    <li>
-      <a href="http://tech.mozilla.com.tw/">謀智台客</a>
-    </li>
-  </ul>
+  <div class="loveCircle"></div>
+  <div class="completeMessage">
+    您的申請流程已經完成，恭喜您成為 Firefox 活力軍！<br>
+    歡迎您將推廣的成果與照片上傳至<a href="{{ url('event.wall') }}">活力軍成果展</a><br>
+  </div>
+  <div class="socialMedia">
+    <p>
+      <b>歡迎加入Mozilla與我們互動：</b>
+    <ul>
+      <li>
+        <a href="https://www.facebook.com/MozillaTaiwan">Facebook</a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/u/0/114653167240123163859/posts">Google+</a>
+      </li>
+      <li>
+        <a href="http://plurk.com/MozillaTaiwan">Plurk</a>
+      </li>
+      <li>
+        <a href="http://www.youtube.com/user/MozillaTaiwan">Youtube</a>
+      </li>
+      <li>
+        <a href="http://www.flickr.com/photos/mozillataiwan/">Flickr</a>
+      </li>
+      <li>
+        <a href="http://mozilla.com.tw/join_us/">電子報</a>
+      </li>
+      <li>
+        <a href="http://blog.mozilla.com.tw/main">部落格</a>
+      </li>
+      <li>
+        <a href="http://tech.mozilla.com.tw/">謀智台客</a>
+      </li>
+    </ul>
+  </div>
 
 {% endblock %}
 

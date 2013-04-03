@@ -24,8 +24,21 @@ li.bannerFree {
 li.bannerSupport {
   background: url('/static/images/css/intro_banner_support.jpg') top center no-repeat;
 }
+#main-feature {
+  position: relative;
+}
 #main-feature > hgroup {
-  display: none;
+  position: absolute;
+  bottom: 40px;
+  z-index: 100;
+  width: 100%;
+  text-align: center;
+}
+#main-feature > hgroup > h3 {
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 30px;
+  text-indent: 360px;
 }
 #main-content {
   width: 600px;
@@ -49,6 +62,13 @@ li.bannerSupport {
   background: #fff;
   padding-top: 20px;
   padding-bottom: 30px;
+}
+#intro-content .introHeading {
+  text-align: left;
+  padding-left: 55px;
+  margin-bottom: 20px;
+}
+#intro-content .introRules {
   padding-left: 55px;
   padding-right: 55px;
 }

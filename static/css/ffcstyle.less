@@ -20,6 +20,9 @@
 @body_size:13px;
 @body_color:#4d4d4f;
 @h_color:#484848;
+@default_link_color: #0095DD;
+@hover_link_color: #00539F;
+@side_margin: 55px;
 @body_family:"Open Sans", Arial, Helvetica, "Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
 @h_family:"Open Sans", Arial, Helvetica, "Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
 *{
@@ -64,8 +67,54 @@ h1, h2, h3, h4, h5, h6 {
 	text-shadow: 1px 1px #fff;
 }
 
-input, select, textarea {
+textarea,
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-color: #B2B2B2;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  font-family: 'Open Sans',sans-serif;
+  font-size: 12px;
+  height: 20px;
+  padding: 3.33333px 6.66667px;
+  transition: all 0.1s linear 0s;
   display: block;
+}
+
+textarea:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input:focus{
+  border-color: #42A4E0;
+  box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4);
+  transition: all 0.1s linear 0s;
+}
+
+select {
+  height: 20px !important;
+  border-color: #B2B2B2;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  display: block;
+  border-color: #B2B2B2;
+  box-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.1s linear 0s;
+}
+
+select:focus {
+  border-color: #42A4E0;
+  box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4);
+  transition: all 0.1s linear 0s;
 }
 
 .rounded_corners (@radius: 4px) {
@@ -254,14 +303,30 @@ body{
     background: url('/static/images/css/order_complete_banner.jpg') top center no-repeat;
   }
   &.register{
+    &>h2 {
+      margin-top: 35px;
+      margin-left: 55px;
+      font-size: 16px;
+      color: #ffffff;
+      text-shadow: none;
+      text-indent: 0;
+    }
     background: url('/static/images/css/register_banner.jpg') top center no-repeat;
   }
   &.registerComplete{
+    &>h2 {
+      margin-top: 35px;
+      margin-left: 55px;
+      font-size: 16px;
+      color: #ffffff;
+      text-shadow: none;
+      text-indent: 0;
+    }
     background: url('/static/images/css/register_complete_banner.jpg') top center no-repeat;
   }
   &.eventShow {
     &>h1,h2 {
-      display: none;
+      line-height: 0;
     }
     &>h3 {
       line-height: 75px;
@@ -272,14 +337,18 @@ body{
 }
 
 #main-content{
-  color: #000;
+  position: relative;
+  color: @body_color;
   margin:0 auto 40px auto;
   p, b, ul {
     margin-top: 10px;
     margin-bottom: 10px;
   }
   a {
-    color: blue;
+    color: @default_link_color;
+  }
+  a:hover {
+    color: @hover_link_color;
   }
   ul li, ol li {
     font-size: @body_size;
@@ -360,15 +429,51 @@ a#browserid:hover {
   text-decoration: none;
 }
 
-span.loginButton {
-  display: block;
+.imageButton (@image, @width, @height) {
+  background-image: url(@image);
+  width: @width;
+  height: @height;
+  line-height: @height;
+  background-color: transparent;
   color: #ffffff;
+  border: 0;
+  text-align: left;
   text-shadow: none;
-  text-indent: 10px;
-  line-height: 38px;
-  width: 204px;
-  height: 38px;
-  background-image: url("/static/images/css/login_button.png");
+  font-weight: bold;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  cursor: hand; /* for IE 5.x */
+}
+
+.loginButton {
+  .imageButton('/static/images/css/login_button.png', 204px, 38px);
+  font-size: 11px;
+  text-indent: 9px;
+}
+
+.submitButton {
+  .imageButton('/static/images/css/submit_button.png', 202px, 46px);
+  font-size: 14px;
+  line-height: 14px;
+  text-indent: 30px;
+}
+
+.floatingCircle(@image) {
+  position: absolute;
+  background-image: url(@image);
+  width: 135px;
+  height: 135px;
+  left: 55px;
+  top: -75px;
+}
+
+.joinCircle {
+  .floatingCircle("/static/images/css/join_circle.png");
+}
+
+.loveCircle {
+  .floatingCircle("/static/images/css/love_circle.png");
 }
 
 /* hide back of pane during swap */

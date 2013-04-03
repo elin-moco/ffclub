@@ -696,3 +696,11 @@ a#browserid:hover {
     height: 32px;
   }
 }
+.completeMessage {
+  padding-top: 80px;
+  margin-left: 55px;
+}
+.socialMedia {
+  padding-top: 20px;
+  margin-left: 55px;
+}

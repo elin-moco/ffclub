@@ -13,72 +13,79 @@
 {% endblock %}
 
 {% block content %}
-  <h1>申請 Firefox 活力宣傳品</h1>
+  <div class="loveCircle"></div>
+  <div class="orderDescription">
+    <h1>申請 Firefox 活力宣傳品</h1>
 
-  <p>
-    只要你願意舉辦任何與 Firefox 相關的推廣活動，
-    或協助在自己的學校、社區、公司、健身房、圖書館… 等公共空間幫忙置放 Firefox 活力宣傳品，
-    我們都十分歡迎並將全力協助。你能做的事情包括：貼海報、發明信片、或是將 Firefox 的 Logo 貼紙貼滿佈告欄 。
-  </p>
-
-  {% if request.user.is_active %}
-    <form method="post" action="">
-    {{ csrf() }}
-    {{ order_detail_formset.management_form }}
-  {% endif %}
-
-<p><b>選擇你需要的活力宣傳品:</b></p>
-<ul class="products">
-  {% if order_detail_formset|length == 0 %}
-    <p>目前没有任何宣傳品</p>
-  {% else %}
-    {% for order_detail_form in order_detail_formset %}
-      <li class="product">
-        {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
-          <div class="productPreview">
-            <a class="productPhotosLink"
-               href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
-              <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
-            </a>
-          </div>
-        {% endif %}
-
-        <div class="productDescription">
-          <h3>{{ order_detail_form.initial.product.title }}</h3>
-
-          <p>{{ order_detail_form.initial.product.description }}</p>
-        </div>
-        {% if request.user.is_active %}
-          <div class="productQuantity">
-            {{ order_detail_form.quantity }}
-            {{ order_detail_form.product.as_hidden() }}
-          </div>
-        {% endif %}
-      </li>
-    {% endfor %}
-  {% endif %}
-</ul>
-<div>
-  （申請項目將不定期更新，請時常回來看看）
-</div>
-
-{% if request.user.is_active %}
-
-  <div>
-    <br>
-    {{ event_form }}
-    {{ order_form }}
-    <input type="submit" value="送件申請">
+    <p>
+      只要你願意舉辦任何與 Firefox 相關的推廣活動，
+      或協助在自己的學校、社區、公司、健身房、圖書館… 等公共空間幫忙置放 Firefox 活力宣傳品，
+      我們都十分歡迎並將全力協助。你能做的事情包括：貼海報、發明信片、或是將 Firefox 的 Logo 貼紙貼滿佈告欄 。
+    </p>
   </div>
-  </form>
-{% else %}
-  <p><a class="browserid" href="javascript:void(0)"><span class="loginButton">申請宣傳品請先登入</span></a></p>
-  <form method="POST" action="{{ url('browserid_verify') }}">
-    {{ csrf() }}
-    {{ browserid_form.as_p() }}
-    <input type="hidden" name="next" value="{{ url('product.wall') }}">
-  </form>
-{% endif %}
+  <div class="orderForm">
+
+    {% if request.user.is_active %}
+      <form method="post" action="">
+      {{ csrf() }}
+      {{ order_detail_formset.management_form }}
+    {% endif %}
+
+    <p><b>選擇你需要的活力宣傳品:</b></p>
+    <ul class="products">
+      {% if order_detail_formset|length == 0 %}
+        <p>目前没有任何宣傳品</p>
+      {% else %}
+        {% for order_detail_form in order_detail_formset %}
+          <li class="product">
+            {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
+              <div class="productPreview">
+                <a class="productPhotosLink"
+                   href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
+                  <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
+                </a>
+              </div>
+            {% endif %}
+
+            <div class="productDescription">
+              <h3>{{ order_detail_form.initial.product.title }}</h3>
+
+              <p>{{ order_detail_form.initial.product.description }}</p>
+            </div>
+            {% if request.user.is_active %}
+              <div class="productQuantity">
+                {{ order_detail_form.quantity }}
+                {{ order_detail_form.product.as_hidden() }}
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <div>
+      （申請項目將不定期更新，請時常回來看看）
+    </div>
+
+    {% if request.user.is_active %}
+
+      <div>
+        <br>
+        {{ event_form }}
+        {{ order_form }}
+        <input type="submit" value="送件申請">
+      </div>
+      </form>
+    {% else %}
+      <p>
+        <button class="browserid loginButton">申請宣傳品請先登入</button>
+      </p>
+      <form method="POST" action="{{ url('browserid_verify') }}">
+        {{ csrf() }}
+        {{ browserid_form.as_p() }}
+        <input type="hidden" name="next" value="{{ url('product.wall') }}">
+      </form>
+    {% endif %}
+  </div>
 
 {% endblock %}
 

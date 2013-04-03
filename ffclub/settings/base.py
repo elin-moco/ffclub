@@ -485,6 +485,18 @@ MINIFY_BUNDLES = {
         ),
         'person': (
         ),
+        'register': (
+            'css/register.css',
+        ),
+        'register.complete': (
+            'css/register.complete.css',
+        ),
+        'order.complete': (
+            'css/order.complete.css',
+        ),
+        'order.verify': (
+            'css/order.verify.css',
+        ),
         'event': (
             'css/event.css',
             'css/slides.css',

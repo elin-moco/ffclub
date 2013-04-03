@@ -696,3 +696,7 @@ a#browserid:hover {
     height: 32px;
   }
 }
+.verifyMessage {
+  padding-top: 80px;
+  margin-left: 55px;
+}

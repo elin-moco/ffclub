@@ -696,3 +696,60 @@ a#browserid:hover {
     height: 32px;
   }
 }
+#main-content form ul li {
+  list-style: none;
+  display: block;
+  width: 100%;
+  float: left;
+  padding-bottom: 20px;
+  margin-left: 0;
+}
+#main-content form ul li label {
+  width: 60px;
+  line-height: 23px;
+  float: left;
+}
+#main-content form ul li input,
+#main-content form ul li select {
+  float: left;
+}
+.registerHeading {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  margin-left: 55px;
+}
+.registerForm {
+  margin-left: 55px;
+}
+.registerAgreement {
+  margin-left: 55px;
+  margin-right: 55px;
+  font-size: 13px;
+}
+.registerAgreement > .agreement {
+  float: left;
+  line-height: 50px;
+}
+.registerAgreement > .register {
+  float: right;
+}
+.registerPicture {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url("/static/images/css/register_pic.png");
+  width: 383px;
+  height: 257px;
+}
+input#id_fullname {
+  width: 100px;
+}
+select#id_gender {
+  width: 70px;
+}
+input#id_address {
+  width: 400px;
+}
+input#id_occupation {
+  width: 200px;
+}

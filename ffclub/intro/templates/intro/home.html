@@ -25,9 +25,7 @@
   {% if not request.user.is_active %}
     <div id="intro-login">
       <span>
-        <a class="browserid" href="javascript:void(0)">
-          <span class="loginButton">使用 Persona 帳號登入</span>
-        </a>
+        <button class="browserid loginButton">使用 Persona 帳號登入</button>
       </span>
       <span>
         你會經由 Persona 網路身份識別系統登入帳號，請安心登入。<p>
@@ -42,44 +40,50 @@
   {% endif %}
   <div id="intro-content">
 
-    <h4>開放的信念，靠你我傳遞。現在就加入 Firefox 活力軍</h4>
+    <div class="introHeading">
+
+      <h4>開放的信念，靠你我傳遞。現在就加入 Firefox 活力軍！</h4>
+    </div>
 
     <div class="introPicture"></div>
-    <p>
-      推廣 Firefox 需要你我的大力參與！只要你/妳熱愛 Firefox, 認同 Mozilla 推動網路自由、開放、創新的理念,
-      並且是 Firefox 的愛用者, 請立即申請成為 Firefox 活力軍。
-    </p>
+    <div class="introRules">
 
-    <b>如何在日常生活中體現推廣 Firefox 的樂趣？</b>
+      <p>
+        推廣 Firefox 需要你我的大力參與！只要你/妳熱愛 Firefox, 認同 Mozilla 推動網路自由、開放、創新的理念,
+        並且是 Firefox 的愛用者, 請立即申請成為 Firefox 活力軍。
+      </p>
 
-    <ul>
-      <li>跟朋友組成 Firefox 同好會</li>
-      <li>在社區、公司、教室、圖書館… 各公共空間置放 Firefox 宣傳品</li>
-      <li>在各地組織 Firefox 推廣活動</li>
-      <li>任何其他你想得到的合法推廣方式</li>
-    </ul>
+      <b>如何在日常生活中體現推廣 Firefox 的樂趣？</b>
 
-    <b>申請資格：</b>
+      <ul>
+        <li>跟朋友組成 Firefox 同好會</li>
+        <li>在社區、公司、教室、圖書館… 各公共空間置放 Firefox 宣傳品</li>
+        <li>在各地組織 Firefox 推廣活動</li>
+        <li>任何其他你想得到的合法推廣方式</li>
+      </ul>
 
-    <ul>
-      <li>熱愛 Firefox 且充滿熱忱</li>
-    </ul>
-    <b>申請方式：</b>
-    <ul>
-      <li>如果你還沒有Persona帳號，請先建立一組Persona帳號，並填寫加入活力軍申請單即完成申請流程。<br>
-        {% if not request.user.is_active %}
-          <a class="browserid" href="javascript:void(0)">建立Persona帳號</a> |
-        {% endif %}
-        <a href="https://login.persona.org/about" target="_blank">認識Persona</a></li>
-      <li>如果你已經有Persona帳號，登入後請填寫活力軍申請單，填寫完成即可成為Firefox活力軍！
-        {% if not request.user.is_active %}
-          <br>
-          <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍</a></li>
-        {% endif %}
-    </ul>
-    <p>
-      <a href="{{ url('product.wall') }}">宣傳品介紹</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
-    </p>
+      <b>申請資格：</b>
+
+      <ul>
+        <li>熱愛 Firefox 且充滿熱忱</li>
+      </ul>
+      <b>申請方式：</b>
+      <ul>
+        <li>如果你還沒有Persona帳號，請先建立一組Persona帳號，並填寫加入活力軍申請單即完成申請流程。<br>
+          {% if not request.user.is_active %}
+            <a class="browserid" href="javascript:void(0)">建立Persona帳號</a> |
+          {% endif %}
+          <a href="https://login.persona.org/about" target="_blank">認識Persona</a></li>
+        <li>如果你已經有Persona帳號，登入後請填寫活力軍申請單，填寫完成即可成為Firefox活力軍！
+          {% if not request.user.is_active %}
+            <br>
+            <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍</a></li>
+          {% endif %}
+      </ul>
+      <p>
+        <a href="{{ url('product.wall') }}">宣傳品介紹</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
+      </p>
+    </div>
 
   </div>
 {% endblock %}
