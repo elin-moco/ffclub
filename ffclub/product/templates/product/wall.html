@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block banner %}
-<hgroup id="main-feature" class="default order">
+  <hgroup id="main-feature" class="default order">
     <h1>歡迎加入 Firefox 活力軍</h1>
+
     <h2>Welcom to you</h2>
-</hgroup>
+  </hgroup>
 {% endblock %}
 
 {% block content %}
@@ -35,7 +36,8 @@
       <li class="product">
         {% if order_detail_form.initial.product.photos.filter(usage='preview').exists() %}
           <div class="productPreview">
-            <a class="productPhotosLink" href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
+            <a class="productPhotosLink"
+               href="{{ url('product.photos', product_id=order_detail_form.initial.product.id) }}">
               <img src="/static/{{ order_detail_form.initial.product.photos.get(usage='preview') }}" alt=""/>
             </a>
           </div>
@@ -43,37 +45,31 @@
 
         <div class="productDescription">
           <h3>{{ order_detail_form.initial.product.title }}</h3>
+
           <p>{{ order_detail_form.initial.product.description }}</p>
         </div>
         {% if request.user.is_active %}
           <div class="productQuantity">
-          {{ order_detail_form.quantity }}
-          {{ order_detail_form.product.as_hidden() }}
+            {{ order_detail_form.quantity }}
+            {{ order_detail_form.product.as_hidden() }}
           </div>
         {% endif %}
       </li>
     {% endfor %}
   {% endif %}
 </ul>
-    <div>
-        （申請項目將不定期更新，請時常回來看看）
-    </div>
+<div>
+  （申請項目將不定期更新，請時常回來看看）
+</div>
 
 {% if request.user.is_active %}
 
-    <div>
-
-  你的宣傳活動名稱:<br>
-
-  {{ event_form }}
-
-  預計推廣對象 以及 將如何使用 Firefox 活力宣傳物:
-
-  申請審核通過後，我們會將宣傳品寄送給你，請確認以下收件人:
-
-  {{ order_form }}
-  <input type="submit" value="送件申請">
-    </div>
+  <div>
+    <br>
+    {{ event_form }}
+    {{ order_form }}
+    <input type="submit" value="送件申請">
+  </div>
   </form>
 {% else %}
   <p><a class="browserid" href="javascript:void(0)"><span class="loginButton">申請宣傳品請先登入</span></a></p>
@@ -90,6 +86,6 @@
   {{ js('product') }}
   {% if not request.user.is_active %}
     {{ js('browserid') }}
-{#    {{ browserid_form.media }}#}
+    {#    {{ browserid_form.media }}#}
   {% endif %}
 {% endblock %}

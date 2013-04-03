@@ -26,7 +26,7 @@ class ImageUploadForm(ModelForm):
             userDefaultEvent = userEvents[:1].get() if userEvents.count() > 0 else None
             self.hasEvent = userDefaultEvent is not None
             self.fields['event'] = ModelChoiceField(
-                queryset=userEvents, label='活動名稱', initial=userDefaultEvent)
+                queryset=userEvents, label='活動名稱(*)', initial=userDefaultEvent)
             # Set field order as first
             fieldOrder = self.fields.keyOrder
             fieldOrder.pop(fieldOrder.index('event'))
