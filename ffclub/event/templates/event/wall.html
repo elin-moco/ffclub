@@ -60,7 +60,7 @@
 
             <p>{{ event_photo.description }}</p>
 
-            <p><span class="time" title="{{ event_photo.create_time }}"></span> by {{ event_photo.create_user }}</p>
+            <p><span class="time" title="{{ event_photo.create_time }}"></span> by {{ event_photo.create_user.get_profile().fullname }}</p>
 
           </li>
         {% endfor %}
