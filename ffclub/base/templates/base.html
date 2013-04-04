@@ -200,6 +200,10 @@
   <!-- end of outer-wrapper-->
 </div>
 <!--end of body_warpper-->
+<div class="popup">
+    {% block popup %}
+    {% endblock %}
+</div>
 {{ js('site') }}
 {% block base_js %}
   {{ js('base') }}

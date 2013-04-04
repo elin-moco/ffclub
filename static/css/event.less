@@ -1,3 +1,74 @@
+@import "ffcstyle";
+
+h1 a:hover {
+  text-decoration: none;
+}
+
+.uploadForm {
+  position:absolute; top:0; bottom:0; left:0; right:0;
+  width: 400px;
+  height: 220px;
+  margin: auto;
+  padding: 20px;
+  background-color: #EAEFF2;
+//  background-image: linear-gradient(#CAE1F4, #EEEEEE);
+//  background-image: linear-gradient(#D4DDE4, #EAEFF2);
+  background-repeat: repeat-x;
+  .rounded_corners(8px);
+  .BoxShadow;
+  &:after {
+    .after_close;
+  }
+}
+
+.uploadForm select#id_event {
+  width: 200px;
+}
+.uploadForm input#id_image_large {
+  width: 200px;
+}
+.uploadForm input#id_description {
+  width: 200px;
+}
+
+div#main-content {
+  padding: 20px;
+}
+
+.popup form ul {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  .BoxShadow(0, 0, 1px, @h_color);
+  &:after {
+    .after_close;
+  }
+}
+.popup form ul li {
+  list-style: none;
+  display: block;
+  width: 100%;
+  float: left;
+  padding-bottom: 20px;
+  margin-left: 0;
+}
+
+.popup form ul li label {
+  width: 100px;
+  line-height: 23px;
+  float: left;
+}
+
+.popup form ul li input, #main-content form ul li select {
+  float: left;
+}
+.popup form button {
+  text-indent: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
 div.eventShowHead {
   background-color: #2162A9;
   width: 100%;
@@ -28,6 +99,58 @@ div#main-content {
   position: relative;
   width: 1000px;
   background-color: #ffffff;
+  text-align: center;
+}
+
+a.productsLink {
+  margin-bottom: 10px;
+}
+
+div#main-content a.sharePhotoLink {
+  color: #ffffff;
+  text-shadow: none;
+  line-height: 45px;
+  &:hover {
+    text-decoration: none;
+  }
+}
+div#main-content .eventWall {
+  margin-top: 20px;
+  margin-left: 25px;
+}
+
+div#main-content .eventWall ul li.eventPhoto {
+  width: 300px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.photoFrame {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.photoDescription {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 60px;
+}
+
+.photoInfo {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #D4DDE4;
+  height: 65px;
+}
+
+.loveCircle {
+  left: auto;
+  right: 35px;
 }
 
 @media only screen and (max-width: 1000px) {

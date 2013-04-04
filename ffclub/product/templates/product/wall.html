@@ -6,16 +6,16 @@
 
 {% block banner %}
   <hgroup id="main-feature" class="default order">
-    <h1>歡迎加入 Firefox 活力軍</h1>
+    <h1>Firefox 活力宣傳品</h1>
 
-    <h2>Welcom to you</h2>
+    <h2>歡迎有熱情的你來申請</h2>
   </hgroup>
 {% endblock %}
 
 {% block content %}
   <div class="loveCircle"></div>
   <div class="orderDescription">
-    <h1>申請 Firefox 活力宣傳品</h1>
+    <h3>申請 Firefox 活力宣傳品</h3>
 
     <p>
       只要你願意舉辦任何與 Firefox 相關的推廣活動，
@@ -31,10 +31,14 @@
       {{ order_detail_formset.management_form }}
     {% endif %}
 
-    <p><b>選擇你需要的活力宣傳品:</b></p>
     <ul class="products">
+      <li class="product productHead">
+        <h3>選擇你需要的活力宣傳品:</h3>
+      </li>
       {% if order_detail_formset|length == 0 %}
-        <p>目前没有任何宣傳品</p>
+        <li class="product productHead">
+          <p>目前没有任何宣傳品</p>
+        </li>
       {% else %}
         {% for order_detail_form in order_detail_formset %}
           <li class="product">
@@ -48,7 +52,7 @@
             {% endif %}
 
             <div class="productDescription">
-              <h3>{{ order_detail_form.initial.product.title }}</h3>
+              <h4>{{ order_detail_form.initial.product.title }}</h4>
 
               <p>{{ order_detail_form.initial.product.description }}</p>
             </div>
@@ -62,17 +66,30 @@
         {% endfor %}
       {% endif %}
     </ul>
-    <div>
-      （申請項目將不定期更新，請時常回來看看）
+    <div class="productPostscript">
+      <p>
+        （申請項目將不定期更新，請時常回來看看）
+      </p>
     </div>
 
     {% if request.user.is_active %}
 
-      <div>
-        <br>
-        {{ event_form }}
-        {{ order_form }}
-        <input type="submit" value="送件申請">
+      <div class="orderProductForm">
+        <ul>
+          {{ event_form.as_ul() }}
+          {{ order_form.as_ul() }}
+        </ul>
+      </div>
+      <div class="orderProductButton">
+        <div class="agreement">
+          <p>
+            若繼續，代表你接受 Firefox 的
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/">使用條款</a> 與
+            <a href="http://www.mozilla.org/en-US/privacy-policy.html">隱私權保護政策</a>。
+        </div>
+        <div class="orderButton">
+          <button class="submitButton" type="submit" value="1">送件申請</button>
+        </div>
       </div>
       </form>
     {% else %}

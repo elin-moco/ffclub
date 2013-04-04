@@ -7,26 +7,28 @@
 
 #main-content ul.products {
   display: block;
-  width: 100%;
+  width: 780px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
+#main-content form ul.products li.productHead {
+  height: 30px !important;
+  margin-top: 0;
+  padding-bottom: 10px;
+  text-indent: 45px;
+}
 #main-content ul.products li.product {
   display: block;
   list-style: none;
   height: 130px;
   border-bottom: 1px dotted grey;
   margin-top: 20px;
-//  padding-bottom: 10px;
-  margin-right: 20px;
-}
-#main-content ul.products:before {
-  content: "";
-  display: block;
-  border-top: 1px dotted grey;
 }
 
+
 div.productPreview {
-  margin-left: 40px;
+  margin-left: 45px;
   float: left;
   width: 120px;
   height: 100%;
@@ -34,7 +36,9 @@ div.productPreview {
 
 div.productDescription {
   float: left;
-  width: 480px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 450px;
   height: 100%;
 }
 
@@ -42,9 +46,114 @@ div.productQuantity {
   float: left;
   width: 120px;
   height: 100%;
+  position: relative;
+}
+
+div.productQuantity select {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  right: 55px;
+  bottom: 20px;
 }
 
 div.orderDescription {
   padding-top: 80px;
   margin-left: @side_margin;
+  margin-right: @side_margin;
+}
+
+div.productPostscript {
+  margin-right: @side_margin;
+  text-align: right;
+}
+
+div.orderProductForm {
+  margin-left: @side_margin;
+  margin-right: @side_margin;
+}
+
+#main-content form ul {
+  padding-top: 20px;
+  margin-bottom: 20px;
+  &:after {
+    .after_close;
+  }
+}
+#main-content form ul li {
+  list-style: none;
+  display: block;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+}
+
+#main-content form div.orderProductForm ul li label {
+  width: 100px;
+  line-height: 23px;
+  float: left;
+  padding-bottom: 30px;
+}
+#main-content form div.orderProductForm ul li label[for=id_usage] {
+  width: 100%;
+  padding-bottom: 10px;
+}
+#main-content form div.orderProductForm ul li input#id_title {
+  width: 300px;
+}
+#main-content form div.orderProductForm ul li input#id_location {
+  width: 400px;
+}
+#main-content form div.orderProductForm ul li input#id_num_of_ppl {
+  width: 60px;
+}
+#main-content form div.orderProductForm ul li textarea#id_usage {
+  width: 100%;
+  height: 150px;
+}
+#main-content form div.orderProductForm ul li input#id_fullname {
+  width: 100px;
+}
+#main-content form div.orderProductForm ul li input#id_email {
+  width: 200px;
+}
+#main-content form div.orderProductForm ul li input#id_address {
+  width: 400px;
+}
+#main-content form div.orderProductForm ul li input#id_occupation {
+  width: 200px;
+}
+#main-content form div.orderProductForm ul li textarea#id_feedback {
+  width: 400px;
+  height: 100px;
+}
+
+#main-content form ul li .helptext {
+  float: left;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#main-content form ul li input, #main-content form ul li select {
+  float: left;
+}
+#main-content form button {
+  text-indent: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.orderProductButton {
+  margin-left: @side_margin;
+  margin-right: @side_margin;
+  padding-bottom: 30px;
+  &:after {
+    .after_close;
+  }
+}
+.orderProductButton > .agreement {
+  float: left;
+  line-height: 50px;
+}
+.orderProductButton > .orderButton {
+  float: right;
 }

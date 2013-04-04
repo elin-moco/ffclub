@@ -22,7 +22,7 @@ class Product(models.Model):
 class Order(models.Model):
 
     usage = models.TextField(max_length=512, verbose_name='預計推廣對象 以及 將如何使用 Firefox 活力宣傳物(*)',
-                             help_text='申請審核通過後，我們會將宣傳品寄送給你，請確認以下收件人資料: <br><br>')
+                             help_text='申請審核通過後，我們會將宣傳品寄送給你，請確認以下收件人資料:')
     fullname = models.CharField(max_length=255, verbose_name='姓名(*)')
     email = models.EmailField(verbose_name='電子郵件(*)')
     address = models.CharField(max_length=255, verbose_name='寄送地址(*)')

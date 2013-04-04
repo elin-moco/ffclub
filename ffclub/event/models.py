@@ -10,7 +10,7 @@ from ffclub.upload.models import ImageUpload
 
 class Event(models.Model):
 
-    title = models.CharField(max_length=255, verbose_name='你的宣傳活動名稱(*)')
+    title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
     description = models.CharField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='', verbose_name='舉辦地點')
     num_of_ppl = models.IntegerField(null=True, blank=True, verbose_name='預計人數')

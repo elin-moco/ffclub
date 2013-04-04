@@ -65,6 +65,7 @@ h6 {
   text-shadow: 1px 1px #fff;
 }
 textarea,
+input[type="file"],
 input[type="email"],
 input[type="password"],
 input[type="search"],
@@ -84,6 +85,7 @@ input {
   display: block;
 }
 textarea:focus,
+input[type="file"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
@@ -94,7 +96,7 @@ input:focus {
   transition: all 0.1s linear 0s;
 }
 select {
-  height: 20px !important;
+  height: 20px;
   border-radius: 3px 3px 3px 3px;
   border-style: solid;
   border-width: 1px;
@@ -463,6 +465,20 @@ a#browserid:hover {
   line-height: 14px;
   text-indent: 30px;
 }
+@keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+  }
+}
 .joinCircle {
   position: absolute;
   background-image: url("/static/images/css/join_circle.png");
@@ -470,6 +486,7 @@ a#browserid:hover {
   height: 135px;
   left: 55px;
   top: -75px;
+  animation: jump 1s infinite;
 }
 .loveCircle {
   position: absolute;
@@ -478,6 +495,37 @@ a#browserid:hover {
   height: 135px;
   left: 55px;
   top: -75px;
+  animation: jump 1s infinite;
+}
+.popup {
+  display: none;
+}
+#main-content ul.errorlist:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #A91300;
+  content: "";
+  left: 15px;
+  position: absolute;
+  top: 100%;
+  visibility: visible;
+}
+#main-content ul.errorlist {
+  background-color: #AA1401;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px #666666;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 16px;
+  max-width: 275px;
+  padding: 10px 15px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px #333333;
+  background-image: -moz-linear-gradient(center top, rgba(218, 81, 50, 0.9), #a91300);
+}
+#main-content ul.errorlist li {
+  float: none;
 }
 /* hide back of pane during swap */
 /* front pane, placed above back */
@@ -703,4 +751,63 @@ a#browserid:hover {
 .socialMedia {
   padding-top: 20px;
   margin-left: 55px;
+}
+#main-content .socialMedia ul#owned li:not(:last-child) {
+  border-right: 1px dotted #808080;
+}
+#main-content .socialMedia ul li {
+  list-style: none;
+  margin-left: 0;
+  padding-right: 10px;
+  margin-right: 10px;
+  float: left;
+}
+.socialMedia ul#social {
+  display: inline-block;
+  width: 650px;
+}
+.socialMedia ul#social:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.socialMedia ul#social li {
+  margin: 20px 30px 0 0;
+  border: none;
+}
+.socialMedia ul#social li {
+  float: left;
+  margin: 20px 30px 0 0;
+}
+.socialMedia ul#social a {
+  background: url("/static/images/css/social_media.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  height: 32px;
+  text-indent: -100000px;
+  width: 32px;
+}
+ul#social a#fb {
+  background-position: -3px -3px;
+}
+ul#social a#gp {
+  background-position: -76px -3px;
+}
+ul#social a#pk {
+  background-position: -149px -3px;
+}
+ul#social a#yb {
+  background-position: -222px -3px;
+}
+ul#social a#fc {
+  background-position: -290px -3px;
+}
+.walk {
+  background-image: url("/static/images/css/walk.png");
+  width: 197px;
+  height: 197px;
+  position: absolute;
+  right: 0;
+  top: 100px;
 }

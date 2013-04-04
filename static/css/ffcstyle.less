@@ -68,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 textarea,
+input[type="file"],
 input[type="email"],
 input[type="password"],
 input[type="search"],
@@ -88,6 +89,7 @@ input {
 }
 
 textarea:focus,
+input[type="file"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
@@ -99,7 +101,7 @@ input:focus{
 }
 
 select {
-  height: 20px !important;
+  height: 20px;
   border-color: #B2B2B2;
   border-radius: 3px 3px 3px 3px;
   border-style: solid;
@@ -468,12 +470,61 @@ a#browserid:hover {
   top: -75px;
 }
 
+@keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+  }
+}
+
 .joinCircle {
   .floatingCircle("/static/images/css/join_circle.png");
+  animation: jump 1s infinite;
 }
 
 .loveCircle {
   .floatingCircle("/static/images/css/love_circle.png");
+  animation: jump 1s infinite;
+}
+
+.popup {
+  display: none;
+}
+
+#main-content ul.errorlist:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #A91300;
+  content: "";
+  left: 15px;
+  position: absolute;
+  top: 100%;
+  visibility: visible;
+}
+#main-content ul.errorlist {
+  background-color: #AA1401;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px #666666;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 16px;
+  max-width: 275px;
+  padding: 10px 15px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px #333333;
+  background-image: -moz-linear-gradient(center top , rgba(218, 81, 50, 0.9), #A91300);
+}
+#main-content ul.errorlist li{
+  float: none;
 }
 
 /* hide back of pane during swap */

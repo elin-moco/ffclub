@@ -8,6 +8,10 @@ $(document).ready(function(){
             lightbox.show($(this).attr('href'));
         }
     );
+    var popup = new saw.Popup('.popup');
+    $('.sharePhotoLink').click(function() {
+        popup.show();
+    });
 });
 
 $('.eventWall').imagesLoaded(

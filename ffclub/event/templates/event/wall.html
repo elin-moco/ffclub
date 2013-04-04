@@ -27,19 +27,19 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="loveCircle"></div>
   {% if request.user.is_active %}
     {% if upload_form.hasEvent %}
-      <form enctype="multipart/form-data" method="post" action="">
-        {{ csrf() }}
-        {{ upload_form }}
-        <input type="submit" value="我要上傳">
-      </form>
+      <a class="sharePhotoLink submitButton" href="javascript:void(0)">我也要分享成果！</a>
     {% else %}
-        <button class="browserid loginButton">還沒申請宣傳品嗎？趕快去申請，再回來和大家分享成果吧！</button>
+      <br>
+      <a class="productsLink" href="{{ url("product.wall") }}">還沒申請宣傳品嗎？趕快去申請，再回來和大家分享成果吧！</a>
+      <br><br>
     {% endif %}
   {% else %}
-    <p><a class="browserid" href="javascript:void(0)"><span class="loginButton">分享成果請先登入</span></a></p>
+    <p>
+      <button class="browserid loginButton">分享成果請先登入</button>
+    </p>
     <form method="POST" action="{{ url('browserid_verify') }}">
       {{ csrf() }}
       {{ browserid_form.as_p() }}
@@ -53,19 +53,23 @@
       {% else %}
         {% for event_photo in event_photos %}
           <li class="eventPhoto">
-            <a class="eventPhotoLink" href="/static/{{ event_photo.image_large }}"
-               title="{{ event_photo.description }}">
-              <img data-full-width="{{ event_photo.image_large_width }}"
-                   data-full-height="{{ event_photo.image_large_height }}"
-                   width="300" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 300 }}"
-                   src="/static/{{ event_photo.image_medium }}"
-                   alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
-            </a>
-
-            <p>{{ event_photo.description }}</p>
-
-            <p><span class="time" title="{{ event_photo.create_time }}"></span>
-              by {{ event_photo.create_user.get_profile().fullname }}</p>
+            <div class="photoFrame">
+              <a class="eventPhotoLink" href="/static/{{ event_photo.image_large }}"
+                 title="{{ event_photo.description }}">
+                <img data-full-width="{{ event_photo.image_large_width }}"
+                     data-full-height="{{ event_photo.image_large_height }}"
+                     width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
+                     src="/static/{{ event_photo.image_medium }}"
+                     alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
+              </a>
+            </div>
+            <div class="photoDescription">
+              <p>{{ event_photo.description }}</p>
+            </div>
+            <div class="photoInfo">
+              <p>投稿者：<b>{{ event_photo.create_user.get_profile().fullname }}</b>
+              <p>發表於：<b><span class="time" title="{{ event_photo.create_time }}"></span></b>
+            </div>
 
           </li>
         {% endfor %}
@@ -73,10 +77,23 @@
     </ul>
   </div>
 {% endblock %}
+{% block popup %}
+  <div class="uploadForm">
+    {% if request.user.is_active and upload_form.hasEvent %}
+      <form enctype="multipart/form-data" method="post" action="">
+        {{ csrf() }}
+        <ul>
+          {{ upload_form.as_ul() }}
+        </ul>
+        <button class="submitButton" type="submit" value="1">我要上傳</button>
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}
 {% block base_js %}
   {{ js('event') }}
   {% if not request.user.is_active %}
-      {{ js('browserid') }}
-{#    {{ browserid_form.media }}#}
+    {{ js('browserid') }}
+    {#    {{ browserid_form.media }}#}
   {% endif %}
 {% endblock %}
