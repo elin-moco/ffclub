@@ -482,6 +482,74 @@ a#browserid:hover {
     background-size: 135px 135px;
   }
 }
+@-moz-keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+    background-size: 135px 135px;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+    background-size: 135px 120px;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+    background-size: 135px 135px;
+  }
+}
+@-webkit-keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+    background-size: 135px 135px;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+    background-size: 135px 120px;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+    background-size: 135px 135px;
+  }
+}
+@-o-keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+    background-size: 135px 135px;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+    background-size: 135px 120px;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+    background-size: 135px 135px;
+  }
+}
+@-ms-keyframes jump {
+  0% {
+    top: -75px;
+    transition-timing-function: ease-in;
+    background-size: 135px 135px;
+  }
+  50% {
+    top: -45px;
+    transition-timing-function: ease-out;
+    background-size: 135px 120px;
+  }
+  100% {
+    transition-timing-function: ease-in;
+    top: -75px;
+    background-size: 135px 135px;
+  }
+}
 .joinCircle {
   position: absolute;
   background-image: url("/static/images/css/join_circle.png");
@@ -492,6 +560,10 @@ a#browserid:hover {
   left: 55px;
   top: -75px;
   animation: jump 1s infinite;
+  -moz-animation: jump 1s infinite;
+  -webkit-animation: jump 1s infinite;
+  -o-animation: jump 1s infinite;
+  -ms-animation: jump 1s infinite;
 }
 .loveCircle {
   position: absolute;
@@ -503,6 +575,10 @@ a#browserid:hover {
   left: 55px;
   top: -75px;
   animation: jump 1s infinite;
+  -moz-animation: jump 1s infinite;
+  -webkit-animation: jump 1s infinite;
+  -o-animation: jump 1s infinite;
+  -ms-animation: jump 1s infinite;
 }
 .popup {
   display: none;

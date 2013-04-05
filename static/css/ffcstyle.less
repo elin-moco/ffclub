@@ -472,7 +472,7 @@ a#browserid:hover {
   top: -75px;
 }
 
-@keyframes jump {
+.jumpKeyFrames() {
   0% {
     top: -75px;
     transition-timing-function: ease-in;
@@ -490,14 +490,30 @@ a#browserid:hover {
   }
 }
 
+@keyframes jump {
+  .jumpKeyFrames;
+}
+@-moz-keyframes jump {
+  .jumpKeyFrames;
+  }
+@-webkit-keyframes jump {
+  .jumpKeyFrames;
+  }
+@-o-keyframes jump {
+  .jumpKeyFrames;
+  }
+@-ms-keyframes jump {
+  .jumpKeyFrames;
+  }
+
 .joinCircle {
   .floatingCircle("/static/images/css/join_circle.png");
-  animation: jump 1s infinite;
+  .animate(jump 1s infinite);
 }
 
 .loveCircle {
   .floatingCircle("/static/images/css/love_circle.png");
-  animation: jump 1s infinite;
+  .animate(jump 1s infinite);
 }
 
 .popup {
@@ -533,6 +549,13 @@ a#browserid:hover {
 }
 
 /* hide back of pane during swap */
+.animate(@settings) {
+  animation: @settings;
+  -moz-animation: @settings;
+  -webkit-animation: @settings;
+  -o-animation: @settings;
+  -ms-animation: @settings;
+}
 .backfacehide () {
   transform-style: preserve-3d;
   -moz-transform-style:preserve-3d;
