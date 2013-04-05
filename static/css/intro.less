@@ -87,6 +87,42 @@ div.introPicture {
   background-image: url(/static/images/css/intro_pic.png);
 }
 
+.carousel .next, .carousel .prev{
+  background: url("/static/images/css/slide-arrows.png") no-repeat scroll 0 0 transparent;
+  border: 0 none;
+  cursor: pointer;
+  display: block;
+  height: 60px;
+  opacity: 0.6;
+  overflow: hidden;
+  position: absolute;
+  text-indent: -99em;
+  top: 40%;
+  transition: opacity 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s, right 0.3s ease-in-out 0s;
+  width: 44px;
+  z-index: 10000;
+}
+
+.carousel .next {
+  background-position: 100% 0;
+  right: 4px;
+}
+
+.carousel .prev {
+  background-position: 0 0;
+  left: 4px;
+}
+
+.carousel .next:hover {
+  opacity: 1;
+  right: 0px;
+}
+
+.carousel .prev:hover {
+  opacity: 1;
+  left: 0px;
+}
+
 @media only screen and (max-width: 600px){
   #intro-login {
     margin-top:20px;

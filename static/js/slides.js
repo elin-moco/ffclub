@@ -1,13 +1,16 @@
 window.saw = (function ($) {
 
+    var controlTemplate = '<button class="prev">Previous</button><button class="next"></button>';
+
     var wrapperTemplate = function () {
         return '<div class="slidewrap">' +
-            '<button class="prev">Previous</button><button class="next"></button>' +
+            controlTemplate +
             '</div>';
     };
 
     function slideTemplate(slide) {
-        return '<div class="slide"><div style="background-image:url(' + slide.url + ')"></div></div>';
+        return '<div class="slide"><div style="background-image:url(' + slide.url + ')"></div>'+
+            '<div class="slideTitle">('+(slide.slideNum+1)+'/'+slideData.length+')  '+slide.title+'</div></div>';
     }
 
     var container_node,
@@ -65,6 +68,7 @@ window.saw = (function ($) {
             thisSlide.url = $(el).find('a').attr('href');
             thisSlide.height = thisImg.attr('data-full-height');
             thisSlide.width = thisImg.attr('data-full-width');
+            thisSlide.title = thisImg.attr('title');
             thisSlide.link = $(el).find('a').attr('href');
 
             slideMap[thisSlide.link] = slideData.push(thisSlide) - 1;
@@ -79,6 +83,7 @@ window.saw = (function ($) {
     function init_carousel() {
         carousel = true;
         wrapper = container_node;
+        wrapper.append(controlTemplate);
         var slides = container_node.find('li');
         slides.each(function (i, el) {
             var thisSlide = {}, thisImg = $(el);
@@ -88,16 +93,17 @@ window.saw = (function ($) {
             thisSlide.url = url;
             thisSlide.height = thisImg.attr('data-full-height');
             thisSlide.width = thisImg.attr('data-full-width');
+            thisSlide.title = thisImg.attr('title');
             thisSlide.link = url;
             thisSlide.node = thisImg;
             slideData.push(thisSlide);
 
-            attachEvents();
-            boundingBox = [ window.innerWidth, window.innerHeight ];
-
-            jumpToStart(slideData.length - 1);
-            attachTouchEvents();
         });
+        attachEvents();
+        boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
+
+        jumpToStart(slideData.length - 1);
+        attachTouchEvents();
     }
 
     function jumpTo(to, from) {
@@ -143,7 +149,7 @@ window.saw = (function ($) {
         }
 
         var thisSlide = slideData[slideNum];
-
+        thisSlide.slideNum = slideNum;
         var s = $(slideTemplate(thisSlide));
 
         img = s.children('div');
@@ -357,7 +363,7 @@ window.saw = (function ($) {
         }
         attachEvents();
         wrapper.show();
-        boundingBox = [ window.innerWidth, window.innerHeight ];
+        boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
 
         goTo(slideMap[startSlide]);
         attachTouchEvents();
@@ -392,6 +398,7 @@ window.saw = (function ($) {
                         thisSlide.url = $(el).find('a').attr('href');
                         thisSlide.height = thisImg.attr('data-full-height');
                         thisSlide.width = thisImg.attr('data-full-width');
+                        thisSlide.title = thisImg.attr('title');
                         thisSlide.link = $(el).find('a').attr('href');
 
                         slideData.push(thisSlide);
@@ -411,7 +418,7 @@ window.saw = (function ($) {
         else {
             attachEvents();
             wrapper.show();
-            boundingBox = [ window.innerWidth, window.innerHeight ];
+            boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
             goTo(0);
             attachTouchEvents();
         }

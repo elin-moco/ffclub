@@ -42,6 +42,12 @@ div.eventWall {
 /*	-webkit-transition: -webkit-transform 1s ease-in-out;*/
 }
 
+.slidewrap .slide .slideTitle {
+    width: 100% !important;
+    height: 20px !important;
+    color: #ffffff;
+}
+
 .slide div {
 	display: inline-block;
 	height:100px;
