@@ -464,6 +464,8 @@ a#browserid:hover {
 .floatingCircle(@image) {
   position: absolute;
   background-image: url(@image);
+  background-repeat: no-repeat;
+  background-position: bottom;
   width: 135px;
   height: 135px;
   left: 55px;
@@ -474,14 +476,17 @@ a#browserid:hover {
   0% {
     top: -75px;
     transition-timing-function: ease-in;
+    background-size: 135px 135px;
   }
   50% {
     top: -45px;
     transition-timing-function: ease-out;
+    background-size: 135px 120px;
   }
   100% {
     transition-timing-function: ease-in;
     top: -75px;
+    background-size: 135px 135px;
   }
 }
 

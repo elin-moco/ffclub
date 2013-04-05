@@ -480,6 +480,9 @@ MINIFY_BUNDLES = {
         'base': (
             'css/base.css',
         ),
+        'tos': (
+            'css/tos.css',
+        ),
         'intro': (
             'css/intro.css',
         ),

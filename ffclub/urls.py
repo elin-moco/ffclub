@@ -17,6 +17,7 @@ PROJECT_MODULE = 'ffclub'
 
 urlpatterns = patterns(
     '',
+    (r'', include('%s.base.urls' % PROJECT_MODULE)),
     (r'', include('%s.intro.urls' % PROJECT_MODULE)),
     (r'', include('%s.person.urls' % PROJECT_MODULE)),
     (r'', include('%s.event.urls' % PROJECT_MODULE)),

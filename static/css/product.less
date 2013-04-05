@@ -3,6 +3,7 @@
 #main-content{
   width: 800px;
   background-color: #fff;
+  padding-bottom: 30px;
 }
 
 #main-content ul.products {
@@ -12,7 +13,7 @@
   padding-right: 10px;
 }
 
-#main-content form ul.products li.productHead {
+#main-content .orderForm ul.products li.productHead {
   height: 30px !important;
   margin-top: 0;
   padding-bottom: 10px;
@@ -73,14 +74,14 @@ div.orderProductForm {
   margin-right: @side_margin;
 }
 
-#main-content form ul {
+#main-content .orderForm ul {
   padding-top: 20px;
   margin-bottom: 20px;
   &:after {
     .after_close;
   }
 }
-#main-content form ul li {
+#main-content .orderForm ul li {
   list-style: none;
   display: block;
   width: 100%;
@@ -88,60 +89,69 @@ div.orderProductForm {
   margin-left: 0;
 }
 
-#main-content form div.orderProductForm ul li label {
+#main-content .orderForm div.orderProductForm ul li label {
   width: 100px;
   line-height: 23px;
   float: left;
   padding-bottom: 30px;
 }
-#main-content form div.orderProductForm ul li label[for=id_usage] {
+#main-content .orderForm div.orderProductForm ul li label[for=id_usage] {
   width: 100%;
   padding-bottom: 10px;
 }
-#main-content form div.orderProductForm ul li input#id_title {
+#main-content .orderForm div.orderProductForm ul li input#id_title {
   width: 300px;
 }
-#main-content form div.orderProductForm ul li input#id_location {
+#main-content .orderForm div.orderProductForm ul li input#id_location {
   width: 400px;
 }
-#main-content form div.orderProductForm ul li input#id_num_of_ppl {
+#main-content .orderForm div.orderProductForm ul li input#id_num_of_ppl {
   width: 60px;
 }
-#main-content form div.orderProductForm ul li textarea#id_usage {
+#main-content .orderForm div.orderProductForm ul li textarea#id_usage {
   width: 100%;
   height: 150px;
 }
-#main-content form div.orderProductForm ul li input#id_fullname {
+#main-content .orderForm div.orderProductForm ul li input#id_fullname {
   width: 100px;
 }
-#main-content form div.orderProductForm ul li input#id_email {
+#main-content .orderForm div.orderProductForm ul li input#id_email {
   width: 200px;
 }
-#main-content form div.orderProductForm ul li input#id_address {
+#main-content .orderForm div.orderProductForm ul li input#id_address {
   width: 400px;
 }
-#main-content form div.orderProductForm ul li input#id_occupation {
+#main-content .orderForm div.orderProductForm ul li input#id_occupation {
   width: 200px;
 }
-#main-content form div.orderProductForm ul li textarea#id_feedback {
+#main-content .orderForm div.orderProductForm ul li textarea#id_feedback {
   width: 400px;
   height: 100px;
 }
 
-#main-content form ul li .helptext {
+#main-content .orderForm ul li .helptext {
   float: left;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-#main-content form ul li input, #main-content form ul li select {
+#main-content .orderForm ul li input, #main-content .orderForm ul li select {
   float: left;
 }
-#main-content form button {
+#main-content .orderForm button.submitButton {
   text-indent: 50px;
   margin-left: auto;
   margin-right: auto;
 }
+
+#main-content .orderForm button.loginButton {
+  text-indent: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 .orderProductButton {
   margin-left: @side_margin;
   margin-right: @side_margin;

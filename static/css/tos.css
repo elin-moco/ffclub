@@ -751,10 +751,14 @@ a#browserid:hover {
     height: 32px;
   }
 }
-.verifyMessage {
-  padding-top: 30px;
-  margin-left: 55px;
-}
 #main-content {
-  height: 225px;
+  width: 800px;
+  height: auto;
+  background-color: #fff;
+}
+#main-content .termsOfService {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  margin-left: 55px;
+  margin-right: 55px;
 }
