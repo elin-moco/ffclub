@@ -885,7 +885,8 @@ li.bannerSupport {
   height: 100%;
   line-height: 100%;
   font-size: 11px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 #intro-content {
   position: relative;
