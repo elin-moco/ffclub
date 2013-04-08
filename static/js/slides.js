@@ -17,7 +17,7 @@ window.saw = (function ($) {
         wrapper,
         chromeBuilt,
         previousSlidesUrl,
-
+        heightFix = 88,
         currentSlide = 0,
         slideData = [],
         preventHide = false,
@@ -102,7 +102,7 @@ window.saw = (function ($) {
 
         });
         attachEvents();
-        boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
+        boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
 
         jumpToStart(slideData.length - 1);
         attachTouchEvents();
@@ -365,7 +365,7 @@ window.saw = (function ($) {
         }
         attachEvents();
         wrapper.show();
-        boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
+        boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
 
         goTo(slideMap[startSlide]);
         attachTouchEvents();

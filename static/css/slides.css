@@ -33,7 +33,7 @@ div.eventWall {
 
 .slide {
 	width:100%;
-	height:200px;
+	height: 0;
 	
 	position:absolute;
 	text-align: center;
