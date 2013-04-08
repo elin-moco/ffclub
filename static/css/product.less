@@ -88,6 +88,24 @@ div.orderProductForm {
   float: left;
   margin-left: 0;
 }
+#main-content .orderForm ul.errorlist {
+  padding-top: 10px;
+}
+
+#main-content .orderForm ul.errorlist:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #A91300;
+  content: "";
+  left: 15px;
+  position: absolute;
+  top: 100%;
+  visibility: visible;
+}
+
+#main-content .orderForm ul.errorlist li {
+  float: none;
+}
 
 #main-content .orderForm div.orderProductForm ul li label {
   width: 100px;

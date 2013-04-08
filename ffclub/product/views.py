@@ -25,7 +25,8 @@ def wall(request):
 
     products = Product.objects.all()
     OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
-                                               extra=products.count(), can_delete=False, form=OrderDetailForm)
+                                               extra=products.count(), can_delete=False,
+                                               form=OrderDetailForm, formset=BaseOrderDetailFormSet)
     orderDetailData = []
 
     for product in products:
@@ -36,7 +37,12 @@ def wall(request):
     if request.method == 'POST':
         eventForm = EventForm(request.POST)
         orderForm = OrderForm(request.POST)
-        if eventForm.is_valid() and orderForm.is_valid():
+        OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
+                                                   extra=0, can_delete=False,
+                                                   form=OrderDetailForm, formset=BaseOrderDetailFormSet)
+        orderDetailFormset = OrderDetailFormset(request.POST, initial=orderDetailData)
+
+        if orderDetailFormset.is_valid() and eventForm.is_valid() and orderForm.is_valid():
             event = eventForm.save(commit=False)
             order = orderForm.save(commit=False)
             event.create_user = auth.get_user(request)
@@ -44,14 +50,12 @@ def wall(request):
             event.save()
             order.event = event
             order.save()
-            OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
-                                                       extra=0, can_delete=False, form=OrderDetailForm)
-            orderDetailFormset = OrderDetailFormset(request.POST, instance=order)
+
             for orderDetailForm in orderDetailFormset:
-                if orderDetailForm.is_valid():
-                    orderDetail = orderDetailForm.save(commit=False)
-                    if orderDetail.quantity > 0:
-                        orderDetail.save()
+                orderDetail = orderDetailForm.save(commit=False)
+                if orderDetail.quantity > 0:
+                    orderDetail.order = order
+                    orderDetail.save()
 
             verification_code = generate_random_string(36, string.ascii_letters + string.digits)
             verification = OrderVerification(order=order, create_user=auth.get_user(request),

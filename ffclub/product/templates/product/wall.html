@@ -29,6 +29,7 @@
       <form method="post" action="">
       {{ csrf() }}
       {{ order_detail_formset.management_form }}
+      {{ order_detail_formset.non_form_errors() }}
     {% endif %}
 
     <ul class="products">
