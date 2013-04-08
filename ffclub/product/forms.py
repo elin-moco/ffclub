@@ -29,12 +29,9 @@ class OrderDetailForm(ModelForm):
 class BaseOrderDetailFormSet(BaseInlineFormSet):
 
     def clean(self):
-        log.error('clean!!!!!!!!!!')
         hasOrderDetail = False
         for orderDetailForm in self.forms:
             if orderDetailForm.cleaned_data['quantity'] > 0:
                 hasOrderDetail = True
-        log.error('hasOrderDetail: %d' % hasOrderDetail)
         if not hasOrderDetail:
-            log.error('invalid!!!!!!!!!!')
             raise ValidationError('請至少選擇一項宣傳品')
