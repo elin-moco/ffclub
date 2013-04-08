@@ -34,19 +34,21 @@ window.saw = (function ($) {
     }
 
     function handleClicks(e) {
-        e.preventDefault();
         var targ = $(e.target);
         if (targ.hasClass('next')) {
+            e.preventDefault();
             if (!goTo(currentSlide + 1)) {
                 jumpToStart();
             }
         }
         else if (targ.hasClass('prev')) {
+            e.preventDefault();
             if (!goTo(currentSlide - 1)) {
                 jumpToEnd();
             }
         }
         else if (targ.hasClass('slidewrap') || !preventHide) {
+            e.preventDefault();
             hide();
         }
 
