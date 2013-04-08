@@ -894,6 +894,8 @@ div#main-content {
   float: left;
   padding-bottom: 20px;
   margin-left: 0;
+  color: #4d4d4f;
+  font-size: 13px;
 }
 .popup form ul li label {
   width: 100px;
