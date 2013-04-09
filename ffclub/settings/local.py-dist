@@ -106,3 +106,5 @@ LOGGING = {
     },
 
 }
+
+EVENT_WALL_PHOTOS_PER_PAGE = 30

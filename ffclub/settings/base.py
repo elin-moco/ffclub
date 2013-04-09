@@ -532,6 +532,7 @@ MINIFY_BUNDLES = {
         'event': (
             'js/libs/jquery.masonry.min.js',
             'js/libs/jquery.imagesloaded.min.js',
+            'js/libs/jquery.infinitescroll.js',
             'js/slides.js',
             'js/pretty.date.js',
             'js/event.js',
