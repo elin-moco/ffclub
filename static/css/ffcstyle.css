@@ -558,6 +558,8 @@ a#browserid:hover {
   height: 135px;
   left: 55px;
   top: -75px;
+}
+.joinCircle:hover {
   animation: jump 1s infinite;
   -moz-animation: jump 1s infinite;
   -webkit-animation: jump 1s infinite;
@@ -573,6 +575,8 @@ a#browserid:hover {
   height: 135px;
   left: 55px;
   top: -75px;
+}
+.loveCircle:hover {
   animation: jump 1s infinite;
   -moz-animation: jump 1s infinite;
   -webkit-animation: jump 1s infinite;

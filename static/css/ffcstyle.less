@@ -508,12 +508,16 @@ a#browserid:hover {
 
 .joinCircle {
   .floatingCircle("/static/images/css/join_circle.png");
-  .animate(jump 1s infinite);
+  &:hover {
+    .animate(jump 1s infinite);
+  }
 }
 
 .loveCircle {
   .floatingCircle("/static/images/css/love_circle.png");
-  .animate(jump 1s infinite);
+  &:hover {
+    .animate(jump 1s infinite);
+  }
 }
 
 .popup {
