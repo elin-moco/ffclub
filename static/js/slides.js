@@ -55,6 +55,7 @@ window.saw = (function ($) {
     }
 
     function attachEvents() {
+        $(window).on('resize', handleResizeEvents);
         wrapper.on('click', handleClicks);
         var bd = document.querySelector('html');
         bd.addEventListener('keyup', handleKeyEvents);
@@ -273,6 +274,15 @@ window.saw = (function ($) {
         }
     }
 
+    function handleResizeEvents(e) {
+        boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
+        for (i = currentSlide + 1; i < slideData.length; i++) {
+            if (slideData[i] && slideData[i].node) {
+                setPosition(slideData[i].node, boundingBox[0]);
+            }
+        }
+    }
+
     function attachTouchEvents() {
 
         var bd = document.querySelector('html');
@@ -442,6 +452,7 @@ window.saw = (function ($) {
             return;
         }
         wrapper.hide();
+        $(window).off('resize', handleResizeEvents);
         var bd = document.querySelector('html');
         bd.removeEventListener('touchmove', handleTouchEvents);
         bd.removeEventListener('touchstart', handleTouchEvents);
