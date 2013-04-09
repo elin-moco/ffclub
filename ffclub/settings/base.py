@@ -368,7 +368,7 @@ def get_apps(exclude=(), append=(), current={'apps': INSTALLED_APPS}):
     return current['apps']
 
 # Path to Java. Used for compress_assets.
-JAVA_BIN = '/usr/bin/java'
+# JAVA_BIN = '/usr/bin/java'
 
 # Sessions
 #
@@ -546,7 +546,7 @@ MINIFY_BUNDLES = {
 }
 
 LESS_PREPROCESS = False
-LESS_BIN = '/usr/local/bin/lessc'
+# LESS_BIN = '/usr/local/bin/lessc'
 
 CUSTOM_ORDER_DETAIL_CHOICES = {
     1: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),
