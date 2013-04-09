@@ -272,7 +272,6 @@ body {
 }
 #main-feature.huge {
   width: 100%;
-  height: 370px;
 }
 #main-feature.meduim {
   height: 275px;
@@ -828,22 +827,27 @@ a#browserid:hover {
   }
 }
 ul.carousel {
-  width: 100%;
-  height: 370px;
   position: relative;
   overflow: hidden;
   display: block;
 }
-ul.carousel > li {
+ul.carousel > li:first-child {
+  position: relative;
+}
+ul.carousel > li:not(:first-child) {
   display: inline-block;
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   /*	-webkit-transition: -webkit-transform 1s ease-in-out;*/
 
 }
+ul.carousel > li img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/*
 li.bannerWelcome {
   background: url('/static/images/css/intro_banner_welcome.jpg') top center no-repeat;
 }
@@ -853,6 +857,7 @@ li.bannerFree {
 li.bannerSupport {
   background: url('/static/images/css/intro_banner_support.jpg') top center no-repeat;
 }
+*/
 #main-feature {
   position: relative;
 }
