@@ -879,7 +879,7 @@ li.bannerSupport {
   text-indent: 360px;
 }
 #main-content {
-  width: 600px;
+  width: 800px;
 }
 #intro-login {
   position: relative;
@@ -894,7 +894,7 @@ li.bannerSupport {
   height: 100%;
   line-height: 100%;
   font-size: 11px;
-  margin-left: 10px;
+  margin-left: 55px;
   margin-top: 10px;
 }
 #intro-content {
@@ -915,6 +915,7 @@ li.bannerSupport {
 div.introPicture {
   width: 600px;
   height: 110px;
+  margin-left: 55px;
   background-image: url(/static/images/css/intro_pic.png);
 }
 .carousel .next,
