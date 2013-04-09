@@ -211,7 +211,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'funfactory.context_processors.i18n',
     'funfactory.context_processors.globals',
-    #'jingo_minify.helpers.build_ids',
+    'jingo_minify.helpers.build_ids',
     'django_browserid.context_processors.browserid_form',
 )
 
@@ -545,7 +545,7 @@ MINIFY_BUNDLES = {
     }
 }
 
-LESS_PREPROCESS = True
+LESS_PREPROCESS = False
 LESS_BIN = '/usr/local/bin/lessc'
 
 CUSTOM_ORDER_DETAIL_CHOICES = {
