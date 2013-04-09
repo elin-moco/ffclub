@@ -77,6 +77,11 @@
         {% endfor %}
       {% endif %}
     </ul>
+  {% if event_photos|length > 0 %}
+      <div id="page-nav" style="display: none;">
+          <a href="{{ url('event.wall.page', page_number=2) }}"></a>
+      </div>
+  {% endif %}
   </div>
 {% endblock %}
 {% block popup %}
