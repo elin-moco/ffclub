@@ -957,6 +957,7 @@ div#main-content a.sharePhotoLink:hover {
 div#main-content .eventWall {
   margin-top: 20px;
   margin-left: 25px;
+  margin-bottom: 30px;
 }
 div#main-content .eventWall ul li.eventPhoto {
   width: 300px;
