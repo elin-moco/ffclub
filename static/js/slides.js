@@ -404,7 +404,7 @@ window.saw = (function ($) {
                 }
             ).done(
                 function (slides) {
-                    $(slides).find('li').each(function (i, el) {
+                    $($.parseHTML(slides)).find('#main-content li').each(function (i, el) {
                         var thisSlide = {}, thisImg = $(el).find('img');
 
                         thisSlide.url = $(el).find('a').attr('href');

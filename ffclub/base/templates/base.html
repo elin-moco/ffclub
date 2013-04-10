@@ -1,5 +1,5 @@
 {% if not page_image %}
-  {% set page_image = '/static/images/css/banner_default.jpg' %}
+  {% set page_image = 'static/images/css/banner_default.jpg' %}
 {% endif %}
 {% if not page_title %}
   {% set page_title = 'Mozilla Taiwan - 美商謀智台灣分公司，歡迎加入 Firefox 活力軍' %}
@@ -26,7 +26,7 @@
         content="{{ page_keywords }}"/>
   <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}"/>
   <meta property="og:description" content="{% block og_desc %}{{ page_description }}{% endblock %}"/>
-  <meta property="og:image" content="{% block og_image %}{{ (request.build_absolute_uri('/') + page_image)|urlencode }}{% endblock %}"/>
+  <meta property="og:image" content="{% block og_image %}{{ request.build_absolute_uri('/')+page_image|urlencode }}{% endblock %}"/>
   <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri() }}{% endblock %}"/>
   <title>{% block title %}{{ page_title }}{% endblock %}</title>
   <link rel="canonical" href=""/>
