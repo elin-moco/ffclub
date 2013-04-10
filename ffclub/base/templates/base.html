@@ -29,7 +29,7 @@
   <meta property="og:image" content="{% block og_image %}{{ request.build_absolute_uri('/static/')+page_image|urlencode }}{% endblock %}"/>
   <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri() }}{% endblock %}"/>
   <title>{% block title %}{{ page_title }}{% endblock %}</title>
-  <link rel="canonical" href=""/>
+  <link rel="canonical" href="{{ request.build_absolute_uri() }}"/>
   <link rel="shortcut icon" href="http://mozilla.com/favicon.ico"/>
   <!--[if lte IE 8]>
     <script src="/js/libs/html5shiv.js"></script>
@@ -150,7 +150,7 @@
     <div id="wrapper">
       {% block head %}
         <header id="masthead">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0" data-nav="closed">Menu</span>
+          <span class="toggle" role="button" tabindex="0" data-nav="closed">Menu</span>
 
           <h1><a href="/">Firefox 活力軍</a></h1>
           <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>

@@ -27,7 +27,7 @@
   <div class="orderForm">
 
     {% if request.user.is_active %}
-      <form method="post" action="">
+      <form method="post">
       {{ csrf() }}
       {{ order_detail_formset.management_form }}
       {{ order_detail_formset.non_form_errors() }}

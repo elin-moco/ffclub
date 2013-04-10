@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="loveCircle"></div>
+  <div class="loveCircle"></div>
   {% if request.user.is_active %}
     {% if upload_form.hasEvent %}
       <a class="sharePhotoLink submitButton" href="javascript:void(0)">我也要分享成果！</a>
@@ -49,10 +49,12 @@
     </form>
   {% endif %}
   <div class="eventWall">
-    <ul class="eventPhotos">
-      {% if event_photos|length == 0 %}
+    {% if event_photos|length == 0 %}
+      <div class="eventPhotos">
         <p>目前没有任何照片分享，成為第一個分享的人吧！</p>
-      {% else %}
+      </div>
+    {% else %}
+      <ul class="eventPhotos">
         {% for event_photo in event_photos %}
           <li class="eventPhoto">
             <div class="photoFrame">
@@ -70,24 +72,25 @@
             </div>
             <div class="photoInfo">
               <p>投稿者：<b>{{ event_photo.create_user.get_profile().fullname }}</b>
+
               <p>發表於：<b><span class="time" title="{{ event_photo.create_time }}"></span></b>
             </div>
 
           </li>
         {% endfor %}
-      {% endif %}
-    </ul>
-  {% if event_photos|length > 0 %}
+      </ul>
+    {% endif %}
+    {% if event_photos|length > 0 %}
       <div id="page-nav" style="display: none;">
-          <a href="{{ url('event.wall.page', page_number=2) }}"></a>
+        <a href="{{ url('event.wall.page', page_number=2) }}"></a>
       </div>
-  {% endif %}
+    {% endif %}
   </div>
 {% endblock %}
 {% block popup %}
   <div class="uploadForm">
     {% if request.user.is_active and upload_form.hasEvent %}
-      <form enctype="multipart/form-data" method="post" action="">
+      <form enctype="multipart/form-data" method="post">
         {{ csrf() }}
         <ul>
           {{ upload_form.as_ul() }}
