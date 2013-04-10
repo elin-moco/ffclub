@@ -1,4 +1,6 @@
 {% set page_image = product.photos.get(usage='preview').image_medium.name %}
+{% set page_title = product.title %}
+{% set page_description = product.description %}
 {% extends "base.html" %}
 
 {% block title %}Mozilla Taiwan - 美商謀智台灣分公司，Firefox 活力軍宣傳品 - {{ product.title }}{% endblock %}
