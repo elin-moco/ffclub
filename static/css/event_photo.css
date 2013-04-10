@@ -848,6 +848,7 @@ a#browserid:hover {
 #main-content div.eventPhoto a.eventPhotoLink img {
   display: block;
   margin: auto;
+  width: 700px;
 }
 #main-content div.eventPhoto p {
   text-align: center;
