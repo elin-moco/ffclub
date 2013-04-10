@@ -110,7 +110,7 @@ def wall(request):
 
 def product_photos(request, product_id):
     product = Product.objects.get(id=product_id)
-    data = {'photos': product.photos.filter(usage='original')}
+    data = {'product': product, 'photos': product.photos.filter(usage='original')}
     return render(request, 'product/product_photos.html', data)
 
 

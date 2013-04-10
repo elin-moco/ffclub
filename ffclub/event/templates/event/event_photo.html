@@ -1,8 +1,14 @@
 {% extends "base.html" %}
-
+{% block title %}Mozilla Taiwan - 美商謀智台灣分公司，Firefox 活力軍成果展分享 - {{ photo.description }}{% endblock %}
 {% block base_css %}
   {{ css('base') }}
   {{ css('event_photo') }}
+{% endblock %}
+{% block banner %}
+    <hgroup id="main-feature" class="default intro">
+        <h1>Firefox 活力軍成果展分享</h1>
+        <h2>{{ photo.description }}</h2>
+    </hgroup>
 {% endblock %}
 {% block content %}
   <div class="eventPhoto">

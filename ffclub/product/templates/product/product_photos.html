@@ -1,21 +1,34 @@
 {% extends "base.html" %}
 
+{% block title %}Mozilla Taiwan - 美商謀智台灣分公司，Firefox 活力軍宣傳品 - {{ product.title }}{% endblock %}
+
 {% block base_css %}
   {{ css('base') }}
   {{ css('product_photos') }}
 {% endblock %}
+{% block banner %}
+  <hgroup id="main-feature" class="default intro">
+    <h1>Firefox 活力軍宣傳品</h1>
+
+    <h2>{{ product.title }}</h2>
+  </hgroup>
+{% endblock %}
 {% block content %}
-    <ul class="productPhotos">
-      {% for photo in photos %}
-          <li class="productPhoto">
-              <a class="productPhotoLink" href="/static/{{ photo.image_large }}" title="{{ photo.description }}">
-                  <img data-full-width="{{ photo.image_large_width }}" data-full-height="{{ photo.image_large_height }}"
-                       width="{{ photo.image_medium_width }}" height="{{ photo.image_medium_height }}"
-                       src="/static/{{ photo.image_medium }}"
-                       alt="{{ photo.description }}" title="{{ photo.description }}"/>
-              </a>
-              <p>{{ photo.description }}</p>
-          </li>
-      {% endfor %}
-    </ul>
+  <h3>{{ product.title }}</h3>
+  <p>
+  <h4>{{ product.description }}</h4>
+  <ul class="productPhotos">
+    {% for photo in photos %}
+      <li class="productPhoto">
+        <a class="productPhotoLink" href="/static/{{ photo.image_large }}" title="{{ photo.description }}">
+          <img data-full-width="{{ photo.image_large_width }}" data-full-height="{{ photo.image_large_height }}"
+               width="{{ photo.image_medium_width }}" height="{{ photo.image_medium_height }}"
+               src="/static/{{ photo.image_medium }}"
+               alt="{{ photo.description }}" title="{{ photo.description }}"/>
+        </a>
+
+        <p>{{ photo.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
