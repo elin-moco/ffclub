@@ -167,7 +167,7 @@ DOMAIN_METHODS = {
 
 # Paths that don't require a locale code in the URL.
 SUPPORTED_NONLOCALES = ['media', 'static', 'admin', '', 'users', 'events', 'products', 'uploads',
-                        'browserid', 'login', 'logout']
+                        'browserid', 'login', 'logout', 'tos']
 
 
 ## Media and templates.
@@ -504,9 +504,15 @@ MINIFY_BUNDLES = {
             'css/event.css',
             'css/slides.css',
         ),
+        'event_photo': (
+            'css/event_photo.css',
+        ),
         'product': (
             'css/product.css',
             'css/slides.css',
+        ),
+        'product_photos': (
+            'css/product_photos.css',
         ),
         'upload': (
         ),

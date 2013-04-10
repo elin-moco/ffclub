@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('event_photo') }}
+{% endblock %}
+{% block content %}
+  <div class="eventPhoto">
+    <a class="eventPhotoLink" href="/static/{{ photo.image_large }}" title="{{ photo.description }}">
+      <img data-full-width="{{ photo.image_large_width }}" data-full-height="{{ photo.image_large_height }}"
+           width="{{ photo.image_medium_width }}" height="{{ photo.image_medium_height }}"
+           src="/static/{{ photo.image_medium }}"
+           alt="{{ photo.description }}" title="{{ photo.description }}"/>
+    </a>
+
+    <p>{{ photo.description }}</p>
+  </div>
+{% endblock %}

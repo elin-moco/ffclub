@@ -21,7 +21,7 @@ def wall(request):
 def wall_page(request, page_number=1):
     if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
         return redirect('user.register')
-    # eventForm = EventForm()
+        # eventForm = EventForm()
     uploadForm = ImageUploadForm(user=request.user)
 
     if request.method == 'POST':
@@ -47,3 +47,10 @@ def wall_page(request, page_number=1):
     }
 
     return render(request, 'event/wall.html', data)
+
+
+def event_photo(request, photo_id):
+    data = {
+        'photo': ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model='event'))
+    }
+    return render(request, 'event/event_photo.html', data)
