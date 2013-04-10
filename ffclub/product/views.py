@@ -11,7 +11,7 @@ from ffclub.upload.forms import *
 from django.forms.models import inlineformset_factory
 from forms import *
 from models import *
-from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES
+from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES, DEFAULT_REPLY_EMAIL
 from ffclub.person.models import Person
 from utils import *
 import logging
@@ -73,8 +73,9 @@ def wall(request):
             html_content = render_to_string('product/verify_mail.html',
                                             {'title': subject, 'fullname': fullname, 'code': verification_code,
                                              'SITE_URL': SITE_URL})
-
-            mail = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
+            headers = {'Reply-To': DEFAULT_REPLY_EMAIL}
+            mail = EmailMultiAlternatives(subject=subject, body=text_content, headers=headers,
+                                          from_email=from_email, to=[to_email])
             mail.attach_alternative(html_content, 'text/html')
             MailThread(mail).start()
             return redirect('product.order.verify')
