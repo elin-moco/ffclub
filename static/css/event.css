@@ -790,7 +790,6 @@ a#browserid:hover {
   /* end of masthead */
   #main-feature.huge {
     width: 100%;
-    height: 118px;
   }
   #main-feature.intro {
     background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
@@ -967,6 +966,7 @@ div#main-content .eventWall ul li.eventPhoto {
   text-align: left;
 }
 div#main-content .eventWall ul li.eventPhoto .socialButtons {
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -986,6 +986,9 @@ div#main-content .eventWall ul li.eventPhoto .socialButtons {
   -moz-transition-property: opacity;
   -o-transition-property: opacity;
   -ms-transition-property: opacity;
+}
+div#main-content .eventWall ul li.eventPhoto .socialButtons div {
+  pointer-events: auto;
 }
 div#main-content .eventWall ul li.eventPhoto:hover .socialButtons {
   opacity: 100;

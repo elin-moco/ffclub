@@ -790,7 +790,6 @@ a#browserid:hover {
   /* end of masthead */
   #main-feature.huge {
     width: 100%;
-    height: 118px;
   }
   #main-feature.intro {
     background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;

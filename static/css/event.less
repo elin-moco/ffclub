@@ -129,6 +129,7 @@ div#main-content .eventWall ul li.eventPhoto {
   margin-right: auto;
   text-align: left;
   & .socialButtons {
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -139,6 +140,9 @@ div#main-content .eventWall ul li.eventPhoto {
     background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
     .transition_block(.25s, ease-in-out, opacity)
+  }
+  & .socialButtons div {
+    pointer-events: auto;
   }
   &:hover .socialButtons {
     opacity: 100;

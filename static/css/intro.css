@@ -790,7 +790,6 @@ a#browserid:hover {
   /* end of masthead */
   #main-feature.huge {
     width: 100%;
-    height: 118px;
   }
   #main-feature.intro {
     background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
@@ -917,6 +916,7 @@ div.introPicture {
   height: 110px;
   margin-left: 55px;
   background-image: url(/static/images/css/intro_pic.png);
+  background-repeat: no-repeat;
 }
 .carousel .next,
 .carousel .prev {
@@ -924,6 +924,7 @@ div.introPicture {
   border: 0 none;
   cursor: pointer;
   display: block;
+  width: 44px;
   height: 60px;
   opacity: 0.6;
   overflow: hidden;
@@ -931,7 +932,6 @@ div.introPicture {
   text-indent: -99em;
   top: 40%;
   transition: opacity 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s, right 0.3s ease-in-out 0s;
-  width: 44px;
   z-index: 10000;
 }
 .carousel .next {
@@ -950,11 +950,65 @@ div.introPicture {
   opacity: 1;
   left: 0px;
 }
-@media only screen and (max-width: 600px) {
-  #intro-login {
-    margin-top: 20px;
+@media only screen and (max-width: 800px) {
+  #masthead {
+    width: 100%;
   }
   #main-content {
     width: 100%;
+  }
+  #intro-content .introHeading {
+    padding-left: 0;
+  }
+  #intro-content .introRules {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 640px) {
+  #intro-login {
+    margin-top: 20px;
+  }
+  div.introPicture {
+    width: 100%;
+    height: 110px;
+    background-size: 100%;
+    margin-left: 0;
+  }
+  .carousel .next,
+  .carousel .prev {
+    background-size: 240%;
+    width: 20px;
+    height: 30px;
+  }
+  #main-feature > hgroup {
+    bottom: 0px;
+  }
+  #main-feature > hgroup > h1,
+  #main-feature > hgroup > h2 {
+    line-height: 0;
+  }
+  #main-feature > hgroup > h3 {
+    text-align: right;
+    text-indent: 0;
+  }
+}
+@media only screen and (max-width: 480px) {
+  div.introPicture {
+    height: 90px;
+  }
+  .carousel .next,
+  .carousel .prev {
+    display: none;
+  }
+}
+@media only screen and (max-width: 320px) {
+  div.introPicture {
+    background-image: url(/static/images/css/intro_pic_m.png);
+    height: 60px;
+  }
+  .carousel .next,
+  .carousel .prev {
+    display: none;
   }
 }
