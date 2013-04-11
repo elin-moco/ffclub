@@ -966,10 +966,21 @@ div#main-content .eventWall ul li.eventPhoto {
   margin-right: auto;
   text-align: left;
 }
+.facebookLike {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.googlePlus {
+  position: absolute;
+  top: 30px;
+  right: 80px;
+}
 .photoFrame {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
 }
 .photoDescription {
   padding-left: 20px;
@@ -987,6 +998,15 @@ div#main-content .eventWall ul li.eventPhoto {
 .loveCircle {
   left: auto;
   right: 35px;
+}
+.socialButtons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  height: 65px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 @media only screen and (max-width: 1000px) {
   div#main-content {

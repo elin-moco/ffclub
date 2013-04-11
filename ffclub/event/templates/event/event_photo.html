@@ -16,9 +16,8 @@
 {% block content %}
   <div class="eventPhoto">
     <a class="eventPhotoLink" href="/static/{{ photo.image_large }}" title="{{ photo.description }}">
-      <img data-full-width="{{ photo.image_large_width }}" data-full-height="{{ photo.image_large_height }}"
-           width="{{ photo.image_medium_width }}" height="{{ photo.image_medium_height }}"
-           src="/static/{{ photo.image_medium }}"
+      <img width="{{ photo.image_large_width }}" height="{{ photo.image_large_height }}"
+           src="/static/{{ photo.image_large }}"
            alt="{{ photo.description }}" title="{{ photo.description }}"/>
     </a>
 

@@ -35,7 +35,7 @@
       <a class="sharePhotoLink submitButton" href="javascript:void(0)">我也要分享成果！</a>
     {% else %}
       <br>
-      <a class="productsLink" href="{{ url("product.wall") }}">還沒申請宣傳品嗎？趕快去申請，再回來和大家分享成果吧！</a>
+      <a class="productsLink" href="{{ url('product.wall') }}">還沒申請宣傳品嗎？趕快去申請，再回來和大家分享成果吧！</a>
       <br><br>
     {% endif %}
   {% else %}
@@ -58,14 +58,23 @@
         {% for event_photo in event_photos %}
           <li class="eventPhoto">
             <div class="photoFrame">
-              <a class="eventPhotoLink" href="/static/{{ event_photo.image_large }}"
+              <a class="eventPhotoLink"
+                 href="{{ request.build_absolute_uri(url('event.photo', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
+                     data-large-src="/static/{{ event_photo.image_large }}"
                      width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
                      src="/static/{{ event_photo.image_medium }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
+
+              <div class="socialButtons">
+                <div class="facebookLike">
+                </div>
+                <div class="googlePlus">
+                </div>
+              </div>
             </div>
             <div class="photoDescription">
               <p>{{ event_photo.description }}</p>
@@ -106,4 +115,27 @@
     {{ js('browserid') }}
     {#    {{ browserid_form.media }}#}
   {% endif %}
+  <div id="fb-root"></div>
+
+  <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=438833142865321";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <script type="text/javascript">
+    window.___gcfg = {lang: 'zh-TW'};
+
+    (function () {
+      var po = document.createElement('script');
+      po.type = 'text/javascript';
+      po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(po, s);
+    })();
+  </script>
 {% endblock %}

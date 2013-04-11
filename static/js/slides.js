@@ -68,11 +68,13 @@ window.saw = (function ($) {
             var thisSlide = {}, thisImg = $(el).find('img');
 
 //            thisSlide.url = thisImg.attr('src').replace(/_s|_q/, '_z');
-            thisSlide.url = $(el).find('a').attr('href');
+//            thisSlide.url = $(el).find('a').attr('href');
+            thisSlide.url = thisImg.attr('data-large-src');
+            thisSlide.link = thisImg.attr('data-large-src');
             thisSlide.height = thisImg.attr('data-full-height');
             thisSlide.width = thisImg.attr('data-full-width');
             thisSlide.title = thisImg.attr('title');
-            thisSlide.link = $(el).find('a').attr('href');
+//            thisSlide.link = $(el).find('a').attr('href');
 
             slideMap[thisSlide.link] = slideData.push(thisSlide) - 1;
             thisSlide.id = slideMap[thisSlide.link];
@@ -170,7 +172,7 @@ window.saw = (function ($) {
         var scaleFactor = 1, w, h;
         //image is too big! scale it!
         if (thisSlide.width > boundingBox[0] || thisSlide.height > boundingBox[1]) {
-            scaleFactor = Math.min(boundingBox[0] / thisSlide.width, boundingBox[1] / thisSlide.height)
+            scaleFactor = Math.min(boundingBox[0] / thisSlide.width, boundingBox[1] / thisSlide.height);
             w = Math.round(thisSlide.width * scaleFactor);
             h = Math.round(thisSlide.height * scaleFactor);
             img.css('height', h + 'px');
@@ -408,8 +410,8 @@ window.saw = (function ($) {
                         var thisSlide = {}, thisImg = $(el).find('img');
 
                         thisSlide.url = $(el).find('a').attr('href');
-                        thisSlide.height = thisImg.attr('data-full-height');
-                        thisSlide.width = thisImg.attr('data-full-width');
+                        thisSlide.height = thisImg.attr('height');
+                        thisSlide.width = thisImg.attr('width');
                         thisSlide.title = thisImg.attr('title');
                         thisSlide.link = $(el).find('a').attr('href');
 
@@ -420,7 +422,7 @@ window.saw = (function ($) {
                     }
                     attachEvents();
                     wrapper.show();
-                    boundingBox = [ window.innerWidth, window.innerHeight ];
+                    boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
 
                     goTo(0);
                     attachTouchEvents();
@@ -430,7 +432,7 @@ window.saw = (function ($) {
         else {
             attachEvents();
             wrapper.show();
-            boundingBox = [ window.innerWidth, window.innerHeight - 20 ];
+            boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
             goTo(0);
             attachTouchEvents();
         }
