@@ -38,13 +38,16 @@ $(document).ready(function () {
         isAnimated: true
     });
     eventPhotos.infinitescroll({
-
-            navSelector: "#page-nav",
+            navSelector: '#page-nav',
             // selector for the paged navigation (it will be hidden)
-            nextSelector: "#page-nav a",
+            nextSelector: '#page-nav a',
             // selector for the NEXT link (to page 2)
-            itemSelector: ".eventPhoto"
+            itemSelector: '.eventPhoto',
             // selector for all items you'll retrieve
+            loadingImg: '',
+            loadingText: '',
+            donetext: '',
+            animate: true
         },
         function (photos) {
             $(photos).on('mouseover', loadSocialButtons);

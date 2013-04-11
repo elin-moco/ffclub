@@ -371,6 +371,13 @@ window.saw = (function ($) {
         return true;
     }
 
+    function clearSlides() {
+        wrapper.find('.slide').remove();
+        for(var i = 0; i < slideData.length; i++) {
+            slideData[i].node = undefined;
+        }
+    }
+
     function showLightbox(startSlide) {
         if (!chromeBuilt) {
             buildChrome();
@@ -378,7 +385,7 @@ window.saw = (function ($) {
         attachEvents();
         wrapper.show();
         boundingBox = [ window.innerWidth, window.innerHeight - heightFix ];
-
+        clearSlides();
         goTo(slideMap[startSlide]);
         attachTouchEvents();
     }
