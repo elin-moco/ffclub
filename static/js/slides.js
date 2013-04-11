@@ -1,4 +1,4 @@
-window.saw = (function ($) {
+window.Modal = function () {
 
     var controlTemplate = '<button class="prev">Previous</button><button class="next"></button>';
 
@@ -61,29 +61,6 @@ window.saw = (function ($) {
         bd.addEventListener('keyup', handleKeyEvents);
     }
 
-
-    function init_lightbox() {
-        var slides = container_node.find('li');
-        slides.each(function (i, el) {
-            var thisSlide = {}, thisImg = $(el).find('img');
-
-//            thisSlide.url = thisImg.attr('src').replace(/_s|_q/, '_z');
-//            thisSlide.url = $(el).find('a').attr('href');
-            thisSlide.url = thisImg.attr('data-large-src');
-            thisSlide.link = thisImg.attr('data-large-src');
-            thisSlide.height = thisImg.attr('data-full-height');
-            thisSlide.width = thisImg.attr('data-full-width');
-            thisSlide.title = thisImg.attr('title');
-//            thisSlide.link = $(el).find('a').attr('href');
-
-            slideMap[thisSlide.link] = slideData.push(thisSlide) - 1;
-            thisSlide.id = slideMap[thisSlide.link];
-        });
-
-    }
-
-    function init_slideshow() {
-    }
 
     function init_carousel() {
         carousel = true;
@@ -379,6 +356,24 @@ window.saw = (function ($) {
     }
 
     function showLightbox(startSlide) {
+        var slides = container_node.find('li');
+        slideMap = {};
+        slideData = [];
+        slides.each(function (i, el) {
+            var thisSlide = {}, thisImg = $(el).find('img');
+
+//            thisSlide.url = thisImg.attr('src').replace(/_s|_q/, '_z');
+//            thisSlide.url = $(el).find('a').attr('href');
+            thisSlide.url = thisImg.attr('data-large-src');
+            thisSlide.link = thisImg.attr('data-large-src');
+            thisSlide.height = thisImg.attr('data-full-height');
+            thisSlide.width = thisImg.attr('data-full-width');
+            thisSlide.title = thisImg.attr('title');
+//            thisSlide.link = $(el).find('a').attr('href');
+
+            slideMap[thisSlide.link] = slideData.push(thisSlide) - 1;
+            thisSlide.id = slideMap[thisSlide.link];
+        });
         if (!chromeBuilt) {
             buildChrome();
         }
@@ -479,7 +474,6 @@ window.saw = (function ($) {
     }
 
     function Slideshow() {
-        init_slideshow();
 
         return {
             show: showSlides,
@@ -489,7 +483,6 @@ window.saw = (function ($) {
 
     function Lightbox(selector) {
         container_node = $(selector);
-        init_lightbox();
 
         return {
             show: showLightbox,
@@ -515,4 +508,4 @@ window.saw = (function ($) {
         Slideshow: Slideshow,
         Popup: Popup
     };
-}($));
+};

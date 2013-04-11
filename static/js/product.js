@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-    var slideshow = new saw.Slideshow();
+    var slideshow = new Modal().Slideshow();
     $('.productPhotosLink').click(
         function(e) {
             e.preventDefault();

@@ -20,14 +20,14 @@ $(document).ready(function () {
 
     var timeSpan = $('span.time');
     timeSpan.prettyDate();
-    var lightbox = new saw.Lightbox('.eventWall');
+    var lightbox = new Modal().Lightbox('.eventWall');
     $('.eventPhotoLink').click(
         function (e) {
             e.preventDefault();
             lightbox.show($(this).find('img').attr('data-large-src'));
         }
     );
-    var popup = new saw.Popup('.popup');
+    var popup = new Modal().Popup('.popup');
     $('.sharePhotoLink').click(function () {
         popup.show();
     });
@@ -51,8 +51,13 @@ $(document).ready(function () {
         },
         function (photos) {
             $(photos).on('mouseover', loadSocialButtons);
+            $(photos).find('.eventPhotoLink').click(function (e) {
+                e.preventDefault();
+                lightbox.show($(this).find('img').attr('data-large-src'));
+            });
+            $(photos).find('span.time').prettyDate();
             eventPhotos.masonry('appended', $(photos), true);
-            timeSpan.prettyDate();
+
         });
     var eventPhoto = $('.eventPhoto');
     eventPhoto.on('mouseover', loadSocialButtons);

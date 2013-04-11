@@ -1,5 +1,5 @@
 
 $(document).ready(function(){
-    var carousel = new saw.Carousel('.carousel');
+    var carousel = new Modal().Carousel('.carousel');
     carousel.start();
 });
