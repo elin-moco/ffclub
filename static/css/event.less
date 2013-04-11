@@ -128,6 +128,19 @@ div#main-content .eventWall ul li.eventPhoto {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+  & .socialButtons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+//    display: none;
+    height: 65px;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+  }
+  &:hover .socialButtons {
+    opacity: 100;
+  }
 }
 
 .facebookLike {
@@ -167,16 +180,6 @@ div#main-content .eventWall ul li.eventPhoto {
 .loveCircle {
   left: auto;
   right: 35px;
-}
-
-.socialButtons {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-  height: 65px;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media only screen and (max-width: 1000px) {

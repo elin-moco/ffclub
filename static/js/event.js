@@ -33,17 +33,13 @@ $(document).ready(function () {
             timeSpan.prettyDate();
         });
     var eventPhoto = $('.eventPhoto');
-    eventPhoto.on('mouseout', function() {
-        $(this).find('.socialButtons').hide();
-    });
     eventPhoto.on('mouseover', function () {
         if (FB && gapi) {
-            $(this).find('.socialButtons').show();
             var url = $(this).find('a.eventPhotoLink').attr('href');
             var fb = $(this).find('div.facebookLike');
             var gp = $(this).find('div.googlePlus');
             if (fb.children().length == 0) {
-                fb.append('<div id="fb-like1" class="fb-like" data-send="false"' +
+                fb.append('<div class="fb-like" data-send="false"' +
                     'data-href="' + url + '"' +
                     'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
                 FB.XFBML.parse(fb.get(0));

@@ -5,7 +5,7 @@ div.eventWall {
 .eventWall ul li {
     width: 300px;
     margin: auto;
-    overflow: hidden;
+    /*overflow: hidden;*/
     /*text-align: center;*/
     display: block;
     float: left;

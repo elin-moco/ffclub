@@ -9,7 +9,7 @@ import commonware
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.person.models import Person
-from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE
+from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, FB_APP_ID
 
 log = commonware.log.getLogger('ffclub')
 
@@ -44,6 +44,7 @@ def wall_page(request, page_number=1):
         # 'form': eventForm,
         'upload_form': uploadForm,
         'event_photos': paginator.page(page_number),
+        'FB_APP_ID': FB_APP_ID,
     }
 
     return render(request, 'event/wall.html', data)
