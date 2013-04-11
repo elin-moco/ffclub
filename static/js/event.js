@@ -1,5 +1,23 @@
 $(document).ready(function () {
 
+    var loadSocialButtons = function () {
+        if (FB && gapi) {
+            var url = $(this).find('a.eventPhotoLink').attr('href');
+            var fb = $(this).find('div.facebookLike');
+            var gp = $(this).find('div.googlePlus');
+            if (fb.children().length == 0) {
+                fb.append('<div class="fb-like" data-send="false"' +
+                    'data-href="' + url + '"' +
+                    'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
+                FB.XFBML.parse(fb.get(0));
+            }
+            if (gp.children().length == 0) {
+                gp.append('<div class="g-plusone" data-size="medium" data-href="'+url+'"></div>');
+                gapi.plusone.go(gp.get(0));
+            }
+        }
+    };
+
     var timeSpan = $('span.time');
     timeSpan.prettyDate();
     var lightbox = new saw.Lightbox('.eventWall');
@@ -29,26 +47,11 @@ $(document).ready(function () {
             // selector for all items you'll retrieve
         },
         function (photos) {
+            $(photos).on('mouseover', loadSocialButtons);
             eventPhotos.masonry('appended', $(photos), true);
             timeSpan.prettyDate();
         });
     var eventPhoto = $('.eventPhoto');
-    eventPhoto.on('mouseover', function () {
-        if (FB && gapi) {
-            var url = $(this).find('a.eventPhotoLink').attr('href');
-            var fb = $(this).find('div.facebookLike');
-            var gp = $(this).find('div.googlePlus');
-            if (fb.children().length == 0) {
-                fb.append('<div class="fb-like" data-send="false"' +
-                    'data-href="' + url + '"' +
-                    'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
-                FB.XFBML.parse(fb.get(0));
-            }
-            if (gp.children().length == 0) {
-                gp.append('<div class="g-plusone" data-size="medium" data-href="'+url+'"></div>');
-                gapi.plusone.go(gp.get(0));
-            }
-        }
-    });
+    eventPhoto.on('mouseover', loadSocialButtons);
 });
 

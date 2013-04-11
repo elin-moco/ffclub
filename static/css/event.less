@@ -133,10 +133,12 @@ div#main-content .eventWall ul li.eventPhoto {
     top: 0;
     left: 0;
     width: 100%;
-//    display: none;
     height: 65px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
     background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
+    .transition_block(.25s, ease-in-out, opacity)
   }
   &:hover .socialButtons {
     opacity: 100;
