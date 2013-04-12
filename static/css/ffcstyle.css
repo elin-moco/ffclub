@@ -420,6 +420,14 @@ span.toggle {
   overflow: hidden;
   cursor: pointer;
 }
+.logo {
+  margin-top: 25px;
+  float: left;
+  width: 73px;
+  height: 73px;
+  background: url("/static/images/css/logo.png") no-repeat scroll 0 0 transparent;
+  background-position: left bottom;
+}
 a#browserid:hover {
   text-decoration: none;
 }
