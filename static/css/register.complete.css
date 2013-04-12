@@ -799,9 +799,6 @@ a#browserid:hover {
   #main-feature.huge {
     width: 100%;
   }
-  #main-feature.intro {
-    background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
-  }
   /* end of main-feature */
   #footer {
     padding: 0px;
@@ -850,4 +847,19 @@ a#browserid:hover {
 }
 #main-content a.submitButton:hover {
   text-decoration: none;
+}
+@media only screen and (max-width: 800px) {
+  #masthead {
+    width: 100%;
+  }
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .completeMessage {
+    margin-left: 10px;
+  }
 }

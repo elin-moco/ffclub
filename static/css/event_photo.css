@@ -799,9 +799,6 @@ a#browserid:hover {
   #main-feature.huge {
     width: 100%;
   }
-  #main-feature.intro {
-    background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
-  }
   /* end of main-feature */
   #footer {
     padding: 0px;
@@ -860,4 +857,21 @@ a#browserid:hover {
 }
 #main-content div.eventPhoto p {
   text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  #masthead {
+    width: 100%;
+  }
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+  #main-content div.eventPhoto {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #main-content div.eventPhoto a.eventPhotoLink img {
+    width: 100%;
+  }
 }

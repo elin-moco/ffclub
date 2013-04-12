@@ -21,8 +21,6 @@
       充滿活力的你，請填寫以下會員資料：
       {{ csrf() }}
     </div>
-    <div class="registerPicture">
-    </div>
     <div class="registerForm">
       <ul>
         {{ form.as_ul() }}
@@ -39,6 +37,8 @@
             <button type="submit" class="submitButton" value="1">資料填寫完成</button>
         </div>
     </div>
+      <div class="registerPicture">
+      </div>
   </form>
 
 {% endblock %}

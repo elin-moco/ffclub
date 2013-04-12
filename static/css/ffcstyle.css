@@ -799,9 +799,6 @@ a#browserid:hover {
   #main-feature.huge {
     width: 100%;
   }
-  #main-feature.intro {
-    background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
-  }
   /* end of main-feature */
   #footer {
     padding: 0px;

@@ -799,9 +799,6 @@ a#browserid:hover {
   #main-feature.huge {
     width: 100%;
   }
-  #main-feature.intro {
-    background: url('/static/images/css/mobile/intro_banner_welcome.jpg') top center no-repeat;
-  }
   /* end of main-feature */
   #footer {
     padding: 0px;
@@ -847,6 +844,13 @@ a#browserid:hover {
 }
 #main-content .socialMedia ul#owned li:not(:last-child) {
   border-right: 1px dotted #808080;
+}
+.socialMedia ul#owned:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 #main-content .socialMedia ul li {
   list-style: none;
@@ -903,4 +907,28 @@ ul#social a#fc {
   position: absolute;
   right: 0;
   top: 100px;
+}
+@media only screen and (max-width: 800px) {
+  #masthead {
+    width: 100%;
+  }
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .completeMessage {
+    margin-left: 10px;
+  }
+  .socialMedia {
+    margin-left: 10px;
+  }
+  .walk {
+    position: static;
+  }
+  .socialMedia ul#social {
+    width: 100%;
+  }
 }

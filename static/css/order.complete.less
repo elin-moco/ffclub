@@ -14,6 +14,10 @@
   border-right: 1px dotted #808080;
 }
 
+.socialMedia ul#owned:after {
+  .after_close;
+}
+
 #main-content .socialMedia ul li {
   list-style: none;
   margin-left: 0;
@@ -28,11 +32,7 @@
 }
 
 .socialMedia ul#social:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+  .after_close;
 }
 
 .socialMedia ul#social li {
@@ -80,4 +80,30 @@ ul#social a#fc {
   position: absolute;
   right: 0;
   top: 100px;
+}
+@media only screen and (max-width: 800px){
+  #masthead {
+    width: 100%;
+  }
+
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  .completeMessage {
+    margin-left: 10px;
+  }
+  .socialMedia {
+    margin-left: 10px;
+  }
+  .walk {
+    position: static;
+  }
+  .socialMedia ul#social {
+    width: 100%;
+  }
 }

@@ -64,3 +64,55 @@ input#id_address {
 input#id_occupation {
   width: 200px;
 }
+
+@media only screen and (max-width: 800px){
+  #masthead {
+    width: 100%;
+  }
+
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+  #main-content form ul:after {
+    .after_close;
+  }
+  #main-content form ul li label {
+    float: none;
+  }
+  #main-content form ul li input,
+  #main-content form ul li select {
+    float: none;
+  }
+  .registerAgreement:after{
+    .after_close;
+  }
+  .registerPicture {
+    position: relative;
+    float: none;
+  }
+  .registerAgreement .agreement{
+    line-height: normal;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  .registerHeading, .registerForm, .registerAgreement, .registerPicture {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px){
+  #main-content form ul li input#id_title,
+  #main-content form ul li input#id_location,
+  #main-content form ul li input#id_num_of_ppl,
+  #main-content form ul li textarea#id_usage,
+  #main-content form ul li input#id_fullname,
+  #main-content form ul li input#id_email,
+  #main-content form ul li input#id_address,
+  #main-content form ul li input#id_occupation,
+  #main-content form ul li textarea#id_feedback {
+    width: 90%;
+  }
+}
