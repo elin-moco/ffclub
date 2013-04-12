@@ -353,7 +353,7 @@ body {
   color: #000;
 }
 #footer #footer-wrapper {
-  width: 1000px;
+  width: 85%;
   margin: 0 auto;
   /* end of footer-logo */
 
@@ -625,7 +625,7 @@ a#browserid:hover {
 /* front pane, placed above back */
 /* back, initially hidden pane */
 /*mobile css*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 640px) {
   html,
   body {
     width: 100%;
@@ -1013,15 +1013,84 @@ div.orderProductForm {
 .orderProductButton > .orderButton {
   float: right;
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
   #masthead {
     width: 100%;
   }
   div#main-content {
     width: 100%;
-    padding: 10px;
+    padding: 0;
   }
   div#main-content div.orderDescription {
     margin: 0;
+    padding-left: 10px;
+    width: 96%;
+  }
+  #main-content ul.products {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #main-content ul.products li.product {
+    height: 240px;
+    position: relative;
+  }
+  #main-content .orderForm ul.products li.productHead {
+    text-indent: 10px;
+  }
+  #main-content ul.products li.product .productPreview {
+    height: 120px;
+    margin: 0;
+    padding-left: 10px;
+  }
+  #main-content ul.products li.product .productDescription {
+    height: 120px;
+    width: 96%;
+  }
+  #main-content ul.products li.product .productQuantity {
+    height: 120px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  div.productPostscript {
+    margin-right: 10px;
+  }
+  .orderProductButton {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .orderProductButton .agreement {
+    line-height: normal;
+  }
+}
+@media only screen and (max-width: 640px) {
+  #main-content .orderForm div.orderProductForm ul li label {
+    float: none;
+    width: 100%;
+  }
+  #main-content .orderForm div.orderProductForm ul li input,
+  #main-content .orderForm div.orderProductForm ul li select {
+    float: none;
+  }
+  div.orderProductForm {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #main-content ul.products li.product {
+    height: 280px;
+  }
+  #main-content .orderForm div.orderProductForm ul li input#id_title,
+  #main-content .orderForm div.orderProductForm ul li input#id_location,
+  #main-content .orderForm div.orderProductForm ul li input#id_num_of_ppl,
+  #main-content .orderForm div.orderProductForm ul li textarea#id_usage,
+  #main-content .orderForm div.orderProductForm ul li input#id_fullname,
+  #main-content .orderForm div.orderProductForm ul li input#id_email,
+  #main-content .orderForm div.orderProductForm ul li input#id_address,
+  #main-content .orderForm div.orderProductForm ul li input#id_occupation,
+  #main-content .orderForm div.orderProductForm ul li textarea#id_feedback {
+    width: 90%;
   }
 }

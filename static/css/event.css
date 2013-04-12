@@ -353,7 +353,7 @@ body {
   color: #000;
 }
 #footer #footer-wrapper {
-  width: 1000px;
+  width: 85%;
   margin: 0 auto;
   /* end of footer-logo */
 
@@ -625,7 +625,7 @@ a#browserid:hover {
 /* front pane, placed above back */
 /* back, initially hidden pane */
 /*mobile css*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 640px) {
   html,
   body {
     width: 100%;
@@ -1045,5 +1045,45 @@ div#main-content .eventWall ul li.eventPhoto:hover .socialButtons {
   }
   div#main-content .eventWall {
     margin: 0;
+  }
+  .loveCircle {
+    top: -45px;
+    z-index: 1;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #masthead a#tabzilla {
+    position: absolute;
+    right: 0;
+  }
+  #main-feature.eventShow {
+    text-align: left;
+  }
+}
+@media only screen and (max-width: 640px) {
+  div.eventShowHead {
+    height: 150px;
+  }
+  header#masthead > h1 {
+    text-indent: 0;
+    font-size: 20px;
+    width: 100%;
+  }
+  #main-feature.eventShow > h3 {
+    line-height: 30px;
+    font-size: 14px;
+    width: 100%;
+  }
+  .uploadForm {
+    width: 300px;
+    height: 20px;
+    padding: 10px;
+  }
+  .popup form ul li label {
+    float: none;
+  }
+  .popup form ul li input,
+  #main-content form ul li select {
+    float: none;
   }
 }
