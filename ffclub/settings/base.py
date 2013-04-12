@@ -555,6 +555,13 @@ MINIFY_BUNDLES = {
 LESS_PREPROCESS = False
 # LESS_BIN = '/usr/local/bin/lessc'
 
+CUSTOM_PRODUCT_KEYWORDS = {
+    '1': u'Firefox 宣傳品, Firefox 推廣物, Firefox 貼紙, Firefox sticker, Firefox 酷炫貼紙, Firefox 推廣貼紙, Firefox 衍生物, Firefox 輔銷品',
+    '2': u'Firefox 宣傳品, Firefox 推廣物, Firefox 明信片, Firefox postcard,  Firefox 衍生物, Firefox 贈品, Firefox 輔銷品',
+    '3': u'Firefox 宣傳品, Firefox 推廣物, Firefox 海報, Firefox poster,  Firefox 衍生物, Firefox 贈品, Firefox 輔銷品',
+    '4': u'Firefox 宣傳品, Firefox 推廣物, Firefox 型錄, Firefox catalogue,  Firefox 衍生物, Firefox 贈品, Firefox 輔銷品',
+}
+
 CUSTOM_ORDER_DETAIL_CHOICES = {
     1: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),
     2: ((0, '0張'), (10, '10張'), (20, '20張'), (30, '30張')),

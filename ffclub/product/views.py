@@ -11,7 +11,7 @@ from ffclub.upload.forms import *
 from django.forms.models import inlineformset_factory
 from forms import *
 from models import *
-from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES, DEFAULT_REPLY_EMAIL
+from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES, DEFAULT_REPLY_EMAIL, CUSTOM_PRODUCT_KEYWORDS
 from ffclub.person.models import Person
 from utils import *
 import logging
@@ -110,7 +110,9 @@ def wall(request):
 
 def product_photos(request, product_id):
     product = Product.objects.get(id=product_id)
-    data = {'product': product, 'photos': product.photos.filter(usage='original')}
+    productKeywords = CUSTOM_PRODUCT_KEYWORDS[product_id] if product_id in CUSTOM_PRODUCT_KEYWORDS.keys() else None
+    data = {'product': product, 'photos': product.photos.filter(usage='original'),
+            'productKeywords': productKeywords}
     return render(request, 'product/product_photos.html', data)
 
 

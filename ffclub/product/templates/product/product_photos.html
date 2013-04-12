@@ -1,3 +1,6 @@
+{% if productKeywords %}
+  {% set page_keywords = productKeywords %}
+{% endif %}
 {% set page_image = product.photos.get(usage='preview').image_medium.name %}
 {% set page_title = product.title %}
 {% set page_description = product.description %}
