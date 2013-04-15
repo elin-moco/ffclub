@@ -355,6 +355,10 @@ window.Modal = function () {
         }
     }
 
+    function hasError() {
+        return wrapper.find('ul.errorlist').size() > 0
+    }
+
     function showLightbox(startSlide) {
         var slides = container_node.find('li');
         slideMap = {};
@@ -497,6 +501,7 @@ window.Modal = function () {
         wrapper.addClass('slidewrap');
         preventHide = true;
         return {
+            hasError: hasError,
             show: showPopup,
             hide: hide
         };

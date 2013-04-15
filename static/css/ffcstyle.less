@@ -533,7 +533,7 @@ a#browserid:hover {
   display: none;
 }
 
-#main-content ul.errorlist:after {
+.errorListAfter {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid #A91300;
@@ -543,7 +543,8 @@ a#browserid:hover {
   top: 100%;
   visibility: visible;
 }
-#main-content ul.errorlist {
+
+.errorList {
   background-color: #AA1401;
   border-radius: 4px 4px 4px 4px;
   box-shadow: 0 1px #666666;
@@ -557,6 +558,14 @@ a#browserid:hover {
   text-shadow: 0 1px #333333;
   background-image: -moz-linear-gradient(center top , rgba(218, 81, 50, 0.9), #A91300);
 }
+
+#main-content ul.errorlist:after {
+  .errorListAfter;
+}
+#main-content ul.errorlist {
+  .errorList;
+}
+
 #main-content ul.errorlist li{
   float: none;
   padding-bottom: 0;

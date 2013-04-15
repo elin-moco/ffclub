@@ -475,7 +475,8 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
-            'css/ffcstyle.css',
+            # imported using less
+            # 'css/ffcstyle.css',
         ),
         'base': (
             'css/base.css',

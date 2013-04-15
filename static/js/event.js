@@ -28,6 +28,10 @@ $(document).ready(function () {
         }
     );
     var popup = new Modal().Popup('.popup');
+    if (popup.hasError()) {
+        //Has validation errors
+        popup.show();
+    }
     $('.sharePhotoLink').click(function () {
         popup.show();
     });
