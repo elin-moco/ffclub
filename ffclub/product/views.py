@@ -95,7 +95,7 @@ def wall(request):
 
     for orderDetailForm in orderDetailFormset:
         product_id = orderDetailForm.initial['product'].id
-        orderDetailForm.fields['quantity'].widget.attrs['multiple'] = True
+        # orderDetailForm.fields['quantity'].widget.attrs['multiple'] = True
         orderDetailForm.fields['quantity'].widget.attrs['size'] = 5
         if product_id in CUSTOM_ORDER_DETAIL_CHOICES:
             orderDetailForm.fields['quantity'].choices = CUSTOM_ORDER_DETAIL_CHOICES[product_id]
