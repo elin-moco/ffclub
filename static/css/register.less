@@ -1,4 +1,8 @@
 @import "ffcstyle";
+#main-content {
+  height: auto;
+  min-height: 525px;
+}
 #main-content form ul li {
   list-style: none;
   display: block;
@@ -28,10 +32,16 @@
 .registerForm {
   margin-left: @side_margin;
 }
+.registerForm ul:after{
+  .after_close;
+}
 
 .registerAgreement {
   margin-left: @side_margin;
   margin-right: @side_margin;
+  &:after {
+    .after_close;
+  }
 }
 .registerAgreement > .agreement {
   float: left;

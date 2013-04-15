@@ -845,6 +845,10 @@ a#browserid:hover {
     background-size: 100%;
   }
 }
+#main-content {
+  height: auto;
+  min-height: 525px;
+}
 #main-content form ul li {
   list-style: none;
   display: block;
@@ -870,9 +874,23 @@ a#browserid:hover {
 .registerForm {
   margin-left: 55px;
 }
+.registerForm ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
 .registerAgreement {
   margin-left: 55px;
   margin-right: 55px;
+}
+.registerAgreement:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 .registerAgreement > .agreement {
   float: left;
