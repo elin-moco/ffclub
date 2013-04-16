@@ -156,6 +156,9 @@ div#main-content .eventWall ul li.eventPhoto {
   & .socialButtons div {
     pointer-events: auto;
   }
+  & .socialButtons ul {
+    pointer-events: auto;
+  }
   &:hover .socialButtons {
     opacity: 100;
   }
@@ -206,6 +209,32 @@ div#main-content .eventWall ul li.eventPhoto {
   height: 10px;
 }
 
+#main-content .miscDropdown {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+#main-content .miscDropdown:before {
+  content: " ";
+  display: block;
+  opacity: 0;
+  height: 15px;
+}
+
+#main-content .miscDropdown li {
+  z-index: 1;
+  background-color: #ffffff;
+  width: 40px;
+  display: none;
+  margin-left: 0;
+  text-indent: 5px;
+}
+
+#main-content .miscDropdown:hover {
+  & li {
+    display: block;
+  }
+}
 @media only screen and (max-width: 1000px) {
   #masthead {
     width: 100%;
