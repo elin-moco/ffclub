@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    var popup = new Modal().Popup('.popup');
+    if (popup.hasError()) {
+        //Has validation errors
+        popup.show();
+    }
+    $('.sharePhotoLink').click(function () {
+        popup.show();
+    });
+
     var loadSocialButtons = function () {
         if (FB && gapi) {
             var url = $(this).find('a.eventPhotoLink').attr('href');
@@ -18,23 +27,9 @@ $(document).ready(function () {
         }
     };
 
-    var timeSpan = $('span.time');
-    timeSpan.prettyDate();
-    var lightbox = new Modal().Lightbox('.eventWall');
-    $('.eventPhotoLink').click(
-        function (e) {
-            e.preventDefault();
-            lightbox.show($(this).find('img').attr('data-large-src'));
-        }
-    );
-    var popup = new Modal().Popup('.popup');
-    if (popup.hasError()) {
-        //Has validation errors
-        popup.show();
-    }
-    $('.sharePhotoLink').click(function () {
-        popup.show();
-    });
+
+    var lightbox = new Modal().Lightbox('.eventPhotos');
+
     var eventPhotos = $('.eventPhotos');
     eventPhotos.masonry({
         'itemSelector': '.eventPhoto',
@@ -54,16 +49,70 @@ $(document).ready(function () {
             animate: true
         },
         function (photos) {
-            $(photos).on('mouseover', loadSocialButtons);
-            $(photos).find('.eventPhotoLink').click(function (e) {
-                e.preventDefault();
-                lightbox.show($(this).find('img').attr('data-large-src'));
-            });
-            $(photos).find('span.time').prettyDate();
+            init_photo_actions(photos);
+//            $(photos).on('mouseover', loadSocialButtons);
+//            $(photos).find('.eventPhotoLink').click(function (e) {
+//                e.preventDefault();
+//                lightbox.show($(this).find('img').attr('data-large-src'));
+//            });
+//            $(photos).find('span.time').prettyDate();
+//            $(photos).find('.removePhoto').on('click', function(e) {
+//                e.preventDefault();
+//            });
+//            $(photos).find('.reportPhoto').on('click', function(e) {
+//                e.preventDefault();
+//            });
             eventPhotos.masonry('appended', $(photos), true);
 
         });
-    var eventPhoto = $('.eventPhoto');
-    eventPhoto.on('mouseover', loadSocialButtons);
+
+    var init_photo_actions = function(photos) {
+        $(photos).find('span.time').prettyDate();
+        $(photos).find('.eventPhotoLink').click(
+            function (e) {
+                e.preventDefault();
+                lightbox.show($(this).find('img').attr('data-large-src'));
+            }
+        );
+        $(photos).on('mouseover', loadSocialButtons);
+        $(photos).find('.removePhoto').on('click', function(e) {
+            e.preventDefault();
+            var eventPhoto = $(this).closest('.eventPhoto');
+            if (confirm('確定刪除？')) {
+                $.ajax({
+                    dataType: 'json',
+                    url: $(this).attr('href')
+                }).done(
+                    function(response) {
+                        if ('success' == response.result) {
+                            eventPhotos.masonry('remove', eventPhoto);
+                            eventPhotos.masonry('reload');
+                        }
+                        else {
+                            alert(response.errorMessage);
+                        }
+                    }
+                );
+            }
+        });
+        $(photos).find('.reportPhoto').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                dataType: 'json',
+                url: $(this).attr('href')
+            }).done(
+                function(response) {
+                    if ('success' == response.result) {
+                        alert('感謝回報！我們會儘速處理。');
+                    }
+                    else {
+                        alert(response.errorMessage);
+                    }
+                }
+            );
+        });
+    };
+    init_photo_actions(eventPhotos.find('.eventPhoto'));
+
 });
 

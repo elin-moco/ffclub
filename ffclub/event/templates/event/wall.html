@@ -74,18 +74,16 @@
                 </div>
                 <div class="googlePlus">
                 </div>
-{#
                 <ul class="miscDropdown">
                     <li>
-                        <a href="javascript:void(0)">檢舉</a>
+                        <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
                     </li>
                     {% if event_photo.create_user == request.user %}
                     <li>
-                        <a href="{{ url('admin:upload_imageupload_delete', event_photo.id) }}">刪除</a>
+                        <a class="removePhoto" href="{{ url('event.photo.remove', photo_id=event_photo.id) }}">刪除</a>
                     </li>
                     {% endif %}
                 </ul>
-#}
               </div>
             </div>
             <div class="photoDescription">

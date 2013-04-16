@@ -66,7 +66,7 @@ window.Modal = function () {
         carousel = true;
         wrapper = container_node;
         wrapper.append(controlTemplate);
-        var slides = container_node.find('li');
+        var slides = container_node.children('li');
         slides.each(function (i, el) {
             var thisSlide = {}, thisImg = $(el);
 
@@ -360,7 +360,7 @@ window.Modal = function () {
     }
 
     function showLightbox(startSlide) {
-        var slides = container_node.find('li');
+        var slides = container_node.children('li');
         slideMap = {};
         slideData = [];
         slides.each(function (i, el) {

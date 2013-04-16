@@ -22,7 +22,7 @@ class ImageUpload(models.Model):
 
     description = models.CharField(max_length=255, verbose_name='相片說明(*)')
     status = models.CharField(max_length=20,
-                              choices=(('normal', '正常'), ('spam', '垃圾')),
+                              choices=(('normal', '正常'), ('reported', '被檢舉'), ('spam', '垃圾')),
                               default='normal')
 
     image_large = models.ImageField(upload_to=settings.FILE_PATH,
