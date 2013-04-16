@@ -74,6 +74,7 @@
                 </div>
                 <div class="googlePlus">
                 </div>
+                {% if request.user.is_active %}
                 <ul class="miscDropdown">
                     <li>
                         <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
@@ -84,6 +85,7 @@
                     </li>
                     {% endif %}
                 </ul>
+                {% endif %}
               </div>
             </div>
             <div class="photoDescription">

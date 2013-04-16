@@ -80,7 +80,7 @@ def event_photo_remove(request, photo_id):
 def event_photo_report(request, photo_id):
     try:
         photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model='event'))
-        if request.user != photo.create_user:
+        if not request.user.is_active:
             raise PermissionDenied
         photo.status = 'reported'
         photo.save()
