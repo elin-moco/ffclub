@@ -42,10 +42,10 @@ class ImageUploadForm(ModelForm):
         image = self.cleaned_data.get('image_large', False)
         if image:
             width, height = get_image_dimensions(image)
-            if image._size > 2 * 1024 * 1024:
-                raise ValidationError('檔案已超過2MB上限')
+            if image._size > 5 * 1024 * 1024:
+                raise ValidationError('檔案已超過 5MB 上限')
             elif width < 300 or height < 300:
-                raise ValidationError('圖片長寬必須大於300像素')
+                raise ValidationError('圖片長寬必須大於 300 像素')
             return image
         else:
             raise ValidationError('無法上傳檔案')

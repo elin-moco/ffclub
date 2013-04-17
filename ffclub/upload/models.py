@@ -61,20 +61,33 @@ class ImageUpload(models.Model):
             image_name = self.image_large.name
             content_type = self.image_large.file.content_type
             image_stream = open_image(self.image_large)
+            exif = image_stream._getexif()
+            rotate_degree = 0
+            if exif and 0x0112 in exif:
+                orientation = exif[0x0112]
+                log.debug('Orientation: %d' % orientation)
+                if orientation == 6:
+                    rotate_degree = -90
+                    self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
+                if orientation == 3:
+                    rotate_degree = 180
+                if orientation == 8:
+                    rotate_degree = 90
+                    self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
 
             log.debug('Content Type: ' + content_type)
 
             large_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           LARGE_SIZE, RESIZE_MODE_ASPECT_FILL)
-            large_image = resize_image(image_name, image_stream, large_size, content_type)
+            large_image = resize_image(image_name, image_stream, large_size, content_type, rotate_degree)
 
             medium_size = compute_new_size((self.image_large_width, self.image_large_height),
                                            MEDIUM_SIZE, RESIZE_MODE_ASPECT_FIT)
-            medium_image = resize_image(image_name, image_stream, medium_size, content_type)
+            medium_image = resize_image(image_name, image_stream, medium_size, content_type, rotate_degree)
 
             small_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           SMALL_SIZE, RESIZE_MODE_ASPECT_FIT)
-            small_image = resize_image(image_name, image_stream, small_size, content_type)
+            small_image = resize_image(image_name, image_stream, small_size, content_type, rotate_degree)
 
             self.image_medium.save(medium_image.name, medium_image, save=False)
             self.image_large.save(large_image.name, large_image, save=False)

@@ -43,11 +43,14 @@ def open_image(original_image):
     return Image.open(StringIO(original_image.read()))
 
 
-def resize_image(name, image, new_size, content_type):
-    type = content_type.split('/')[-1]
+def resize_image(name, image, new_size, content_type, rotate_degree=0):
+    suffix = content_type.split('/')[-1]
+    if rotate_degree != 0:
+        log.debug('Rotate %d' % rotate_degree)
+        image = image.rotate(rotate_degree)
     image.thumbnail(new_size, Image.ANTIALIAS)
     temp_handle = StringIO()
-    image.save(temp_handle, type)
+    image.save(temp_handle, suffix)
     temp_handle.seek(0)
     return SimpleUploadedFile(os.path.split(name)[-1],
                               temp_handle.read(), content_type=content_type)
