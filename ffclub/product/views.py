@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
-from email.header import Header
+
+import logging
 
 from django.contrib import auth
-from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
+from django.forms.models import inlineformset_factory
 
 from ffclub.event.forms import *
-from ffclub.upload.forms import *
-from django.forms.models import inlineformset_factory
 from forms import *
 from models import *
-from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, CUSTOM_ORDER_DETAIL_CHOICES, DEFAULT_REPLY_EMAIL, CUSTOM_PRODUCT_KEYWORDS
+from ffclub.settings import CUSTOM_ORDER_DETAIL_CHOICES, CUSTOM_PRODUCT_KEYWORDS
 from ffclub.person.models import Person
 from utils import *
-import logging
+
 
 log = logging.getLogger('ffclub')
 
@@ -61,23 +59,7 @@ def wall(request):
             verification = OrderVerification(order=order, create_user=auth.get_user(request),
                                              code=verification_code)
             verification.save()
-            # send verification mail
-            subject = Header(u'Firefox活力軍宣傳品申請確認', 'utf-8')
-            from_email = DEFAULT_FROM_EMAIL
-            to_email = order.email
-            log.debug('send to: ' + to_email)
-            fullname = order.fullname
-            text_content = render_to_string('product/verify_mail.txt',
-                                            {'title': subject, 'fullname': fullname, 'code': verification_code,
-                                             'SITE_URL': SITE_URL})
-            html_content = render_to_string('product/verify_mail.html',
-                                            {'title': subject, 'fullname': fullname, 'code': verification_code,
-                                             'SITE_URL': SITE_URL})
-            headers = {'Reply-To': DEFAULT_REPLY_EMAIL}
-            mail = EmailMultiAlternatives(subject=subject, body=text_content, headers=headers,
-                                          from_email=from_email, to=[to_email])
-            mail.attach_alternative(html_content, 'text/html')
-            MailThread(mail).start()
+            send_order_verification_mail(order.fullname, order.email, verification_code)
             return redirect('product.order.verify')
     else:
         if request.user.is_active:
@@ -95,7 +77,6 @@ def wall(request):
 
     for orderDetailForm in orderDetailFormset:
         product_id = orderDetailForm.initial['product'].id
-        # orderDetailForm.fields['quantity'].widget.attrs['multiple'] = True
         orderDetailForm.fields['quantity'].widget.attrs['size'] = 5
         if product_id in CUSTOM_ORDER_DETAIL_CHOICES:
             orderDetailForm.fields['quantity'].choices = CUSTOM_ORDER_DETAIL_CHOICES[product_id]
@@ -133,6 +114,7 @@ def order_verify(request):
                 v.status = 'confirmed'
                 v.save()
                 v.order.status = 'confirmed'
+                send_order_notification_mail(v.order.fullname, v.order.id)
                 v.order.save()
             return redirect('product.order.complete')
             # You'd add data here that you're sending to the template.

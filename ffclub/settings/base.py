@@ -8,6 +8,7 @@
 import logging
 import os
 import socket
+import djcelery
 
 from django.utils.functional import lazy
 
@@ -345,6 +346,7 @@ INSTALLED_APPS = (
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
     'djcelery',
+    'kombu.transport.django',
     'django_nose',
     'session_csrf',
 
@@ -402,15 +404,23 @@ TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 ## Celery
 
+djcelery.setup_loader()
+
+BROKER_URL = 'django://localhost//'
+
+# CELERY_IMPORTS = ('ffclub.product.tasks',)
+
 # True says to simulate background tasks without actually using celeryd.
 # Good for local development in case celeryd is not running.
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 
 BROKER_CONNECTION_TIMEOUT = 0.1
-CELERY_RESULT_BACKEND = 'amqp'
-CELERY_IGNORE_RESULT = True
+CELERY_RESULT_BACKEND = 'database'
+# CELERY_RESULT_DBURI = "mysql://root:root@localhost:3306"
+CELERY_IGNORE_RESULT = False
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
+# CELERY_ANNOTATIONS = {"tasks.add": {"rate_limit": "10/s"}}
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
 # The task can catch that and recover but should exit ASAP.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2

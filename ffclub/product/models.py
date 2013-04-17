@@ -34,7 +34,8 @@ class Order(models.Model):
     event = models.ForeignKey(Event, related_name='+')
     products = models.ManyToManyField(Product, related_name='+', through='OrderDetail')
     status = models.CharField(max_length=20,
-                              choices=(('wait_for_confirm', '待確認'), ('confirmed', '已確認'), ('spam', '垃圾')),
+                              choices=(('wait_for_confirm', '待確認'), ('confirmed', '已確認'),
+                                       ('processing', '處理中'), ('processed', '已處理'), ('spam', '垃圾')),
                               default='wait_for_confirm')
 
     def __unicode__(self):
