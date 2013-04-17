@@ -2,10 +2,12 @@
 import commonware
 
 from django.core.exceptions import ValidationError
+from django.core.files.images import get_image_dimensions
 from django.forms import ModelForm, ModelChoiceField, Select
 from django.forms.util import ErrorList
 from ffclub.upload.models import ImageUpload
 from ffclub.event.models import Event
+from PIL.ExifTags import TAGS
 
 log = commonware.log.getLogger('ffclub')
 
@@ -36,11 +38,14 @@ class ImageUploadForm(ModelForm):
         self.instance.entity_object = self.event
         return super(ImageUploadForm, self).save(commit)
 
-    def clean_image(self):
-        image = self.cleaned_data.get('image', False)
+    def clean_image_large(self):
+        image = self.cleaned_data.get('image_large', False)
         if image:
+            width, height = get_image_dimensions(image)
             if image._size > 1 * 1024 * 1024:
                 raise ValidationError('檔案超已過1MB上限')
+            elif width < 300 or height < 300:
+                raise ValidationError('圖片長寬必須大於300像素')
             return image
         else:
             raise ValidationError('無法上傳檔案')
