@@ -70,6 +70,7 @@ input[type="email"],
 input[type="password"],
 input[type="search"],
 input[type="text"],
+input[type="checkbox"],
 input {
   background: none repeat scroll 0 0 #FFFFFF;
   border-color: #B2B2B2;
@@ -90,6 +91,7 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
+input[type="checkbox"]:focus,
 input:focus {
   border-color: #42A4E0;
   box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4);
@@ -891,9 +893,15 @@ a#browserid:hover {
   line-height: 23px;
   float: left;
 }
+#main-content form ul li label[for="id_subscribing"] {
+  width: 200px;
+}
 #main-content form ul li input,
 #main-content form ul li select {
   float: left;
+}
+#main-content form ul li input[type="checkbox"] {
+  margin-top: 6px;
 }
 .registerHeading {
   padding-top: 80px;

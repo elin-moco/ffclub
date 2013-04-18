@@ -349,6 +349,7 @@ INSTALLED_APPS = (
     'kombu.transport.django',
     'django_nose',
     'session_csrf',
+    'south',
 
     # L10n
     'product_details',
@@ -428,6 +429,8 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
 ## Arecibo
 # when ARECIBO_SERVER_URL is set, it can use celery or the regular wrapper
 ARECIBO_USES_CELERY = True
+
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 
 # For absolute urls
 try:

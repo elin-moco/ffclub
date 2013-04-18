@@ -14,4 +14,4 @@ class PersonForm(ModelForm):
 
     class Meta:
         model = Person
-        fields = ('fullname', 'gender', 'address', 'occupation')
+        fields = ('fullname', 'gender', 'address', 'occupation', 'subscribing')
