@@ -1,5 +1,6 @@
 from django.shortcuts import *
-from .forms import PersonForm
+from forms import PersonForm
+from models import Person
 from django.contrib import auth
 
 import commonware
@@ -10,6 +11,8 @@ log = commonware.log.getLogger('ffclub')
 def register(request):
     """Main view."""
     if request.method == 'POST':
+        if Person.objects.filter(user=request.user).exists():
+            return redirect('intro.home')
         form = PersonForm(request.POST)
         data = {'form': form}
         if form.is_valid():
