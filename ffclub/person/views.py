@@ -11,7 +11,7 @@ log = commonware.log.getLogger('ffclub')
 def register(request):
     """Main view."""
     if request.method == 'POST':
-        if Person.objects.filter(user=request.user).exists():
+        if not request.user.is_authenticated() or Person.objects.filter(user=request.user).exists():
             return redirect('intro.home')
         form = PersonForm(request.POST)
         data = {'form': form}
