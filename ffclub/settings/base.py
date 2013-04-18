@@ -591,3 +591,13 @@ for product_id in CUSTOM_ORDER_DETAIL_CHOICES:
         if defaultChoice not in ALL_ORDER_DETAIL_CHOICES:
             ALL_ORDER_DETAIL_CHOICES.append(defaultChoice)
 ALL_ORDER_DETAIL_CHOICES = tuple(ALL_ORDER_DETAIL_CHOICES)
+
+PRODUCT_INVENTORY_SHEET_NAME = u'Inventory_B'
+PRODUCT_INVENTORY_QTY_ROW_NAME = u'Current Qty'
+PRODUCT_INVENTORY_MAPPING = {
+    u'A5貼紙': 1,
+    u'B2G DM': 2,
+    u'釋出週期海報': 3,
+    u'宣傳小冊子Brochur': 4,
+}
+
