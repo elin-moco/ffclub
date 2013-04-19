@@ -601,3 +601,26 @@ PRODUCT_INVENTORY_MAPPING = {
     u'宣傳小冊子Brochur': 4,
 }
 
+EVENT_WALL_PHOTOS_PER_PAGE = 15
+
+FB_APP_ID = 'DUMMY_APP_ID'
+FB_APP_SECRET = 'DUMMY_APP_SECRET'
+
+PRODUCT_INVENTORY_PATH = u'/Users/yshlin/Desktop/2013 宣傳品庫存.xlsx'
+SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
+
+FILE_PATH = 'uploads/'
+
+
+# Uncomment this and set to all slave DBs in use on the site.
+# SLAVE_DATABASES = ['slave']
+
+DEFAULT_FROM_EMAIL = 'no-reply@mozilla.com.tw'
+DEFAULT_REPLY_EMAIL = 'no-reply@mozilla.com'
+DEFAULT_NOTIFY_EMAIL = ('no-reply@mozilla.com',)
+
+EMAIL_HOST = 'mail.mozilla.com.tw'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'moz2000tw'
+# EMAIL_HOST_PASSWORD = 'mozillaNEW2013'
+EMAIL_USE_TLS = True

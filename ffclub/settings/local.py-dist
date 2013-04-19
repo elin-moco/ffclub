@@ -115,6 +115,7 @@ FB_APP_ID = '109615012545623'
 FB_APP_SECRET = 'beb1b04781d2f9364f5bbf297a4eb0ae'
 
 PRODUCT_INVENTORY_PATH = u'/Users/yshlin/Desktop/2013 宣傳品庫存.xlsx'
+SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
 
 if DEBUG:
     base.INSTALLED_APPS += (
