@@ -10,6 +10,7 @@ import commonware
 
 # from forms import EventForm
 from django.utils import simplejson
+from ffclub.event.utils import send_photo_report_mail
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.person.models import Person
@@ -42,7 +43,7 @@ def wall_page(request, page_number=1):
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
-        content_type=ContentType.objects.get(model='event')).order_by('-create_time')
+        content_type=ContentType.objects.get(model='event')).exclude(status='spam').order_by('-create_time')
     paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
     data = {
         # 'form': eventForm,
@@ -84,6 +85,7 @@ def event_photo_report(request, photo_id):
             raise PermissionDenied
         photo.status = 'reported'
         photo.save()
+        send_photo_report_mail(photo.create_user.get_profile().fullname, photo_id)
         data = {'result': 'success'}
     except ObjectDoesNotExist:
         data = {'result': 'failed', 'error': '照片不存在！'}

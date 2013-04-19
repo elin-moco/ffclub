@@ -96,4 +96,4 @@ class ImageUpload(models.Model):
         return super(ImageUpload, self).save()
 
     def __unicode__(self):
-        return u'%s' % self.image_large.name
+        return u'%s -> %s: %s (%s)' % (self.entity_object, self.image_large.name, self.usage, self.status)

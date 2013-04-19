@@ -17,6 +17,6 @@ class Person(models.Model):
     subscribing = models.BooleanField(default=True, verbose_name='我同意訂閱 Mozilla 電子報')
 
     def __unicode__(self):
-        return unicode(self.fullname)
+        return unicode('%s (%s)' % (self.fullname, self.status))
 
 # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])

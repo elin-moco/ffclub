@@ -16,7 +16,7 @@ class Product(models.Model):
     photos = generic.GenericRelation(ImageUpload, content_type_field='content_type', object_id_field='entity_id')
 
     def __unicode__(self):
-        return unicode(self.title)
+        return unicode('%s (%d)' % (self.title, self.quantity))
 
 
 class Order(models.Model):
@@ -39,7 +39,7 @@ class Order(models.Model):
                               default='wait_for_confirm')
 
     def __unicode__(self):
-        return unicode(self.usage)
+        return unicode('%s (%s) | %s | %s' % (self.event.title, self.status, self.fullname, self.address))
 
 
 class OrderDetail(models.Model):
@@ -51,7 +51,7 @@ class OrderDetail(models.Model):
     product = models.ForeignKey(Product, related_name='+')
 
     def __unicode__(self):
-        return unicode(self.quantity)
+        return unicode('%s -> %s (%d)' % (self.order.event.title, self.product.title, self.quantity))
 
 
 class OrderVerification(models.Model):
@@ -65,4 +65,4 @@ class OrderVerification(models.Model):
     order = models.ForeignKey(Order, related_name='+')
 
     def __unicode__(self):
-        return unicode(self.code)
+        return unicode('%s (%s)' % (self.order.event.title, self.status))
