@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>{{ title }}</title>
+</head>
+<body>
+你好：
+<p>
+{{ product.title }} 庫存數量只剩（{{ product.quantity }}），
+請打開<a href="{{ SITE_URL }}{{ url('admin:product_product_change', product.id) }}">宣傳品管理頁面</a>以進行處理。
+</p>
+</body>
+</html>

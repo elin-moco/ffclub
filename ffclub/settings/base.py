@@ -606,6 +606,7 @@ FB_APP_ID = 'DUMMY_APP_ID'
 FB_APP_SECRET = 'DUMMY_APP_SECRET'
 
 PRODUCT_INVENTORY_PATH = u'/Users/yshlin/Desktop/2013 宣傳品庫存.xlsx'
+PRODUCT_INVENTORY_MIN = 50
 SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
 
 FILE_PATH = 'uploads/'

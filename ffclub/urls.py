@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.conf import settings
+from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin, sitemaps
@@ -27,7 +27,7 @@ urlpatterns = patterns(
     (
         r'^robots\.txt$',
         lambda r: HttpResponse(
-            "User-agent: *\n%s: /" % 'Allow' if settings.ENGAGE_ROBOTS else 'Disallow',
+            "User-agent: *\n%s: /" % 'Allow' if ENGAGE_ROBOTS else 'Disallow',
             mimetype="text/plain"
         )
     ),
@@ -42,5 +42,5 @@ urlpatterns = patterns(
 )
 
 ## In DEBUG mode, serve media files through Django.
-if settings.DEBUG:
+if DEBUG:
     urlpatterns += staticfiles_urlpatterns()

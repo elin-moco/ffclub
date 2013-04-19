@@ -26,9 +26,9 @@
   <ul class="productPhotos">
     {% for photo in photos %}
       <li class="productPhoto">
-        <a class="productPhotoLink" href="/static/{{ photo.image_large }}" title="{{ photo.description }}">
+        <a class="productPhotoLink" href="/static/{{ photo.image_large.name }}" title="{{ photo.description }}">
           <img width="{{ photo.image_large_width }}" height="{{ photo.image_large_height }}"
-               src="/static/{{ photo.image_large }}"
+               src="/static/{{ photo.image_large.name }}"
                alt="{{ photo.description }}" title="{{ photo.description }}"/>
         </a>
 

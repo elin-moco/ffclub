@@ -11,6 +11,7 @@ from forms import *
 from models import *
 from ffclub.settings import CUSTOM_ORDER_DETAIL_CHOICES, CUSTOM_PRODUCT_KEYWORDS
 from ffclub.person.models import Person
+from tasks import *
 from utils import *
 
 
@@ -116,6 +117,7 @@ def order_verify(request):
                 v.order.status = 'confirmed'
                 send_order_notification_mail(v.order.fullname, v.order.id)
                 v.order.save()
+                subtract_product_quantity.delay(v.order.id)
             return redirect('product.order.complete')
             # You'd add data here that you're sending to the template.
     return render(request, 'product/order_verify.html', data)
