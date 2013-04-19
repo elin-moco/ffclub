@@ -500,8 +500,8 @@ MINIFY_BUNDLES = {
         'intro': (
             'css/intro.css',
         ),
-        'person': (
-        ),
+        # 'person': (
+        # ),
         'register': (
             'css/register.css',
         ),
@@ -528,7 +528,8 @@ MINIFY_BUNDLES = {
         'product_photos': (
             'css/product_photos.css',
         ),
-        'upload': (
+        'error': (
+            'css/error.css',
         ),
     },
     'js': {
@@ -541,14 +542,14 @@ MINIFY_BUNDLES = {
             'js/browserid.js',
             'https://browserid.org/include.js',
         ),
-        'base': (
-        ),
+        # 'base': (
+        # ),
         'intro': (
             'js/slides.js',
             'js/intro.js',
         ),
-        'person': (
-        ),
+        # 'person': (
+        # ),
         'event': (
             'js/libs/jquery.masonry.min.js',
             'js/libs/jquery.imagesloaded.min.js',
@@ -560,8 +561,6 @@ MINIFY_BUNDLES = {
         'product': (
             'js/slides.js',
             'js/product.js',
-        ),
-        'upload': (
         ),
     }
 }

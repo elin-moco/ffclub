@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ _('Page not found') }}{% endblock %}
+{% block title %}{{ _('Forbidden') }}{% endblock %}
 {% block base_css %}
   {{ css('base') }}
   {{ css('error') }}
@@ -7,16 +7,16 @@
 {% block banner %}
     <hgroup id="main-feature" class="default error">
         <h1>錯誤頁面</h1>
-        <h2>找不到頁面</h2>
+        <h2>禁止存取</h2>
     </hgroup>
 {% endblock %}
 
 {% block content %}
   <div class="errorMessage">
-    <h3>{{ _('找不到頁面') }}</h3>
+    <h3>{{ _('禁止存取') }}</h3>
     <p>
       {% trans %}
-        抱歉，本頁面不存在。
+        抱歉，本頁禁止存取。
       {% endtrans %}
     </p>
   </div>
