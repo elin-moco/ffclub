@@ -24,12 +24,16 @@
         content="{{ page_description }}"/>
   <meta name="keywords"
         content="{{ page_keywords }}"/>
+{% if request %}
   <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}"/>
   <meta property="og:description" content="{% block og_desc %}{{ page_description }}{% endblock %}"/>
   <meta property="og:image" content="{% block og_image %}{{ request.build_absolute_uri('/static/')+page_image|urlencode }}{% endblock %}"/>
   <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri() }}{% endblock %}"/>
+{% endif %}
   <title>{% block title %}{{ page_title }}{% endblock %}</title>
+{% if request %}
   <link rel="canonical" href="{{ request.build_absolute_uri() }}"/>
+{% endif %}
   <link rel="shortcut icon" href="http://mozilla.com/favicon.ico"/>
   <!--[if lte IE 8]>
     <script src="/js/libs/html5shiv.js"></script>

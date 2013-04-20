@@ -167,8 +167,7 @@ DOMAIN_METHODS = {
 }
 
 # Paths that don't require a locale code in the URL.
-SUPPORTED_NONLOCALES = ['media', 'static', 'admin', '', 'users', 'events', 'products', 'uploads',
-                        'browserid', 'login', 'logout', 'tos']
+SUPPORTED_NONLOCALES = ['media', 'static', 'admin']
 
 
 ## Media and templates.
@@ -210,8 +209,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
-    'funfactory.context_processors.i18n',
-    'funfactory.context_processors.globals',
+    # 'funfactory.context_processors.i18n',
+    # 'funfactory.context_processors.globals',
     'jingo_minify.helpers.build_ids',
     'django_browserid.context_processors.browserid_form',
 )
@@ -280,7 +279,7 @@ def JINJA_CONFIG():
 ## Middlewares, apps, URL configs.
 
 MIDDLEWARE_CLASSES = (
-    'funfactory.middleware.LocaleURLMiddleware',
+    # 'funfactory.middleware.LocaleURLMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

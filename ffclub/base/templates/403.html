@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ _('Forbidden') }}{% endblock %}
+{% block title %}禁止存取{% endblock %}
 {% block base_css %}
   {{ css('base') }}
   {{ css('error') }}
@@ -13,11 +13,9 @@
 
 {% block content %}
   <div class="errorMessage">
-    <h3>{{ _('禁止存取') }}</h3>
+    <h3>禁止存取</h3>
     <p>
-      {% trans %}
-        抱歉，本頁禁止存取。
-      {% endtrans %}
+      抱歉，本頁禁止存取。
     </p>
   </div>
 {% endblock %}
