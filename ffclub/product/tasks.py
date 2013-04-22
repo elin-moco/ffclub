@@ -6,13 +6,14 @@ from email.header import Header
 
 from celery.task import task
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Sum
 from xlrd import open_workbook
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
 from ffclub.settings import PRODUCT_INVENTORY_MAPPING, PRODUCT_INVENTORY_QTY_ROW_NAME, \
     PRODUCT_INVENTORY_PATH, PRODUCT_INVENTORY_SHEET_NAME, PRODUCT_INVENTORY_MIN
-from ffclub.product.models import Product, Order
+from ffclub.product.models import Product, Order, OrderDetail
 from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, DEFAULT_REPLY_EMAIL, DEFAULT_NOTIFY_EMAIL
 
 
@@ -43,8 +44,10 @@ def sync_inventory():
         col_name = sheet.cell(0, col_index).value
         if col_name in PRODUCT_INVENTORY_MAPPING.keys():
             product_id = PRODUCT_INVENTORY_MAPPING[col_name]
-            #TODO: subtrack unprocessed order
-            quantity = sheet.cell(current_qty_row_index, col_index).value
+            #TOTEST: subtrack unprocessed order
+            subtracting_quantity = OrderDetail.objects.filter(
+                order__status='confirmed', product__id=product_id).aggregate(Sum('quantity'))['quantity__sum']
+            quantity = sheet.cell(current_qty_row_index, col_index).value - subtracting_quantity
             try:
                 product = Product.objects.get(id=product_id)
                 product.quantity = quantity

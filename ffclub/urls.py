@@ -44,3 +44,8 @@ urlpatterns = patterns(
 ## In DEBUG mode, serve media files through Django.
 if DEBUG:
     urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += patterns(
+        '',
+        # url(r'^', include('debug_toolbar_htmltidy.urls')),
+        url(r'', include('debug_toolbar_user_panel.urls')),
+    )
