@@ -104,18 +104,39 @@
       <ul>
         <li>
           <p>
-            如果你還沒有Persona帳號，請先建立一組Persona帳號，並填寫加入活力軍申請單即完成申請流程。<br>
+            如果你還沒有Persona帳號，請先
             {% if not request.user.is_active %}
-              <a class="browserid" href="javascript:void(0)">建立Persona帳號</a> |
+              <a class="browserid" href="javascript:void(0)">建立一組Persona帳號</a>
+            {% else %}
+              建立一組Persona帳號
             {% endif %}
+            ，並填寫
+            {% if request.user.is_active %}
+              <a href="{{ url('user.register') }}">
+            {% else %}
+              <a class="browserid" href="javascript:void(0)">
+            {% endif %}
+            加入活力軍申請單</a>即完成申請流程。<br>
             <a href="https://login.persona.org/about" target="_blank">認識Persona</a>
         </li>
         <li>
           <p>
-            如果你已經有Persona帳號，登入後請填寫活力軍申請單，填寫完成即可成為Firefox活力軍！
+            如果你已經有Persona帳號，
+            {% if not request.user.is_active %}
+              <a class="browserid" href="javascript:void(0)">登入</a>
+            {% else %}
+              登入
+            {% endif %}
+            後請填寫
+            {% if request.user.is_active %}
+              <a href="{{ url('user.register') }}">
+            {% else %}
+              <a class="browserid" href="javascript:void(0)">
+            {% endif %}
+            活力軍申請單</a>，填寫完成即可成為Firefox活力軍！
             {% if not request.user.is_active %}
               <br>
-              <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍</a>
+              <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍！</a>
             {% endif %}
         </li>
       </ul>
