@@ -24,9 +24,9 @@ def wall(request):
 
 
 def wall_page(request, page_number=1):
-    # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
-    #     return redirect('user.register')
-        # eventForm = EventForm()
+# if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
+#     return redirect('user.register')
+# eventForm = EventForm()
     uploadForm = ImageUploadForm(user=request.user)
 
     if request.method == 'POST':
@@ -44,6 +44,11 @@ def wall_page(request, page_number=1):
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
         content_type=ContentType.objects.get(model='event')).exclude(status='spam').order_by('-create_time')
+    for eventPhoto in allEventPhotos:
+        try:
+            eventPhoto.create_username = eventPhoto.create_user.get_profile().fullname
+        except ObjectDoesNotExist:
+            eventPhoto.create_username = ''
     paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
     data = {
         # 'form': eventForm,
@@ -85,8 +90,15 @@ def event_photo_report(request, photo_id):
             raise PermissionDenied
         photo.status = 'reported'
         photo.save()
-        send_photo_report_mail(auth.get_user(request).get_profile().fullname,
-                               photo.create_user.get_profile().fullname, photo_id)
+        try:
+            from_name = auth.get_user(request).get_profile().fullname
+        except ObjectDoesNotExist:
+            from_name = ''
+        try:
+            to_name = photo.create_user.get_profile().fullname
+        except ObjectDoesNotExist:
+            to_name = ''
+        send_photo_report_mail(from_name, to_name, photo_id)
         data = {'result': 'success'}
     except ObjectDoesNotExist:
         data = {'result': 'failed', 'error': '照片不存在！'}
