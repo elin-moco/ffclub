@@ -475,6 +475,7 @@ ENGAGE_ROBOTS = False
 # Always generate a CSRF token for anonymous users.
 ANON_ALWAYS = True
 
+CSRF_FAILURE_VIEW = 'ffclub.base.views.csrf_failure'
 # # Use this if you have localizable HTML files:
 # DOMAIN_METHODS['lhtml'] = [
 #    ('**/templates/**.lhtml',
