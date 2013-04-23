@@ -1,8 +1,10 @@
-from PIL import Image
 from cStringIO import StringIO
-from django.core.files.uploadedfile import SimpleUploadedFile
 import os
 import logging
+
+from PIL import Image
+from django.core.files.uploadedfile import SimpleUploadedFile
+
 
 log = logging.getLogger('ffclub')
 

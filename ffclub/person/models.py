@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class Person(models.Model):
-
     user = models.OneToOneField(User, primary_key=True, unique=True)
     fullname = models.CharField(max_length=255, verbose_name='姓名(*)')
     gender = models.CharField(max_length=7, verbose_name='性別(*)',
@@ -19,4 +18,4 @@ class Person(models.Model):
     def __unicode__(self):
         return unicode('%s (%s)' % (self.fullname, self.status))
 
-# User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])
+        # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])

@@ -9,7 +9,10 @@
   <div class="eventShowHead">
     <header id="masthead">
       <span class="toggle" role="button" tabindex="0" data-nav="closed">Menu</span>
-        <a href="/"><div class="logo"></div></a>
+      <a href="/">
+        <div class="logo"></div>
+      </a>
+
       <h1>Firefox 活力軍成果展</h1>
       <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>
     </header>
@@ -75,16 +78,16 @@
                 <div class="googlePlus">
                 </div>
                 {% if request.user.is_active %}
-                <ul class="miscDropdown">
+                  <ul class="miscDropdown">
                     <li>
-                        <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
+                      <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
                     </li>
                     {% if event_photo.create_user == request.user %}
-                    <li>
+                      <li>
                         <a class="removePhoto" href="{{ url('event.photo.remove', photo_id=event_photo.id) }}">刪除</a>
-                    </li>
+                      </li>
                     {% endif %}
-                </ul>
+                  </ul>
                 {% endif %}
               </div>
             </div>

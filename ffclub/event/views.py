@@ -4,7 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 import commonware
 
@@ -13,7 +13,6 @@ from django.utils import simplejson
 from ffclub.event.utils import send_photo_report_mail
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
-from ffclub.person.models import Person
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, FB_APP_ID
 
 log = commonware.log.getLogger('ffclub')

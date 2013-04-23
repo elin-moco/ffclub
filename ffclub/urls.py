@@ -1,11 +1,14 @@
 from django.http import HttpResponse
-from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin, sitemaps
+
+from ffclub.settings import DEBUG, ENGAGE_ROBOTS
+
 # from examples import urls
 
 from funfactory.monkeypatches import patch
+
 patch()
 
 admin.autodiscover()

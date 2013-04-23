@@ -3,17 +3,15 @@ import commonware
 
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
-from django.forms import ModelForm, ModelChoiceField, Select
+from django.forms import ModelForm, ModelChoiceField
 from django.forms.util import ErrorList
 from ffclub.upload.models import ImageUpload
 from ffclub.event.models import Event
-from PIL.ExifTags import TAGS
 
 log = commonware.log.getLogger('ffclub')
 
 
 class ImageUploadForm(ModelForm):
-
     def __init__(self, user, data=None, files=None, auto_id='id_%s', prefix=None, initial=None, error_class=ErrorList,
                  label_suffix=':', empty_permitted=False, instance=None):
         super(ImageUploadForm, self).__init__(data, files, auto_id, prefix, initial, error_class, label_suffix,

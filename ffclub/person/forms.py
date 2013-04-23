@@ -4,7 +4,6 @@ from ffclub.person.models import Person
 
 
 class PersonForm(ModelForm):
-
     def clean_gender(self):
         gender = self.cleaned_data['gender']
         if gender == 'unknown':

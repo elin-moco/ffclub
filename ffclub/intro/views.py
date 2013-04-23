@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import commonware
 from ffclub.person.models import Person
+
 log = commonware.log.getLogger('ffclub')
 
 

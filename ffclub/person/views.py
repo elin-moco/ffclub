@@ -1,10 +1,11 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import *
+from django.contrib import auth
+import commonware
+
 from forms import PersonForm
 from models import Person
-from django.contrib import auth
 
-import commonware
 
 log = commonware.log.getLogger('ffclub')
 

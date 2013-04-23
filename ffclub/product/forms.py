@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from django.forms import ModelForm, ValidationError
 from django.forms.models import BaseInlineFormSet
+
 from ffclub.product.models import Product, Order, OrderDetail
-import logging
+
 
 log = logging.getLogger('ffclub')
 
@@ -20,14 +23,12 @@ class OrderForm(ModelForm):
 
 
 class OrderDetailForm(ModelForm):
-
     class Meta:
         model = OrderDetail
         fields = ('quantity', 'product')
 
 
 class BaseOrderDetailFormSet(BaseInlineFormSet):
-
     def clean(self):
         hasOrderDetail = False
         for orderDetailForm in self.forms:
