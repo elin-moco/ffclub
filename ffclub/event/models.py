@@ -27,4 +27,4 @@ class Event(models.Model):
                               default='normal')
 
     def __unicode__(self):
-        return unicode('%s (%s)' % (self.title, self.status))
+        return unicode(self.title)

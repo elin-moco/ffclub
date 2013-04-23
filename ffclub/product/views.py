@@ -3,6 +3,7 @@
 import logging
 
 from django.contrib import auth
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.forms.models import inlineformset_factory
 
@@ -19,8 +20,8 @@ log = logging.getLogger('ffclub')
 
 
 def wall(request):
-    if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
-        return redirect('user.register')
+    # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
+    #     return redirect('user.register')
 
     products = Product.objects.all()
     OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
@@ -42,14 +43,18 @@ def wall(request):
         orderDetailFormset = OrderDetailFormset(request.POST, initial=orderDetailData)
 
         if orderDetailFormset.is_valid() and eventForm.is_valid() and orderForm.is_valid():
+            currentUser = auth.get_user(request)
             event = eventForm.save(commit=False)
             order = orderForm.save(commit=False)
-            event.create_user = auth.get_user(request)
-            order.create_user = auth.get_user(request)
+            event.create_user = currentUser
+            order.create_user = currentUser
             event.save()
             order.event = event
             order.save()
-
+            if not Person.objects.filter(user=request.user).exists():
+                profile = Person(user=currentUser, fullname=order.fullname,
+                                 address=order.address, occupation=order.occupation)
+                profile.save()
             for orderDetailForm in orderDetailFormset:
                 orderDetail = orderDetailForm.save(commit=False)
                 if orderDetail.quantity > 0:
@@ -57,20 +62,23 @@ def wall(request):
                     orderDetail.save()
 
             verification_code = generate_random_string(36, string.ascii_letters + string.digits)
-            verification = OrderVerification(order=order, create_user=auth.get_user(request),
+            verification = OrderVerification(order=order, create_user=currentUser,
                                              code=verification_code)
             verification.save()
             send_order_verification_mail(order.fullname, order.email, verification_code)
             return redirect('product.order.verify')
     else:
         if request.user.is_active:
-            profile = request.user.get_profile()
-            initialValues = {
-                'fullname': profile.fullname,
-                'email': request.user.email,
-                'address': profile.address,
-                'occupation': profile.occupation,
-            }
+            try:
+                profile = request.user.get_profile()
+                initialValues = {
+                    'fullname': profile.fullname,
+                    'email': request.user.email,
+                    'address': profile.address,
+                    'occupation': profile.occupation,
+                }
+            except ObjectDoesNotExist:
+                initialValues = {}
         else:
             initialValues = {}
         eventForm = EventForm()

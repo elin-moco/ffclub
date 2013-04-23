@@ -24,8 +24,8 @@ def wall(request):
 
 
 def wall_page(request, page_number=1):
-    if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
-        return redirect('user.register')
+    # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
+    #     return redirect('user.register')
         # eventForm = EventForm()
     uploadForm = ImageUploadForm(user=request.user)
 
