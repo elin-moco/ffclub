@@ -1,0 +1,23 @@
+<div role="navigation" id="nav-main">
+  <nav>
+    <ul role="menubar">
+      <li role="menuitem" class="topMenu first current">
+        <a title="推廣 Firefox" href="{{ url('intro.home') }}" tabindex="0">活力軍</a>
+        <ul>
+          <li>
+            <a title="提供宣傳品申請" href="{{ url('product.wall') }}" tabindex="-1">宣傳品介紹</a>
+          </li>
+          <li>
+            <a title="推廣照片分享" href="{{ url('event.wall') }}" tabindex="-1">活力軍成果展</a>
+          </li>
+        </ul>
+      </li>
+    {% if request.user.is_active %}
+      <li role="menuitem" class="topMenu last current">
+        <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="0">個人檔案</a>
+      </li>
+    {% endif %}
+    </ul>
+  </nav>
+  <div class="close"></div>
+</div>
