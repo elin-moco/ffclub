@@ -1,5 +1,5 @@
 \u4F60\u597D\uFF1A
 
-{{ fullname }} \u6709\u4E00\u5F35\u7167\u7247\u88AB\u6AA2\u8209\uFF0C
+{{ to_name }} \u6709\u4E00\u5F35\u7167\u7247\u88AB{{ from_name }}\u6AA2\u8209\uFF0C
 \u8ACB\u6253\u958B\u7BA1\u7406\u9801\u9762\u4EE5\u8655\u7406\u7167\u7247\uFF1A
 {{ SITE_URL }}{{ url('admin:upload_imageupload_change', photo_id) }}

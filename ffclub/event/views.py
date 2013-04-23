@@ -85,7 +85,8 @@ def event_photo_report(request, photo_id):
             raise PermissionDenied
         photo.status = 'reported'
         photo.save()
-        send_photo_report_mail(photo.create_user.get_profile().fullname, photo_id)
+        send_photo_report_mail(auth.get_user(request).get_profile().fullname,
+                               photo.create_user.get_profile().fullname, photo_id)
         data = {'result': 'success'}
     except ObjectDoesNotExist:
         data = {'result': 'failed', 'error': '照片不存在！'}

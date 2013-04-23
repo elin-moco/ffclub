@@ -9,15 +9,15 @@ from ffclub.product.tasks import send_mail
 log = logging.getLogger('ffclub')
 
 
-def send_photo_report_mail(to_name, photo_id):
+def send_photo_report_mail(from_name, to_name, photo_id):
     subject = Header(u'Firefox 活力軍照片檢舉通知', 'utf-8')
     from_email = DEFAULT_FROM_EMAIL
     log.debug('send to: ' + ''.join(DEFAULT_NOTIFY_EMAIL))
     text_content = render_to_string('event/report_mail.txt',
-                                    {'title': subject, 'fullname': to_name, 'photo_id': photo_id,
+                                    {'title': subject, 'to_name': to_name, 'from_name': from_name, 'photo_id': photo_id,
                                      'SITE_URL': SITE_URL})
     html_content = render_to_string('event/report_mail.html',
-                                    {'title': subject, 'fullname': to_name, 'photo_id': photo_id,
+                                    {'title': subject, 'to_name': to_name, 'from_name': from_name, 'photo_id': photo_id,
                                      'SITE_URL': SITE_URL})
     headers = {'Reply-To': DEFAULT_REPLY_EMAIL}
     mail = EmailMultiAlternatives(subject=subject, body=text_content, headers=headers,
