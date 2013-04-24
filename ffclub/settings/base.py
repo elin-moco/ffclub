@@ -278,6 +278,7 @@ def JINJA_CONFIG():
 
 MIDDLEWARE_CLASSES = (
     # 'funfactory.middleware.LocaleURLMiddleware',
+    'ffclub.base.BrowserDetectionMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

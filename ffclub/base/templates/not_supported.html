@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}瀏覽器不支援{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('error') }}
+{% endblock %}
+{% block banner %}
+  <hgroup id="main-feature" class="default error">
+    <h1>瀏覽器不支援</h1>
+
+    <h2>請使用 Firefox</h2>
+  </hgroup>
+{% endblock %}
+
+{% block content %}
+  <div class="errorMessage">
+    <h3>您的瀏覽器無法瀏覽本站</h3>
+
+    <p>
+      請使用 <a href="http://mozilla.com.tw/firefox/download">Mozilla Firefox</a> 以達到最佳瀏覽效果。
+    </p>
+  </div>
+{% endblock %}
