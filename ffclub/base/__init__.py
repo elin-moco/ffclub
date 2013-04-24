@@ -1,9 +1,8 @@
 """Application base, containing global templates."""
 import re
+from django.core.urlresolvers import reverse
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import redirect
-from urlresolvers import reverse
-
 
 old_ie_patterns = re.compile(".*MSIE [6-8]\.")
 
