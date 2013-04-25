@@ -278,6 +278,8 @@ def JINJA_CONFIG():
 
 MIDDLEWARE_CLASSES = (
     # 'funfactory.middleware.LocaleURLMiddleware',
+    'johnny.middleware.LocalStoreClearMiddleware',
+    'johnny.middleware.QueryCacheMiddleware',
     'ffclub.base.BrowserDetectionMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -568,6 +570,20 @@ MINIFY_BUNDLES = {
 
 LESS_PREPROCESS = False
 # LESS_BIN = '/usr/local/bin/lessc'
+
+
+# Cache
+# some johnny settings
+CACHES = {
+    'default': {
+        'BACKEND': 'johnny.backends.memcached.PyLibMCCache',
+        'LOCATION': ['127.0.0.1:11211'],
+        'JOHNNY_CACHE': True,
+    }
+}
+JOHNNY_MIDDLEWARE_KEY_PREFIX='ffclub'
+
+
 
 CUSTOM_PRODUCT_KEYWORDS = {
     '1': u'Firefox 宣傳品, Firefox 推廣物, Firefox 貼紙, Firefox sticker, Firefox 酷炫貼紙, Firefox 推廣貼紙, Firefox 衍生物, Firefox 輔銷品',

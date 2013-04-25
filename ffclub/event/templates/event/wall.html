@@ -83,7 +83,7 @@
                     <li>
                       <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
                     </li>
-                    {% if event_photo.create_user == request.user %}
+                    {% if event_photo.create_user_id == request.user.id %}
                       <li>
                         <a class="removePhoto" href="{{ url('event.photo.remove', photo_id=event_photo.id) }}">刪除</a>
                       </li>

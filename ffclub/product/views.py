@@ -29,6 +29,7 @@ def wall(request):
     orderDetailData = []
 
     for product in products:
+        product.preview_image_name = product.photos.get(usage='preview').image_large.name
         orderDetailData.append({'product': product})
 
     orderDetailFormset = OrderDetailFormset(initial=orderDetailData)
