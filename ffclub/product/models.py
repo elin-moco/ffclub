@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from django.core.urlresolvers import reverse
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -14,6 +15,13 @@ class Product(models.Model):
     description = models.CharField(max_length=255, verbose_name='描述')
     quantity = models.IntegerField(verbose_name='數量')
     photos = generic.GenericRelation(ImageUpload, content_type_field='content_type', object_id_field='entity_id')
+    create_user = models.ForeignKey(User, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
+    update_user = models.ForeignKey(User, related_name='+')
+    update_time = models.DateTimeField(default=datetime.now)
+
+    def get_absolute_url(self):
+        return reverse('product.photos', kwargs={'product_id': self.id})
 
     def __unicode__(self):
         return unicode('%s (%d)' % (self.title, self.quantity))

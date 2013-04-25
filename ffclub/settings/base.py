@@ -322,7 +322,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     # 'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -448,6 +448,7 @@ LOCALE_PATHS = (
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
 JINGO_EXCLUDE_APPS = [
+    'sitemap.xml',
     'admin',
     'registration',
     'browserid',

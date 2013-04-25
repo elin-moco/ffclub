@@ -1,13 +1,17 @@
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.sitemaps import GenericSitemap
 from django.http import HttpResponse
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin, sitemaps
-
+from ffclub.base import ViewsSitemap
 from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 
 # from examples import urls
 
 from funfactory.monkeypatches import patch
+from ffclub.product.models import Product
+from ffclub.upload.models import ImageUpload
 
 patch()
 
@@ -17,6 +21,24 @@ admin.autodiscover()
 # from django.contrib import admin
 # admin.autodiscover()
 PROJECT_MODULE = 'ffclub'
+
+product_dict = {
+    'queryset': Product.objects.all(),
+    'date_field': 'update_time'
+}
+
+event_photo_dict = {
+    'queryset': ImageUpload.objects.filter(content_type=ContentType.objects.get(model='event')),
+    'date_field': 'create_time'
+}
+
+sitemaps = {
+    'base': ViewsSitemap(['intro.home', 'product.wall', 'event.wall'], 0.8, 'monthly'),
+    'base_minor': ViewsSitemap(['tos'], 0.3, 'yearly'),
+    'products': GenericSitemap(product_dict, 0.7, 'monthly'),
+    'event_photos': GenericSitemap(event_photo_dict, 0.6, 'weekly'),
+}
+
 
 urlpatterns = patterns(
     '',

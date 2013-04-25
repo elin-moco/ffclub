@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from utils import *
@@ -95,6 +96,9 @@ class ImageUpload(models.Model):
             self.image_small.save(small_image.name, small_image, save=False)
 
         return super(ImageUpload, self).save()
+
+    def get_absolute_url(self):
+        return reverse('event.photo', kwargs={'photo_id': self.id})
 
     def __unicode__(self):
         return u'%s -> %s: %s (%s)' % (self.entity_object, self.image_large.name, self.usage, self.status)

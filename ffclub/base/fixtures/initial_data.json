@@ -1,6 +1,14 @@
 [
     {
         "pk": 1,
+        "model": "sites.site",
+        "fields": {
+            "domain": "firefox.club.com",
+            "name": "firefox.club.com"
+        }
+    },
+    {
+        "pk": 1,
         "model": "auth.user",
         "fields": {
             "username": "elin",
