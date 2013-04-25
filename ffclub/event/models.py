@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from django.contrib.auth.models import User
 
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 
 from ffclub.upload.models import ImageUpload

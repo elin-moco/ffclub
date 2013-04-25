@@ -454,6 +454,7 @@ JINGO_EXCLUDE_APPS = [
     'browserid',
 ]
 
+# AUTH_USER_MODEL = "ffclub.person.models.CustomUser"
 AUTH_PROFILE_MODULE = "person.Person"
 
 # BrowserID configuration

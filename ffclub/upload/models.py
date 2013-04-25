@@ -4,10 +4,10 @@ from datetime import datetime
 import logging
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 from django.db import models
 
 from utils import *
@@ -63,19 +63,22 @@ class ImageUpload(models.Model):
             image_name = self.image_large.name
             content_type = self.image_large.file.content_type
             image_stream = open_image(self.image_large)
-            exif = image_stream._getexif()
             rotate_degree = 0
-            if exif and 0x0112 in exif:
-                orientation = exif[0x0112]
-                log.debug('Orientation: %d' % orientation)
-                if orientation == 6:
-                    rotate_degree = -90
-                    self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
-                if orientation == 3:
-                    rotate_degree = 180
-                if orientation == 8:
-                    rotate_degree = 90
-                    self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
+            try:
+                exif = image_stream._getexif()
+                if exif and 0x0112 in exif:
+                    orientation = exif[0x0112]
+                    log.debug('Orientation: %d' % orientation)
+                    if orientation == 6:
+                        rotate_degree = -90
+                        self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
+                    if orientation == 3:
+                        rotate_degree = 180
+                    if orientation == 8:
+                        rotate_degree = 90
+                        self.image_large_width, self.image_large_height = self.image_large_height, self.image_large_width
+            except AttributeError:
+                log.debug('No EXIF found!')
 
             log.debug('Content Type: ' + content_type)
 

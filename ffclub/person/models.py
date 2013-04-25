@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+# from django.contrib.auth.models import User
+
+
+# class CustomUser(User):
+#
+#     def __unicode__(self):
+#         return self.email
+#
+#     class Meta:
+#         proxy = True
+#         verbose_name = verbose_name_plural = '使用者'
 
 
 class Person(models.Model):
@@ -20,5 +31,6 @@ class Person(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '個人資料'
+
 
 # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])
