@@ -102,3 +102,6 @@ class ImageUpload(models.Model):
 
     def __unicode__(self):
         return u'%s -> %s: %s (%s)' % (self.entity_object, self.image_large.name, self.usage, self.status)
+
+    class Meta:
+        verbose_name = verbose_name_plural = '圖片上傳'

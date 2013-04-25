@@ -39,7 +39,6 @@ def sync_inventory():
     for row_index in range(sheet.nrows):
         if sheet.cell(row_index, 1).value == PRODUCT_INVENTORY_QTY_ROW_NAME:
             current_qty_row_index = row_index
-            print current_qty_row_index
     for col_index in range(sheet.ncols):
         col_name = sheet.cell(0, col_index).value
         if col_name in PRODUCT_INVENTORY_MAPPING.keys():
@@ -51,6 +50,10 @@ def sync_inventory():
             try:
                 product = Product.objects.get(id=product_id)
                 product.quantity = quantity
+                if quantity < PRODUCT_INVENTORY_MIN:
+                    product.status = 'lack'
+                else:
+                    product.status = 'normal'
                 product.save()
                 log.debug(sheet.cell(0, col_index).value, '(', product_id, '): ', quantity)
             except ObjectDoesNotExist as e:
@@ -64,6 +67,8 @@ def subtract_product_quantity(order_id):
     for orderDetail in orderDetails:
         originalQuantity = orderDetail.product.quantity
         orderDetail.product.quantity -= orderDetail.quantity
+        if PRODUCT_INVENTORY_MIN > orderDetail.product.quantity:
+            orderDetail.product.status = 'lack'
         orderDetail.product.save()
         if originalQuantity > PRODUCT_INVENTORY_MIN > orderDetail.product.quantity:
             send_inventory_notification_mail(orderDetail.product)

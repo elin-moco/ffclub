@@ -18,4 +18,7 @@ class Person(models.Model):
     def __unicode__(self):
         return unicode('%s (%s)' % (self.fullname, self.status))
 
-        # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])
+    class Meta:
+        verbose_name = verbose_name_plural = '個人資料'
+
+# User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])

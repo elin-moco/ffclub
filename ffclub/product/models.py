@@ -19,12 +19,18 @@ class Product(models.Model):
     create_time = models.DateTimeField(default=datetime.now)
     update_user = models.ForeignKey(User, related_name='+')
     update_time = models.DateTimeField(default=datetime.now)
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('lack', '庫存不足')),
+                              default='normal')
 
     def get_absolute_url(self):
         return reverse('product.photos', kwargs={'product_id': self.id})
 
     def __unicode__(self):
         return unicode('%s (%d)' % (self.title, self.quantity))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '宣傳品'
 
 
 class Order(models.Model):
@@ -37,16 +43,19 @@ class Order(models.Model):
     feedback = models.TextField(max_length=512, verbose_name='其它建議', blank=True, default='')
 
     create_user = models.ForeignKey(User, related_name='+')
-    create_time = models.DateTimeField(default=datetime.now)
-    event = models.ForeignKey(Event, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now, verbose_name='Order create time')
+    event = models.ForeignKey(Event, related_name='orders')
     products = models.ManyToManyField(Product, related_name='+', through='OrderDetail')
     status = models.CharField(max_length=20,
                               choices=(('wait_for_confirm', '待確認'), ('confirmed', '已確認'),
                                        ('processing', '處理中'), ('processed', '已處理'), ('spam', '垃圾')),
-                              default='wait_for_confirm')
+                              default='wait_for_confirm', verbose_name='Order status')
 
     def __unicode__(self):
         return unicode('%s (%s) | %s | %s' % (self.event.title, self.status, self.fullname, self.address))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '訂單'
 
 
 class OrderDetail(models.Model):
@@ -59,15 +68,21 @@ class OrderDetail(models.Model):
     def __unicode__(self):
         return unicode('%s -> %s (%d)' % (self.order.event.title, self.product.title, self.quantity))
 
+    class Meta:
+        verbose_name = verbose_name_plural = '訂單細節'
+
 
 class OrderVerification(models.Model):
     code = models.CharField(max_length=255)
     create_user = models.ForeignKey(User, related_name='+')
-    create_time = models.DateTimeField(default=datetime.now)
+    create_time = models.DateTimeField(default=datetime.now, verbose_name='Verification create time')
     status = models.CharField(max_length=20,
                               choices=(('issued', '待確認'), ('confirmed', '已確認')),
-                              default='issued')
-    order = models.ForeignKey(Order, related_name='+')
+                              default='issued', verbose_name='Verification status')
+    order = models.ForeignKey(Order, related_name='verification')
 
     def __unicode__(self):
         return unicode('%s (%s)' % (self.order.event.title, self.status))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '訂單確認'

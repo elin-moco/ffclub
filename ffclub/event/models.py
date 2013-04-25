@@ -9,6 +9,7 @@ from ffclub.upload.models import ImageUpload
 
 
 class Event(models.Model):
+
     title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
     description = models.CharField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='', verbose_name='舉辦地點')
@@ -22,8 +23,11 @@ class Event(models.Model):
     longitude = models.FloatField(null=True)
     photos = generic.GenericRelation(ImageUpload)
     status = models.CharField(max_length=20,
-                              choices=(('normal', '正常'), ('spam', '垃圾')),
+                              choices=(('normal', '正常'), ('shared', '已分享'), ('spam', '垃圾')),
                               default='normal')
 
     def __unicode__(self):
         return unicode(self.title)
+
+    class Meta:
+        verbose_name = verbose_name_plural = '活動'
