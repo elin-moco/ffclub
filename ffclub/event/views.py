@@ -42,16 +42,11 @@ def wall_page(request, page_number=1):
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
-        content_type=ContentType.objects.get(model='event')).exclude(status='spam').order_by('-create_time')
-    # FIXME: N+1 heavy query hits
-    createUsers = {}
+        content_type=ContentType.objects.get(model='event')
+    ).exclude(status='spam').order_by('-create_time').prefetch_related('create_user', 'create_user__person')
     for eventPhoto in allEventPhotos:
         try:
-            if eventPhoto.create_user_id in createUsers:
-                eventPhoto.create_username = createUsers[eventPhoto.create_user_id]
-            else:
-                eventPhoto.create_username = eventPhoto.create_user.get_profile().fullname
-                createUsers[eventPhoto.create_user_id] = eventPhoto.create_username
+            eventPhoto.create_username = eventPhoto.create_user.person.fullname
         except ObjectDoesNotExist:
             eventPhoto.create_username = ''
     paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
