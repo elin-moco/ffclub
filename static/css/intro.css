@@ -841,27 +841,17 @@ a#browserid:hover {
     overflow-x: hidden;
     overflow-y: auto;
     transform: rotateX(0deg) rotateY(0deg);
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-    /** Chrome & Safari **/
-  
-    -o-transform: rotateX(0deg) rotateY(0deg);
-    /** Opera **/
-  
     -moz-transform: rotateX(0deg) rotateY(0deg);
-    /** Firefox **/
-  
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -o-transform: rotateX(0deg) rotateY(0deg);
+    -ms-transform: rotateX(0deg) rotateY(0deg);
   }
   #body_wrapper.opennav #outer-wrapper {
     transform: translate(85%, 0);
-    -webkit-transform: translate(85%, 0);
-    /** Chrome & Safari **/
-  
-    -o-transform: translate(85%, 0);
-    /** Opera **/
-  
     -moz-transform: translate(85%, 0);
-    /** Firefox **/
-  
+    -webkit-transform: translate(85%, 0);
+    -o-transform: translate(85%, 0);
+    -ms-transform: translate(85%, 0);
   }
   #outer-wrapper {
     height: 100%;
@@ -926,15 +916,10 @@ a#browserid:hover {
     top: 0px;
     left: 0px;
     transform: rotateX(0deg) rotateY(-180deg);
-    -webkit-transform: rotateX(0deg) rotateY(-180deg);
-    /** Chrome & Safari **/
-  
-    -o-transform: rotateX(0deg) rotateY(-180deg);
-    /** Opera **/
-  
     -moz-transform: rotateX(0deg) rotateY(-180deg);
-    /** Firefox **/
-  
+    -webkit-transform: rotateX(0deg) rotateY(-180deg);
+    -o-transform: rotateX(0deg) rotateY(-180deg);
+    -ms-transform: rotateX(0deg) rotateY(-180deg);
     /* end of tabzilla-contents */
   
   }
