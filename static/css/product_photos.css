@@ -499,10 +499,14 @@ body {
 #main-content a:hover {
   color: #00539f;
 }
-#main-content ul li,
-#main-content ol li {
+#main-content ul li {
   font-size: 13px;
   list-style-type: disc;
+  margin-left: 20px;
+}
+#main-content ol li {
+  font-size: 13px;
+  list-style-type: decimal;
   margin-left: 20px;
 }
 #footer {

@@ -290,6 +290,7 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
+    'ffclub.base.UserFullnameMiddleware',
 )
 
 

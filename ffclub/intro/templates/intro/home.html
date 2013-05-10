@@ -100,48 +100,33 @@
         </li>
       </ul>
       <p>
-        <b>申請方式：</b>
-      <ul>
+        <b>活動辦法：</b>
+      <ol>
         <li>
           <p>
-            如果你還沒有Persona帳號，請先
             {% if not request.user.is_active %}
-              <a class="browserid" href="javascript:void(0)">建立一組Persona帳號</a>
+              <a class="browserid" href="javascript:void(0)">使用 Persona 登入</a>
             {% else %}
-              建立一組Persona帳號
+              使用 Persona 登入
             {% endif %}
-            ，並填寫
-            {% if request.user.is_active %}
-              <a href="{{ url('user.register') }}">
-            {% else %}
-              <a class="browserid" href="javascript:void(0)">
-            {% endif %}
-            加入活力軍申請單</a>即完成申請流程。<br>
-            <a href="https://login.persona.org/about" target="_blank">認識Persona</a>
+          (<a href="https://login.persona.org/about">認識 Persona</a>)
         </li>
         <li>
           <p>
-            如果你已經有Persona帳號，
-            {% if not request.user.is_active %}
-              <a class="browserid" href="javascript:void(0)">登入</a>
-            {% else %}
-              登入
-            {% endif %}
-            後請填寫
-            {% if request.user.is_active %}
-              <a href="{{ url('user.register') }}">
-            {% else %}
-              <a class="browserid" href="javascript:void(0)">
-            {% endif %}
-            活力軍申請單</a>，填寫完成即可成為Firefox活力軍！
-            {% if not request.user.is_active %}
-              <br>
-              <a class="browserid" href="javascript:void(0)"> 現在就加入 Firefox 活力軍！</a>
-            {% endif %}
+            填寫基本資料
         </li>
-      </ul>
+        <li>
+          <p>
+            申請活力宣傳品
+        </li>
+        <li>
+          <p>
+            將宣傳成果照片分享至成果展網頁
+        </li>
+      </ol>
+      <br>
       <p>
-        <a href="{{ url('product.wall') }}">宣傳品介紹</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
+        <a href="{{ url('product.wall') }}">申請宣傳品</a> | <a href="{{ url('event.wall') }}">活力軍成果展</a>
     </div>
 
   </div>
