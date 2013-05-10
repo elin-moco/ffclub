@@ -98,10 +98,6 @@ ENGAGE_ROBOTS = True
 FILE_PATH = 'uploads/'
 
 LOGGING = {
-    'root': {
-        'level': 'WARNING',
-        'handlers': ['console', 'error_file'],
-    },
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
@@ -123,11 +119,6 @@ LOGGING = {
             'formatter': 'generic',
             'filename': '/home/elin/Logs/gunicorn/ffclub_error.log',
         },
-        'access_file': {
-            'class': 'logging.FileHandler',
-            'formatter': 'generic',
-            'filename': '/home/elin/Logs/gunicorn/ffclub_access.log',
-        },
     },
     'loggers': {
         'django.db.backends': {
@@ -137,32 +128,24 @@ LOGGING = {
         },
         'gunicorn.error': {
             'level': 'WARNING',
-            'handlers': ['error_file'],
+            'handlers': ['console', 'error_file'],
             'propagate': True,
         },
-        'gunicorn.access': {
-            'level': 'INFO',
-            'handlers': ['access_file'],
-            'propagate': False,
+        'django_browserid': {
+            'level': 'WARNING',
+            'handlers': ['console', 'error_file'],
+        },
+        '': {
+            'level': 'WARNING',
+            'handlers': ['console', 'error_file'],
         },
         'ffclub': {
             'level': 'WARNING',
-            'handlers': ['error_file'],
-        },
-        'django_browserid': {
-            'level': 'WARNING',
-            'handlers': ['error_file'],
-        },
-        'ffclub': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'access_file'],
-        },
-        'django_browserid': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'access_file'],
+            'handlers': ['console', 'error_file'],
         },
     },
 }
+
 
 EVENT_WALL_PHOTOS_PER_PAGE = 30
 
