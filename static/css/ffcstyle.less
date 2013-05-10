@@ -777,6 +777,14 @@ a#browserid:hover {
   height: 16px;
 }
 
+.transform(@settings) {
+  transform: @settings;
+  -moz-transform: @settings;
+  -webkit-transform: @settings;
+  -o-transform: @settings;
+  -ms-transform: @settings;
+}
+
 /* hide back of pane during swap */
 .animate(@settings) {
   animation: @settings;
@@ -799,18 +807,12 @@ a#browserid:hover {
 
 /* front pane, placed above back */
 .front () {
-  transform: rotateX(0deg) rotateY(0deg);
-  -webkit-transform: rotateX(0deg) rotateY(0deg); /** Chrome & Safari **/
-  -o-transform:  rotateX(0deg) rotateY(0deg); /** Opera **/
-  -moz-transform: rotateX(0deg) rotateY(0deg); /** Firefox **/
+  .transform(rotateX(0deg) rotateY(0deg));
 }
 
 /* back, initially hidden pane */
 .back (){
-  transform: rotateX(0deg) rotateY(-180deg);
-  -webkit-transform: rotateX(0deg) rotateY(-180deg); /** Chrome & Safari **/
-  -o-transform: rotateX(0deg) rotateY(-180deg); /** Opera **/
-  -moz-transform: rotateX(0deg) rotateY(-180deg); /** Firefox **/
+  .transform(rotateX(0deg) rotateY(-180deg));
 }
 /*mobile css*/
 
@@ -835,11 +837,8 @@ a#browserid:hover {
         .front;
       }
        #outer-wrapper{
-        //.back;  
-        transform: translate(85%,0);
-        -webkit-transform: translate(85%,0); /** Chrome & Safari **/
-        -o-transform: translate(85%,0); /** Opera **/
-        -moz-transform: translate(85%,0); /** Firefox **/
+        //.back;
+         .transform(translate(85%,0));
       }
     }/* end of opennav */
   }

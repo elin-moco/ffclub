@@ -22,16 +22,18 @@ def wall(request):
     # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
     #     return redirect('user.register')
 
-    products = Product.objects.all()
-    OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
-                                               extra=products.count(), can_delete=False,
-                                               form=OrderDetailForm, formset=BaseOrderDetailFormSet)
+    products = Product.objects.all().prefetch_related('photos')
     orderDetailData = []
 
     for product in products:
-        product.preview_image_name = product.photos.get(usage='preview').image_large.name
+        previewPhotos = filter(lambda x: x.usage == 'preview', product.photos.all())
+        if len(previewPhotos) > 0:
+            product.preview_image_name = previewPhotos[0].image_large.name
         orderDetailData.append({'product': product})
 
+    OrderDetailFormset = inlineformset_factory(Order, OrderDetail,
+                                               extra=products.__len__(), can_delete=False,
+                                               form=OrderDetailForm, formset=BaseOrderDetailFormSet)
     orderDetailFormset = OrderDetailFormset(initial=orderDetailData)
 
     if request.method == 'POST':
