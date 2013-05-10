@@ -310,6 +310,8 @@ def get_middleware(exclude=(), append=(),
 
 
 INSTALLED_APPS = (
+    # Web server
+    'gunicorn',
     # Local apps
     'funfactory', # Content common to most playdoh-based apps.
     # 'compressor',
