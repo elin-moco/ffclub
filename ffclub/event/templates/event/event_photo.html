@@ -16,9 +16,9 @@
 {% endblock %}
 {% block content %}
   <div class="eventPhoto">
-    <a class="eventPhotoLink" href="/static/{{ photo.image_large.name }}" title="{{ photo.description }}">
+    <a class="eventPhotoLink" href="{{ STATIC_URL }}{{ photo.image_large.name }}" title="{{ photo.description }}">
       <img width="{{ photo.image_large_width }}" height="{{ photo.image_large_height }}"
-           src="/static/{{ photo.image_large.name }}"
+           src="{{ STATIC_URL }}{{ photo.image_large.name }}"
            alt="{{ photo.description }}" title="{{ photo.description }}"/>
     </a>
 

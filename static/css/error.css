@@ -217,7 +217,7 @@ body {
   background: #fff;
 }
 #wrapper {
-  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
+  background: url(../images/css/bg_sand_gradient.png) left top repeat-x, url(../images/css/bg_sand.png) left top repeat;
   padding-bottom: 50px;
 }
 #masthead {
@@ -234,7 +234,7 @@ body {
 }
 #masthead h1 {
   width: 185px;
-  background: url(/static/images/css/logo.png) left top no-repeat;
+  background: url(../images/css/logo.png) left top no-repeat;
   margin: 30px 0 0 0;
   padding: 0px;
   float: left;
@@ -251,7 +251,7 @@ body {
   display: block;
   height: 45px;
   width: 150px;
-  background: url('/static/images/css/tab.png') no-repeat;
+  background: url('../images/css/tab.png') no-repeat;
   text-indent: -200px;
   overflow: hidden;
 }
@@ -440,17 +440,17 @@ body {
   height: 275px;
 }
 #main-feature.intro {
-  background: url('/static/images/css/banner_default.jpg') top center no-repeat;
+  background: url('../images/css/banner_default.jpg') top center no-repeat;
   background-size: 800px, 275px;
 }
 #main-feature.order {
-  background: url('/static/images/css/order_banner.jpg') top center no-repeat;
+  background: url('../images/css/order_banner.jpg') top center no-repeat;
 }
 #main-feature.orderComplete {
-  background: url('/static/images/css/order_complete_banner.jpg') top center no-repeat;
+  background: url('../images/css/order_complete_banner.jpg') top center no-repeat;
 }
 #main-feature.register {
-  background: url('/static/images/css/register_banner.jpg') top center no-repeat;
+  background: url('../images/css/register_banner.jpg') top center no-repeat;
 }
 #main-feature.register > h2 {
   margin-top: 35px;
@@ -461,7 +461,7 @@ body {
   text-indent: 0;
 }
 #main-feature.registerComplete {
-  background: url('/static/images/css/register_complete_banner.jpg') top center no-repeat;
+  background: url('../images/css/register_complete_banner.jpg') top center no-repeat;
 }
 #main-feature.registerComplete > h2 {
   margin-top: 35px;
@@ -546,7 +546,7 @@ body {
   width: 95px;
   height: 30px;
   display: block;
-  background: url('/static/images/css/footer-mozilla.png') top center no-repeat;
+  background: url('../images/css/footer-mozilla.png') top center no-repeat;
 }
 #footer #footer-wrapper #sub-footer {
   width: 240px;
@@ -592,14 +592,14 @@ span.toggle {
   float: left;
   width: 73px;
   height: 73px;
-  background: url("/static/images/css/logo.png") no-repeat scroll 0 0 transparent;
+  background: url("../images/css/logo.png") no-repeat scroll 0 0 transparent;
   background-position: left bottom;
 }
 a#browserid:hover {
   text-decoration: none;
 }
 .loginButton {
-  background-image: url('/static/images/css/login_button.png');
+  background-image: url('../images/css/login_button.png');
   width: 204px;
   height: 38px;
   line-height: 38px;
@@ -619,7 +619,7 @@ a#browserid:hover {
   text-indent: 9px;
 }
 .submitButton {
-  background-image: url('/static/images/css/submit_button.png');
+  background-image: url('../images/css/submit_button.png');
   width: 202px;
   height: 46px;
   line-height: 46px;
@@ -726,7 +726,7 @@ a#browserid:hover {
 }
 .joinCircle {
   position: absolute;
-  background-image: url("/static/images/css/join_circle.png");
+  background-image: url("../images/css/join_circle.png");
   background-repeat: no-repeat;
   background-position: bottom;
   width: 135px;
@@ -743,7 +743,7 @@ a#browserid:hover {
 }
 .loveCircle {
   position: absolute;
-  background-image: url("/static/images/css/love_circle.png");
+  background-image: url("../images/css/love_circle.png");
   background-repeat: no-repeat;
   background-position: bottom;
   width: 135px;
@@ -1050,7 +1050,7 @@ a#browserid:hover {
   background-attachment: scroll;
   background-clip: border-box;
   background-color: transparent;
-  background: url("/static/images/css/poker.png"), url("/static/images/css/background-404.png");
+  background: url("../images/css/poker.png"), url("../images/css/background-404.png");
   background-origin: padding-box;
   background-position: 0% 35%, right top;
   background-repeat: no-repeat, repeat;
