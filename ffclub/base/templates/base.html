@@ -28,7 +28,7 @@
     <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}"/>
     <meta property="og:description" content="{% block og_desc %}{{ page_description }}{% endblock %}"/>
     <meta property="og:image" content="
-            {% block og_image %}{{ request.build_absolute_uri(STATIC_URL)+page_image|urlencode }}{% endblock %}"/>
+            {% block og_image %}{{ request.build_absolute_uri(STATIC_URL)+page_image }}{% endblock %}"/>
     <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri() }}{% endblock %}"/>
   {% endif %}
   <title>{% block title %}{{ page_title }}{% endblock %}</title>

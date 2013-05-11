@@ -1,7 +1,7 @@
 {% if productKeywords %}
   {% set page_keywords = productKeywords %}
 {% endif %}
-{% set page_image = product.photos.get(usage='preview').image_medium.name %}
+{% set page_image = product.photos.get(usage='preview').get_large_path() %}
 {% set page_title = product.title %}
 {% set page_description = product.description %}
 {% extends "base.html" %}
@@ -26,9 +26,9 @@
   <ul class="productPhotos">
     {% for photo in photos %}
       <li class="productPhoto">
-        <a class="productPhotoLink" href="{{ STATIC_URL }}{{ photo.image_large.name }}" title="{{ photo.description }}">
+        <a class="productPhotoLink" href="{{ STATIC_URL }}{{ photo.get_large_path() }}" title="{{ photo.description }}">
           <img width="{{ photo.image_large_width }}" height="{{ photo.image_large_height }}"
-               src="{{ STATIC_URL }}{{ photo.image_large.name }}"
+               src="{{ STATIC_URL }}{{ photo.get_large_path() }}"
                alt="{{ photo.description }}" title="{{ photo.description }}"/>
         </a>
 

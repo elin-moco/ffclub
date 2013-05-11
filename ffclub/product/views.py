@@ -28,7 +28,7 @@ def wall(request):
     for product in products:
         previewPhotos = filter(lambda x: x.usage == 'preview', product.photos.all())
         if len(previewPhotos) > 0:
-            product.preview_image_name = previewPhotos[0].image_large.name
+            product.preview_image_name = previewPhotos[0].get_large_path()
         orderDetailData.append({'product': product})
 
     OrderDetailFormset = inlineformset_factory(Order, OrderDetail,

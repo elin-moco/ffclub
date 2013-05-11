@@ -10,6 +10,7 @@ import commonware
 
 # from forms import EventForm
 from django.utils import simplejson
+from django.utils.encoding import iri_to_uri
 from ffclub.event.utils import send_photo_report_mail
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload

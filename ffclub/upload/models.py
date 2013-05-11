@@ -9,6 +9,7 @@ from django.contrib.contenttypes import generic
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.encoding import iri_to_uri
 
 from utils import *
 
@@ -102,6 +103,15 @@ class ImageUpload(models.Model):
 
     def get_absolute_url(self):
         return reverse('event.photo', kwargs={'photo_id': self.id})
+
+    def get_large_path(self):
+        return iri_to_uri(self.image_large.name)
+
+    def get_medium_path(self):
+        return iri_to_uri(self.image_medium.name)
+
+    def get_small_path(self):
+        return iri_to_uri(self.image_small.name)
 
     def __unicode__(self):
         return u'%s -> %s: %s (%s)' % (self.entity_object, self.image_large.name, self.usage, self.status)

@@ -67,9 +67,9 @@
                  title="{{ event_photo.description }}">
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
-                     data-large-src="{{ STATIC_URL }}{{ event_photo.image_large.name }}"
+                     data-large-src="{{ STATIC_URL }}{{ event_photo.get_large_path() }}"
                      width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
-                     src="{{ STATIC_URL }}{{ event_photo.image_medium.name }}"
+                     src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
 
