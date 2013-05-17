@@ -316,6 +316,8 @@ INSTALLED_APPS = (
     'gunicorn',
     # Local apps
     'funfactory', # Content common to most playdoh-based apps.
+    'jingo_minify',
+
     # 'compressor',
 
     'tower', # for ./manage.py extract (L10n)
@@ -344,8 +346,6 @@ INSTALLED_APPS = (
     '%s.person' % PROJECT_MODULE,
     '%s.product' % PROJECT_MODULE,
     '%s.event' % PROJECT_MODULE,
-
-    'jingo_minify',
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -499,44 +499,44 @@ MINIFY_BUNDLES = {
             # 'css/ffcstyle.css',
         ),
         'base': (
-            'css/base.css',
+            'css/base.less',
         ),
         'tos': (
-            'css/tos.css',
+            'css/tos.less',
         ),
         'intro': (
-            'css/intro.css',
+            'css/intro.less',
         ),
         # 'person': (
         # ),
         'register': (
-            'css/register.css',
+            'css/register.less',
         ),
         'register.complete': (
-            'css/register.complete.css',
+            'css/register.complete.less',
         ),
         'order.complete': (
-            'css/order.complete.css',
+            'css/order.complete.less',
         ),
         'order.verify': (
-            'css/order.verify.css',
+            'css/order.verify.less',
         ),
         'event': (
-            'css/event.css',
+            'css/event.less',
             'css/slides.css',
         ),
         'event_photo': (
-            'css/event_photo.css',
+            'css/event_photo.less',
         ),
         'product': (
-            'css/product.css',
+            'css/product.less',
             'css/slides.css',
         ),
         'product_photos': (
-            'css/product_photos.css',
+            'css/product_photos.less',
         ),
         'error': (
-            'css/error.css',
+            'css/error.less',
         ),
     },
     'js': {
@@ -572,7 +572,7 @@ MINIFY_BUNDLES = {
     }
 }
 
-LESS_PREPROCESS = False
+LESS_PREPROCESS = True
 # LESS_BIN = '/usr/local/bin/lessc'
 
 
