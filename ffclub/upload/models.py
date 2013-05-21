@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
-import logging
+import commonware.log
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -13,7 +13,7 @@ from django.utils.encoding import iri_to_uri
 
 from utils import *
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 class ImageUpload(models.Model):

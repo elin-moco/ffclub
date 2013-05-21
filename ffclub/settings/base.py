@@ -281,7 +281,7 @@ MIDDLEWARE_CLASSES = (
     # 'funfactory.middleware.LocaleURLMiddleware',
     'johnny.middleware.LocalStoreClearMiddleware',
     'johnny.middleware.QueryCacheMiddleware',
-    'ffclub.base.BrowserDetectionMiddleware',
+    'ffclub.base.middleware.BrowserDetectionMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -291,7 +291,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
-    'ffclub.base.UserFullnameMiddleware',
+    'ffclub.base.middleware.UserFullnameMiddleware',
+    'ffclub.base.middleware.LogExceptionMiddleware',
 )
 
 

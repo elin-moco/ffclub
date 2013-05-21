@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
 
-import commonware
+import commonware.log
 
 # from forms import EventForm
 from django.utils import simplejson

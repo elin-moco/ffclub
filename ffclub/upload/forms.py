@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import commonware
+import commonware.log
 
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions

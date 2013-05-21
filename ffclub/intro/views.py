@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-import commonware
+import commonware.log
 from ffclub.person.models import Person
 
 log = commonware.log.getLogger('ffclub')

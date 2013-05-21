@@ -1,12 +1,12 @@
 from cStringIO import StringIO
 import os
-import logging
+import commonware.log
 
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 RESIZE_MODE_ASPECT_FILL = 0
 RESIZE_MODE_ASPECT_FIT = 1

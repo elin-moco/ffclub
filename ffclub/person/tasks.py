@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
+import commonware.log
 
 from celery.task import task
 
@@ -8,7 +8,7 @@ from ffclub.settings import SUBSCRIBER_EMAILS_PATH
 from ffclub.person.models import Person
 
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 @task()
