@@ -4,6 +4,7 @@ from django.http import HttpResponsePermanentRedirect
 from django.core.urlresolvers import reverse
 import commonware.log
 
+
 log = commonware.log.getLogger('ffclub')
 old_ie_patterns = re.compile(".*MSIE [6-8]\.")
 
@@ -16,7 +17,10 @@ class BrowserDetectionMiddleware(object):
                 return HttpResponsePermanentRedirect(redirect_path)
 
 
-class LogExceptionMiddleware(object):
+class LoggingMiddleware(object):
+    def process_request(self, request):
+        log.info(request.path)
+
     def process_exception(self, request, exception):
         log.exception(exception)
 
