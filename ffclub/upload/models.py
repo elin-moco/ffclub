@@ -60,7 +60,6 @@ class ImageUpload(models.Model):
 
     def save(self):
         if self.id is None:
-
             image_name = self.image_large.name
             content_type = self.image_large.file.content_type
             image_stream = open_image(self.image_large)

@@ -18,7 +18,7 @@ class BrowserDetectionMiddleware(object):
 
 class LogExceptionMiddleware(object):
     def process_exception(self, request, exception):
-        log.exception()
+        log.exception(exception)
 
 
 class UserFullnameMiddleware(object):
