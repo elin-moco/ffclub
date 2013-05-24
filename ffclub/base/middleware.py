@@ -19,10 +19,10 @@ class BrowserDetectionMiddleware(object):
 
 class LoggingMiddleware(object):
     def process_request(self, request):
-        log.info(request.path)
+        log.info(request.path, extra={'request': request,})
 
     def process_exception(self, request, exception):
-        log.exception(exception)
+        log.exception(exception, exc_info=True, extra={'request': request,})
 
 
 class UserFullnameMiddleware(object):
