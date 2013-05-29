@@ -1,7 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import *
 from django.contrib import auth
-import commonware
+import commonware.log
 
 from forms import PersonForm
 from models import Person

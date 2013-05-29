@@ -281,7 +281,7 @@ MIDDLEWARE_CLASSES = (
     # 'funfactory.middleware.LocaleURLMiddleware',
     'johnny.middleware.LocalStoreClearMiddleware',
     'johnny.middleware.QueryCacheMiddleware',
-    'ffclub.base.BrowserDetectionMiddleware',
+    'ffclub.base.middleware.BrowserDetectionMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -291,7 +291,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.FrameOptionsHeader',
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
-    'ffclub.base.UserFullnameMiddleware',
+    'ffclub.base.middleware.UserFullnameMiddleware',
+    'ffclub.base.middleware.LoggingMiddleware',
 )
 
 
@@ -358,7 +359,7 @@ INSTALLED_APPS = (
     # L10n
     'product_details',
 
-    # 'raven.contrib.django.raven_compat',
+    'raven.contrib.django.raven_compat',
 )
 
 
@@ -650,5 +651,5 @@ EMAIL_USE_TLS = True
 
 # Set your DSN value
 RAVEN_CONFIG = {
-    'dsn': 'http://74876894ee994abcad98819694957f2f:bc278ae9652b43e19857089446fa74ba@sentry.inspire.mozilla.com.tw/2',
+    'dsn': 'http://74876894ee994abcad98819694957f2f:bc278ae9652b43e19857089446fa74ba@sentry.inspire.mozilla.com.tw:9000/2',
 }

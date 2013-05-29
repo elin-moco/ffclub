@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from email.errors import MessageError
-import logging
+import commonware.log
 from email.header import Header
 
 from celery.task import task
@@ -17,7 +17,7 @@ from ffclub.product.models import Product, Order, OrderDetail
 from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, DEFAULT_REPLY_EMAIL, DEFAULT_NOTIFY_EMAIL
 
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 @task()

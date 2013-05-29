@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
+import commonware.log
 
 from django.forms import ModelForm, ValidationError
 from django.forms.models import BaseInlineFormSet
@@ -8,7 +8,7 @@ from django.forms.models import BaseInlineFormSet
 from ffclub.product.models import Product, Order, OrderDetail
 
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 class ProductForm(ModelForm):

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 import string
-import logging
+import commonware.log
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 def generate_random_string(length, string_set=string.ascii_letters + string.digits + string.punctuation):

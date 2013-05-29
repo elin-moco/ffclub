@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from email.header import Header
-import logging
+import commonware.log
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, DEFAULT_REPLY_EMAIL, DEFAULT_NOTIFY_EMAIL
 from ffclub.product.tasks import send_mail
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 def send_photo_report_mail(from_name, to_name, photo_id):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
+import commonware.log
 
 from django.contrib import auth
 from django.shortcuts import render, redirect
@@ -15,7 +15,7 @@ from tasks import *
 from utils import *
 
 
-log = logging.getLogger('ffclub')
+log = commonware.log.getLogger('ffclub')
 
 
 def wall(request):
