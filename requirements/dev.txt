@@ -2,9 +2,10 @@
 # needed to run the site, it belongs in requirements/prod.txt. If it's a
 # package for developers (testing, docs, etc.), it goes in this file.
 
+-r prod.txt
+
 django-debug-toolbar==0.9.4
 git+git://github.com/playfire/django-debug-toolbar-user-panel.git
 git+git://github.com/joymax/django-dtpanel-htmltidy.git
 -r ../vendor/src/funfactory/funfactory/requirements/compiled.txt
 -r ../vendor/src/funfactory/funfactory/requirements/dev.txt
--r custom.txt
