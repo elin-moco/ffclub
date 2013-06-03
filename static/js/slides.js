@@ -50,8 +50,11 @@ window.Modal = function () {
         else if (targ.hasClass('slidewrap') || !preventHide) {
             e.preventDefault();
             hide();
+            document.click();
         }
-
+        else {
+            document.click();
+        }
     }
 
     function attachEvents() {
