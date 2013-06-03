@@ -71,6 +71,11 @@ if DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += patterns(
         '',
+        (r'^media/img/sandstone/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'media/img/sandstone/'}),
+        (r'^media/img/tabzilla/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'media/img/tabzilla/'})
+    )
+    urlpatterns += patterns(
+        '',
         # url(r'^', include('debug_toolbar_htmltidy.urls')),
         url(r'', include('debug_toolbar_user_panel.urls')),
     )

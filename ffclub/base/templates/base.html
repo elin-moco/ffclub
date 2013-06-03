@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="js">
 <head>
 {% if not page_image %}
   {% set page_image = 'images/css/banner_default.jpg' %}
@@ -58,17 +58,15 @@
   {% endblock %}
 </head>
 <body>
+{% include "sandstone/tabzilla.html" %}
 <div id="body_wrapper">
-{% include "tabzilla.html" %}
 <div id="outer-wrapper">
   <div id="wrapper">
     {% block head %}
       <header id="masthead">
-        <span class="toggle" role="button" tabindex="0" data-nav="closed">Menu</span>
-
+        <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+        {% include "navigator.html" %}
         <h1><a href="/">Firefox 活力軍</a></h1>
-        <a title="打開" role="button" class="tabzilla-closed" href="http://mozilla.com.tw/" id="tabzilla">Mozilla</a>
-      {% include "navigator.html" %}
       </header>
     {% endblock %}
 
@@ -88,7 +86,7 @@
 </div>
 <!-- end of outer-wrapper-->
 </div>
-{% include "footer.html" %}
+{% include "sandstone/footer.html" %}
 <!--end of body_warpper-->
 <div class="popup">
   {% block popup %}

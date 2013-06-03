@@ -341,6 +341,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     # Application base, containing global templates.
+    'sandstone',
     '%s.base' % PROJECT_MODULE,
     '%s.upload' % PROJECT_MODULE,
     '%s.intro' % PROJECT_MODULE,
@@ -498,6 +499,9 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
+            'css/sandstone/tabzilla.less.css',
+            'css/sandstone/navigator.less.css',
+            'css/sandstone/footer.less.css',
             # imported using less
             # 'css/ffcstyle.css',
         ),
@@ -546,7 +550,8 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'js/libs/jquery-1.9.1.js',
-            'js/main.js',
+            'js/sandstone/sandstone-tabzilla-nav-all.js',
+            # 'js/main.js',
         ),
         'browserid': (
             'js/browserid.js',

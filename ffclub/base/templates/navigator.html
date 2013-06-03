@@ -1,42 +1,43 @@
-<div role="navigation" id="nav-main">
-  <nav>
-    <ul role="menubar">
-      <li role="menuitem" class="topMenu first current">
-        <a title="推廣 Firefox" href="{{ url('intro.home') }}" tabindex="0">活力軍</a>
-        <ul>
-          <li>
-            <a title="提供宣傳品申請" href="{{ url('product.wall') }}" tabindex="-1">申請宣傳品</a>
-          </li>
-          <li>
-            <a title="推廣照片分享" href="{{ url('event.wall') }}" tabindex="-1">活力軍成果展</a>
-          </li>
-        </ul>
-      </li>
+<nav id="nav-main" role="navigation">
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+  <ul id="nav-main-menu" class="has-submenus" role="menubar">
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="推廣 Firefox" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">活力軍</a>
+      <ul id="nav-main-submenu" aria-expanded="false" class="submenu">
+        <li class="first">
+          <a title="提供宣傳品申請" href="{{ url('product.wall') }}" tabindex="-1">申請宣傳品</a>
+        </li>
+        <li class="last">
+          <a title="推廣照片分享" href="{{ url('event.wall') }}" tabindex="-1">活力軍成果展</a>
+        </li>
+      </ul>
+    </li>
     {% if request %}
       {% if request.user.is_active %}
-        <li role="menuitem" class="topMenu last current">
-          <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0">
+        <li role="menuitem" class="topMenu no-mobile-submenu last">
+          <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
+             aria-owns="nav-user-submenu" aria-haspopup="true">
             帳號
             {% if request.user.fullname %}
               : {{ request.user.fullname }}
             {% endif %}
             </a>
-          <ul>
-            <li>
+          <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
+            <li class="first">
               <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
             </li>
-            <li>
+            <li class="last">
               <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
             </li>
           </ul>
         </li>
       {% else %}
-        <li role="menuitem" class="topMenu last current">
-          <a title="登入" class="browserid" tabindex="0" href="javascript:void(0);">登入</a>
+        <li role="menuitem" class="last">
+          <a title="登入" class="browserid no-submenu" tabindex="-1" href="javascript:void(0);"
+             aria-haspopup="false">登入</a>
         </li>
       {% endif %}
     {% endif %}
-    </ul>
-  </nav>
-  <div class="close"></div>
-</div>
+  </ul>
+</nav>
