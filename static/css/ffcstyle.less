@@ -326,9 +326,7 @@ a#browserid:hover {
 
 .floatingCircle(@image) {
   position: absolute;
-  background-image: url(@image);
-  background-repeat: no-repeat;
-  background-position: bottom;
+  background: url(@image) no-repeat bottom;
   width: 135px;
   height: 135px;
   left: 55px;
@@ -338,36 +336,39 @@ a#browserid:hover {
 .jumpKeyFrames() {
   0% {
     top: -75px;
-    transition-timing-function: ease-in;
     background-size: 100% 100%;
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
   }
   50% {
     top: -45px;
-    transition-timing-function: ease-out;
     background-size: 100% 80%;
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
   }
   100% {
-    transition-timing-function: ease-in;
     top: -75px;
     background-size: 100% 100%;
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
   }
 }
 
 @keyframes jump {
-  .jumpKeyFrames;
+  .jumpKeyFrames();
 }
 @-moz-keyframes jump {
-  .jumpKeyFrames;
-  }
+  .jumpKeyFrames();
+}
 @-webkit-keyframes jump {
-  .jumpKeyFrames;
-  }
+  .jumpKeyFrames();
+}
 @-o-keyframes jump {
-  .jumpKeyFrames;
-  }
+  .jumpKeyFrames();
+}
 @-ms-keyframes jump {
-  .jumpKeyFrames;
-  }
+  .jumpKeyFrames();
+}
 
 .joinCircle {
   .floatingCircle("../images/css/join_circle.png");
