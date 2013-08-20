@@ -108,3 +108,7 @@ def event_photo_report(request, photo_id):
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
+
+
+def attack_on_web(request):
+    return render(request, 'event/attack-on-web.html')

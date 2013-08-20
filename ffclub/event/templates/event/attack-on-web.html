@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Firefox OS APP 校園創意競賽 - Mozilla Taiwan{% endblock %}
+
+
+{% block base_css %}
+  {{ css('attack-on-web') }}
+{% endblock %}
+{% block head %}
+	<div class="eventShowHead">
+      <header id="masthead">
+        <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+        <nav id="nav-main" role="navigation">
+        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+  <ul id="nav-main-menu" class="has-submenus" role="menubar">
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="首頁" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">首頁</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="活動獎項" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">活動獎項</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="線上報名" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">線上報名</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="成果展示" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">成果展示</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="活動微電影" href="{{ url('intro.home') }}" tabindex="0"
+         aria-owns="nav-main-submenu" aria-haspopup="true">活動微電影</a>
+    </li>
+    {% if request %}
+      {% if request.user.is_active %}
+        <li role="menuitem" class="topMenu no-mobile-submenu last">
+          <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
+             aria-owns="nav-user-submenu" aria-haspopup="true">
+            帳號
+            {% if request.user.fullname %}
+              : {{ request.user.fullname }}
+            {% endif %}
+            </a>
+          <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
+            <li class="first">
+              <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
+            </li>
+            <li class="last">
+              <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
+            </li>
+          </ul>
+        </li>
+      {% else %}
+        <li role="menuitem" class="last">
+          <a title="登入" class="browserid no-submenu" tabindex="-1" href="javascript:void(0);"
+             aria-haspopup="false">登入</a>
+        </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+</nav>
+<h1><a href="//mozilla.com.tw">Firefox 活力軍</a></h1>
+    </header>
+  </div>
+{% endblock %}
+
+
+{% block banner %}
+  <div id="main-feature" class="banner">
+    <img id="main-feature-banner" src="/static/img/attack_on_web_main_feature.png" />
+  </div>
+
+  <nav id="nav-primary" class="menu-principal-container">
+    <ul id="menu-principal" class="menu">
+      <li><a href="#">活動介紹</a></li>
+      <li><a href="#">活動辦法</a></li>
+      <li><a href="#">評分方式</a></li>
+      <li><a href="#">參賽資格</a></li>
+      <li><a href="#">活動時程</a></li>
+      <li><a href="#">注意事項</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <ul class="content-list">
+    <li id="main-context">
+      <h2 class="entry-title">的夠我從的種分下立海利可現</h2>
+      <p>你要上比天，落資根當的上，最其式面……最的素和車……市斯園一夠在、再家話流況。就造包母主親一、政進東到化機上動品面，父的顧下值、加好統同看臺覺阿。子史巴像山心盡子家不還術，程當才好興至年，紀事突了爸們一喜觀名政專目運腦不有期論油影上投出日看化比。境知作險說道團你度心基境學馬就日著議就色覺在到信車的依直次次建手，以政樂法內到公去成要狀教，花走列生家球風語止了熱後有我以；北子一有保空要里想拉：要好媽外苦識大目氣前也：畫就什比人送痛書合：上格獎興向聽體國計濟。我門識接待下他林親經。</p>
+      <h2>戰會一以力</h2>
+      <p>木日力觀健那思似正象意因來談走了了，會運是學速的笑。了不的體那。為都幾倒；動不發我內寫道代下我開國身馬解青？一省處告們有使首光好求海工，速有了我可語再黨要難，客好白！手下是，樣教究天更然來一說料的在很影話……世張會程度到：時時馬子，收教興……家情準站。大者賽前，東使臺小動上切花須有中的金達記歌高種，房善有下大西即真我起會校工治備外應太些領原時因兩。的你目久他家基聽開價舞告候雲到什適己功支……第打日城。地海軍理民，又推從成定運，月推年線長心……校問身水題！在服可的會溫：變價人知共男水進因不克發，破好保。</p>
+    </li>
+    <li id="sidebar">
+      <h3 class="widget-title">進擊的工具</h3>
+      <ul id="useful-links">
+        <li><a href="#"><h4>Vit Idiot</h4><span class="desc">Hello, world.</span></a></li>
+        <li><a href="#"><h4>Vit Idiot2</h4><span class="desc">Hello, world2.</span></a></li>
+        <li><a href="#"><h4>Vit Idiot3</h4><span class="desc">Hello, world3.</span></a></li>
+        <li><a href="#"><h4>Vit Idiot4</h4><span class="desc">Hello, world4.</span></a></li>
+      </ul>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block base_js %}
+  {{ js('attack-on-web') }}
+{% endblock %}

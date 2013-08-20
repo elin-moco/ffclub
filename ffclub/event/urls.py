@@ -10,4 +10,5 @@ urlpatterns = patterns(
     url(r'^events/photos/(?P<photo_id>\d+)$', views.event_photo, name='event.photo'),
     url(r'^events/photos/(?P<photo_id>\d+)/report$', views.event_photo_report, name='event.photo.report'),
     url(r'^events/photos/(?P<photo_id>\d+)/remove$', views.event_photo_remove, name='event.photo.remove'),
+    url(r'^events/attack-on-web$', views.attack_on_web, name='event.attack.on.web'),
 )

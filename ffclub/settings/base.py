@@ -545,6 +545,9 @@ MINIFY_BUNDLES = {
         'error': (
             'css/error.less',
         ),
+        'attack-on-web': (
+            'css/event/attack-on-web.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -576,6 +579,9 @@ MINIFY_BUNDLES = {
         'product': (
             'js/slides.js',
             'js/product.js',
+        ),
+        'attack-on-web': (
+            'js/event/attack-on-web.js',
         ),
     }
 }

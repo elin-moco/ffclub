@@ -1,0 +1,212 @@
+@import "../ffcstyle";
+
+@attack_page_width: 960px;
+
+#outer-wrapper{
+  width:100%;
+  background:#fff;
+  border-top: 2px solid #FFFFFF;
+}
+
+#wrapper{
+  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(../../images/css/bg_sand.png) left top repeat;
+  padding-bottom:50px;
+}
+
+#nav-main-menu li.hover a{
+  background-image:none;
+}
+#masthead {
+  margin-bottom:25px;
+  h1{
+  background: url("/static/images/css/header-logo.png") no-repeat scroll left top / 130px 49px transparent;
+  }
+}
+#main-feature{
+  &.banner{
+    width:@attack_page_width;
+  }
+  margin-bottom:25px;
+}
+#main-feature-banner{
+  width:@attack_page_width;
+  height:auto;
+}
+#nav-primary {
+    max-width:@attack_page_width;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans Light',"Lucida Sans","Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+    text-align: center;
+    position:relative;
+    margin-bottom:25px;
+    a{
+      border-left: 1px dotted #CCCCCC;
+      display: inline-block;
+      padding: 6px 15px;
+    }
+}
+#menu-principal{
+  &.menu{
+    list-style: none outside none;
+    margin-left:20px;
+    margin-right:20px;
+    li{
+        display: inline-block;
+        padding: 12px 0;
+        a:link, a:visited {
+          color: #67A7D0;
+        }
+        &:first-child a{
+          border:none;        
+        }
+    }
+  }
+}
+#main-content ul li {
+    list-style-type: none;
+    background: none repeat scroll 0 0 transparent;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.content-list{
+  margin:0 auto;
+  max-width:@attack_page_width;
+  &:after{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+  }
+  li{
+    float: left;
+    font-size: 14px;
+    margin: 0 50px 0 0;
+    padding: 0;
+    //width: 250px;
+    height:auto;
+  }
+  h1, h2, h3, h4, h5, h6{
+    font-style:normal;
+    margin: 0 0 0.5em;
+  }
+}
+#main-context{
+  width: 70%;
+}
+#sidebar{
+  width: 25%;
+  float:right;
+  h1, h2, h3, h4, h5, h6{
+    &.widget-title{
+      border-bottom: 2px dotted #D6D6D6;
+      font-size: 28px;
+      padding-bottom: 3px;
+      //width: 80%;
+    }
+  }
+  ul#useful-links{
+    list-style: none outside none;
+    margin: 1em 0;
+    padding: 0;
+  }
+  ul#useful-links li{
+    border-bottom: 0 none;
+    margin: 0 0 15px 0;
+    a:hover{
+        text-decoration: none;
+        text-shadow: 0 0 0px, 0 2px 2px rgba(0, 0, 0, 0.2);
+        transition: text-shadow 0.1s ease-out 0s;
+    };
+    a, a:visited, a:active{
+      width:250px;
+      float: left;
+      &:link{
+        text-decoration: none;
+        outline: 0 none;
+      }
+      &:before{
+        background-color: blue;
+        content: "";
+        display: inline-block;
+        height: 61px;
+        left: -5px;
+        position: relative;
+        top: 0;
+        width: 61px;
+        float:left;
+      }
+      &:after{
+        clear: both;
+        content: "";
+        display: block;
+        height: 0;
+        visibility: hidden;
+      }
+      &:hover{
+        &:before{
+          animation-direction: alternate;
+          animation-duration: 2.0s;
+          animation-name: glow;
+          animation-timing-function: linear;
+          animation-property: background-color;
+          background-color: red;
+        }
+      }
+      span{
+        &.desc{
+          display: block;
+          color:#000000;
+        }
+      }
+      h1, h2, h3, h4, h5, h6{
+        color: #AF3232;
+        font-size: 16px;
+        //margin: 15px 0 0;
+        padding: 0;
+        margin:0;
+        display: inline-block;
+        vertical-align: top;
+        &:after{
+          content: " »";
+          clear: both;
+          display: block;
+          height: 0;
+          visibility: hidden;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 640px){
+  html, body{
+    width:100%;
+    margin:0 auto;
+    padding:0;
+  }
+  
+  #main-feature.banner {
+    width: 100%;
+    //overflow:hidden;
+  }
+  #main-feature-banner{
+      width:100%;
+      //min-height: 200px;
+  }
+  .content-list{
+      padding:1em;
+  }
+  #main-context{
+    width: 100%;
+  }
+  #sidebar{
+    width:100%;
+    clear:both;
+    float:left;
+  }
+}
