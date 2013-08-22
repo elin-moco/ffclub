@@ -3,8 +3,8 @@
         "pk": 1,
         "model": "sites.site",
         "fields": {
-            "domain": "firefox.club.com",
-            "name": "firefox.club.com"
+            "domain": "firefox.club.tw",
+            "name": "firefox.club.tw"
         }
     },
     {
