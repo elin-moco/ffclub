@@ -111,4 +111,16 @@ def event_photo_report(request, photo_id):
 
 
 def attack_on_web(request):
-    return render(request, 'event/attack-on-web.html')
+    return render(request, 'event/attack-on-web/index.html')
+
+def prizes(request):
+    return render(request, 'event/attack-on-web/prizes.html')
+
+def apply(request):
+    return render(request, 'event/attack-on-web/apply.html')
+
+def demo(request):
+    return render(request, 'event/attack-on-web/demo.html')
+
+def microfilm(request):
+    return render(request, 'event/attack-on-web/microfilm.html')

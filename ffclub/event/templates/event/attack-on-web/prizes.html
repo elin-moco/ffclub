@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% set page_title = 'Firefox OS APP 校園創意競賽獎項 - Mozilla Taiwan' %}
+{% set page_description = 'Firefox OS 的出現，給予有心開發行動 App 的 Apper (應用程式開發者) 一片無人踏入的新藍海外。由 Mozilla Taiwan 主辦的 Firefox OS APP 創意競賽將引領你搶先攻佔這片新市場。歡迎對於 APP 懷抱創意與夢想的你報名參加！' %}
+{% set page_keywords = 'Mozilla,Mozilla Taiwan,Firefox,Firefox OS,Firefox OS APP,APP,APPs,Web APP,application,創意競賽,開發者,行動裝置,smartphone,developer,iOS,Android,apper,firefox phone,app競賽' %}
+
+
+{% block base_css %}
+  {{ css('attack-on-web') }}
+{% endblock %}
+{% block head %}
+	{% include "event/attack-on-web/navigator.html" %}
+{% endblock %}
+
+
+{% block banner %}
+  <div id="main-feature" class="banner">
+    <img id="main-feature-banner" src="/static/img/attack_on_web_main_feature.png" />
+  </div>
+{% endblock %}
+
+{% block content %}
+  <ul class="content-list">
+    <li id="main-context">
+      <h2>活動獎項</h2>
+      <ul>
+        <h3 class="entry-title">創意組</h3>
+        <li>第一名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置＋Firefox&nbsp;大禮包（含&nbsp;Firefox&nbsp;悠遊卡3000元）</li>
+        <li>第二名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置＋Firefox&nbsp;大禮包（含&nbsp;Firefox 悠遊卡1000元）</li>
+        <li>第三名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置</li>
+        <li>最佳團體&nbsp;Firefox&nbsp;大禮包（含悠遊卡1000元）</li>
+        <li>佳作&nbsp;Firefox&nbsp;大禮包&nbsp;(各取&nbsp;15&nbsp;名)</li>
+      </ul>
+      <ul>
+        <h3 class="entry-title">實作組</h3>
+        <li>第一名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置＋香港-台灣雙人來回機票</li>
+        <li>第二名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置＋Firefox&nbsp;大禮包（含悠遊卡3000元）</li>
+        <li>第三名&nbsp;Firefox&nbsp;OS&nbsp;行動裝置</li>
+        <li>最佳團體&nbsp;Firefox&nbsp;大禮包（含悠遊卡1000元）</li>
+        <li>佳作&nbsp;Firefox&nbsp;大禮包&nbsp;(各取&nbsp;15&nbsp;名)</li>
+      </ul>
+    </li>
+    <li id="sidebar">
+      <h3 class="widget-title">立體機動裝置</h3>
+      <ul id="useful-links">
+        <li class="sidebar-links"><a id="firefox-browser-link" href="#"><h4>Firefox&nbsp;瀏覽器</h4><span class="desc">Vit Idiot</span></a></li>
+        <li class="sidebar-links"><a id="simulator-link" href="#"><h4>Simulator</h4><span class="desc">Vit Idiot</span></a></li>
+        <li class="sidebar-links"><a id="developer-info-link" href="#"><h4>開發者資訊</h4><span class="desc">Vit Idiot</span></a></li>
+        <li class="sidebar-links"><a id="match-up-link" href="#"><h4>媒合社團</h4><span class="desc">Vit Idiot</span></a></li>
+      </ul>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block base_js %}
+  {{ js('attack-on-web') }}
+{% endblock %}
