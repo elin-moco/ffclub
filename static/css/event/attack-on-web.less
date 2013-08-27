@@ -13,14 +13,77 @@
   padding-bottom:50px;
 }
 
-#nav-main-menu li.hover a{
-  background-image:none;
+#masthead{
+  width:100%;
+  h1, h2, h3, h4, h5, h6{
+    padding:0;
+    position:absolute;
+    top:6px;
+  }
+}
+
+.fixed #head-inner {
+    position: fixed;
+    border-top: 2px solid #FFFFFF;
+}
+
+#head-inner {
+    background: none repeat scroll 0 0 rgba(27, 34, 38, 0.9);
+    //border-top: 1px solid #FFFFFF;
+    left: 0;
+    min-height: 50px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 90;
+    &:after{
+      bottom: -6px;
+      content: "";
+      display: block;
+      height: 6px;
+      position: absolute;
+      width: 100%;
+    }
+    #head-wrap{
+      width:@attack_page_width;
+      position: relative;
+      margin:0 auto;
+      &:after{
+        clear: both;
+      content: "";
+      display: block;
+      height: 0;
+      visibility: hidden;
+      }
+    }
+}
+#tabzilla {
+    //position: absolute;
+    top:0;
+    right:0;
+    z-index: 91;
+}
+
+#nav-main-menu li{
+  & a{
+    text-shadow:none;
+    color: #FFFFFF !important;
+    &:hover{
+      outline: 0 none;
+      //text-decoration: none;
+      text-shadow: 0px 0px 7px #ffffff;
+    }
+  }
+  &.hover a{
+    background-image:none;
+  }
 }
 
 #main-feature{
   &.banner{
     width:@attack_page_width;
   }
+  margin-top:90px;
   margin-bottom:25px;
 }
 #main-feature-banner{
@@ -32,7 +95,7 @@
     margin: 0 auto;
     background-color: #FFFFFF;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    font-family: 'Open Sans Light',"Lucida Sans","Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+    font-family: Vollkorn,Georgia,"Heiti TC","LiHei Pro","微軟正黑體","WenQuanYi - Micro Hei",serif;
     text-align: center;
     position:relative;
     margin-bottom:25px;
@@ -272,10 +335,17 @@ table {
     margin:0 auto;
     padding:0;
   }
-  
+  #eventShowHead {
+    position:fixed;
+  }
   #main-feature.banner {
     width: 100%;
     //overflow:hidden;
+  }
+  #head-inner #head-wrap {
+    margin: 0 auto;
+    position: relative;
+    width: 100% !important;
   }
   #main-feature-banner{
       width:100%;

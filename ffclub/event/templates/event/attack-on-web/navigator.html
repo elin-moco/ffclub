@@ -1,9 +1,11 @@
 <div class="eventShowHead">
-      <header id="masthead">
-        <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
-        <nav id="nav-main" role="navigation">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
-          <ul id="nav-main-menu" class="has-submenus" role="menubar">
+      <header id="masthead" class="">
+        <div id="head-inner">
+          <div id="head-wrap">
+            <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+            <nav id="nav-main" role="navigation">
+              <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+              <ul id="nav-main-menu" class="has-submenus" role="menubar">
             <li id="nav-main-products" role="menuitem" class="topMenu first">
               <a title="首頁" href="{{ url('event.attack.on.web') }}" tabindex="0"
                  aria-owns="nav-main-submenu" aria-haspopup="true">首頁</a>
@@ -50,12 +52,14 @@
                 </li>
               {% endif %}
             {% endif %}
-          </ul>
-        </nav>
-        <h2 id="ffos-main-logo">
-          <a class="nav" href="//mozilla.com.tw">
-          <img alt="Firefox OS" src="/static/img/firefox-os.png">
-          </a>
-        </h2>
+              </ul>
+            </nav>
+            <h2 id="ffos-main-logo">
+            <a class="nav" href="//mozilla.com.tw">
+            <img alt="Firefox OS" title="Firefox OS" src="/static/img/firefox-os.png">
+            </a>
+            </h2>
+          </div>
+        </div>
     </header>
   </div>
