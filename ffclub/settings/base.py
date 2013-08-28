@@ -548,6 +548,10 @@ MINIFY_BUNDLES = {
         'attack-on-web': (
             'css/event/attack-on-web.less',
         ),
+        'applyform': (
+            'css/event/1835473341-formview_ltr.css',
+            'css/event/722395648-mobile_formview_ltr.css',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -582,6 +586,9 @@ MINIFY_BUNDLES = {
         ),
         'attack-on-web': (
             'js/event/attack-on-web.js',
+        ),
+        'applyform': (
+            'js/event/3328389227-formviewer_prd.js',
         ),
     }
 }
