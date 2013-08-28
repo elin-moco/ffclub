@@ -23,7 +23,3 @@ $('#menu-principal.menu li a').click(function() {
 	$('body, html').animate({ scrollTop: ($($(this).attr("href")).offset().top - 70) }, "slow");
 	return false;
 });
-
-function changeBg(){
-	console.log('yoo');
-}
