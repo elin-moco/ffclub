@@ -338,6 +338,30 @@ table {
   #eventShowHead {
     position:fixed;
   }
+
+  #masthead{
+  width:100%;
+    h1, h2, h3, h4, h5, h6{
+      margin: 0 55px !important;    
+    }
+  }
+
+  #nav-main-menu li{
+    & a{
+      color: #484848 !important;
+      text-decoration: none;
+      text-shadow: 1px 1px #FFFFFF;
+      &:hover{
+        outline: 0 none;
+        text-decoration: none;
+        text-shadow: none;
+      }
+    }
+    &.hover a{
+      background-image:none;
+    }
+  }
+
   #main-feature.banner {
     width: 100%;
     //overflow:hidden;
