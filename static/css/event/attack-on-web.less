@@ -79,11 +79,59 @@
   }
 }
 
+#nav-social-head {
+    max-width:@attack_page_width;
+    margin: 0 auto;
+    position: relative;
+    height: auto;
+    &:after{
+      clear: both;
+      content: "";
+      display: block;
+      height: 0;
+      visibility: hidden;
+    }
+    ul{
+      margin-top: 70px;
+      float:right;
+      letter-spacing: 1.8px !important;
+      font-size:13px !important;
+      font-weight:400 !important;
+      font-style:normal !important;
+      font-size-adjust:none !important;
+      line-height: 16px !important;
+      li{
+        display: inline-block;
+      }
+    }
+    a, a:link, a:visited{
+      color: #8D9092;
+      display: inline-block;
+      height: 34px !important;
+      overflow: hidden;
+      position: relative;
+      text-indent: -99em;
+      top: -5px;
+      width: 34px !important;
+      margin-left:5px;
+      &.facebook{
+        background-image: url("/static/img/social_media/gray/facebook.png");
+        background-repeat: no-repeat;
+        &:hover{
+          background-image: url("/static/img/social_media/color/facebook.png");
+        }
+      }
+      &.google{
+        background-image: url("/static/img/social_media/gray/google_plus.png");
+        background-repeat: no-repeat;      }
+    }  
+}
+
 #main-feature{
   &.banner{
-    width:@attack_page_width;
+    max-width:@attack_page_width;
   }
-  margin-top:90px;
+  margin-top:15px;
   margin-bottom:25px;
 }
 #main-feature-banner{

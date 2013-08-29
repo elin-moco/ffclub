@@ -1956,9 +1956,10 @@ td.ss-rightlabel {
     color: #C43B1D;
 }
 .ss-section-title {
-    background-color: #EEEEEE;
-    margin: 2em -0.4em 0;
-    padding: 0.4em;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 2em -0.4em 0 !important;
+    padding: 0.4em !important;
 }
 .ss-section-description {
     margin-top: 0.5em;
