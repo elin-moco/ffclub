@@ -3,11 +3,12 @@ img#the-fox{
     -moz-animation-timing-function: linear;
     -moz-animation-direction: alternate;
     -moz-animation-name: move;
-    -webkit-animation-name: move;
     -webkit-animation-duration: .5s;
-    -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
-    -webkit-animation-direction: alternate;
+     -webkit-animation-direction: alternate;
+    -webkit-animation-name: move;
+    animation-iteration-count:1;
+    -webkit-animation-iteration-count:1; /*Safari and Chrome*/
 }
 
 @-moz-keyframes move{
@@ -19,7 +20,15 @@ img#the-fox{
     80%{ right:-70px; bottom:0;}
     100%{ right:-60px; bottom:0;}
 }
-
+@-webkit-keyframes move{
+    0%{ right:-700px; bottom:0;}
+    20%{ right:-200px; bottom:0;}
+    40%{ right:-150px; bottom:0;}
+    60%{ right:-100px; bottom:0;}
+    70%{ right:-80px; bottom:0;}
+    80%{ right:-70px; bottom:0;}
+    100%{ right:-60px; bottom:0;}
+}
 blockquote {
     margin: 1em auto;
 
