@@ -1,4 +1,3 @@
-//套上CSS樣式
 (function() {
 var blackout_css = document.createElement("style");
 var blackout_css_content = document.createTextNode(
@@ -7,10 +6,9 @@ var blackout_css_content = document.createTextNode(
     "#blackout.out { top: -150%; }" + 
     "#blackout p { color: #FFFFFF; line-height: 1.5em;}" + 
     "#blackout h1 { border-bottom: 1px solid #CCC; color: white; font-family: sans-serif; font-size: 1.5em; font-weight: bold; line-height: 1.5em; margin: 0 0 1em 0.25em; padding: 0 0 0.25em; }" + 
-    "#blackout a { color: #CCC; text-decoration: underline; } #blackout a:hover { background: transparent; color: #EEEEEE; text-decoration: underline; }" +
-    "#blackout .anno { color: #BBB; font-size: 0.9em; margin-bottom: 1.5em; padding: 0 2em;}" +
     "#blackout img#the-fox{ position:absolute; right: -60px; bottom:0; }"+
-    "#blackout footer { display: block; height: 20%; text-align: center; } "
+    "#blackout footer { display: block; height: 20%; text-align: center; } " + 
+    "#blackout img#the-fox {-moz-animation-duration: .5s;-moz-animation-timing-function: linear;-moz-animation-direction: alternate;-moz-animation-name: move;-webkit-animation-name: move;-webkit-animation-duration: .5s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;-webkit-animation-direction: alternate;}"
 );
 blackout_css.appendChild(blackout_css_content);
 
