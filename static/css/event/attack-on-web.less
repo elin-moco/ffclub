@@ -43,6 +43,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .fixed #head-inner {
     position: fixed;
+    top: 0;
+    left:0;
+    width:100%;
     border-top: 2px solid #FFFFFF;
 }
 
@@ -126,23 +129,26 @@ h1, h2, h3, h4, h5, h6 {
     a, a:link, a:visited{
       color: #8D9092;
       display: inline-block;
-      height: 34px !important;
+      height: 35px !important;
       overflow: hidden;
       position: relative;
       text-indent: -99em;
       top: -5px;
-      width: 34px !important;
+      width: 35px !important;
       margin-left:5px;
-      &.facebook{
-        background-image: url("/static/img/social_media/gray/facebook.png");
-        background-repeat: no-repeat;
-        &:hover{
-          background-image: url("/static/img/social_media/color/facebook.png");
-        }
+      background:url("/static/img/socialmediaicon-black.png") no-repeat scroll 0 0 transparent;
+      &:hover{
+        background:url("/static/img/socialmediaicon-color.png") no-repeat scroll 0 0 transparent;
       }
-      &.google{
-        background-image: url("/static/img/social_media/gray/google_plus.png");
-        background-repeat: no-repeat;      }
+      &.facebook{
+        background-position: 0px 0px;
+      }
+      &.google{      
+        background-position: -53px 0px;
+      }
+      &.plurk{      
+        background-position: -106px 0px;
+      }
     }  
 }
 
@@ -458,15 +464,15 @@ a.button, a.button:link, a.button:visited{
     margin:0 auto;
     padding:0;
   }
-  #eventShowHead {
-    position:fixed;
-  }
 
   #masthead{
-  width:100%;
     h1, h2, h3, h4, h5, h6{
       margin: 0 55px !important;    
     }
+  }
+
+  #ffos-main-logo {
+    display: none;
   }
 
   #nav-main-menu li{

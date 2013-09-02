@@ -2,8 +2,8 @@
 var blackout_css = document.createElement("style");
 var blackout_css_content = document.createTextNode(
     "#blackout * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}" + 
-    "#blackout { background-color: rgba(0, 0, 0, 0.9);  background-size: cover; font-size: 16px; height: 100%; left: 0; margin: 0; overflow: hidden; position: fixed; text-align: left; top: 0; -webkit-transition: top 0.8s; transition: top 0.8s; width: 100%; z-index: 99999; }" +
-    "#blackout.out { top: -150%; }" + 
+    "#blackout { cursor:pointer; background-color: rgba(0, 0, 0, 0.9);  background-size: cover; font-size: 16px; height: 100%; left: 0; margin: 0; overflow: hidden; position: fixed; text-align: left; top: 0; -webkit-transition: top 0.8s; transition: top 0.8s; width: 100%; z-index: 99999; }" +
+    "#blackout.out { top: -150%;}" + 
     "#blackout p { font-family:arial;font-weight:bold;color: #FFFFFF; line-height: 1.5em;}" + 
     "#blackout h1 { border-bottom: 1px solid #CCC; color: white; font-family: sans-serif; font-size: 1.5em; font-weight: bold; line-height: 1.5em; margin: 0 0 1em 0.25em; padding: 0 0 0.25em; }" + 
     "#blackout img#the-fox{ position:absolute; right: -60px; bottom:0;}"+
