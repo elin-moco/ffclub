@@ -17,6 +17,10 @@ jQuery(document).ready(function() {
 		}
 		return false;
 	});
+	if ($(window).scrollTop()!=0)
+		if(!$('#masthead').hasClass('fixed'))
+			$('#masthead').addClass('fixed');
+	return false;
 });
 
 // scroll action buttom #19105

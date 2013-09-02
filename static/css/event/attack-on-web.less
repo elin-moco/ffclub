@@ -301,7 +301,7 @@ a#firefox-browser-link:before{
     }
     a:hover{
       &:before{
-        background: url("/static/img/black_icon61c.png") no-repeat scroll 0 0 transparent;
+        background: url("/static/img/color_icon61.png") no-repeat scroll 0 0 transparent;
         -moz-animation-duration: .5s;
         -moz-animation-timing-function: linear;
         -moz-animation-direction: alternate;
@@ -318,13 +318,19 @@ a#firefox-browser-link:before{
       background-position: 0 -3px;
     }
     a#simulator-link:before{
-      background-position: 0 -94px;
+      background-position: 0 -83px;
     }
     a#developer-info-link:before{
-      background-position: 0 -265px;
+      background-position: 0 -240px;
     }
     a#match-up-link:before{
-      background-position: 0 -180px;
+      background-position: 0 -160px;
+    }
+    a#course-ware-link:before{
+      background-position: 0 -320px;
+    }
+    a#event-calendar-link:before{
+      background-position: 0 -400px;
     }
     a{
       width:250px;
@@ -389,6 +395,11 @@ textarea, input[type="email"], input[type="password"], input[type="search"], inp
     line-height: 1.1;
     padding: 4px 10px;
     transition: all 0.1s linear 0s;
+    &:hover, &:focus{
+      border-color: #42A4E0;
+      box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4);
+      transition: all 0.1s linear 0s;
+    }
 }
 
 @-moz-keyframes glow {
