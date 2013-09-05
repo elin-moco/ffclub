@@ -5,3 +5,4 @@ johnny-cache==1.4
 pylibmc==1.2.3
 gunicorn==0.17.4
 raven==3.3.7
+MySQL-python==1.2.4
