@@ -1,0 +1,322 @@
+
+.goog-date-picker, .goog-date-picker th, .goog-date-picker td {
+    font: 13px Arial,sans-serif;
+}
+.goog-date-picker {
+    -moz-user-focus: normal;
+    -moz-user-select: none;
+    background: none repeat scroll 0 0 #C3D9FF;
+    border: 1px solid #000000;
+    color: #000000;
+    cursor: default;
+    float: left;
+    padding: 2px;
+    position: relative;
+}
+.goog-date-picker th {
+    text-align: center;
+}
+.goog-date-picker td {
+    padding: 1px 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+.goog-date-picker-menu {
+    -moz-user-focus: normal;
+    background: none repeat scroll 0 0 threedface;
+    border: 1px solid gray;
+    outline: medium none;
+    position: absolute;
+    z-index: 1;
+}
+.goog-date-picker-menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.goog-date-picker-menu ul li {
+    cursor: default;
+}
+.goog-date-picker-menu-selected {
+    background: none repeat scroll 0 0 #CCCCFF;
+}
+.goog-date-picker th {
+    font-size: 0.9em;
+}
+.goog-date-picker td div {
+    float: left;
+}
+.goog-date-picker button {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #2200CC;
+    font-weight: bold;
+    margin: 1px 0;
+    padding: 0;
+}
+.goog-date-picker-date {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+.goog-date-picker-week, .goog-date-picker-wday {
+    border: 0 solid #A2BBDD;
+    padding: 1px 3px;
+}
+.goog-date-picker-week {
+    border-right-width: 1px;
+}
+.goog-date-picker-wday {
+    border-bottom-width: 1px;
+}
+.goog-date-picker-head td {
+    text-align: center;
+}
+td.goog-date-picker-today-cont {
+    text-align: center;
+}
+td.goog-date-picker-none-cont {
+    text-align: center;
+}
+.goog-date-picker-month {
+    width: 11ex;
+}
+.goog-date-picker-year {
+    width: 6ex;
+}
+.goog-date-picker table {
+    border-collapse: collapse;
+}
+.goog-date-picker-other-month {
+    color: #888888;
+}
+.goog-date-picker-wkend-start, .goog-date-picker-wkend-end {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+td.goog-date-picker-selected {
+    background: none repeat scroll 0 0 #C3D9FF;
+}
+.goog-date-picker-today {
+    background: none repeat scroll 0 0 #99AABB;
+    border-color: #224466 #99BBDD #99BBDD #224466;
+    color: #FFFFFF;
+    font-weight: bold !important;
+}
+.ss-date input, .ss-datetime input, .ss-time input {
+    font: inherit;
+}
+.ss-q-time.goog-inline-block {
+    padding-left: 1.5em;
+}
+.ss-hidden-button {
+    border: medium none;
+    display: none;
+    height: 0;
+    padding: 0;
+    width: 0;
+}
+.ss-picker-button-container {
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+    height: 100%;
+    margin-left: 1ex;
+}
+.ss-picker-container {
+    left: 2ex;
+    position: absolute;
+    z-index: 2;
+}
+.ss-calendar-button {
+    border-left: 1px solid #DCDCDC;
+    padding: 5px 4px 4px;
+    z-index: 1;
+}
+.ss-datetime-box {
+    border: 1px solid #DCDCDC;
+    height: 32px;
+    margin-right: 0.6em;
+    min-height: 30px;
+    padding-left: 3px;
+    vertical-align: middle;
+}
+.ss-datetime-box select {
+    margin: 4px 3px;
+    vertical-align: middle;
+}
+.ss-datetime-box-spacer {
+    height: 32px;
+    vertical-align: middle;
+}
+.ss-grid {
+    overflow-x: auto;
+}
+.ss-gridnumbers {
+    border-bottom: 1px solid #D3D8D3;
+    text-align: center;
+}
+.ss-gridnumber {
+    display: block;
+    padding: 0.5em 0;
+}
+.ss-gridrow {
+    border-bottom: 1px solid #D3D8D3;
+    color: #666666;
+    padding: 0.5em 0.25em;
+    text-align: center;
+}
+.ss-grid-row-even {
+    background-color: #FFFFFF;
+}
+.ss-grid-row-odd {
+    background-color: #F2F2F2;
+}
+.ss-gridrow-leftlabel {
+    max-width: 200px;
+    min-width: 100px;
+    padding-left: 15px;
+    text-align: left;
+}
+.ss-grideditor-columns input {
+    line-height: 150%;
+}
+.ss-grideditor-editor .ss-magiclist-ul span.ss-header {
+    font-weight: bold;
+    padding-right: 1em;
+}
+.ss-grid-separator {
+    border: 1px solid #E5E5E5;
+}
+.ss-scalenumbers {
+    text-align: center;
+}
+.ss-scalenumber {
+    display: block;
+    padding: 0.5em 0;
+}
+.ss-scalerow {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #D3D8D3 -moz-use-text-color;
+    border-image: none;
+    border-style: solid none;
+    border-width: 1px 0;
+    color: #666666;
+    padding: 0.5em 0.25em;
+    text-align: center;
+}
+td.ss-leftlabel {
+    padding-left: 0;
+    text-align: right;
+}
+td.ss-rightlabel {
+    padding-right: 0;
+    text-align: left;
+}
+.ss-form-entry {
+    margin-bottom: 1.5em;
+}
+.ss-form-entry input {
+    margin-left: 0;
+    margin-top: 0;
+    vertical-align: middle;
+}
+.ss-form-entry select {
+    max-width: 100%;
+}
+.ss-q-title {
+    display: block;
+    font-weight: bold;
+}
+.ss-q-help {
+    display: block;
+    margin: 0.1em 0 0.25em;
+}
+.ss-secondary-text {
+    color: #666666;
+}
+.ss-textarea {
+    max-width: 99%;
+}
+.ss-q-long {
+    resize: vertical;
+    width: 70%;
+}
+.ss-choices {
+    list-style: none outside none;
+    margin: 0.5em 0 0;
+    padding: 0;
+}
+.ss-choice-item {
+    line-height: 1.3em;
+    margin: 0;
+    padding-bottom: 0.5em;
+}
+.ss-required-asterisk {
+    color: #C43B1D;
+}
+.ss-section-title {
+    background-color: #EEEEEE;
+    margin: 2em -0.4em 0;
+    padding: 0.4em;
+}
+.ss-section-description {
+    margin-top: 0.5em;
+}
+.ss-page-title {
+    margin: 0;
+    padding: 0;
+}
+.ss-formwidget-container:focus {
+    outline: medium none;
+}
+.ss-item {
+    margin: 12px 0;
+}
+.ss-image, .ss-video, .ss-embeddable-object-container {
+    max-width: 100%;
+    position: relative;
+}
+.ss-video {
+    border: medium none;
+}
+.ss-video-badge {
+    left: 0;
+    position: absolute;
+}
+.ss-video:focus, .ss-image:focus {
+    outline: medium none;
+}
+.embeddable-object-menu .jfk-button-collapse-left {
+    margin-right: 0;
+}
+.ss-form-container {
+    margin: 0 auto;
+    width: 90%;
+}
+.ss-edit-link {
+    display: none;
+}
+input[type="text"], input:not([type]) {
+    width: 90%;
+}
+.ss-terms {
+    display: block;
+    margin-left: 0;
+    text-align: left;
+}
+.ss-form, .ss-form-heading, .ss-footer {
+    padding: 0.5em;
+}
+h1.ss-form-title {
+    margin-top: 0;
+}
+pre {
+    overflow-x: hidden;
+    width: 90%;
+}
+.ss-q-long {
+    width: 90%;
+}
+.ss-top-of-page {
+    overflow-x: hidden;
+}
