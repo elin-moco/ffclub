@@ -1,0 +1,2117 @@
+.docs-icon {
+    direction: ltr;
+    height: 21px;
+    overflow: hidden;
+    text-align: left;
+    vertical-align: middle;
+    width: 21px;
+}
+.docs-icon-img:before {
+    content: url("//ssl.gstatic.com/docs/common/jfk_sprite95.png");
+}
+.docs-icon-img {
+}
+.docs-icon-img-legacy {
+    background: url("//ssl.gstatic.com/docs/common/jfk_sprite95.png") repeat scroll 0 0 transparent;
+}
+.docs-icon-img-container {
+    height: 2919px;
+    position: absolute;
+    width: 42px;
+}
+.goog-color-menu-button-indicator .docs-icon {
+    height: 19px;
+}
+.goog-menuitem-icon .docs-icon-img-container {
+    opacity: 0.55;
+}
+.goog-menuitem-icon .docs-icon-document, .goog-menuitem-icon .docs-icon-punch, .goog-menuitem-icon .docs-icon-presentation, .goog-menuitem-icon .docs-icon-spreadsheet, .goog-menuitem-icon .docs-icon-form, .goog-menuitem-icon .docs-icon-drawing, .goog-menuitem-icon .docs-icon-script {
+    opacity: 1;
+}
+.docs-icon-save {
+    left: 0;
+    top: -168px;
+}
+.docs-icon-print {
+    left: 0;
+    top: -1974px;
+}
+.docs-icon-undo, .docs-icon-redo-rtl {
+    left: -21px;
+    top: -1323px;
+}
+.docs-icon-redo, .docs-icon-undo-rtl {
+    left: -21px;
+    top: -756px;
+}
+.docs-icon-copy {
+    left: 0;
+    top: -2331px;
+}
+.docs-icon-cut {
+    left: -21px;
+    top: -2247px;
+}
+.docs-icon-paste {
+    left: 0;
+    top: -2583px;
+}
+.docs-icon-document {
+    left: -21px;
+    top: -966px;
+}
+.docs-icon-presentation {
+    left: -21px;
+    top: -2730px;
+}
+.docs-icon-punch {
+    left: -21px;
+    top: -2730px;
+}
+.docs-icon-spreadsheet {
+    left: 0;
+    top: -2163px;
+}
+.docs-icon-form {
+    left: -21px;
+    top: -525px;
+}
+.docs-icon-drawing {
+    left: 0;
+    top: -2352px;
+}
+.docs-icon-drawing-black {
+    left: -21px;
+    top: -2520px;
+}
+.docs-icon-script {
+    left: -21px;
+    top: -1302px;
+}
+.docs-icon-insert-script {
+    left: 0;
+    top: -1260px;
+}
+.docs-icon-gadget {
+    left: 0;
+    top: -2688px;
+}
+.docs-icon-image {
+    left: 0;
+    top: -2667px;
+}
+.docs-icon-clipboard {
+    left: 0;
+    top: -2520px;
+}
+.docs-icon-bold {
+    left: 0;
+    top: -756px;
+}
+.docs-icon-italic {
+    left: 0;
+    top: -987px;
+}
+.docs-icon-text-color {
+    left: 0;
+    top: -1533px;
+}
+.docs-icon-align-left {
+    left: -21px;
+    top: -1365px;
+}
+.docs-icon-align-center {
+    left: -21px;
+    top: -2562px;
+}
+.docs-icon-align-right {
+    left: 0;
+    top: -2877px;
+}
+.docs-icon-align-justify {
+    left: -21px;
+    top: -693px;
+}
+.docs-icon-valign-top {
+    left: -21px;
+    top: -1281px;
+}
+.docs-icon-valign-middle {
+    left: 0;
+    top: -1953px;
+}
+.docs-icon-valign-bottom {
+    left: -21px;
+    top: -378px;
+}
+.docs-icon-list-number {
+    left: 0;
+    top: -2415px;
+}
+.docs-icon-list-bullet {
+    left: -21px;
+    top: -546px;
+}
+.docs-icon-indent {
+    left: -21px;
+    top: -588px;
+}
+.docs-icon-outdent {
+    left: -21px;
+    top: -231px;
+}
+.docs-icon-line-spacing {
+    left: 0;
+    top: -1134px;
+}
+.docs-icon-underline {
+    left: 0;
+    top: -483px;
+}
+.docs-icon-text-bgcolor {
+    left: 0;
+    top: -651px;
+}
+.docs-icon-textbox {
+    left: -21px;
+    top: -777px;
+}
+.docs-icon-shapes {
+    left: 0;
+    top: -210px;
+}
+.docs-icon-line-width {
+    left: -21px;
+    top: -2058px;
+}
+.docs-icon-add-trendline {
+    left: -21px;
+    top: -357px;
+}
+.docs-icon-next {
+    left: -21px;
+    top: -1617px;
+}
+.docs-icon-previous {
+    left: 0;
+    top: -2058px;
+}
+.docs-icon-no-color {
+    left: 0;
+    top: -2478px;
+}
+.docs-icon-fill-color {
+    left: 0;
+    top: -1911px;
+}
+.docs-icon-line-color {
+    left: -21px;
+    top: -2226px;
+}
+.docs-icon-line-type {
+    left: 0;
+    top: -1575px;
+}
+.docs-icon-table {
+    left: 0;
+    top: -378px;
+}
+.docs-icon-comment {
+    left: 0;
+    top: -966px;
+}
+.docs-icon-comment-blank {
+    left: 0;
+    top: -1302px;
+}
+.docs-icon-comment-blank-highlighted {
+    left: -21px;
+    top: -21px;
+}
+.docs-icon-chart {
+    left: -21px;
+    top: -567px;
+}
+.docs-icon-list-number-rtl {
+    left: -21px;
+    top: -2625px;
+}
+.docs-icon-list-bullet-rtl {
+    left: 0;
+    top: -2856px;
+}
+.docs-icon-indent-rtl {
+    left: 0;
+    top: -1344px;
+}
+.docs-icon-outdent-rtl {
+    left: 0;
+    top: -2436px;
+}
+.docs-icon-line-spacing-rtl {
+    left: 0;
+    top: -2793px;
+}
+.docs-icon-text-ltr {
+    left: 0;
+    top: -1848px;
+}
+.docs-icon-text-rtl {
+    left: 0;
+    top: -672px;
+}
+.docs-icon-sheet-rtl {
+    left: -21px;
+    top: -2310px;
+}
+.docs-icon-share {
+    left: -21px;
+    top: -2709px;
+}
+.docs-icon-subscript {
+    left: 0;
+    top: -903px;
+}
+.docs-icon-superscript {
+    left: -21px;
+    top: -42px;
+}
+.docs-icon-strikethrough {
+    left: 0;
+    top: -2247px;
+}
+.docs-icon-clear-formatting {
+    left: -21px;
+    top: -1533px;
+}
+.docs-icon-link {
+    left: -21px;
+    top: -2394px;
+}
+.docs-icon-special-character {
+    left: 0;
+    top: -1365px;
+}
+.docs-icon-close-white {
+    left: 0;
+    top: -588px;
+}
+.docs-icon-close-small {
+    left: -21px;
+    top: -1764px;
+}
+.docs-icon-paint-format {
+    left: 0;
+    top: -2814px;
+}
+.docs-icon-video {
+    left: -21px;
+    top: -2100px;
+}
+.docs-icon-reload {
+    left: 0;
+    top: -546px;
+}
+.docs-icon-reload-rtl {
+    left: 0;
+    top: -1197px;
+}
+.docs-icon-insert-page-break {
+    left: -21px;
+    top: -714px;
+}
+.docs-icon-close {
+    left: -21px;
+    top: -294px;
+}
+.docs-icon-check {
+    left: 0;
+    top: -1827px;
+}
+.docs-icon-up {
+    left: 0;
+    top: -2541px;
+}
+.docs-icon-down {
+    left: 0;
+    top: -819px;
+}
+.docs-icon-add-page {
+    left: -21px;
+    top: -315px;
+}
+.docs-icon-email {
+    left: 0;
+    top: -441px;
+}
+.docs-icon-insert-equation {
+    left: 0;
+    top: -2625px;
+}
+.docs-icon-insert-horizontal-line {
+    left: -21px;
+    top: -2835px;
+}
+.docs-icon-tabstop-center {
+    left: 0;
+    top: -420px;
+}
+.docs-icon-tabstop-center-bottom {
+    left: -21px;
+    top: -798px;
+}
+.docs-icon-tabstop-left {
+    left: -21px;
+    top: -1197px;
+}
+.docs-icon-tabstop-right {
+    left: 0;
+    top: -1386px;
+}
+.docs-icon-border-all {
+    left: 0;
+    top: -1008px;
+}
+.docs-icon-border-right {
+    left: 0;
+    top: -2646px;
+}
+.docs-icon-border-left {
+    left: -21px;
+    top: -1659px;
+}
+.docs-icon-border-top {
+    left: -21px;
+    top: -462px;
+}
+.docs-icon-border-bottom {
+    left: 0;
+    top: -2373px;
+}
+.docs-icon-border-outside {
+    left: -21px;
+    top: -1176px;
+}
+.docs-icon-border-inside {
+    left: 0;
+    top: -1554px;
+}
+.docs-icon-border-none {
+    left: -21px;
+    top: -1407px;
+}
+.docs-icon-border-horizontal {
+    left: -21px;
+    top: -672px;
+}
+.docs-icon-border-vertical {
+    left: 0;
+    top: -882px;
+}
+.docs-icon-merge {
+    left: 0;
+    top: -252px;
+}
+.docs-icon-wrap {
+    left: 0;
+    top: -1092px;
+}
+.docs-icon-autofilter {
+    left: 0;
+    top: -357px;
+}
+.docs-icon-autofilter-filled {
+    left: 0;
+    top: -2835px;
+}
+.docs-icon-insert-function {
+    left: -21px;
+    top: -2646px;
+}
+.docs-icon-insert-formula {
+    left: 0;
+    top: -147px;
+}
+.docs-icon-folder-shared {
+    left: -21px;
+    top: -2163px;
+}
+.docs-icon-folder-outline {
+    left: 0;
+    top: -1764px;
+}
+.docs-icon-folder-outline-hover {
+    left: 0;
+    top: -1071px;
+}
+.docs-icon-folder-outline-pressed {
+    left: 0;
+    top: -315px;
+}
+.docs-icon-folder-solid {
+    left: -21px;
+    top: -2583px;
+}
+.docs-icon-drive {
+    left: 0;
+    top: -714px;
+}
+.docs-icon-drive-grey {
+    left: -21px;
+    top: -2205px;
+}
+.docs-icon-drive-grey-hover {
+    left: -21px;
+    top: -1029px;
+}
+.docs-icon-drive-grey-pressed {
+    left: 0;
+    top: -2142px;
+}
+.docs-icon-drive-hover {
+    left: -21px;
+    top: -840px;
+}
+.docs-icon-drive-pressed {
+    left: -21px;
+    top: -273px;
+}
+.docs-icon-drive-large {
+    left: 0;
+    top: -1491px;
+}
+.docs-icon-back {
+    left: 0;
+    top: -189px;
+}
+.docs-icon-back-rtl {
+    left: 0;
+    top: -2100px;
+}
+.docs-icon-arrow-more {
+    left: 0;
+    top: -1323px;
+}
+.docs-icon-arrow-more-rtl {
+    left: 0;
+    top: -2709px;
+}
+.docs-icon-search-this-document {
+    left: -21px;
+    top: -2331px;
+}
+.docs-icon-arrow-dropdown {
+    left: 0;
+    top: -840px;
+}
+.docs-icon-word-art {
+    left: -21px;
+    top: -399px;
+}
+.docs-icon-delete-x {
+    left: 0;
+    top: -567px;
+}
+.docs-icon-settings {
+    left: 0;
+    top: -2016px;
+}
+.docs-icon-drive-large-wrapper {
+    height: 42px;
+    width: 42px;
+}
+.docs-icon-plus {
+    left: 0;
+    top: -399px;
+}
+.docs-icon-plus-white {
+    left: -21px;
+    top: -1575px;
+}
+.docs-icon-alert {
+    left: -21px;
+    top: -1638px;
+}
+.docs-icon-trash {
+    left: 0;
+    top: -1932px;
+}
+.docs-icon-locked {
+    left: -21px;
+    top: -1071px;
+}
+.docs-icon-unlocked {
+    left: -21px;
+    top: -2751px;
+}
+.docs-icon-add-fonts {
+    left: -21px;
+    top: -441px;
+}
+.docs-icon-enter-compact {
+    left: -21px;
+    top: -420px;
+}
+.docs-icon-exit-compact {
+    left: -21px;
+    top: -1701px;
+}
+.docs-icon-mode-edit {
+    left: -21px;
+    top: -1113px;
+}
+.docs-icon-mode-view {
+    left: 0;
+    top: -2394px;
+}
+.docs-icon-chat {
+    left: -21px;
+    top: -987px;
+}
+.docs-icon-star {
+    left: -21px;
+    top: -2499px;
+}
+.docs-icon-duplicate {
+    left: 0;
+    top: -2184px;
+}
+.docs-icon-file {
+    left: 0;
+    top: -630px;
+}
+.docs-icon-opacity {
+    left: 0;
+    top: -294px;
+}
+.docs-icon-label-slant {
+    left: -21px;
+    top: -1848px;
+}
+.docs-icon-point-size {
+    left: 0;
+    top: -2730px;
+}
+.docs-icon-question {
+    left: -21px;
+    top: -1155px;
+}
+.docs-icon-vertical-gridlines {
+    left: -21px;
+    top: -882px;
+}
+.docs-icon-left-axis {
+    left: 0;
+    top: -693px;
+}
+.docs-icon-right-axis {
+    left: 0;
+    top: -1995px;
+}
+.docs-icon-left-axis-gridlines {
+    left: -21px;
+    top: -1743px;
+}
+.docs-icon-right-axis-gridlines {
+    left: 0;
+    top: -1176px;
+}
+.docs-icon-reset {
+    left: -21px;
+    top: -609px;
+}
+.docs-icon-drag-move {
+    left: 0;
+    top: -126px;
+}
+.docs-icon-col-dragger {
+    left: -21px;
+    top: -1218px;
+}
+.docs-icon-chrome-store {
+    left: -21px;
+    top: -147px;
+}
+.docs-icon-fit-area {
+    left: 0;
+    top: -105px;
+}
+.docs-icon-zoom-out {
+    left: -21px;
+    top: -1428px;
+}
+.docs-icon-zoom-tool {
+    left: -21px;
+    top: -819px;
+}
+.docs-icon-download {
+    left: -7px;
+    top: -2268px;
+}
+.docs-icon-fusion-table {
+    left: 0;
+    top: -1617px;
+}
+.docs-icon-spreadsheet-sink {
+    left: -21px;
+    top: -1092px;
+}
+.docs-icon-send-responses {
+    left: 0;
+    top: -2898px;
+}
+.docs-icon-liveform {
+    left: -21px;
+    top: -1806px;
+}
+.docs-icon-ellipsis {
+    left: -21px;
+    top: -504px;
+}
+.docs-icon-html-preview {
+    left: 0;
+    top: -2226px;
+}
+.docs-icon-grid {
+    left: 0;
+    top: -2604px;
+}
+.docs-icon-add-animation {
+    left: 0;
+    top: -1155px;
+}
+.docs-icon-playhead {
+    left: -21px;
+    top: -2604px;
+}
+.docs-icon-playhead-rtl {
+    left: 0;
+    top: -1239px;
+}
+.docs-icon-unsupported {
+    left: -21px;
+    top: -1722px;
+}
+.docs-icon-calendar {
+    left: -21px;
+    top: -2016px;
+}
+.docs-zippy-closed {
+    left: 0;
+    top: -1680px;
+}
+.docs-zippy-open {
+    left: 0;
+    top: -42px;
+}
+.docs-icon-bookmark {
+    left: -21px;
+    top: -1911px;
+}
+.docs-icon-heading {
+    left: 0;
+    top: -2751px;
+}
+.docs-icon-file-blue {
+    left: -21px;
+    top: -1134px;
+}
+.docs-icon-web-result {
+    left: -21px;
+    top: -1344px;
+}
+.docs-icon-mic {
+    left: -21px;
+    top: -1785px;
+}
+.docs-icon-paragraph {
+    left: -21px;
+    top: 0;
+}
+.docs-icon-bookmark-black {
+    left: 0;
+    top: -84px;
+}
+.docs-icon-web-result-blue {
+    left: 0;
+    top: -945px;
+}
+.docs-icon-popout {
+    left: -21px;
+    top: -2856px;
+}
+.docs-icon-checkbox-type {
+    left: 0;
+    top: -1407px;
+}
+.docs-icon-dropdown-type {
+    left: 0;
+    top: -1638px;
+}
+.docs-icon-grid-type {
+    left: 0;
+    top: -2499px;
+}
+.docs-icon-image-type {
+    left: -21px;
+    top: -84px;
+}
+.docs-icon-radio-type {
+    left: 0;
+    top: -504px;
+}
+.docs-icon-scale-type {
+    left: 0;
+    top: -525px;
+}
+.docs-icon-text-type {
+    left: -21px;
+    top: -861px;
+}
+.docs-icon-time-type {
+    left: 0;
+    top: -2310px;
+}
+.docs-icon-insert-text-block {
+    left: 0;
+    top: -1050px;
+}
+@media not all {
+.docs-icon-img {
+    content: url("//ssl.gstatic.com/docs/common/jfk_sprite_hdpi33.png");
+}
+.docs-icon-img-container {
+    height: 2898px;
+    position: absolute;
+    width: 42px;
+}
+.docs-icon-save {
+    left: -21px;
+    top: -483px;
+}
+.docs-icon-print {
+    left: 0;
+    top: -1239px;
+}
+.docs-icon-undo, .docs-icon-redo-rtl {
+    left: 0;
+    top: -2079px;
+}
+.docs-icon-redo, .docs-icon-undo-rtl {
+    left: 0;
+    top: -1260px;
+}
+.docs-icon-copy {
+    left: -21px;
+    top: -588px;
+}
+.docs-icon-cut {
+    left: -21px;
+    top: -1659px;
+}
+.docs-icon-paste {
+    left: 0;
+    top: -1827px;
+}
+.docs-icon-document {
+    left: 0;
+    top: -1092px;
+}
+.docs-icon-presentation {
+    left: 0;
+    top: -2436px;
+}
+.docs-icon-punch {
+    left: 0;
+    top: -2436px;
+}
+.docs-icon-spreadsheet {
+    left: 0;
+    top: -2499px;
+}
+.docs-icon-form {
+    left: -21px;
+    top: -2100px;
+}
+.docs-icon-drawing {
+    left: -21px;
+    top: -2835px;
+}
+.docs-icon-drawing-black {
+    left: -21px;
+    top: -1764px;
+}
+.docs-icon-script {
+    left: -21px;
+    top: -1428px;
+}
+.docs-icon-insert-script {
+    left: 0;
+    top: -903px;
+}
+.docs-icon-gadget {
+    left: 0;
+    top: -1617px;
+}
+.docs-icon-image {
+    left: 0;
+    top: -609px;
+}
+.docs-icon-clipboard {
+    left: -21px;
+    top: -630px;
+}
+.docs-icon-bold {
+    left: 0;
+    top: -1281px;
+}
+.docs-icon-italic {
+    left: 0;
+    top: -2205px;
+}
+.docs-icon-text-color {
+    left: 0;
+    top: -1197px;
+}
+.docs-icon-align-left {
+    left: -21px;
+    top: -189px;
+}
+.docs-icon-align-center {
+    left: 0;
+    top: -1533px;
+}
+.docs-icon-align-right {
+    left: -21px;
+    top: -1260px;
+}
+.docs-icon-align-justify {
+    left: -21px;
+    top: -651px;
+}
+.docs-icon-valign-top {
+    left: 0;
+    top: -1722px;
+}
+.docs-icon-valign-middle {
+    left: 0;
+    top: -1659px;
+}
+.docs-icon-valign-bottom {
+    left: -21px;
+    top: -2373px;
+}
+.docs-icon-list-number {
+    left: -21px;
+    top: -336px;
+}
+.docs-icon-list-bullet {
+    left: 0;
+    top: -861px;
+}
+.docs-icon-indent {
+    left: -21px;
+    top: -2289px;
+}
+.docs-icon-outdent {
+    left: 0;
+    top: -1848px;
+}
+.docs-icon-line-spacing {
+    left: -21px;
+    top: -2247px;
+}
+.docs-icon-underline {
+    left: -21px;
+    top: -1092px;
+}
+.docs-icon-text-bgcolor {
+    left: 0;
+    top: -840px;
+}
+.docs-icon-textbox {
+    left: -21px;
+    top: -945px;
+}
+.docs-icon-shapes {
+    left: 0;
+    top: -483px;
+}
+.docs-icon-line-width {
+    left: 0;
+    top: -1155px;
+}
+.docs-icon-add-trendline {
+    left: 0;
+    top: -756px;
+}
+.docs-icon-next {
+    left: -21px;
+    top: -2415px;
+}
+.docs-icon-previous {
+    left: 0;
+    top: -2667px;
+}
+.docs-icon-no-color {
+    left: -21px;
+    top: -777px;
+}
+.docs-icon-fill-color {
+    left: 0;
+    top: -2835px;
+}
+.docs-icon-line-color {
+    left: -21px;
+    top: -2877px;
+}
+.docs-icon-line-type {
+    left: 0;
+    top: -105px;
+}
+.docs-icon-table {
+    left: 0;
+    top: -1113px;
+}
+.docs-icon-comment {
+    left: -21px;
+    top: -1491px;
+}
+.docs-icon-comment-blank {
+    left: -21px;
+    top: -567px;
+}
+.docs-icon-comment-blank-highlighted {
+    left: 0;
+    top: -231px;
+}
+.docs-icon-chart {
+    left: 0;
+    top: -2646px;
+}
+.docs-icon-list-number-rtl {
+    left: -21px;
+    top: -1365px;
+}
+.docs-icon-list-bullet-rtl {
+    left: -21px;
+    top: -1323px;
+}
+.docs-icon-indent-rtl {
+    left: -21px;
+    top: -861px;
+}
+.docs-icon-outdent-rtl {
+    left: -21px;
+    top: -714px;
+}
+.docs-icon-line-spacing-rtl {
+    left: -21px;
+    top: -2520px;
+}
+.docs-icon-text-ltr {
+    left: 0;
+    top: -2163px;
+}
+.docs-icon-text-rtl {
+    left: -21px;
+    top: -819px;
+}
+.docs-icon-sheet-rtl {
+    left: -21px;
+    top: -252px;
+}
+.docs-icon-share {
+    left: -21px;
+    top: -1071px;
+}
+.docs-icon-subscript {
+    left: 0;
+    top: -2772px;
+}
+.docs-icon-superscript {
+    left: 0;
+    top: -1323px;
+}
+.docs-icon-strikethrough {
+    left: -21px;
+    top: -441px;
+}
+.docs-icon-clear-formatting {
+    left: 0;
+    top: -168px;
+}
+.docs-icon-link {
+    left: -21px;
+    top: -2541px;
+}
+.docs-icon-special-character {
+    left: 0;
+    top: -2562px;
+}
+.docs-icon-close-white {
+    left: 0;
+    top: -1575px;
+}
+.docs-icon-close-small {
+    left: 0;
+    top: -273px;
+}
+.docs-icon-paint-format {
+    left: 0;
+    top: -1050px;
+}
+.docs-icon-video {
+    left: -21px;
+    top: -2394px;
+}
+.docs-icon-reload {
+    left: -21px;
+    top: -168px;
+}
+.docs-icon-reload-rtl {
+    left: -21px;
+    top: -1302px;
+}
+.docs-icon-insert-page-break {
+    left: 0;
+    top: -147px;
+}
+.docs-icon-close {
+    left: -21px;
+    top: -1869px;
+}
+.docs-icon-check {
+    left: 0;
+    top: -2541px;
+}
+.docs-icon-up {
+    left: -21px;
+    top: -84px;
+}
+.docs-icon-down {
+    left: 0;
+    top: -1596px;
+}
+.docs-icon-add-page {
+    left: -21px;
+    top: -2478px;
+}
+.docs-icon-email {
+    left: 0;
+    top: -672px;
+}
+.docs-icon-insert-equation {
+    left: 0;
+    top: -2709px;
+}
+.docs-icon-insert-horizontal-line {
+    left: 0;
+    top: -1953px;
+}
+.docs-icon-tabstop-center {
+    left: 0;
+    top: -1638px;
+}
+.docs-icon-tabstop-center-bottom {
+    left: -21px;
+    top: -1134px;
+}
+.docs-icon-tabstop-left {
+    left: -21px;
+    top: -987px;
+}
+.docs-icon-tabstop-right {
+    left: -21px;
+    top: -147px;
+}
+.docs-icon-border-all {
+    left: -21px;
+    top: -63px;
+}
+.docs-icon-border-right {
+    left: -21px;
+    top: -1344px;
+}
+.docs-icon-border-left {
+    left: 0;
+    top: -1365px;
+}
+.docs-icon-border-top {
+    left: -21px;
+    top: -546px;
+}
+.docs-icon-border-bottom {
+    left: -21px;
+    top: -2121px;
+}
+.docs-icon-border-outside {
+    left: -21px;
+    top: -21px;
+}
+.docs-icon-border-inside {
+    left: 0;
+    top: -357px;
+}
+.docs-icon-border-none {
+    left: -21px;
+    top: -1155px;
+}
+.docs-icon-border-horizontal {
+    left: 0;
+    top: -651px;
+}
+.docs-icon-border-vertical {
+    left: -21px;
+    top: -924px;
+}
+.docs-icon-merge {
+    left: 0;
+    top: -462px;
+}
+.docs-icon-wrap {
+    left: 0;
+    top: -189px;
+}
+.docs-icon-autofilter {
+    left: 0;
+    top: -2184px;
+}
+.docs-icon-autofilter-filled {
+    left: 0;
+    top: -420px;
+}
+.docs-icon-insert-function {
+    left: 0;
+    top: -546px;
+}
+.docs-icon-insert-formula {
+    left: 0;
+    top: -1134px;
+}
+.docs-icon-folder-shared {
+    left: 0;
+    top: -714px;
+}
+.docs-icon-folder-outline {
+    left: -21px;
+    top: -105px;
+}
+.docs-icon-folder-outline-hover {
+    left: -21px;
+    top: -1743px;
+}
+.docs-icon-folder-outline-pressed {
+    left: 0;
+    top: -1302px;
+}
+.docs-icon-folder-solid {
+    left: 0;
+    top: -777px;
+}
+.docs-icon-drive {
+    left: 0;
+    top: -2520px;
+}
+.docs-icon-drive-grey {
+    left: -21px;
+    top: -756px;
+}
+.docs-icon-drive-grey-hover {
+    left: 0;
+    top: -2016px;
+}
+.docs-icon-drive-grey-pressed {
+    left: 0;
+    top: -2373px;
+}
+.docs-icon-drive-hover {
+    left: -21px;
+    top: -1848px;
+}
+.docs-icon-drive-pressed {
+    left: 0;
+    top: -2310px;
+}
+.docs-icon-drive-large {
+    left: 0;
+    top: -1911px;
+}
+.docs-icon-back {
+    left: -21px;
+    top: -1827px;
+}
+.docs-icon-back-rtl {
+    left: 0;
+    top: -2226px;
+}
+.docs-icon-arrow-more {
+    left: 0;
+    top: -1974px;
+}
+.docs-icon-arrow-more-rtl {
+    left: 0;
+    top: -2247px;
+}
+.docs-icon-search-this-document {
+    left: 0;
+    top: -336px;
+}
+.docs-icon-arrow-dropdown {
+    left: -21px;
+    top: -882px;
+}
+.docs-icon-word-art {
+    left: 0;
+    top: -1869px;
+}
+.docs-icon-delete-x {
+    left: -21px;
+    top: -2268px;
+}
+.docs-icon-settings {
+    left: 0;
+    top: -2625px;
+}
+.docs-icon-drive-large-wrapper {
+    height: 42px;
+    width: 42px;
+}
+.docs-icon-plus {
+    left: -21px;
+    top: -1617px;
+}
+.docs-icon-plus-white {
+    left: -21px;
+    top: -735px;
+}
+.docs-icon-alert {
+    left: 0;
+    top: -2793px;
+}
+.docs-icon-trash {
+    left: 0;
+    top: -2037px;
+}
+.docs-icon-locked {
+    left: -21px;
+    top: -1806px;
+}
+.docs-icon-unlocked {
+    left: -21px;
+    top: -672px;
+}
+.docs-icon-add-fonts {
+    left: -21px;
+    top: -903px;
+}
+.docs-icon-enter-compact {
+    left: -21px;
+    top: -2436px;
+}
+.docs-icon-exit-compact {
+    left: -21px;
+    top: -798px;
+}
+.docs-icon-mode-edit {
+    left: -21px;
+    top: -1407px;
+}
+.docs-icon-mode-view {
+    left: 0;
+    top: -2604px;
+}
+.docs-icon-chat {
+    left: 0;
+    top: -2394px;
+}
+.docs-icon-star {
+    left: 0;
+    top: -945px;
+}
+.docs-icon-duplicate {
+    left: 0;
+    top: -315px;
+}
+.docs-icon-file {
+    left: -21px;
+    top: -840px;
+}
+.docs-icon-opacity {
+    left: 0;
+    top: -210px;
+}
+.docs-icon-label-slant {
+    left: 0;
+    top: -2268px;
+}
+.docs-icon-point-size {
+    left: -21px;
+    top: -2352px;
+}
+.docs-icon-question {
+    left: -21px;
+    top: -1722px;
+}
+.docs-icon-vertical-gridlines {
+    left: 0;
+    top: -2688px;
+}
+.docs-icon-left-axis {
+    left: 0;
+    top: -1449px;
+}
+.docs-icon-right-axis {
+    left: -21px;
+    top: -2688px;
+}
+.docs-icon-left-axis-gridlines {
+    left: -21px;
+    top: -2163px;
+}
+.docs-icon-right-axis-gridlines {
+    left: -21px;
+    top: -2205px;
+}
+.docs-icon-reset {
+    left: 0;
+    top: -1512px;
+}
+.docs-icon-drag-move {
+    left: 0;
+    top: -252px;
+}
+.docs-icon-col-dragger {
+    left: 0;
+    top: -2814px;
+}
+.docs-icon-chrome-store {
+    left: -21px;
+    top: -1953px;
+}
+.docs-icon-fit-area {
+    left: 0;
+    top: -2457px;
+}
+.docs-icon-zoom-out {
+    left: 0;
+    top: -294px;
+}
+.docs-icon-zoom-tool {
+    left: -21px;
+    top: -462px;
+}
+.docs-icon-download {
+    left: 0;
+    top: -1428px;
+}
+.docs-icon-fusion-table {
+    left: 0;
+    top: -2331px;
+}
+.docs-icon-spreadsheet-sink {
+    left: -21px;
+    top: -693px;
+}
+.docs-icon-send-responses {
+    left: -21px;
+    top: -1113px;
+}
+.docs-icon-liveform {
+    left: -21px;
+    top: -2079px;
+}
+.docs-icon-ellipsis {
+    left: 0;
+    top: -882px;
+}
+.docs-icon-html-preview {
+    left: 0;
+    top: -2856px;
+}
+.docs-icon-grid {
+    left: 0;
+    top: -525px;
+}
+.docs-icon-add-animation {
+    left: -21px;
+    top: -2856px;
+}
+.docs-icon-playhead {
+    left: 0;
+    top: -63px;
+}
+.docs-icon-playhead-rtl {
+    left: 0;
+    top: -693px;
+}
+.docs-icon-unsupported {
+    left: 0;
+    top: -1785px;
+}
+.docs-icon-calendar {
+    left: -21px;
+    top: -966px;
+}
+.docs-zippy-closed {
+    left: 0;
+    top: -1890px;
+}
+.docs-zippy-open {
+    left: 0;
+    top: -1008px;
+}
+.docs-icon-bookmark {
+    left: 0;
+    top: -1554px;
+}
+.docs-icon-heading {
+    left: -21px;
+    top: -1281px;
+}
+.docs-icon-file-blue {
+    left: -21px;
+    top: -2730px;
+}
+.docs-icon-web-result {
+    left: 0;
+    top: -1344px;
+}
+.docs-icon-mic {
+    left: 0;
+    top: -987px;
+}
+.docs-icon-paragraph {
+    left: -21px;
+    top: 0;
+}
+.docs-icon-bookmark-black {
+    left: 0;
+    top: 0;
+}
+.docs-icon-web-result-blue {
+    left: -21px;
+    top: -2499px;
+}
+.docs-icon-popout {
+    left: 0;
+    top: -1995px;
+}
+.docs-icon-checkbox-type {
+    left: -21px;
+    top: -2142px;
+}
+.docs-icon-dropdown-type {
+    left: -21px;
+    top: -1890px;
+}
+.docs-icon-grid-type {
+    left: 0;
+    top: -399px;
+}
+.docs-icon-image-type {
+    left: 0;
+    top: -1029px;
+}
+.docs-icon-radio-type {
+    left: -21px;
+    top: -2604px;
+}
+.docs-icon-scale-type {
+    left: 0;
+    top: -2478px;
+}
+.docs-icon-text-type {
+    left: 0;
+    top: -1407px;
+}
+.docs-icon-time-type {
+    left: 0;
+    top: -2751px;
+}
+.docs-icon-insert-text-block {
+    left: -21px;
+    top: -2646px;
+}
+}
+.docs-a11y-ariascreenreader-speakable {
+    left: -10000px;
+    position: absolute;
+}
+.goog-inline-block {
+    display: inline-block;
+    position: relative;
+}
+* html .goog-inline-block {
+    display: inline;
+}
+:first-child + html .goog-inline-block {
+    display: inline;
+}
+.jfk-progressStatus {
+    color: #202020;
+}
+.jfk-progressText {
+    color: #999999;
+}
+.jfk-progressStatus, .jfk-progressText {
+    line-height: 18px;
+}
+.jfk-progressBar-blocking .progress-bar-horizontal, .jfk-progressBar-nonBlocking .progress-bar-horizontal {
+    border: 1px solid #999999;
+    padding: 1px;
+    width: 320px;
+}
+.jfk-progressBar-blocking .progress-bar-thumb {
+    background-color: #6188F5;
+    height: 5px;
+}
+.jfk-progressBar-nonBlocking .progress-bar-thumb {
+    background-color: #CCCCCC;
+    height: 5px;
+}
+.jfk-progressBar-blocking.jfk-progressBar-tall .progress-bar-thumb, .jfk-progressBar-nonBlocking.jfk-progressBar-tall .progress-bar-thumb {
+    height: 8px;
+}
+.jfk-progressBar-blocking .progress-bar-thumb {
+    animation: 0.8s linear 0s normal none infinite jfk-progressBar-bg;
+    background-color: #6188F5;
+    background-image: linear-gradient(315deg, transparent, transparent 33%, rgba(0, 0, 0, 0.12) 33%, rgba(0, 0, 0, 0.12) 66%, transparent 66%, transparent);
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-size: 16px 8px;
+}
+.jfk-progressBar-blocking.jfk-progressBar-tall .progress-bar-thumb {
+    animation: 0.8s linear 0s normal none infinite jfk-progressBar-bg-tall;
+    background-size: 20px 10px;
+}
+@-moz-keyframes jfk-progressBar-bg {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: -16px 0;
+}
+}
+@-moz-keyframes jfk-progressBar-bg {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: -16px 0;
+}
+}
+@-moz-keyframes jfk-progressBar-bg-tall {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: -20px 0;
+}
+}
+@-moz-keyframes jfk-progressBar-bg-tall {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: -20px 0;
+}
+}
+.jfk-progressbar .progress-bar-horizontal, .jfk-progressbar .progress-bar-vertical {
+    border-color: #999999;
+}
+.jfk-progressbar .progress-bar-thumb {
+    background-color: #CCCCCC;
+}
+body {
+    font: 13px arial,sans-serif;
+    margin: 0;
+}
+.ss-logo-link {
+    display: block;
+}
+.ss-logo {
+    border: medium none;
+    height: 23px;
+    width: 105px;
+}
+.g {
+    color: #666666;
+}
+.ss-form-desc {
+    font: inherit;
+    margin: 0;
+    width: 99%;
+}
+.ss-powered-by {
+    clear: left;
+    color: #666666;
+    display: block;
+    margin: 1em 0.2em 0.2em;
+}
+.ss-powered-by a:link, .ss-powered-by a:visited {
+    color: #666666;
+}
+.ss-required-asterisk {
+    color: #C43B1D;
+}
+.ss-no-ignore-whitespace {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.ss-confirmation-header {
+    font-size: 140%;
+    padding-bottom: 1em;
+}
+.ss-abuse-header {
+    background: none repeat scroll 0 0 #FFF68F;
+    line-height: 1.3em;
+    margin: 0 auto 1em;
+    padding: 0.5em;
+    width: 97%;
+}
+.form-error-arg {
+    font-weight: bold;
+}
+h1 {
+    font-size: 1.8em;
+    padding: 0;
+}
+hr {
+    background-color: #DDDDDD;
+    border: 0 none;
+    height: 1px;
+}
+table {
+    border-collapse: collapse;
+}
+textarea {
+    font: 13px arial,sans-serif;
+}
+br {
+    display: block !important;
+}
+.aria-only-help {
+    font-size: 0;
+    left: -9999px;
+    position: absolute;
+}
+.ss-printable-hint {
+    display: none;
+}
+.goog-date-picker, .goog-date-picker th, .goog-date-picker td {
+    font: 13px Arial,sans-serif;
+}
+.goog-date-picker {
+    -moz-user-focus: normal;
+    -moz-user-select: none;
+    background: none repeat scroll 0 0 #C3D9FF;
+    border: 1px solid #000000;
+    color: #000000;
+    cursor: default;
+    float: left;
+    padding: 2px;
+    position: relative;
+}
+.goog-date-picker th {
+    text-align: center;
+}
+.goog-date-picker td {
+    padding: 1px 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+.goog-date-picker-menu {
+    -moz-user-focus: normal;
+    background: none repeat scroll 0 0 threedface;
+    border: 1px solid gray;
+    outline: medium none;
+    position: absolute;
+    z-index: 1;
+}
+.goog-date-picker-menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.goog-date-picker-menu ul li {
+    cursor: default;
+}
+.goog-date-picker-menu-selected {
+    background: none repeat scroll 0 0 #CCCCFF;
+}
+.goog-date-picker th {
+    font-size: 0.9em;
+}
+.goog-date-picker td div {
+    float: left;
+}
+.goog-date-picker button {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #2200CC;
+    font-weight: bold;
+    margin: 1px 0;
+    padding: 0;
+}
+.goog-date-picker-date {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+.goog-date-picker-week, .goog-date-picker-wday {
+    border: 0 solid #A2BBDD;
+    padding: 1px 3px;
+}
+.goog-date-picker-week {
+    border-right-width: 1px;
+}
+.goog-date-picker-wday {
+    border-bottom-width: 1px;
+}
+.goog-date-picker-head td {
+    text-align: center;
+}
+td.goog-date-picker-today-cont {
+    text-align: center;
+}
+td.goog-date-picker-none-cont {
+    text-align: center;
+}
+.goog-date-picker-month {
+    width: 11ex;
+}
+.goog-date-picker-year {
+    width: 6ex;
+}
+.goog-date-picker table {
+    border-collapse: collapse;
+}
+.goog-date-picker-other-month {
+    color: #888888;
+}
+.goog-date-picker-wkend-start, .goog-date-picker-wkend-end {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+td.goog-date-picker-selected {
+    background: none repeat scroll 0 0 #C3D9FF;
+}
+.goog-date-picker-today {
+    background: none repeat scroll 0 0 #99AABB;
+    border-color: #224466 #99BBDD #99BBDD #224466;
+    color: #FFFFFF;
+    font-weight: bold !important;
+}
+.ss-date input, .ss-datetime input, .ss-time input {
+    font: inherit;
+}
+.ss-q-time.goog-inline-block {
+    padding-left: 1.5em;
+}
+.ss-hidden-button {
+    border: medium none;
+    display: none;
+    height: 0;
+    padding: 0;
+    width: 0;
+}
+.ss-picker-button-container {
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);
+    height: 100%;
+    margin-left: 1ex;
+}
+.ss-picker-container {
+    left: 2ex;
+    position: absolute;
+    z-index: 2;
+}
+.ss-calendar-button {
+    border-left: 1px solid #DCDCDC;
+    padding: 5px 4px 4px;
+    z-index: 1;
+}
+.ss-datetime-box {
+    border: 1px solid #DCDCDC;
+    height: 32px;
+    margin-right: 0.6em;
+    min-height: 30px;
+    padding-left: 3px;
+    vertical-align: middle;
+}
+.ss-datetime-box select {
+    margin: 4px 3px;
+    vertical-align: middle;
+}
+.ss-datetime-box-spacer {
+    height: 32px;
+    vertical-align: middle;
+}
+.ss-grid {
+    overflow-x: auto;
+}
+.ss-gridnumbers {
+    border-bottom: 1px solid #D3D8D3;
+    text-align: center;
+}
+.ss-gridnumber {
+    display: block;
+    padding: 0.5em 0;
+}
+.ss-gridrow {
+    border-bottom: 1px solid #D3D8D3;
+    color: #666666;
+    padding: 0.5em 0.25em;
+    text-align: center;
+}
+.ss-grid-row-even {
+    background-color: #FFFFFF;
+}
+.ss-grid-row-odd {
+    background-color: #F2F2F2;
+}
+.ss-gridrow-leftlabel {
+    max-width: 200px;
+    min-width: 100px;
+    padding-left: 15px;
+    text-align: left;
+}
+.ss-grideditor-columns input {
+    line-height: 150%;
+}
+.ss-grideditor-editor .ss-magiclist-ul span.ss-header {
+    font-weight: bold;
+    padding-right: 1em;
+}
+.ss-grid-separator {
+    border: 1px solid #E5E5E5;
+}
+.ss-scalenumbers {
+    text-align: center;
+}
+.ss-scalenumber {
+    display: block;
+    padding: 0.5em 0;
+}
+.ss-scalerow {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #D3D8D3 -moz-use-text-color;
+    border-image: none;
+    border-style: solid none;
+    border-width: 1px 0;
+    color: #666666;
+    padding: 0.5em 0.25em;
+    text-align: center;
+}
+td.ss-leftlabel {
+    padding-left: 0;
+    text-align: right;
+}
+td.ss-rightlabel {
+    padding-right: 0;
+    text-align: left;
+}
+.ss-form-entry {
+    margin-bottom: 1.5em;
+}
+.ss-form-entry input {
+    margin-left: 0;
+    margin-top: 0;
+    vertical-align: middle;
+    height:auto;
+}
+.ss-form-entry select {
+    max-width: 100%;
+}
+.ss-q-title {
+    display: block;
+    font-weight: bold;
+}
+.ss-q-help {
+    display: block;
+    margin: 0.1em 0 0.25em;
+}
+.ss-secondary-text {
+    color: #666666;
+}
+.ss-textarea {
+    max-width: 99%;
+}
+.ss-q-long {
+    resize: vertical;
+    width: 70%;
+}
+.ss-choices {
+    list-style: none outside none;
+    margin: 0.5em 0 0;
+    padding: 0;
+}
+.ss-choice-item {
+    line-height: 1.3em;
+    margin: 0;
+    padding-bottom: 0.5em;
+}
+.ss-required-asterisk {
+    color: #C43B1D;
+}
+.ss-section-title {
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 2em -0.4em 0 !important;
+    padding: 0.4em !important;
+}
+.ss-section-description {
+    margin-top: 0.5em;
+}
+.ss-page-title {
+    margin: 0;
+    padding: 0;
+}
+.ss-formwidget-container:focus {
+    outline: medium none;
+}
+.ss-item {
+    margin: 12px 0;
+}
+.ss-image, .ss-video, .ss-embeddable-object-container {
+    max-width: 100%;
+    position: relative;
+}
+.ss-video {
+    border: medium none;
+}
+.ss-video-badge {
+    left: 0;
+    position: absolute;
+}
+.ss-video:focus, .ss-image:focus {
+    outline: medium none;
+}
+.embeddable-object-menu .jfk-button-collapse-left {
+    margin-right: 0;
+}
+.ss-edit-link, .ss-edit-link:active, .ss-edit-link:visited, .ss-edit-link:hover, .ss-edit-link:link {
+    background: url("//www.gstatic.com/docs/spreadsheets/forms/edit_dark.png") no-repeat scroll 7px 8px #1F1F1D;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    float: right;
+    font: bold 13px arial,sans-serif;
+    padding: 7px 7px 7px 27px;
+    text-decoration: none;
+}
+.disclaimer .ss-terms a:link {
+    color: #1155CC;
+    text-decoration: none;
+}
+.disclaimer .ss-terms a:hover {
+    text-decoration: underline;
+}
+.disclaimer .ss-terms a:active {
+    color: #D14836;
+}
+.disclaimer .ss-terms a:visited {
+    color: #6611CC;
+}
+.disclaimer {
+    color: #777777;
+    font: 11px arial,sans-serif;
+    margin-top: 11px;
+}
+.disclaimer-separator {
+    border-top: 1px solid #EBEBEB;
+}
+.disclaimer .ss-logo-link {
+    color: #777777;
+    text-decoration: none;
+}
+.powered-by-logo {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.powered-by-text {
+    line-height: 16px;
+}
+.ss-terms {
+    display: inline-block;
+    line-height: 20px;
+    text-align: center;
+    width: 80%;
+}
+.ss-submit-message {
+    font: 13px arial,sans-serif;
+    margin-bottom: 20px;
+}
+.error, .required {
+    border: 2px solid #C43B1D;
+}
+.required-message, .error-message {
+    color: #C43B1D;
+    display: none;
+    font-size: 13px;
+}
+.required ~ .required-message, .error ~ .error-message {
+    display: block;
+}
+ul.ss-choices.required {
+    margin-left: -3px;
+    margin-top: -3px;
+    padding-left: 4px;
+    padding-top: 4px;
+}
+.docs-offscreen {
+    left: -10000px;
+    position: absolute;
+    top: -10000px;
+}
+.errorbox-bad {
+    background-color: #FFE6CC;
+    border: 2px solid #C43B1D;
+    padding: 2px;
+}
+.errorheader {
+    color: #C43B1D;
+}
+.jfk-progressBar-nonBlocking .progress-bar-horizontal {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #999999;
+    height: 10px;
+    padding: 1px;
+    width: 150px;
+}
+.jfk-progressBar-nonBlocking .progress-bar-thumb {
+    height: 10px;
+    width: 150px;
+}
+#navigation-table {
+    width: 100%;
+}
+#navigation-buttons {
+    margin-bottom: 0;
+}
+#progress-container {
+    text-align: right;
+}
+.ss-form-container {
+    width: 45em;
+}
+.ss-editing-response {
+    border: 1px solid #CCCCCC;
+    margin: 1em auto;
+    padding: 0 1em;
+    width: 43em;
+}
+.ss-confirmation-banner, .ss-editing-response {
+    background-color: #FFFF87;
+}
+input#emailReceipt {
+    margin-left: 0;
+    margin-top: 0;
+    vertical-align: middle;
+}
+.no-chrome .powered-by-logo, .no-chrome .ss-legal, .no-chrome .ss-edit-link {
+    display: none;
+}
+.ss-prepopulate-input, .ss-submit-url-input {
+    width: 100%;
+}

@@ -545,6 +545,16 @@ MINIFY_BUNDLES = {
         'error': (
             'css/error.less',
         ),
+        'attack-on-web': (
+            'css/event/attack-on-web.less',
+        ),
+        'applyform': (
+            'css/event/1835473341-formview_ltr.css',
+            'css/event/722395648-mobile_formview_ltr.css',
+        ),
+        'coming-soon': (
+            'css/event/coming-soon.less',        
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -576,6 +586,15 @@ MINIFY_BUNDLES = {
         'product': (
             'js/slides.js',
             'js/product.js',
+        ),
+        'attack-on-web': (
+            'js/event/attack-on-web.js',
+        ),
+        'applyform': (
+            'js/event/3328389227-formviewer_prd.js',
+        ),
+        'coming-soon': (
+            'js/event/coming-soon.js',
         ),
     }
 }
