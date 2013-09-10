@@ -5,6 +5,7 @@ from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin, sitemaps
 from ffclub.base import ViewsSitemap
+from ffclub.intro.views import login_redirect
 from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 
 # from examples import urls
@@ -47,6 +48,10 @@ urlpatterns = patterns(
     (r'', include('%s.person.urls' % PROJECT_MODULE)),
     (r'', include('%s.event.urls' % PROJECT_MODULE)),
     (r'', include('%s.product.urls' % PROJECT_MODULE)),
+    url(r'^login/redirect$', login_redirect, name='login.redirect'),
+    url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='intro.logout'),
+    url(r'^browserid/', include('django_browserid.urls')),
+    url(r'', include('social_auth.urls')),
     (r'^admin/', include(admin.site.urls)),
     # Generate a robots.txt
     (

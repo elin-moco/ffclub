@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cStringIO import StringIO
 from django.contrib import auth
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
@@ -11,10 +12,12 @@ import commonware.log
 # from forms import EventForm
 from django.utils import simplejson
 from django.utils.encoding import iri_to_uri
+import facebook
 from ffclub.event.utils import send_photo_report_mail
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, FB_APP_ID
+from ffclub.upload.utils import open_image
 
 log = commonware.log.getLogger('ffclub')
 
@@ -40,6 +43,10 @@ def wall_page(request, page_number=1):
             # event.save()
             # upload.entity_object = event
             upload.save()
+            if request.POST['shareOnFb'] and request.POST['fbToken']:
+                graph = facebook.GraphAPI(request.POST['fbToken'])
+                upload.image_large.open()
+                graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(

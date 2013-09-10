@@ -116,6 +116,11 @@
         {{ csrf() }}
         <ul>
           {{ upload_form.as_ul() }}
+          <li>
+            <label for="shareOnFb">同步分享到 Facebook</label>
+            <input id="shareOnFb" name="shareOnFb" type="checkbox"/>
+            <input id="fbToken" name="fbToken" type="hidden"/>
+          </li>
         </ul>
         <button class="submitButton" type="submit" value="1">我要上傳</button>
       </form>
@@ -123,7 +128,6 @@
   </div>
 {% endblock %}
 {% block base_js %}
-  {{ js('event') }}
   {% if not request.user.is_active %}
     {{ js('browserid') }}
     {#    {{ browserid_form.media }}#}
@@ -151,4 +155,5 @@
       s.parentNode.insertBefore(po, s);
     })();
   </script>
+  {{ js('event') }}
 {% endblock %}

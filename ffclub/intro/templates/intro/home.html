@@ -3,7 +3,6 @@
 {% block base_css %}
   {{ css('intro') }}
 {% endblock %}
-
 {% block banner %}
   <div id="main-feature" class="huge">
     <hgroup>
@@ -41,6 +40,7 @@
     <div id="intro-login">
       <div>
         <button class="browserid loginButton">使用 Persona 帳號登入</button>
+        <a class="loginButton" href="{{ url("socialauth_begin", "facebook") }}">Facebook 登入</a>
       </div>
       <div class="loginInfo">
         你會經由 Persona 網路身份識別系統登入帳號，請安心登入。

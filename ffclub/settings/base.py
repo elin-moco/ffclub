@@ -214,7 +214,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # 'funfactory.context_processors.globals',
     'jingo_minify.helpers.build_ids',
     'django_browserid.context_processors.browserid_form',
-)
+    'social_auth.context_processors.social_auth_backends',
+    'social_auth.context_processors.social_auth_login_redirect',)
 
 
 def get_template_context_processors(exclude=(), append=(),
@@ -324,7 +325,7 @@ INSTALLED_APPS = (
     'tower', # for ./manage.py extract (L10n)
     'cronjobs', # for ./manage.py cron * cmd line tasks
     'django_browserid',
-
+    'social_auth',
 
     # Django contrib apps
     'django.contrib.auth',
@@ -360,7 +361,7 @@ INSTALLED_APPS = (
     # L10n
     'product_details',
 
-    'raven.contrib.django.raven_compat',
+    # 'raven.contrib.django.raven_compat',
 )
 
 
@@ -470,6 +471,7 @@ AUTH_PROFILE_MODULE = "person.Person"
 # BrowserID configuration
 AUTHENTICATION_BACKENDS = [
     'django_browserid.auth.BrowserIDBackend',
+    'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

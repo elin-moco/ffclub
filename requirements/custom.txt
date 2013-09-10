@@ -6,3 +6,5 @@ pylibmc==1.2.3
 gunicorn==0.17.4
 raven==3.3.7
 MySQL-python==1.2.4
+facebook-sdk==0.4.0
+django-social-auth==0.7.27
