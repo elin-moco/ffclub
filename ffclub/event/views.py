@@ -11,13 +11,11 @@ import commonware.log
 
 # from forms import EventForm
 from django.utils import simplejson
-from django.utils.encoding import iri_to_uri
 import facebook
 from ffclub.event.utils import send_photo_report_mail
 from ffclub.upload.forms import ImageUploadForm
 from ffclub.upload.models import ImageUpload
-from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, FB_APP_ID
-from ffclub.upload.utils import open_image
+from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
 
 log = commonware.log.getLogger('ffclub')
 
@@ -47,6 +45,10 @@ def wall_page(request, page_number=1):
                 graph = facebook.GraphAPI(request.POST['fbToken'])
                 upload.image_large.open()
                 graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
+                try:
+                    graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_url())
+                except facebook.GraphAPIError as e:
+                    log.error(e)
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
@@ -62,7 +64,6 @@ def wall_page(request, page_number=1):
         # 'form': eventForm,
         'upload_form': uploadForm,
         'event_photos': paginator.page(page_number),
-        'FB_APP_ID': FB_APP_ID,
     }
 
     return render(request, 'event/wall.html', data)

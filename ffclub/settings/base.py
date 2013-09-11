@@ -215,7 +215,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'jingo_minify.helpers.build_ids',
     'django_browserid.context_processors.browserid_form',
     'social_auth.context_processors.social_auth_backends',
-    'social_auth.context_processors.social_auth_login_redirect',)
+    'social_auth.context_processors.social_auth_login_redirect',
+    'ffclub.base.context_processors.constants',
+)
 
 
 def get_template_context_processors(exclude=(), append=(),
@@ -294,6 +296,7 @@ MIDDLEWARE_CLASSES = (
     'mobility.middleware.XMobileMiddleware',
     'ffclub.base.middleware.UserFullnameMiddleware',
     'ffclub.base.middleware.LoggingMiddleware',
+    'social_auth.middleware.SocialAuthExceptionMiddleware',
 )
 
 
@@ -504,6 +507,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/tabzilla.less.css',
             'css/sandstone/navigator.less.css',
             'css/sandstone/footer.less.css',
+            'css/persona-buttons.css',
             # imported using less
             # 'css/ffcstyle.css',
         ),
@@ -515,6 +519,7 @@ MINIFY_BUNDLES = {
         ),
         'intro': (
             'css/intro.less',
+            'css/slides.css',
         ),
         # 'person': (
         # ),
@@ -563,7 +568,7 @@ MINIFY_BUNDLES = {
         'site': (
             'js/libs/jquery-1.9.1.js',
             'js/sandstone/sandstone-tabzilla-nav-all.js',
-            # 'js/main.js',
+            'js/main.js',
         ),
         'browserid': (
             'js/browserid.js',
@@ -679,3 +684,13 @@ EMAIL_USE_TLS = True
 RAVEN_CONFIG = {
     'dsn': 'http://74876894ee994abcad98819694957f2f:bc278ae9652b43e19857089446fa74ba@sentry.inspire.mozilla.com.tw:9000/2',
 }
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)

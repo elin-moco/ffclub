@@ -25,6 +25,8 @@
   <meta name="keywords"
         content="{{ page_keywords }}"/>
   {% if request %}
+    <meta property="fb:app_id" content="{{ FB_APP_ID }}"/>
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
     <meta property="og:title" content="{% block og_title %}{{ page_title }}{% endblock %}"/>
     <meta property="og:description" content="{% block og_desc %}{{ page_description }}{% endblock %}"/>
     <meta property="og:image" content="{% block og_image %}{{ request.build_absolute_uri(STATIC_URL)+page_image }}{% endblock %}"/>
@@ -92,12 +94,37 @@
   {% block popup %}
   {% endblock %}
 </div>
+<div class="loginPopup">
+  <div class="loginBox">
+    <div class="innerBox">
+      <a class="persona-button browserid-login browserid" href="javascript:void(0)"><span>使用 Persona 登入</span></a>
+      <p>
+        更簡易、更安全的登入方式－<a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
+      </p>
+      <p>或者你也可以：</p>
+      <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}"><span>使用 Facebook 登入</span></a>
+      <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
+  {#    <div class="fb-login-button" data-width="300" show-faces="true" size="large"></div>#}
+    </div>
+  </div>
+</div>
+
 {{ js('site') }}
 {% block base_js %}
-  {#  {{ js('base') }}#}
-  {#  {% if not request.user.is_active %}#}
-  {#    {{ browserid_form.media }}#}
-  {#  {% endif %}#}
 {% endblock %}
+  {% if not request.user.is_active %}
+    {{ js('browserid') }}
+  {% endif %}
+  <div id="fb-root"></div>
+  <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId={{ FB_APP_ID }}";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+
 </body>
 </html>

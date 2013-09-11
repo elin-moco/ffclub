@@ -101,7 +101,7 @@
       </form>
     {% else %}
       <div class="orderButton">
-        <button class="browserid loginButton">申請宣傳品請先登入</button>
+        <button class="loginButton">申請宣傳品請先登入</button>
       </div>
       <form method="POST" action="{{ url('browserid_verify') }}">
         {{ csrf() }}
@@ -115,8 +115,4 @@
 
 {% block base_js %}
   {{ js('product') }}
-  {% if not request.user.is_active %}
-    {{ js('browserid') }}
-    {#    {{ browserid_form.media }}#}
-  {% endif %}
 {% endblock %}
