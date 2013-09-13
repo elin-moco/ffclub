@@ -5,6 +5,11 @@ from ffclub.product.models import Order
 from ffclub.upload.admin import ImageUploadInline
 
 
+class ParticipationInline(StackedInline):
+    model = Participation
+    extra = 0
+
+
 class OrderInline(StackedInline):
     model = Order
     extra = 0
@@ -19,3 +24,20 @@ class EventAdmin(ModelAdmin):
 
 
 admin.site.register(Event, EventAdmin)
+
+
+class CampaignAdmin(ModelAdmin):
+    search_fields = ['title', 'description']
+    list_filter = ['create_time', 'status']
+    inlines = [ParticipationInline, ImageUploadInline]
+
+
+admin.site.register(Campaign, CampaignAdmin)
+
+
+class VoteAdmin(ModelAdmin):
+    search_fields = ['note']
+    list_filter = ['vote_time', 'status']
+
+
+admin.site.register(Vote, VoteAdmin)

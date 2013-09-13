@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.encoding import iri_to_uri
+# from ffclub.event.models import Vote
 from ffclub.settings import STATIC_URL, SITE_URL
 
 from utils import *
@@ -40,8 +41,9 @@ class ImageUpload(models.Model):
     entity_id = models.PositiveIntegerField()
     entity_object = generic.GenericForeignKey('content_type', 'entity_id')
 
-    # Generated thumbnails
+    votes = generic.GenericRelation('event.Vote')
 
+    # Generated thumbnails
     image_medium = models.ImageField(upload_to=settings.FILE_PATH + '/m',
                                      width_field='image_medium_width', height_field='image_medium_height',
                                      max_length=255, db_index=True, null=True, blank=True)
@@ -49,6 +51,7 @@ class ImageUpload(models.Model):
     image_small = models.ImageField(upload_to=settings.FILE_PATH + '/s',
                                     width_field='image_small_width', height_field='image_small_height',
                                     max_length=255, db_index=True, null=True, blank=True)
+
     # Generated values
     image_large_width = models.IntegerField(null=True, blank=True)
     image_large_height = models.IntegerField(null=True, blank=True)
