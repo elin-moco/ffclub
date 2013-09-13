@@ -41,11 +41,11 @@ def wall_page(request, page_number=1):
             # event.save()
             # upload.entity_object = event
             upload.save()
-            if request.POST['shareOnFb'] and request.POST['fbToken']:
-                graph = facebook.GraphAPI(request.POST['fbToken'])
-                upload.image_large.open()
-                graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
+            if all(key in request.POST.keys() for key in ('shareOnFb', 'fbToken')):
                 try:
+                    graph = facebook.GraphAPI(request.POST['fbToken'])
+                    upload.image_large.open()
+                    graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
                     graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_url())
                 except facebook.GraphAPIError as e:
                     log.error(e)
@@ -121,14 +121,18 @@ def event_photo_report(request, photo_id):
 def attack_on_web(request):
     return render(request, 'event/attack-on-web/index.html')
 
+
 def prizes(request):
     return render(request, 'event/attack-on-web/prizes.html')
+
 
 def apply(request):
     return render(request, 'event/attack-on-web/apply.html')
 
+
 def demo(request):
     return render(request, 'event/attack-on-web/demo.html')
+
 
 def microfilm(request):
     return render(request, 'event/attack-on-web/microfilm.html')

@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib.contenttypes import generic
 from ffclub.settings import ALL_ORDER_DETAIL_CHOICES
-from ffclub.event.models import Event
+from ffclub.event.models import Activity
 from ffclub.upload.models import ImageUpload
 
 
@@ -44,7 +44,7 @@ class Order(models.Model):
 
     create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now, verbose_name='Order create time')
-    event = models.ForeignKey(Event, related_name='orders')
+    event = models.ForeignKey(Activity, related_name='orders')
     products = models.ManyToManyField(Product, related_name='+', through='OrderDetail')
     status = models.CharField(max_length=20,
                               choices=(('wait_for_confirm', '待確認'), ('confirmed', '已確認'),
