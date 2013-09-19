@@ -88,7 +88,26 @@ blockquote {
     }
 }
 
-#countdown-container{
-    //background:#00539F;
-    padding:2em;
+@media only screen and (max-width: 960px){
+    #blackout img#the-fox{
+        bottom:20% !important;
+    }
+    #countdown-container{
+        transform: none !important;
+        top: auto !important;
+        bottom: 1% !important;
+        left: 1% !important;
+        margin :0 !important;
+        padding: 0 !important;
+
+    }
+    blockquote.oval-quotes{
+        p{
+            font-size:35px;
+        }
+    }
+    #blackout img#the-fox{
+        width: 110% !important;
+        height: auto !important;
+    }
 }

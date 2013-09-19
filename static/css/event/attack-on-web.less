@@ -98,6 +98,16 @@ h1, h2, h3, h4, h5, h6 {
   &.hover a{
     background-image:none;
   }
+  &.unpub{
+    a{
+      color:#787878 !important;
+      cursor: default;
+    }
+    &:hover, :focus{
+      text-decoration: none;
+      text-shadow:none;
+    }
+  }
 }
 
 #nav-social-head {
