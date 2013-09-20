@@ -41,7 +41,7 @@ class ImageUpload(models.Model):
     entity_id = models.PositiveIntegerField()
     entity_object = generic.GenericForeignKey('content_type', 'entity_id')
 
-    votes = generic.GenericRelation('event.Vote')
+    votes = generic.GenericRelation('event.Vote', content_type_field='content_type', object_id_field='entity_id')
 
     # Generated thumbnails
     image_medium = models.ImageField(upload_to=settings.FILE_PATH + '/m',

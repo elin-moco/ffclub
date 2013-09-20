@@ -71,16 +71,16 @@ def wall_page(request, page_number=1):
     return render(request, 'event/wall.html', data)
 
 
-def event_photo(request, photo_id):
+def activity_photo(request, type, photo_id):
     data = {
-        'photo': ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model='event'))
+        'photo': ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model=type))
     }
     return render(request, 'event/event_photo.html', data)
 
 
-def event_photo_remove(request, photo_id):
+def activity_photo_remove(request, type, photo_id):
     try:
-        photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model='event'))
+        photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model=type))
         if request.user != photo.create_user:
             raise PermissionDenied
         photo.delete()
@@ -94,9 +94,9 @@ def event_photo_remove(request, photo_id):
     return HttpResponse(json, mimetype='application/x-javascript')
 
 
-def event_photo_report(request, photo_id):
+def activity_photo_report(request, type, photo_id):
     try:
-        photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model='event'))
+        photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model=type))
         if not request.user.is_active:
             raise PermissionDenied
         photo.status = 'reported'

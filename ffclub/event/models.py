@@ -23,7 +23,7 @@ class Activity(models.Model):
 
     participants = models.ManyToManyField(User, related_name='activities', through='Participation')
 
-    photos = generic.GenericRelation(ImageUpload)
+    photos = generic.GenericRelation(ImageUpload, content_type_field='content_type', object_id_field='entity_id')
 
     def __unicode__(self):
         return unicode(self.title)

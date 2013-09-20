@@ -21,7 +21,7 @@
           <li class="eventPhoto">
             <div class="photoFrame">
               <a class="eventPhotoLink"
-                 href="{{ request.build_absolute_uri(url('event.photo', photo_id=event_photo.id)) }}"
+                 href="{{ request.build_absolute_uri(url('activity.photo', type='campaign', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
@@ -39,11 +39,11 @@
                 {% if request.user.is_active %}
                   <ul class="miscDropdown">
                     <li>
-                      <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
+                      <a class="reportPhoto" href="{{ url('activity.photo.report', type='campaign', photo_id=event_photo.id) }}">檢舉</a>
                     </li>
                     {% if event_photo.create_user_id == request.user.id %}
                       <li>
-                        <a class="removePhoto" href="{{ url('event.photo.remove', photo_id=event_photo.id) }}">刪除</a>
+                        <a class="removePhoto" href="{{ url('activity.photo.remove', type='campaign', photo_id=event_photo.id) }}">刪除</a>
                       </li>
                     {% endif %}
                   </ul>
