@@ -35,7 +35,8 @@ class BaseImageUploadForm(ModelForm):
         self.instance.dragTop = self.cleaned_data.get('dragTop')
         self.instance.frameWidth = self.cleaned_data.get('frameWidth')
         self.instance.frameHeight = self.cleaned_data.get('frameHeight')
-        self.instance.aspectRatio = float(self.instance.frameWidth) / float(self.instance.frameHeight)
+        if self.instance.frameWidth and self.instance.frameHeight:
+            self.instance.aspectRatio = float(self.instance.frameWidth) / float(self.instance.frameHeight)
         return super(BaseImageUploadForm, self).save(commit)
 
     class Meta:
