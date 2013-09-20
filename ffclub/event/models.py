@@ -11,7 +11,9 @@ from ffclub.upload.models import ImageUpload
 
 class Activity(models.Model):
     title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
-    description = models.CharField(max_length=255, blank=True, default='')
+    description = models.CharField(max_length=255, blank=True, default='', verbose_name='活動說明')
+    slug = models.CharField(max_length=255, blank=True, default='', verbose_name='固定名稱', help_text='用於網址和程式查詢，訂定後勿改動。')
+    url = models.URLField(blank=True, default='', verbose_name='活動網址')
 
     create_user = models.ForeignKey(User, related_name='hostedActivities')
     create_time = models.DateTimeField(default=datetime.now)
@@ -22,6 +24,9 @@ class Activity(models.Model):
     participants = models.ManyToManyField(User, related_name='activities', through='Participation')
 
     photos = generic.GenericRelation(ImageUpload)
+
+    def __unicode__(self):
+        return unicode(self.title)
 
     class Meta:
         verbose_name = verbose_name_plural = '活動'
@@ -39,7 +44,7 @@ class Event(Activity):
                               default='normal')
 
     def __unicode__(self):
-        return unicode(self.title)
+        return unicode(self.title + ': ' + self.status)
 
     class Meta:
         verbose_name = verbose_name_plural = '實體活動'
@@ -49,6 +54,9 @@ class Campaign(Activity):
     status = models.CharField(max_length=20,
                               choices=(('running', '進行中'), ('preparing', '準備中'), ('voting', '投票中'), ('end', '已結束')),
                               default='preparing')
+
+    def __unicode__(self):
+        return unicode(self.title + ': ' + self.status)
 
     class Meta:
         verbose_name = verbose_name_plural = '線上活動'

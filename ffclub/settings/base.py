@@ -43,7 +43,7 @@ DATABASES = {}  # See settings_local.
 
 SLAVE_DATABASES = []
 
-DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
+# DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
 # Site ID is used by Django's Sites framework.
 SITE_ID = 1
@@ -508,6 +508,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/navigator.less.css',
             'css/sandstone/footer.less.css',
             'css/persona-buttons.css',
+            'css/slides.css',
             # imported using less
             # 'css/ffcstyle.css',
         ),
@@ -519,7 +520,6 @@ MINIFY_BUNDLES = {
         ),
         'intro': (
             'css/intro.less',
-            'css/slides.css',
         ),
         # 'person': (
         # ),
@@ -537,14 +537,12 @@ MINIFY_BUNDLES = {
         ),
         'event': (
             'css/event.less',
-            'css/slides.css',
         ),
         'event_photo': (
             'css/event_photo.less',
         ),
         'product': (
             'css/product.less',
-            'css/slides.css',
         ),
         'product_photos': (
             'css/product_photos.less',
@@ -562,6 +560,15 @@ MINIFY_BUNDLES = {
         'coming-soon': (
             'css/event/coming-soon.less',        
         ),
+        'every-moment': (
+            'css/event/every-moment.less',
+        ),
+        'every-moment-upload': (
+            'css/event/every-moment-upload.less',
+        ),
+        'every-moment-wall': (
+            'css/event/every-moment-wall.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -569,6 +576,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.9.1.js',
             'js/sandstone/sandstone-tabzilla-nav-all.js',
             'js/main.js',
+            'js/slides.js',
         ),
         'browserid': (
             'js/browserid.js',
@@ -577,7 +585,6 @@ MINIFY_BUNDLES = {
         # 'base': (
         # ),
         'intro': (
-            'js/slides.js',
             'js/intro.js',
         ),
         # 'person': (
@@ -586,12 +593,11 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.masonry.min.js',
             'js/libs/jquery.imagesloaded.min.js',
             'js/libs/jquery.infinitescroll.js',
-            'js/slides.js',
             'js/pretty.date.js',
             'js/event.js',
+            'js/fb-share.js',
         ),
         'product': (
-            'js/slides.js',
             'js/product.js',
         ),
         'attack-on-web': (
@@ -602,6 +608,19 @@ MINIFY_BUNDLES = {
         ),
         'coming-soon': (
             'js/event/coming-soon.js',
+        ),
+        'every-moment': (
+            'js/event/every-moment.js',
+        ),
+        'every-moment-upload': (
+            'js/libs/jquery-ui.js',
+            'js/libs/exif.js',
+            'js/libs/binaryajax.js',
+            'js/event/every-moment-upload.js',
+            'js/fb-share.js',
+        ),
+        'every-moment-wall': (
+            'js/event/every-moment-wall.js',
         ),
     }
 }

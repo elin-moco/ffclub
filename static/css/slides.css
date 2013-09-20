@@ -59,7 +59,7 @@ div.eventWall {
 }
 
 .slidewrap .next, .slidewrap .prev{
-    background: url("../images/css/slide-arrows.png") no-repeat scroll 0 0 transparent;
+    background: url("/static/images/css/slide-arrows.png") no-repeat scroll 0 0 transparent;
     border: 0 none;
     cursor: pointer;
     display: block;

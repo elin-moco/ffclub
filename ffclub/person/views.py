@@ -14,6 +14,7 @@ from models import Person
 log = commonware.log.getLogger('ffclub')
 genderMap = {u'男性': 'male', u'女性': 'female'}
 
+
 def register(request):
     """Main view."""
     if not request.user.is_authenticated():

@@ -46,11 +46,6 @@
         <p>
           <a href="https://login.persona.org/about" target="_blank">認識 Persona</a>
       </div>
-
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
     </div>
   {% endif %}
   <div id="intro-content">

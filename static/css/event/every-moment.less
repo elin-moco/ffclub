@@ -1,0 +1,48 @@
+@import "../ffcstyle";
+
+#wrapper{
+  background: url(/static/img/event/every-moment/scratch/bg-navy.png) left top repeat-x;
+  padding-bottom:50px;
+}
+
+#main-content {
+  background: transparent;
+}
+
+.scratcher {
+  display: none;
+  width: 125px;
+  height: 125px;
+  margin: 200px auto;
+  position: relative;
+  background: url(/static/img/event/every-moment/scratch/scratch-white.png) no-repeat;
+  #fx-scratcher, #fx-icon {
+    position: absolute;
+  }
+  #fx-scratcher {
+    transition: all 0.5s ease-out 0s;
+  }
+  &.complete #fx-scratcher {
+    opacity: 0;
+  }
+  #fx-icon {
+    transition: all 0.5s ease-out 1s;
+    left: 0;
+    top: 0;
+    width: 125px;
+    height: 125px;
+  }
+  &.complete #fx-icon {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    left: -83px;
+    top: -100px;
+  }
+}
+
+#scratch-tip {
+  position: absolute;
+  top: -60px;
+  right: 240px;
+}

@@ -1,0 +1,92 @@
+@import "../ffcstyle";
+
+#wrapper {
+  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
+  padding-bottom: 50px;
+}
+
+#main-content {
+  background: transparent;
+}
+
+#preview {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  overflow: hidden;
+  float: left;
+}
+
+#container {
+  position: absolute;
+}
+
+#dragger {
+  position: relative;
+  cursor: move;
+  img {
+    position: absolute;
+  }
+}
+
+label[for=id_image_large],
+#id_image_large {
+  display: none;
+}
+
+#main-content form ul li {
+  list-style: none;
+}
+
+form.details {
+  float: left;
+}
+
+.entrance form.details {
+  display: none;
+}
+
+.entrance #upload {
+  display: block;
+}
+
+.entrance #re-upload {
+  display: none;
+}
+
+.uploaded form.details {
+  display: block;
+}
+
+.uploaded #upload {
+  display: none;
+}
+
+.uploaded #re-upload {
+  display: block;
+}
+
+.rotate-90 {
+  .rotate(-90deg)
+}
+
+.rotate180 {
+  .rotate(180deg)
+}
+
+.rotate90 {
+  .rotate(90deg)
+}
+
+.rotate(@degree) {
+  transform: rotate(@degree);
+  /* Firefox */
+  -moz-transform: rotate(@degree);
+  /* Safari and Chrome */
+  -webkit-transform: rotate(@degree);
+  /* Opera */
+  -o-transform: rotate(@degree);
+  /* IE9 */
+  -ms-transform: rotate(@degree);
+  /* IE6,IE7 */
+}

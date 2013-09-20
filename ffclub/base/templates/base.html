@@ -97,17 +97,28 @@
 <div class="loginPopup">
   <div class="loginBox">
     <div class="innerBox">
-      <a class="persona-button browserid-login browserid" href="javascript:void(0)"><span>使用 Persona 登入</span></a>
+      <a class="persona-button browserid-login browserid" href="/events/"><span>使用 Persona 登入</span></a>
       <p>
         更簡易、更安全的登入方式－<a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
       </p>
       <p>或者你也可以：</p>
-      <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}"><span>使用 Facebook 登入</span></a>
+      <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}{{ '?next=' + request.build_absolute_uri(login_url) if login_url else '' }}"><span>使用 Facebook 登入</span></a>
       <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
   {#    <div class="fb-login-button" data-width="300" show-faces="true" size="large"></div>#}
     </div>
   </div>
 </div>
+
+{% if not request.user.is_active %}
+<form method="POST" action="{{ url('browserid_verify') }}">
+  {{ csrf() }}
+  {% if login_url %}
+    <input type="hidden" name="next" value="{{ login_url }}">
+  {% endif %}
+  {{ browserid_form.as_p() }}
+</form>
+{% endif %}
+
 
 {{ js('site') }}
 {% block base_js %}

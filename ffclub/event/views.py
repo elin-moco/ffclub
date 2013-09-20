@@ -9,13 +9,14 @@ from django.shortcuts import render
 
 import commonware.log
 
-# from forms import EventForm
 from django.utils import simplejson
 import facebook
+from ffclub.event.models import Campaign
 from ffclub.event.utils import send_photo_report_mail
-from ffclub.upload.forms import ImageUploadForm
+from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
+from ffclub.person.forms import PersonEmailNicknameForm
 
 log = commonware.log.getLogger('ffclub')
 
@@ -24,10 +25,18 @@ def wall(request):
     return wall_page(request, 1)
 
 
+def shareOnFacebook(data, upload):
+    if all(key in data.keys() for key in ('shareOnFb', 'fbToken')):
+        try:
+            graph = facebook.GraphAPI(data['fbToken'])
+            upload.image_large.open()
+            graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
+            graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_url())
+        except facebook.GraphAPIError as e:
+            log.error(e)
+
+
 def wall_page(request, page_number=1):
-# if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
-#     return redirect('user.register')
-# eventForm = EventForm()
     uploadForm = ImageUploadForm(user=request.user)
 
     if request.method == 'POST':
@@ -41,14 +50,7 @@ def wall_page(request, page_number=1):
             # event.save()
             # upload.entity_object = event
             upload.save()
-            if all(key in request.POST.keys() for key in ('shareOnFb', 'fbToken')):
-                try:
-                    graph = facebook.GraphAPI(request.POST['fbToken'])
-                    upload.image_large.open()
-                    graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
-                    graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_url())
-                except facebook.GraphAPIError as e:
-                    log.error(e)
+            shareOnFacebook(request.POST, upload)
             # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
@@ -116,6 +118,66 @@ def event_photo_report(request, photo_id):
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
+
+
+def every_moment(request):
+    return render(request, 'event/every-moment/index.html')
+
+
+def every_moment_upload(request):
+    if request.method == 'POST':
+        currentCampaign = Campaign.objects.get(slug='every-moment')
+        currentUser = auth.get_user(request)
+        uploadForm = CampaignImageUploadForm(request.POST, request.FILES)
+        try:
+            personForm = PersonEmailNicknameForm(request.POST, instance=currentUser.get_profile())
+        except ObjectDoesNotExist:
+            personForm = PersonEmailNicknameForm(request.POST)
+        if all([uploadForm.is_valid(), personForm.is_valid()]):
+            person = personForm.save(commit=False)
+            if not hasattr(person, 'user'):
+                person.user = currentUser
+            upload = uploadForm.save(commit=False)
+            upload.create_user = currentUser
+            upload.entity_object = currentCampaign
+            person.save()
+            upload.save()
+            shareOnFacebook(request.POST, upload)
+            if request.user.is_active:
+                uploadForm = CampaignImageUploadForm()
+                try:
+                    personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
+                except ObjectDoesNotExist:
+                    personForm = PersonEmailNicknameForm()
+    else:
+        if request.user.is_active:
+            uploadForm = CampaignImageUploadForm()
+            try:
+                personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
+            except ObjectDoesNotExist:
+                personForm = PersonEmailNicknameForm()
+    data = {
+        'uploadForm': uploadForm,
+        'personForm': personForm,
+    }
+    return render(request, 'event/every-moment/upload.html', data)
+
+
+def every_moment_wall(request):
+    return every_moment_wall_page(request, 1)
+
+
+def every_moment_wall_page(request, page_number=1):
+    allEventPhotos = ImageUpload.objects.filter(
+        content_type=ContentType.objects.get(model='campaign'), entity_id=Campaign.objects.get(slug='every-moment').id
+    ).order_by('-create_time').prefetch_related('create_user', 'create_user__person')
+    for eventPhoto in allEventPhotos:
+        try:
+            eventPhoto.create_username = eventPhoto.create_user.person.fullname
+        except ObjectDoesNotExist:
+            eventPhoto.create_username = ''
+    paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
+    return render(request, 'event/every-moment/wall.html', {'event_photos': paginator.page(page_number)})
 
 
 def attack_on_web(request):

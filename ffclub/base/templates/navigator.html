@@ -28,7 +28,7 @@
               <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
             </li>
             <li class="last">
-              <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
+              <a title="登出網站" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}" tabindex="-1">登出</a>
             </li>
           </ul>
         </li>

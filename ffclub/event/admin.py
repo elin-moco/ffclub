@@ -20,7 +20,7 @@ class EventAdmin(ModelAdmin):
                      'orders__usage', 'orders__fullname', 'orders__email',
                      'orders__address', 'orders__occupation', 'orders__feedback']
     list_filter = ['num_of_ppl', 'create_time', 'status', 'orders__create_time', 'orders__status']
-    inlines = [OrderInline, ImageUploadInline]
+    inlines = [OrderInline, ParticipationInline, ImageUploadInline]
 
 
 admin.site.register(Event, EventAdmin)

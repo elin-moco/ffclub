@@ -86,17 +86,28 @@ class ImageUpload(models.Model):
 
             log.debug('Content Type: ' + content_type)
 
+            cropped = hasattr(self, 'aspectRatio') and hasattr(self, 'dragLeft') and hasattr(self, 'dragTop')
+
             large_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           LARGE_SIZE, RESIZE_MODE_ASPECT_FILL)
-            large_image = resize_image(image_name, image_stream, large_size, content_type, rotate_degree)
+            large_crop_box = compute_crop_box(self.aspectRatio, large_size, (self.frameWidth, self.frameHeight),
+                                              (self.dragLeft, self.dragTop)) if cropped else None
+            large_image = resize_image(image_name, image_stream,
+                                       large_size, content_type, rotate_degree, large_crop_box)
 
             medium_size = compute_new_size((self.image_large_width, self.image_large_height),
                                            MEDIUM_SIZE, RESIZE_MODE_ASPECT_FIT)
-            medium_image = resize_image(image_name, image_stream, medium_size, content_type, rotate_degree)
+            medium_crop_box = compute_crop_box(self.aspectRatio, medium_size, (self.frameWidth, self.frameHeight),
+                                               (self.dragLeft, self.dragTop)) if cropped else None
+            medium_image = resize_image(image_name, image_stream,
+                                        medium_size, content_type, rotate_degree, medium_crop_box)
 
             small_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           SMALL_SIZE, RESIZE_MODE_ASPECT_FIT)
-            small_image = resize_image(image_name, image_stream, small_size, content_type, rotate_degree)
+            small_crop_box = compute_crop_box(self.aspectRatio, small_size, (self.frameWidth, self.frameHeight),
+                                              (self.dragLeft, self.dragTop)) if cropped else None
+            small_image = resize_image(image_name, image_stream,
+                                       small_size, content_type, rotate_degree, small_crop_box)
 
             self.image_medium.save(medium_image.name, medium_image, save=False)
             self.image_large.save(large_image.name, large_image, save=False)

@@ -43,11 +43,6 @@
     <p>
       <button class="loginButton">分享成果請先登入</button>
     </p>
-    <form method="POST" action="{{ url('browserid_verify') }}">
-      {{ csrf() }}
-      {{ browserid_form.as_p() }}
-      <input type="hidden" name="next" value="{{ url('event.wall') }}">
-    </form>
   {% endif %}
   <div class="eventWall">
     {% if event_photos|length == 0 %}

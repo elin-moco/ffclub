@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin, sitemaps
+from django.views.generic.simple import redirect_to
 from ffclub.base import ViewsSitemap
 from ffclub.intro.views import login_redirect
 from ffclub.settings import DEBUG, ENGAGE_ROBOTS
@@ -52,6 +53,7 @@ urlpatterns = patterns(
     url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='intro.logout'),
     url(r'^browserid/', include('django_browserid.urls')),
     url(r'', include('social_auth.urls')),
+    ('^media/uploads/(?P<path>.*)$', redirect_to, {'url': '/static/uploads/%(path)s'}),
     (r'^admin/', include(admin.site.urls)),
     # Generate a robots.txt
     (

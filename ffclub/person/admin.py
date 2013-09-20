@@ -7,7 +7,6 @@ from social_auth.db.django_models import UserSocialAuth
 from .models import *
 
 
-
 class UserSocialAuthInline(TabularInline):
     model = UserSocialAuth
     extra = 0
