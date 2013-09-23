@@ -1,13 +1,18 @@
+# -*- coding: utf-8 -*-
+
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import *
 from django.contrib import auth
 import commonware.log
+import facebook
+from social_auth.db.django_models import UserSocialAuth
 
 from forms import PersonForm
 from models import Person
 
 
 log = commonware.log.getLogger('ffclub')
+genderMap = {u'男性': 'male', u'女性': 'female'}
 
 
 def register(request):
@@ -33,7 +38,19 @@ def register(request):
     elif Person.objects.filter(user=request.user).exists():
         data = {'form': PersonForm(instance=request.user.get_profile())}
     else:
-        data = {'form': PersonForm()}  # You'd add data here that you're sending to the template.
+        fbAuth = UserSocialAuth.objects.filter(user=request.user, provider='facebook')
+        initData = {}
+        if fbAuth.exists():
+            token = fbAuth.get().tokens['access_token']
+            if token:
+                graph = facebook.GraphAPI(token)
+                me = graph.get_object('me', locale='zh_TW')
+                if 'name' in me:
+                    initData['fullname'] = me['name']
+                if 'gender' in me and me['gender'] in genderMap.keys():
+                    initData['gender'] = genderMap[me['gender']]
+
+        data = {'form': PersonForm(initial=initData)}  # You'd add data here that you're sending to the template.
 
     return render(request, 'person/register.html', data)
 

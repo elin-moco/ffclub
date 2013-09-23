@@ -1,0 +1,29 @@
+{% set page_title = '美好時刻' %}
+{% set login_url = url('event.every.moment.upload') %}
+{% set logout_url = url('event.every.moment') %}
+{% extends "base.html" %}
+{% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment') }}
+{% endblock %}
+{% block base_js %}
+  {{ js('every-moment') }}
+{% endblock %}
+{#{% block head %}{% endblock %}#}
+{% block banner %}{% endblock %}
+{% block content %}
+  {% if not request.user.is_active %}
+    <div id="login">
+      <div>
+        <button class="loginButton">登入</button>
+      </div>
+    </div>
+  {% endif %}
+
+  <img id="scratch-tip" src="{{ static('img/event/every-moment/scratch/scratch-word.png') }}"/>
+  <div class="scratcher">
+    <img id="fx-icon" src="{{ static('img/event/every-moment/scratch/scratch-firefox.png') }}"/>
+    <canvas id="fx-scratcher"></canvas>
+  </div>
+{% endblock %}

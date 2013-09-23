@@ -41,13 +41,8 @@
     {% endif %}
   {% else %}
     <p>
-      <button class="browserid loginButton">分享成果請先登入</button>
+      <button class="loginButton">分享成果請先登入</button>
     </p>
-    <form method="POST" action="{{ url('browserid_verify') }}">
-      {{ csrf() }}
-      {{ browserid_form.as_p() }}
-      <input type="hidden" name="next" value="{{ url('event.wall') }}">
-    </form>
   {% endif %}
   <div class="eventWall">
     {% if event_photos|length == 0 %}
@@ -60,7 +55,7 @@
           <li class="eventPhoto">
             <div class="photoFrame">
               <a class="eventPhotoLink"
-                 href="{{ request.build_absolute_uri(url('event.photo', photo_id=event_photo.id)) }}"
+                 href="{{ request.build_absolute_uri(url('activity.photo', type='event', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
@@ -78,11 +73,11 @@
                 {% if request.user.is_active %}
                   <ul class="miscDropdown">
                     <li>
-                      <a class="reportPhoto" href="{{ url('event.photo.report', photo_id=event_photo.id) }}">檢舉</a>
+                      <a class="reportPhoto" href="{{ url('activity.photo.report', type='event', photo_id=event_photo.id) }}">檢舉</a>
                     </li>
                     {% if event_photo.create_user_id == request.user.id %}
                       <li>
-                        <a class="removePhoto" href="{{ url('event.photo.remove', photo_id=event_photo.id) }}">刪除</a>
+                        <a class="removePhoto" href="{{ url('activity.photo.remove', type='event', photo_id=event_photo.id) }}">刪除</a>
                       </li>
                     {% endif %}
                   </ul>
@@ -116,6 +111,11 @@
         {{ csrf() }}
         <ul>
           {{ upload_form.as_ul() }}
+          <li>
+            <label for="shareOnFb">同步分享到 Facebook</label>
+            <input id="shareOnFb" name="shareOnFb" type="checkbox"/>
+            <input id="fbToken" name="fbToken" type="hidden"/>
+          </li>
         </ul>
         <button class="submitButton" type="submit" value="1">我要上傳</button>
       </form>
@@ -123,22 +123,6 @@
   </div>
 {% endblock %}
 {% block base_js %}
-  {{ js('event') }}
-  {% if not request.user.is_active %}
-    {{ js('browserid') }}
-    {#    {{ browserid_form.media }}#}
-  {% endif %}
-  <div id="fb-root"></div>
-
-  <script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId={{ FB_APP_ID }}";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
   <script type="text/javascript">
     window.___gcfg = {lang: 'zh-TW'};
 
@@ -151,4 +135,5 @@
       s.parentNode.insertBefore(po, s);
     })();
   </script>
+  {{ js('event') }}
 {% endblock %}

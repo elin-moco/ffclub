@@ -168,7 +168,7 @@ body{
 }
 
 #wrapper{
-  background: url(../images/css/bg_sand_gradient.png) left top repeat-x, url(../images/css/bg_sand.png) left top repeat;
+  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
   padding-bottom:50px;
 }
 
@@ -182,7 +182,7 @@ body{
   };
   h1{
     width:130px;
-    background:url(../images/css/header-logo.png) left top no-repeat;
+    background:url(/static/images/css/header-logo.png) left top no-repeat;
     background-size: 130px 49px;
     margin:30px 0 0 10px;
     padding:0px;
@@ -214,14 +214,14 @@ body{
     height:275px;
   }
   &.intro{
-    background: url('../images/css/banner_default.jpg') top center no-repeat;
+    background: url('/static/images/css/banner_default.jpg') top center no-repeat;
     background-size: 800px, 275px;
   }
   &.order{
-    background: url('../images/css/order_banner.jpg') top center no-repeat;
+    background: url('/static/images/css/order_banner.jpg') top center no-repeat;
   }
   &.orderComplete{
-    background: url('../images/css/order_complete_banner.jpg') top center no-repeat;
+    background: url('/static/images/css/order_complete_banner.jpg') top center no-repeat;
   }
   &.register{
     &>h2 {
@@ -232,7 +232,7 @@ body{
       text-shadow: none;
       text-indent: 0;
     }
-    background: url('../images/css/register_banner.jpg') top center no-repeat;
+    background: url('/static/images/css/register_banner.jpg') top center no-repeat;
   }
   &.registerComplete{
     &>h2 {
@@ -243,7 +243,7 @@ body{
       text-shadow: none;
       text-indent: 0;
     }
-    background: url('../images/css/register_complete_banner.jpg') top center no-repeat;
+    background: url('/static/images/css/register_complete_banner.jpg') top center no-repeat;
   }
   &.eventShow {
     &>h1,h2 {
@@ -288,7 +288,7 @@ body{
   float: left;
   width: 73px;
   height: 73px;
-  background: url("../images/css/logo.png") no-repeat scroll 0 0 transparent;
+  background: url("/static/images/css/logo.png") no-repeat scroll 0 0 transparent;
   background-position: left bottom;
 }
 
@@ -314,13 +314,13 @@ a#browserid:hover {
 }
 
 .loginButton {
-  .imageButton('../images/css/login_button.png', 204px, 38px);
+  .imageButton('/static/images/css/login_button.png', 204px, 38px);
   font-size: 11px;
   text-indent: 9px;
 }
 
 .submitButton {
-  .imageButton('../images/css/submit_button.png', 202px, 46px);
+  .imageButton('/static/images/css/submit_button.png', 202px, 46px);
   font-size: 14px;
   line-height: 14px;
   text-indent: 30px;
@@ -373,20 +373,20 @@ a#browserid:hover {
 }
 
 .joinCircle {
-  .floatingCircle("../images/css/join_circle.png");
+  .floatingCircle("/static/images/css/join_circle.png");
   &:hover {
     .animate(jump 1s infinite);
   }
 }
 
 .loveCircle {
-  .floatingCircle("../images/css/love_circle.png");
+  .floatingCircle("/static/images/css/love_circle.png");
   &:hover {
     .animate(jump 1s infinite);
   }
 }
 
-.popup {
+.popup, .loginPopup {
   display: none;
 }
 
@@ -537,4 +537,53 @@ a#browserid:hover {
 
 #nav-main-menu li.no-submenu a {
   background: none;
+}
+
+
+.loginBox {
+  position:absolute;
+  top:20px;
+  bottom:20px;
+  left:0;
+  right:0;
+  width: 400px;
+  height: 260px;
+  margin: auto;
+  padding: 20px;
+  background-color: #EAEFF2;
+  background-repeat: repeat-x;
+  .rounded_corners(8px);
+  .innerBox {
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 1px #484848;
+    -moz-box-shadow: 0 0 1px #484848;
+    -webkit-box-shadow: 0 0 1px #484848;
+  }
+  a.persona-button {
+    display: block;
+    width: 300px;
+    height: 32px;
+  }
+  .fbpile {
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+  p {
+    padding-top: 5px;
+    padding-bottom: 20px;
+    a {
+      color: rgb(0, 149, 221);
+    }
+  }
+  .persona-button:before {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+  .persona-button span {
+    padding: 6px 10px 6px 50px;
+    font-size: 16px;
+  }
 }

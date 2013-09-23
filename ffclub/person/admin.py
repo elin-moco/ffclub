@@ -1,8 +1,21 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.contrib.admin import StackedInline
+from django.contrib.admin import StackedInline, TabularInline
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from social_auth.db.django_models import UserSocialAuth
 from .models import *
+
+
+class UserSocialAuthInline(TabularInline):
+    model = UserSocialAuth
+    extra = 0
+    verbose_name = verbose_name_plural = '社群網站認證'
+
+
+class UserInline(StackedInline):
+    model = User
+    extra = 0
 
 
 class PersonInline(StackedInline):
@@ -11,7 +24,7 @@ class PersonInline(StackedInline):
 
 
 class CustomUserAdmin(UserAdmin):
-    inlines = [PersonInline]
+    inlines = [PersonInline, UserSocialAuthInline]
 
     def __init__(self, model, admin_site):
         super(CustomUserAdmin, self).__init__(model, admin_site)

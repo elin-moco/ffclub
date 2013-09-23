@@ -21,7 +21,7 @@ $(document).ready(function () {
                 FB.XFBML.parse(fb.get(0));
             }
             if (gp.children().length == 0) {
-                gp.append('<div class="g-plusone" data-size="medium" data-href="'+url+'"></div>');
+                gp.append('<div class="g-plusone" data-size="medium" data-href="' + url + '"></div>');
                 gapi.plusone.go(gp.get(0));
             }
         }
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
         });
 
-    var init_photo_actions = function(photos) {
+    var init_photo_actions = function (photos) {
         $(photos).find('span.time').prettyDate();
         $(photos).find('.eventPhotoLink').click(
             function (e) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             }
         );
         $(photos).on('mouseover', loadSocialButtons);
-        $(photos).find('.removePhoto').on('click', function(e) {
+        $(photos).find('.removePhoto').on('click', function (e) {
             e.preventDefault();
             var eventPhoto = $(this).closest('.eventPhoto');
             if (confirm('確定刪除？')) {
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     dataType: 'json',
                     url: $(this).attr('href')
                 }).done(
-                    function(response) {
+                    function (response) {
                         if ('success' == response.result) {
                             eventPhotos.masonry('remove', eventPhoto);
                             eventPhotos.masonry('reload');
@@ -95,13 +95,13 @@ $(document).ready(function () {
                 );
             }
         });
-        $(photos).find('.reportPhoto').on('click', function(e) {
+        $(photos).find('.reportPhoto').on('click', function (e) {
             e.preventDefault();
             $.ajax({
                 dataType: 'json',
                 url: $(this).attr('href')
             }).done(
-                function(response) {
+                function (response) {
                     if ('success' == response.result) {
                         alert('感謝回報！我們會儘速處理。');
                     }

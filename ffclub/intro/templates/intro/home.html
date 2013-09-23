@@ -3,7 +3,6 @@
 {% block base_css %}
   {{ css('intro') }}
 {% endblock %}
-
 {% block banner %}
   <div id="main-feature" class="huge">
     <hgroup>
@@ -40,18 +39,13 @@
   {% if not request.user.is_active %}
     <div id="intro-login">
       <div>
-        <button class="browserid loginButton">使用 Persona 帳號登入</button>
+        <button class="loginButton">登入 Firefox 活力軍</button>
       </div>
       <div class="loginInfo">
         你會經由 Persona 網路身份識別系統登入帳號，請安心登入。
         <p>
           <a href="https://login.persona.org/about" target="_blank">認識 Persona</a>
       </div>
-
-      <form method="POST" action="{{ url('browserid_verify') }}">
-        {{ csrf() }}
-        {{ browserid_form.as_p() }}
-      </form>
     </div>
   {% endif %}
   <div id="intro-content">
@@ -141,9 +135,5 @@
 {% endblock %}
 {% block base_js %}
   {{ js('intro') }}
-  {% if not request.user.is_active %}
-    {{ js('browserid') }}
-    {#    {{ browserid_form.media }}#}
-  {% endif %}
 {% endblock %}
 

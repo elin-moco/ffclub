@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.encoding import iri_to_uri
+# from ffclub.event.models import Vote
+from ffclub.settings import STATIC_URL, SITE_URL
 
 from utils import *
 
@@ -39,8 +41,9 @@ class ImageUpload(models.Model):
     entity_id = models.PositiveIntegerField()
     entity_object = generic.GenericForeignKey('content_type', 'entity_id')
 
-    # Generated thumbnails
+    votes = generic.GenericRelation('event.Vote', content_type_field='content_type', object_id_field='entity_id')
 
+    # Generated thumbnails
     image_medium = models.ImageField(upload_to=settings.FILE_PATH + '/m',
                                      width_field='image_medium_width', height_field='image_medium_height',
                                      max_length=255, db_index=True, null=True, blank=True)
@@ -48,6 +51,7 @@ class ImageUpload(models.Model):
     image_small = models.ImageField(upload_to=settings.FILE_PATH + '/s',
                                     width_field='image_small_width', height_field='image_small_height',
                                     max_length=255, db_index=True, null=True, blank=True)
+
     # Generated values
     image_large_width = models.IntegerField(null=True, blank=True)
     image_large_height = models.IntegerField(null=True, blank=True)
@@ -82,17 +86,28 @@ class ImageUpload(models.Model):
 
             log.debug('Content Type: ' + content_type)
 
+            cropped = hasattr(self, 'aspectRatio') and hasattr(self, 'dragLeft') and hasattr(self, 'dragTop')
+
             large_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           LARGE_SIZE, RESIZE_MODE_ASPECT_FILL)
-            large_image = resize_image(image_name, image_stream, large_size, content_type, rotate_degree)
+            large_crop_box = compute_crop_box(self.aspectRatio, large_size, (self.frameWidth, self.frameHeight),
+                                              (self.dragLeft, self.dragTop)) if cropped else None
+            large_image = resize_image(image_name, image_stream,
+                                       large_size, content_type, rotate_degree, large_crop_box)
 
             medium_size = compute_new_size((self.image_large_width, self.image_large_height),
                                            MEDIUM_SIZE, RESIZE_MODE_ASPECT_FIT)
-            medium_image = resize_image(image_name, image_stream, medium_size, content_type, rotate_degree)
+            medium_crop_box = compute_crop_box(self.aspectRatio, medium_size, (self.frameWidth, self.frameHeight),
+                                               (self.dragLeft, self.dragTop)) if cropped else None
+            medium_image = resize_image(image_name, image_stream,
+                                        medium_size, content_type, rotate_degree, medium_crop_box)
 
             small_size = compute_new_size((self.image_large_width, self.image_large_height),
                                           SMALL_SIZE, RESIZE_MODE_ASPECT_FIT)
-            small_image = resize_image(image_name, image_stream, small_size, content_type, rotate_degree)
+            small_crop_box = compute_crop_box(self.aspectRatio, small_size, (self.frameWidth, self.frameHeight),
+                                              (self.dragLeft, self.dragTop)) if cropped else None
+            small_image = resize_image(image_name, image_stream,
+                                       small_size, content_type, rotate_degree, small_crop_box)
 
             self.image_medium.save(medium_image.name, medium_image, save=False)
             self.image_large.save(large_image.name, large_image, save=False)

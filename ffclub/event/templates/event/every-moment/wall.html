@@ -1,0 +1,72 @@
+{% set page_title = '美好時刻' %}
+{% extends "base.html" %}
+{% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment-wall') }}
+{% endblock %}
+{% block base_js %}
+  {{ js('every-moment-wall') }}
+{% endblock %}
+{% block banner %}{% endblock %}
+{% block content %}
+  <div class="eventWall">
+    {% if event_photos|length == 0 %}
+      <div class="eventPhotos">
+        <p>目前没有任何照片分享，成為第一個分享的人吧！</p>
+      </div>
+    {% else %}
+      <ul class="eventPhotos">
+        {% for event_photo in event_photos %}
+          <li class="eventPhoto">
+            <div class="photoFrame">
+              <a class="eventPhotoLink"
+                 href="{{ request.build_absolute_uri(url('activity.photo', type='campaign', photo_id=event_photo.id)) }}"
+                 title="{{ event_photo.description }}">
+                <img data-full-width="{{ event_photo.image_large_width }}"
+                     data-full-height="{{ event_photo.image_large_height }}"
+                     data-large-src="{{ STATIC_URL }}{{ event_photo.get_large_path() }}"
+                     width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
+                     src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
+                     alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
+              </a>
+
+              <div class="socialButtons">
+                <div class="facebookLike">
+                </div>
+                <div class="googlePlus">
+                </div>
+                {% if request.user.is_active %}
+                  <ul class="miscDropdown">
+                    <li>
+                      <a class="reportPhoto" href="{{ url('activity.photo.report', type='campaign', photo_id=event_photo.id) }}">檢舉</a>
+                    </li>
+                    {% if event_photo.create_user_id == request.user.id %}
+                      <li>
+                        <a class="removePhoto" href="{{ url('activity.photo.remove', type='campaign', photo_id=event_photo.id) }}">刪除</a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+              </div>
+            </div>
+            <div class="photoDescription">
+              <p>{{ event_photo.description }}</p>
+            </div>
+            <div class="photoInfo">
+              <p>投稿者：<b>{{ event_photo.create_username }}</b>
+
+              <p>發表於：<b><span class="time" title="{{ event_photo.create_time }}"></span></b>
+            </div>
+
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if event_photos|length > 0 %}
+      <div id="page-nav">
+        <a href="{{ url('event.wall.page', page_number=2) }}"></a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
