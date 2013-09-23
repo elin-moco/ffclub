@@ -11,16 +11,23 @@
 {% block head %}{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
-  <div class="entrance">
+  <div class="{{ 'uploaded' if uploaded else 'entrance' }}">
     <div class="fxos-firefox-tail">
     </div>
     <div class="fxos-phone">
+      {% if uploaded and photo %}
+      <img id="preview" width="250" height="{{ photo.image_medium_height / photo.image_medium_width * 250 }}"
+           src="{{ STATIC_URL }}{{ photo.get_medium_path() }}"
+           alt="{{ photo.description }}" title="{{ photo.description }}"/>
+
+      {% else %}
       <div id="preview">
         <div id="container">
           <div id="dragger">
           </div>
         </div>
       </div>
+      {% endif %}
       <div class="phone-frame">
       </div>
       <a id="upload" class="choose-file" href="javascript:void(0);"></a>
@@ -30,10 +37,19 @@
     <div class="fxos-firefox">
     </div>
 
+    {% if not uploaded %}
     <a id="re-upload-button" class="choose-file">重新選圖 »</a>
+    {% endif %}
+
     <div id="upload-title">
     </div>
     <div id="details">
+      {% if uploaded %}
+        <div id="upload-success">恭喜你已經上傳成功！</div>
+        <a id="view-wall" href="{{ url('event.every.moment.wall') }}"></a>
+        <div id="view-wall-tip"></div>
+
+      {% else %}
       <form class="details-form" enctype="multipart/form-data" method="post">
         {{ csrf() }}
         <ul>
@@ -55,10 +71,13 @@
       </form>
       <div class="detail-tip">
       </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
 {% block footer %}
+  {% if not uploaded %}
   <div class="curtain">
   </div>
+  {% endif %}
 {% endblock %}

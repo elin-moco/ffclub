@@ -125,6 +125,8 @@ def every_moment(request):
 
 
 def every_moment_upload(request):
+    uploaded = False
+    photo = None
     if request.method == 'POST':
         currentCampaign = Campaign.objects.get(slug='every-moment')
         currentUser = auth.get_user(request)
@@ -143,12 +145,14 @@ def every_moment_upload(request):
             person.save()
             upload.save()
             shareOnFacebook(request.POST, upload)
-            if request.user.is_active:
-                uploadForm = CampaignImageUploadForm()
-                try:
-                    personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
-                except ObjectDoesNotExist:
-                    personForm = PersonEmailNicknameForm()
+            photo = upload
+            uploaded = True
+            # if request.user.is_active:
+            #     uploadForm = CampaignImageUploadForm()
+            #     try:
+            #         personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
+            #     except ObjectDoesNotExist:
+            #         personForm = PersonEmailNicknameForm()
     else:
         if request.user.is_active:
             uploadForm = CampaignImageUploadForm()
@@ -159,6 +163,8 @@ def every_moment_upload(request):
     data = {
         'uploadForm': uploadForm,
         'personForm': personForm,
+        'uploaded': uploaded,
+        'photo': photo,
     }
     return render(request, 'event/every-moment/upload.html', data)
 
