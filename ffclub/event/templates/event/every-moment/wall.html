@@ -8,7 +8,14 @@
 {% block base_js %}
   {{ js('every-moment-wall') }}
 {% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+  <div id="header-bar">
+    <div class="header-content">
+      <div class="fxos-logo"></div>
+      <div class="every-moment"></div>
+    </div>
+  </div>
+{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
   <div class="eventWall">
@@ -27,7 +34,7 @@
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
                      data-large-src="{{ STATIC_URL }}{{ event_photo.get_large_path() }}"
-                     width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
+                     width="250" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 250 }}"
                      src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
@@ -55,11 +62,11 @@
               <p>{{ event_photo.description }}</p>
             </div>
             <div class="photoInfo">
-              <p>投稿者：<b>{{ event_photo.create_username }}</b>
-
-              <p>發表於：<b><span class="time" title="{{ event_photo.create_time }}"></span></b>
+              <p>by <b>{{ event_photo.create_username }}</b>
             </div>
-
+            <a class="shareButton" href="javascript:void(0);">
+              <div class="shareText"></div>
+            </a>
           </li>
         {% endfor %}
       </ul>
@@ -70,5 +77,19 @@
       </div>
     {% endif %}
   </div>
+  <div id="fxos-phone-frame">
+    <div class="fxos-phone">
+      <div class="phone-frame">
+      </div>
+    </div>
+    <div class="fxos-firefox">
+    </div>
+    <a class="bigShareButton" href="javascript:void(0);">
+      <div class="bigShareText"></div>
+    </a>
+  </div>
+{#  <div class="fxos-firefox-tail">#}
+{#  </div>#}
+
 {% endblock %}
 {% block footer %}{% endblock %}

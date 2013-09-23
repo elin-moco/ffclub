@@ -621,6 +621,7 @@ MINIFY_BUNDLES = {
             'js/fb-share.js',
         ),
         'every-moment-wall': (
+            'js/libs/jquery-ui.js',
             'js/event/every-moment-wall.js',
         ),
     }
