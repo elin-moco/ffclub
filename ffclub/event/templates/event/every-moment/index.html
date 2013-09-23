@@ -10,20 +10,149 @@
 {% block base_js %}
   {{ js('every-moment') }}
 {% endblock %}
-{#{% block head %}{% endblock %}#}
+{% block head %}{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
-  {% if not request.user.is_active %}
-    <div id="login">
-      <div>
-        <button class="loginButton">登入</button>
+  <div id="scratch">
+    <img id="scratch-tip" src="{{ static('img/event/every-moment/scratch/scratch-word.png') }}"/>
+    <div class="scratcher">
+      <img id="fx-icon" src="{{ static('img/event/every-moment/scratch/scratch-firefox.png') }}"/>
+      <canvas id="fx-scratcher"></canvas>
+    </div>
+  </div>
+  <div id="intro">
+    <div id="moment">
+      <img class="title-image" src="{{ static('img/event/every-moment/home/clock/title.png') }}">
+      <div id="clock">
+        <div id="clock-content" data-image-path="{{ static('img/event/every-moment/home/clock/') }}"></div>
       </div>
     </div>
-  {% endif %}
-
-  <img id="scratch-tip" src="{{ static('img/event/every-moment/scratch/scratch-word.png') }}"/>
-  <div class="scratcher">
-    <img id="fx-icon" src="{{ static('img/event/every-moment/scratch/scratch-firefox.png') }}"/>
-    <canvas id="fx-scratcher"></canvas>
+    <div id="wall1">
+      <div class="phone-brick-wall">
+        <div class="phone-brick phone-brick-a">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-a.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-b">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-b.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-c">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-c.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-d">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-d.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-e">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-e.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-f">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-f.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-g">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-g.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-h">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-h.png') }}">
+        </div>
+        <img class="fxos-firefox" src="{{ static('img/event/every-moment/home/mobile/mobile-screen-osfox.png') }}">
+      </div>
+    </div>
+    <div id="wall2">
+      <div class="phone-brick-wall">
+        <div class="phone-brick phone-brick-a">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-a.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-b">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-b.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-c">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-c.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-d">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-d.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-e">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-e.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-f">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-f.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-g">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-g.png') }}">
+        </div>
+        <div class="phone-brick phone-brick-h">
+          <img class="phone-brick-frame" src="{{ static('img/event/every-moment/home/mobile/mobile-h.png') }}">
+        </div>
+      </div>
+    </div>
   </div>
+  <div id="rules">
+    <div id="description">
+      <div class="fxos-phone">
+        <div class="phone-bg">
+        </div>
+        <div class="phone-info">
+        </div>
+        <div class="phone-frame">
+        </div>
+      </div>
+    </div>
+    <div id="timeline">
+      <div class="fxos-phone">
+        <div class="phone-bg">
+        </div>
+        <div class="phone-info">
+        </div>
+        <div class="phone-frame">
+        </div>
+      </div>
+    </div>
+    <div id="prizes">
+      <div class="fxos-phone">
+        <div class="phone-bg">
+        </div>
+        <div class="phone-info">
+        </div>
+        <div class="phone-frame">
+        </div>
+      </div>
+    </div>
+    <div id="flow">
+      <div class="flow-content">
+        <div class="fxos-firefox-tail">
+        </div>
+        <div class="fxos-phone-vertical">
+          <div class="phone-bg">
+          </div>
+          <div class="phone-info">
+          </div>
+          <div class="phone-frame">
+          </div>
+        </div>
+        <div class="fxos-firefox">
+        </div>
+        <div class="upload-flow">
+          <h3>上傳流程</h3>
+          <ol>
+            <li>使用 Facebook 或 Persona 登入網站</li>
+            <li>上傳你覺得生活中美好一刻的照片<br>與 FIrefox 活動相框結合<br>最多可上傳 5 張照片</li>
+            <li>填寫個人資料</li>
+            <li>完成上傳</li>
+          </ol>
+        </div>
+        {% if not request.user.is_active %}
+        <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
+        {% else %}
+        <a class="start-upload-button" href="{{ url('event.every.moment.upload') }}"></a>
+        {% endif %}
+        <div class="upload-tip"></div>
+      </div>
+    </div>
+  </div>
+  <span id="scroll-tip">
+    Scroll
+    <span class="arrow">﹀</span>
+    <span class="arrow">﹀</span>
+    <span class="arrow">﹀</span>
+  </span>
 {% endblock %}
+{% block footer %}{% endblock %}

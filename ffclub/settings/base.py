@@ -574,6 +574,7 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'js/libs/jquery-1.9.1.js',
+            'js/global.js',
             'js/sandstone/sandstone-tabzilla-nav-all.js',
             'js/main.js',
             'js/slides.js',
