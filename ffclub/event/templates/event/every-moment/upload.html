@@ -8,35 +8,57 @@
 {% block base_js %}
   {{ js('every-moment-upload') }}
 {% endblock %}
+{% block head %}{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
   <div class="entrance">
-    <button id="upload" class="uploadButton">上傳</button>
-    <button id="re-upload" class="uploadButton">重新上傳</button>
-    <div id="preview">
-      <div id="container">
-        <div id="dragger">
+    <div class="fxos-firefox-tail">
+    </div>
+    <div class="fxos-phone">
+      <div id="preview">
+        <div id="container">
+          <div id="dragger">
+          </div>
         </div>
       </div>
+      <div class="phone-frame">
+      </div>
+      <a id="upload" class="choose-file" href="javascript:void(0);"></a>
+      <div class="upload-tip">
+      </div>
     </div>
-    <form class="details" enctype="multipart/form-data" method="post">
-      {{ csrf() }}
-      <ul>
-        {{ uploadForm.as_ul() }}
-        {{ personForm.as_ul() }}
-        <li>
-          <label for="shareOnFb">同步分享到 Facebook</label>
-          <input id="shareOnFb" name="shareOnFb" type="checkbox"/>
-          <input id="fbToken" name="fbToken" type="hidden"/>
-        </li>
-        <li>
-          <input type="hidden" id="dragLeft" name="dragLeft"/>
-          <input type="hidden" id="dragTop" name="dragTop"/>
-          <input type="hidden" id="frameWidth" name="frameWidth"/>
-          <input type="hidden" id="frameHeight" name="frameHeight"/>
-          <button class="submitButton" type="submit" value="1">確認上傳</button>
-        </li>
-      </ul>
-    </form>
+    <div class="fxos-firefox">
+    </div>
+
+    <a id="re-upload-button" class="choose-file">重新選圖 »</a>
+    <div id="upload-title">
+    </div>
+    <div id="details">
+      <form class="details-form" enctype="multipart/form-data" method="post">
+        {{ csrf() }}
+        <ul>
+          {{ uploadForm.as_ul() }}
+          {{ personForm.as_ul() }}
+          <li>
+            <input id="shareOnFb" name="shareOnFb" type="checkbox"/>
+            <label for="shareOnFb">同步分享到 Facebook</label>
+          </li>
+          <li>
+            <input type="hidden" id="fbToken" name="fbToken"/>
+            <input type="hidden" id="dragLeft" name="dragLeft"/>
+            <input type="hidden" id="dragTop" name="dragTop"/>
+            <input type="hidden" id="frameWidth" name="frameWidth"/>
+            <input type="hidden" id="frameHeight" name="frameHeight"/>
+            <a id="upload-button" class="upload-button">確認上傳 »</a>
+          </li>
+        </ul>
+      </form>
+      <div class="detail-tip">
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block footer %}
+  <div class="curtain">
   </div>
 {% endblock %}

@@ -1,20 +1,40 @@
 @import "../ffcstyle";
 
 #wrapper {
-  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
-  padding-bottom: 50px;
+  background: url(/static/img/event/every-moment/upload/bg-blue.png) left top repeat;
+  background-size: 100%;
 }
 
 #main-content {
   background: transparent;
+  width: 960px;
+  height: 650px;
+}
+
+
+.fxos-phone {
+  width: 300px;
+  height: 555px;
+  position: absolute;
+  z-index: 10;
+  top: 52px;
+  left: 158px;
+  .phone-frame {
+    position: absolute;
+    background: url(/static/img/event/every-moment/upload/upload-phone.png);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
 }
 
 #preview {
-  position: relative;
-  width: 320px;
-  height: 480px;
+  position: absolute;
+  top: 80px;
+  left: 25px;
+  width: 250px;
+  height: 382px;
   overflow: hidden;
-  float: left;
 }
 
 #container {
@@ -29,41 +49,192 @@
   }
 }
 
-label[for=id_image_large],
-#id_image_large {
-  display: none;
+#upload-title {
+  position: absolute;
+  z-index: 10;
+  right: 34px;
+  top: 126px;
+  width: 388px;
+  height: 130px;
+  background: url(/static/img/event/every-moment/upload/upload-title.png);
 }
 
 #main-content form ul li {
   list-style: none;
+  margin-bottom: 7px;
+  label {
+    width: 60px;
+  }
+  input[type=text] {
+    width: 250px;
+  }
+  input#shareOnFb {
+    margin-left: 60px;
+  }
+  label[for=shareOnFb] {
+    width: auto;
+  }
+  label, input {
+    display: inline-block;
+  }
+  label[for=id_image_large],
+  #id_image_large {
+    display: none;
+  }
+
 }
 
-form.details {
-  float: left;
-}
-
-.entrance form.details {
-  display: none;
-}
-
-.entrance #upload {
+#details {
+  position: absolute;
   display: block;
+  top: 331px;
+  right: 34px;
+  width: 383px;
+  height: auto;
 }
 
-.entrance #re-upload {
-  display: none;
+form.details-form {
+  background: #ffffff;
+  width: 383px;
+  height: auto;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
 }
 
-.uploaded form.details {
-  display: block;
+.entrance {
+  .fxos-firefox {
+    display: none;
+  }
+
+  .fxos-firefox-tail {
+    display: none;
+  }
+
+  #upload {
+    position: absolute;
+    left: 84px;
+    top: 201px;
+    display: block;
+    width: 138px;
+    height: 138px;
+    background: url(/static/img/event/every-moment/upload/upload-pic.png);
+  }
+
+  .upload-tip {
+    position: absolute;
+    left: 84px;
+    top: 342px;
+    display: block;
+    width: 138px;
+    height: 58px;
+    background: url(/static/img/event/every-moment/upload/upload-word.png);
+  }
+  .detail-tip {
+    display: none;
+  }
+  a#re-upload-button {
+    display: none;
+  }
+
+  form.details-form {
+    background: none;
+    border: none;
+    box-shadow:none;
+    ul li input {
+      background: transparent;
+    }
+  }
+  a#upload-button {
+    display: none;
+  }
 }
 
-.uploaded #upload {
-  display: none;
+.uploaded {
+  .fxos-firefox {
+    background: url(/static/img/event/every-moment/upload/upload-fox01.png);
+    position: absolute;
+    width: 463px;
+    height: 375px;
+    top: 256px;
+    left: 62px;
+    z-index: 20;
+    display: block;
+    pointer-events: none;
+  }
+
+  .fxos-firefox-tail {
+    background: url(/static/img/event/every-moment/upload/upload-fox02.png);
+    position: absolute;
+    width: 537px;
+    height: 226px;
+    top: 120px;
+    left: -26px;
+    display: block;
+  }
+
+  #upload {
+    display: none;
+  }
+  .upload-tip {
+    display: none;
+  }
+  .detail-tip {
+//    position: absolute;
+    display: block;
+//    right: 280px;
+//    bottom: 60px;
+    width: 136px;
+    height: 63px;
+    background: url(/static/img/event/every-moment/upload/upload-fillword.png);
+  }
+
+  a#upload-button {
+    background: url(/static/img/event/every-moment/upload/upload-bt-blue.png);
+    color: #ffffff;
+    display: block;
+    width: 102px;
+    height: 33px;
+    font-weight: bold;
+    text-shadow: none;
+    text-align: center;
+    line-height: 30px;
+    float: right;
+    margin-right: 33px;
+    &:hover {
+        cursor: pointer;
+    }
+  }
+
+  a#re-upload-button {
+    background: url(/static/img/event/every-moment/upload/upload-bt-orange.png);
+    display: block;
+    width: 88px;
+    height: 29px;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: none;
+    text-align: center;
+    line-height: 26px;
+    position: absolute;
+    bottom: 12px;
+    left: 374px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
-.uploaded #re-upload {
-  display: block;
+.curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
 }
 
 .rotate-90 {
