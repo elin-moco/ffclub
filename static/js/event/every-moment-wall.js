@@ -7,7 +7,10 @@
         $('#fxos-phone-frame').position({
             my: 'center',
             at: 'center',
-            of: $(this)
+            of: $(this),
+            using: function(css) {
+                $('#fxos-phone-frame').animate(css, 350);
+            }
         });
     });
 })();
