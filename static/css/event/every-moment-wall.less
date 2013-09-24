@@ -17,7 +17,10 @@
       margin-right: 35px;
       margin-bottom: 23px;
       .photoDescription p {
+        overflow: hidden;
         margin: 0 11px;
+        line-height: 18px;
+        height: 54px;
       }
     }
   }
@@ -68,7 +71,7 @@
     height: 388px;
   }
   .photoDescription {
-    height: 20px;
+    height: 40px;
   }
   .photoInfo {
     text-align: right;
@@ -108,6 +111,7 @@
     bottom: 80px;
     left: 0;
     right: 0;
+    pointer-events: visible;
     .bigShareText {
       background: url(/static/img/event/every-moment/newupload/newupload-bt-big.png);
       width: 100%;
