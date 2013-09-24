@@ -457,6 +457,9 @@ ImageClock= (function() {
             var scratcher = $('.scratcher');
             if (!scratcher.hasClass('complete')) {
                 scratcher.addClass('complete');
+                if (!$('.moment-content').hasClass('appear')) {
+                    $('.moment-content').addClass('appear')
+                }
             }
         }
     }
