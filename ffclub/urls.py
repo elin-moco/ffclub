@@ -54,6 +54,7 @@ urlpatterns = patterns(
     url(r'^browserid/', include('django_browserid.urls')),
     url(r'', include('social_auth.urls')),
     ('^media/uploads/(?P<path>.*)$', redirect_to, {'url': '/static/uploads/%(path)s'}),
+    ('^media/share/(?P<path>.*)$', redirect_to, {'url': '/static/share/%(path)s'}),
     (r'^admin/', include(admin.site.urls)),
     # Generate a robots.txt
     (

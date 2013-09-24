@@ -7,6 +7,7 @@ urlpatterns = patterns(
     '',
     url(r'^events/$', views.wall, name='event.wall'),
     url(r'^events/(?P<page_number>\d+)$', views.wall_page, name='event.wall.page'),
+    url(r'^campaign/(?P<slug>[-A-z0-9]+)/photos/(?P<photo_id>\d+)/$', views.campaign_photo, name='campaign.photo'),
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/$', views.activity_photo, name='activity.photo'),
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/report/$', views.activity_photo_report, name='activity.photo.report'),
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/remove/$', views.activity_photo_remove, name='activity.photo.remove'),

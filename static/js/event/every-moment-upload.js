@@ -54,7 +54,7 @@
             container.css('left', initPosition + 'px');
             container.css('top', '0');
             horizontal = true;
-            $('input#dragLeft').attr('value', -initPosition / 2);
+            $('input#dragLeft').attr('value', Math.round(-initPosition / 2));
             $('input#dragTop').attr('value', 0);
         }
         else {
@@ -64,7 +64,7 @@
             container.css('width', maxWidth + 'px');
             container.css('top', initPosition + 'px');
             container.css('left', '0');
-            $('input#dragTop').attr('value', -initPosition / 2);
+            $('input#dragTop').attr('value', Math.round(-initPosition / 2));
             $('input#dragLeft').attr('value', 0);
             horizontal = false;
         }

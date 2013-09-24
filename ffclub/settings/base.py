@@ -569,6 +569,9 @@ MINIFY_BUNDLES = {
         'every-moment-wall': (
             'css/event/every-moment-wall.less',
         ),
+        'every-moment-photo': (
+            'css/event/every-moment-photo.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -715,3 +718,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details'
 )
+
+SHARE_FILE_PATH = 'share/'

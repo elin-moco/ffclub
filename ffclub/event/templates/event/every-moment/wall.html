@@ -1,6 +1,6 @@
-{% set page_title = '美好時刻' %}
+{% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
 {% extends "base.html" %}
-{% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
+{% block title %}Firefox OS 讓你盡情享受每一刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
   {{ css('base') }}
   {{ css('every-moment-wall') }}
@@ -29,7 +29,7 @@
           <li class="eventPhoto">
             <div class="photoFrame">
               <a class="eventPhotoLink"
-                 href="{{ request.build_absolute_uri(url('activity.photo', type='campaign', photo_id=event_photo.id)) }}"
+                 href="{{ request.build_absolute_uri(url('campaign.photo', slug='every-moment', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
                 <img data-full-width="{{ event_photo.image_large_width }}"
                      data-full-height="{{ event_photo.image_large_height }}"
