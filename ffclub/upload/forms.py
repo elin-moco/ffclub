@@ -3,7 +3,7 @@ import commonware.log
 
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
-from django.forms import ModelForm, ModelChoiceField, IntegerField, FloatField, HiddenInput
+from django.forms import ModelForm, ModelChoiceField, IntegerField, FloatField, HiddenInput, TextInput
 from django.forms.util import ErrorList
 from ffclub.upload.models import ImageUpload
 from ffclub.event.models import Event
@@ -77,3 +77,10 @@ class CampaignImageUploadForm(BaseImageUploadForm):
         self.fields['image_large'].required = True
         self.fields['description'].required = True
         self.fields['description'].label = '標題'
+
+    class Meta:
+        model = ImageUpload
+        fields = ['image_large', 'description']
+        widgets = {
+            'description': TextInput(attrs={'placeholder': '請描述你的美好時刻'}),
+        }
