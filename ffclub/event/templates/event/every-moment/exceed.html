@@ -1,0 +1,23 @@
+{% set page_title = '上傳額滿 - Firefox OS 讓你盡情享受每一刻' %}
+{% extends "base.html" %}
+{% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
+{% block title %}Firefox OS 讓你盡情享受每一刻{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment-exceed') }}
+{% endblock %}
+{% block head %}
+  <div id="header-bar">
+    <div class="header-content">
+      <div class="fxos-logo"></div>
+      <div class="every-moment"></div>
+    </div>
+  </div>
+{% endblock %}
+{% block banner %}
+{% endblock %}
+{% block content %}
+  <div class="message">
+    <h1>抱歉囉，你已經上傳滿五張了！</h1>
+  </div>
+{% endblock %}

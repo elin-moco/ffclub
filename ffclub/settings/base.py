@@ -572,6 +572,9 @@ MINIFY_BUNDLES = {
         'every-moment-photo': (
             'css/event/every-moment-photo.less',
         ),
+        'every-moment-exceed': (
+            'css/event/every-moment-exceed.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site

@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import commonware.log
 
@@ -122,10 +122,21 @@ def every_moment(request):
     return render(request, 'event/every-moment/index.html')
 
 
+def every_moment_exceed(request):
+    return render(request, 'event/every-moment/exceed.html')
+
+
+def check_exceed_upload_times(user, slug, max=5):
+    campaign = Campaign.objects.get(slug=slug)
+    return ImageUpload.objects.filter(entity_id=campaign.id, create_user=user).count() >= 5
+
+
 def every_moment_upload(request):
     uploaded = False
     photo = None
     campaignSlug = 'every-moment'
+    if check_exceed_upload_times(request.user, campaignSlug):
+        return redirect('campaign.every.moment.exceed')
     if request.method == 'POST':
         currentCampaign = Campaign.objects.get(slug=campaignSlug)
         currentUser = auth.get_user(request)

@@ -23,13 +23,11 @@
                 name: 'Firefox OS 讓你盡情享受每一刻',
                 link: $(this).attr('data-url'),
                 caption: $(this).attr('data-caption'),
-                description: '即日起，只要上傳自己生活中美好一刻的照片至活動網站與 Firefox OS 相框結合，並於投票期間廣邀親朋好友為自己投票衝人氣，就有機會獲得 Firefox OS 行動裝置等各項大獎！'
+                description: '這是屬於我的美好時刻，跟 Firefox OS 完美結合耶！活動很簡單，只要上傳自己生活中美好一刻的照片至活動網站與 Firefox OS 相框結合，在投票期間請好友為自己投票，就有機會獲得 Firefox OS 手機…！'
             },
             function (response) {
                 if (response && response.post_id) {
                     alert('已成功分享至你的牆上');
-                } else {
-//                    alert('Post was not published.');
                 }
             }
         );
