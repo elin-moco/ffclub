@@ -174,7 +174,7 @@ def every_moment_wall(request):
     return every_moment_wall_page(request, 1)
 
 
-def prefetch_profile_fullname(uploads):
+def prefetch_profile_name(uploads):
     uids = []
     for upload in uploads:
         uids += (upload.create_user.id,)
@@ -183,7 +183,7 @@ def prefetch_profile_fullname(uploads):
         for person in people:
             if upload.create_user.id == person.user_id:
                 # print person.fullname
-                upload.create_username = person.fullname
+                upload.create_username = person.nickname
     return uploads
 
 
@@ -199,7 +199,7 @@ def every_moment_wall_page(request, page_number=1):
         (contentTypeId, entityId, request.user.id,
          EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
     )
-    prefetch_profile_fullname(uploads=allEventPhotos)
+    prefetch_profile_name(uploads=allEventPhotos)
     # for eventPhoto in allEventPhotos:
     #     try:
     #         eventPhoto.create_username = eventPhoto.create_user.person.fullname
