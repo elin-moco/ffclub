@@ -73,23 +73,15 @@
     {% endif %}
     {% if event_photos|length > 0 %}
       <div id="page-nav">
-        <a href="{{ url('event.wall.page', page_number=2) }}"></a>
+        <a href="{{ url('campaign.every.moment.wall.page', page_number=2) }}"></a>
       </div>
     {% endif %}
   </div>
   <div id="fxos-phone-frame">
-    <div class="fxos-phone">
-      <div class="phone-frame">
-      </div>
-    </div>
-    <div class="fxos-firefox">
-    </div>
     <a class="bigShareButton" href="javascript:void(0);">
       <div class="bigShareText"></div>
     </a>
   </div>
-{#  <div class="fxos-firefox-tail">#}
-{#  </div>#}
 
 {% endblock %}
 {% block footer %}{% endblock %}

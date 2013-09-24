@@ -1,6 +1,6 @@
 {% set page_title = '美好時刻' %}
-{% set login_url = url('event.every.moment.upload') %}
-{% set logout_url = url('event.every.moment') %}
+{% set login_url = url('campaign.every.moment.upload') %}
+{% set logout_url = url('campaign.every.moment') %}
 {% extends "base.html" %}
 {% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
@@ -142,7 +142,7 @@
         {% if not request.user.is_active %}
         <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
         {% else %}
-        <a class="start-upload-button" href="{{ url('event.every.moment.upload') }}"></a>
+        <a class="start-upload-button" href="{{ url('campaign.every.moment.upload') }}"></a>
         {% endif %}
         <div class="upload-tip"></div>
       </div>

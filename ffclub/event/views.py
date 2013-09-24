@@ -17,6 +17,7 @@ from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
 from ffclub.person.forms import PersonEmailNicknameForm
+from ffclub.person.models import Person
 
 log = commonware.log.getLogger('ffclub')
 
@@ -173,17 +174,42 @@ def every_moment_wall(request):
     return every_moment_wall_page(request, 1)
 
 
+def prefetch_profile_fullname(uploads):
+    uids = []
+    for upload in uploads:
+        uids += (upload.create_user.id,)
+    people = Person.objects.filter(user_id__in=uids)
+    for upload in uploads:
+        for person in people:
+            if upload.create_user.id == person.user_id:
+                # print person.fullname
+                upload.create_username = person.fullname
+    return uploads
+
+
 def every_moment_wall_page(request, page_number=1):
-    allEventPhotos = ImageUpload.objects.filter(
-        content_type=ContentType.objects.get(model='campaign'), entity_id=Campaign.objects.get(slug='every-moment').id
-    ).order_by('-create_time').prefetch_related('create_user', 'create_user__person')
-    for eventPhoto in allEventPhotos:
-        try:
-            eventPhoto.create_username = eventPhoto.create_user.person.fullname
-        except ObjectDoesNotExist:
-            eventPhoto.create_username = ''
-    paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
-    return render(request, 'event/every-moment/wall.html', {'event_photos': paginator.page(page_number)})
+    # allEventPhotos = ImageUpload.objects.filter(
+    #     content_type=ContentType.objects.get(model='campaign'), entity_id=Campaign.objects.get(slug='every-moment').id
+    # ).order_by('-create_time').prefetch_related('create_user', 'create_user__person')
+    contentTypeId = ContentType.objects.get(model='campaign').id
+    entityId = Campaign.objects.get(slug='every-moment').id
+    allEventPhotos = list(ImageUpload.objects.raw(
+        'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
+        'ORDER BY create_user_id=%d DESC, create_time DESC LIMIT %d, %d' %
+        (contentTypeId, entityId, request.user.id,
+         EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+    )
+    prefetch_profile_fullname(uploads=allEventPhotos)
+    # for eventPhoto in allEventPhotos:
+    #     try:
+    #         eventPhoto.create_username = eventPhoto.create_user.person.fullname
+    #     except ObjectDoesNotExist:
+    #         eventPhoto.create_username = ''
+
+    # paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
+    # paginator._count = len(list(allEventPhotos))
+    # return render(request, 'event/every-moment/wall.html', {'event_photos': paginator.page(page_number)})
+    return render(request, 'event/every-moment/wall.html', {'event_photos': allEventPhotos})
 
 
 def attack_on_web(request):
