@@ -625,6 +625,9 @@ MINIFY_BUNDLES = {
         ),
         'every-moment-wall': (
             'js/libs/jquery-ui.js',
+            'js/libs/jquery.masonry.min.js',
+            'js/libs/jquery.imagesloaded.min.js',
+            'js/libs/jquery.infinitescroll.js',
             'js/event/every-moment-wall.js',
         ),
     }

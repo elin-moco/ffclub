@@ -31,11 +31,11 @@
               <a class="eventPhotoLink"
                  href="{{ request.build_absolute_uri(url('campaign.photo', slug='every-moment', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
-                <img data-full-width="{{ event_photo.image_large_width }}"
-                     data-full-height="{{ event_photo.image_large_height }}"
-                     data-large-src="{{ STATIC_URL }}{{ event_photo.get_large_path() }}"
+                <img data-full-width="600"
+                     data-full-height="600"
+                     data-large-src="{{ static(event_photo.get_share_path()) }}"
                      width="250" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 250 }}"
-                     src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
+                     src="{{ static(event_photo.get_medium_path()) }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
 

@@ -50,20 +50,7 @@ $(document).ready(function () {
         },
         function (photos) {
             init_photo_actions(photos);
-//            $(photos).on('mouseover', loadSocialButtons);
-//            $(photos).find('.eventPhotoLink').click(function (e) {
-//                e.preventDefault();
-//                lightbox.show($(this).find('img').attr('data-large-src'));
-//            });
-//            $(photos).find('span.time').prettyDate();
-//            $(photos).find('.removePhoto').on('click', function(e) {
-//                e.preventDefault();
-//            });
-//            $(photos).find('.reportPhoto').on('click', function(e) {
-//                e.preventDefault();
-//            });
             eventPhotos.masonry('appended', $(photos), true);
-
         });
 
     var init_photo_actions = function (photos) {

@@ -190,6 +190,7 @@ def prefetch_profile_name(uploads):
 
 
 def every_moment_wall_page(request, page_number=1):
+    page_number = int(page_number)
     contentTypeId = ContentType.objects.get(model='campaign').id
     entityId = Campaign.objects.get(slug='every-moment').id
     allEventPhotos = list(ImageUpload.objects.raw(
