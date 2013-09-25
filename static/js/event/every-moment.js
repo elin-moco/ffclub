@@ -493,7 +493,10 @@ ImageClock= (function() {
             $('#lamebrowser').show();
         }
         var clock = new ImageClock('#clock-content');
-
+        $('#clock').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
+            $('#scroll-tip').fadeIn(500);
+            $('body').css('overflow', 'auto');
+        })
     });
 
 })();

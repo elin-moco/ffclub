@@ -1,5 +1,9 @@
 @import "../ffcstyle";
 
+body {
+  overflow: hidden;
+}
+
 #wrapper {
   background: none;
   padding-bottom: 50px;
@@ -40,7 +44,7 @@
       opacity: 0;
     }
     #fx-icon {
-      transition: all 0.5s ease-out 1s;
+      transition: all 0.5s ease-out 0.8s;
       left: 0;
       top: 0;
       width: 125px;
@@ -75,7 +79,7 @@
 
     .moment-content {
       position: absolute;
-      transition: all 0.5s ease-out;
+      transition: all 0.5s ease-out 1.6s;
       background: url(/static/img/event/every-moment/home/bg-blue.png);
       background-size: 100% auto;
       margin: auto;
@@ -87,17 +91,16 @@
       overflow: hidden;
 
       .title-image {
-        transition: all 0.5s ease-out 1s;
+        transition: all 0.5s ease-out 2.4s;
         position: absolute;
-        left: auto;
+        left: -100%;
         right: 100%;
         margin: auto;
         top: 188px;
-        opacity: 0;
       }
 
       #clock {
-        transition: all 0.5s ease-out 1s;
+        transition: all 0.5s ease-out 3s;
         position: absolute;
         left: 100%;
         bottom: 120px;
@@ -139,7 +142,6 @@
       .title-image {
         left: 0;
         right: 0;
-        opacity: 1;
       }
 
       #clock {
@@ -452,6 +454,7 @@
 }
 
 #scroll-tip {
+  display: none;
   position: fixed;
   margin: auto;
   left: 0;
