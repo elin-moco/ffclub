@@ -601,6 +601,7 @@ MINIFY_BUNDLES = {
             'js/product.js',
         ),
         'attack-on-web': (
+            'js/main.js',
             'js/event/attack-on-web.js',
         ),
         'applyform': (
