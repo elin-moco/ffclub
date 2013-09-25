@@ -398,23 +398,41 @@ table {
     }
 }
 
-textarea, input[type="email"], input[type="password"], input[type="search"], input[type="text"] {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-color: #B2B2B2;
-    border-radius: 3px 3px 3px 3px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px rgba(255, 255, 255, 0.5);
-    font-family: 'Open Sans',sans-serif;
-    font-size: 12px;
-    line-height: 1.1;
-    padding: 4px 10px;
-    transition: all 0.1s linear 0s;
-    &:hover, &:focus{
-      border-color: #42A4E0;
-      box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4);
-      transition: all 0.1s linear 0s;
+
+form{
+  ol, ul{
+    list-style: none !important;
+    li.ss-choice-item{
+      list-style: none !important;
     }
+  }
+  input#ss-submit{
+    padding:0.3em;
+    height: auto !important;
+  }
+  .ss-section-title{
+    padding: 0;
+    padding-bottom: 3px;
+    border-bottom: 2px dotted rgb(214, 214, 214);
+    background: none;
+  }
+  .ss-choice-item{
+    font-size: 13px !important;
+    line-height: 26px !important;
+    span ~ input[type="radio"], input{
+      font-size: 13px !important;
+      line-height: 26px !important;
+      vertical-align: middle;
+      height: auto !important;
+      border:none;
+      box-shadow: none;
+      &:focus{
+        border-color: #42A4E0;
+        box-shadow: 0 0 0 2px rgba(73, 173, 227, 0.4) inset;
+        transition: all 0.1s linear 0s;
+      }
+    }
+  }
 }
 
 @-moz-keyframes glow {
