@@ -617,6 +617,15 @@ MINIFY_BUNDLES = {
             'js/event/coming-soon.js',
         ),
         'every-moment': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/libs/jquery.pageslide.min.js',
+            'js/libs/tweenmax.1.9.7.min.js',
+            'js/libs/superscrollorama-1.0.1.js',
+            'js/libs/jquery.plusslider.js',
+            'js/libs/jquery.color.js',
+            'js/libs/script.js',
+            # 'js/libs/socialshare.min.js',
             'js/event/every-moment.js',
         ),
         'every-moment-upload': (

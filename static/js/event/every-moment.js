@@ -379,10 +379,10 @@ Scratcher = (function () {
 })();
 
 
-ImageClock= (function() {
+ImageClock = (function () {
 
-	//Enter path to clock digit images here, in order of 0-9, then colon image:
-	ImageClock.digits=["number-w0.png", "number-w1.png", "number-w2.png", "number-w3.png", "number-w4.png",
+    //Enter path to clock digit images here, in order of 0-9, then colon image:
+    ImageClock.digits = ["number-w0.png", "number-w1.png", "number-w2.png", "number-w3.png", "number-w4.png",
         "number-w5.png", "number-w6.png", "number-w7.png", "number-w8.png", "number-w9.png", "dot.png"];
     var root = null;
     var imagePath = '';
@@ -390,37 +390,37 @@ ImageClock= (function() {
     function ImageClock(selector) {
         root = $(selector);
         imagePath = root.attr('data-image-path');
-        var preloadImages=[];
-        for (var i=0; i < ImageClock.digits.length; i++){ //preload images
-            preloadImages[i]=new Image();
-            preloadImages[i].src=imagePath + ImageClock.digits[i];
+        var preloadImages = [];
+        for (var i = 0; i < ImageClock.digits.length; i++) { //preload images
+            preloadImages[i] = new Image();
+            preloadImages[i].src = imagePath + ImageClock.digits[i];
         }
         setInterval(update, 1000);
     }
 
-	function imageHTML(timeString){
-		var sections=timeString.split(':');
-		for (var i=0; i<sections.length; i++){
-			if (sections[i].length == 1) {
-				sections[i]='<img class="clock-digit" src="'+imagePath+ImageClock.digits[0]+'" />'+
-                    '<img class="clock-digit" src="'+imagePath+ImageClock.digits[parseInt(sections[i])]+'" />';
+    function imageHTML(timeString) {
+        var sections = timeString.split(':');
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].length == 1) {
+                sections[i] = '<img class="clock-digit" src="' + imagePath + ImageClock.digits[0] + '" />' +
+                    '<img class="clock-digit" src="' + imagePath + ImageClock.digits[parseInt(sections[i])] + '" />';
             }
-			else {
-				sections[i]='<img class="clock-digit" src="'+imagePath+ImageClock.digits[parseInt(sections[i].charAt(0))]+'" />'+
-                    '<img class="clock-digit" src="'+imagePath+ImageClock.digits[parseInt(sections[i].charAt(1))]+'" />';
+            else {
+                sections[i] = '<img class="clock-digit" src="' + imagePath + ImageClock.digits[parseInt(sections[i].charAt(0))] + '" />' +
+                    '<img class="clock-digit" src="' + imagePath + ImageClock.digits[parseInt(sections[i].charAt(1))] + '" />';
             }
-		}
-		return sections[0]+'<img class="clock-colon" src="'+imagePath+ImageClock.digits[10]+'" />'+sections[1]+
-            '<img class="clock-colon" src="'+imagePath+ImageClock.digits[10]+'" />'+sections[2];
-	}
+        }
+        return sections[0] + '<img class="clock-colon" src="' + imagePath + ImageClock.digits[10] + '" />' + sections[1] +
+            '<img class="clock-colon" src="' + imagePath + ImageClock.digits[10] + '" />' + sections[2];
+    }
 
-	function update(){
-		var now=new Date();
-        var timeString = now.getHours()+':'+now.getMinutes()+':'+now.getSeconds();
-		var currentTimeHTML=imageHTML(timeString);
+    function update() {
+        var now = new Date();
+        var timeString = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+        var currentTimeHTML = imageHTML(timeString);
         root.empty();
         root.append(currentTimeHTML);
-	}
+    }
 
     return ImageClock;
 
@@ -432,6 +432,7 @@ ImageClock= (function() {
  * depends on jQuery>=1.7
  */
 (function () {
+    var clock;
 
     /**
      * Returns true if this browser supports canvas
@@ -453,12 +454,12 @@ ImageClock= (function() {
         // Only test every 32nd pixel. 32x faster, but might lead to
         // inaccuracy:
         var pct = (this.fullAmount(32) * 100) | 0;
-        if (pct < 10) {
+        if (pct < 3) {
             var scratcher = $('.scratcher');
             if (!scratcher.hasClass('complete')) {
                 scratcher.addClass('complete');
-                if (!$('.moment-content').hasClass('appear')) {
-                    $('.moment-content').addClass('appear')
+                if (!$('#moment').hasClass('appear')) {
+                    $('#moment').addClass('appear')
                 }
             }
         }
@@ -482,21 +483,93 @@ ImageClock= (function() {
         scratcher.addEventListener('scratch', scratcherProgressHandler);
     }
 
+    function initClock() {
+        clock = new ImageClock('#clock-content');
+        $('#clock').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
+            $('#scroll-tip').fadeIn(500);
+            $('body').css('overflow', 'auto');
+        })
+    }
+
+    function initAnimations() {
+        var controller = $.superscrollorama({playoutAnimations: false});
+        var bricksHook = $('#bricks-hook');
+        var bricks = 'abcedfgh';
+
+        var brickAFall = TweenMax.to($('.phone-brick-a'), 1, {css: {top: 0}});
+        var brickBFall = TweenMax.to($('.phone-brick-b'), 1, {css: {top: 0}});
+        var brickCFall = TweenMax.to($('.phone-brick-c'), 1, {css: {top: '279px'}});
+        var brickDFall = TweenMax.to($('.phone-brick-d'), 1, {css: {top: '279px'}});
+        var brickEFall = TweenMax.to($('.phone-brick-e'), 1, {css: {top: '420px'}});
+        var brickFFall = TweenMax.to($('.phone-brick-f'), 1, {css: {top: '420px'}});
+        var brickGFall = TweenMax.to($('.phone-brick-g'), 1, {css: {top: '420px'}});
+        var brickHFall = TweenMax.to($('.phone-brick-h'), 1, {css: {top: '586px'}});
+
+        var page2On = TweenMax.to($('.phone-page2'), 1, {css: {opacity: 1}});
+        var page3On = TweenMax.to($('.phone-page3'), 1, {css: {opacity: 1}});
+        var foxShow = TweenMax.to($('.fxos-firefox'), 1, {css: {left: '38px'}});
+        var page4SlideIn = TweenMax.to($('.phone-page4'), 1, {css: {top: 0}});
+        var foxHide = TweenMax.to($('.fxos-firefox'), 1, {css: {top: '100%'}});
+        var page4SlideOut = TweenMax.to($('.phone-page4'), 1, {css: {top: '-100%'}});
+
+        var page6Slide = TweenMax.to($('.phone-page6'), 1, {css: {left: 0}});
+
+        var brickFallStart = 750;
+        var brickFallDur = 500;
+        var brickFallInterval = 250;
+        var brickFallPos = brickFallStart;
+        function currentBrickFallPos() {
+            return brickFallPos;
+        }
+        function nextBrickFallPos() {
+            brickFallPos += brickFallInterval;
+            return brickFallPos;
+        }
+        function addNextBrickFallPos(interval) {
+            brickFallPos += interval;
+            return brickFallPos;
+        }
+
+        controller.addTween(bricksHook, brickHFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickGFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickFFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickEFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickDFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickCFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickBFall, brickFallDur, nextBrickFallPos());
+        controller.addTween(bricksHook, brickAFall, brickFallDur, nextBrickFallPos());
+
+        controller.addTween(bricksHook, page2On, brickFallDur, addNextBrickFallPos(500));
+        controller.addTween(bricksHook, page3On, brickFallDur, addNextBrickFallPos(1000));
+        controller.addTween(bricksHook, foxShow, brickFallDur, addNextBrickFallPos(500));
+        controller.addTween(bricksHook, page4SlideIn, brickFallDur, addNextBrickFallPos(500));
+        controller.addTween(bricksHook, foxHide, brickFallDur, addNextBrickFallPos(1500));
+        controller.addTween(bricksHook, page4SlideOut, brickFallDur, currentBrickFallPos());
+
+
+        for (var i in bricks) {
+            var page5Slide = TweenMax.to($('.phone-brick-'+bricks[i]+' .phone-page5'), 1, {css: {left: 0}});
+            controller.addTween(bricksHook, page5Slide, 500, addNextBrickFallPos(500));
+        }
+        controller.addTween(bricksHook, page6Slide, 500, addNextBrickFallPos(1500));
+
+        bricksHook.css('height', currentBrickFallPos()+'px');
+    }
+
     /**
      * Handle page load
      */
     $(function () {
         if (supportsCanvas()) {
+            window.scrollTo(0, 0);
             initScratcher();
+            initClock();
+            initAnimations();
         } else {
             $('#scratcher-box').hide();
+            $('#moment').addClass('appear')
             $('#lamebrowser').show();
         }
-        var clock = new ImageClock('#clock-content');
-        $('#clock').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
-            $('#scroll-tip').fadeIn(500);
-            $('body').css('overflow', 'auto');
-        })
     });
 
 })();
