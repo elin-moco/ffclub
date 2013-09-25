@@ -8,7 +8,7 @@
         "#blackout h1 { border-bottom: 1px solid #CCC; color: white; font-family: sans-serif; font-size: 1.5em; font-weight: bold; line-height: 1.5em; margin: 0 0 1em 0.25em; padding: 0 0 0.25em; }" + 
         "#blackout img#the-fox{ position:absolute; right: -60px; bottom:0;}"+
         "#blackout footer { display: block; height: 20%; text-align: center; } "+
-        "#blackout #countdown-container {margin:2em; color:#FFFFFF; font-size:30px;text-shadow: 1px 3px 3px black;float:right;position:absolute;top:-5%;right:-5%; -moz-transform:rotate(5deg);-webkit-transform:rotate(5deg);-o-transform:rotate(5deg);-ms-transform:rotate(5deg);transform:rotate(5deg);}"
+        "#blackout #countdown-container {margin:2em; padding:2em;color:#FFFFFF; font-size:30px;text-shadow: 1px 3px 3px black;float:right;position:absolute;top:-5%;right:-5%; -moz-transform:rotate(5deg);-webkit-transform:rotate(5deg);-o-transform:rotate(5deg);-ms-transform:rotate(5deg);transform:rotate(5deg);}"
     );
     blackout_css.appendChild(blackout_css_content);
     //initialize countdown node

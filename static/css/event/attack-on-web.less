@@ -3,7 +3,7 @@
 @attack_page_width: 960px;
 
 html, body {
-    font-family: '微軟正黑體',Helvetica,sans-serif,'STHeiti Light','儷黑 Pro','LiHei Pro','Microsoft Yahei','Microsoft JhengHei' !important;
+    font-family: Helvetica, sans-serif,'STHeiti Light','儷黑 Pro','LiHei Pro','Microsoft Yahei','微軟正黑體','Microsoft JhengHei' !important;
     letter-spacing: 0.1em !important;
     color: #4D4D4F !important;
     font-size: 13px;
@@ -23,8 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #outer-wrapper{
   width:100%;
-  background:#fff;
-  border-top: 2px solid #FFFFFF;
+  border: none !important;
 }
 
 #wrapper{
@@ -34,6 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #masthead{
   width:100%;
+  padding: 0;
   h1, h2, h3, h4, h5, h6{
     padding:0;
     position:absolute;
@@ -46,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left:0;
     width:100%;
-    border-top: 2px solid #FFFFFF;
 }
 
 #head-inner {
@@ -98,6 +97,16 @@ h1, h2, h3, h4, h5, h6 {
   }
   &.hover a{
     background-image:none;
+  }
+  &.unpub{
+    a{
+      color:#787878 !important;
+      cursor: default;
+    }
+    &:hover, :focus{
+      text-decoration: none;
+      text-shadow:none;
+    }
   }
 }
 
@@ -458,7 +467,7 @@ a.button, a.button:link, a.button:visited{
   }
 }
 
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 960px){
   html, body{
     width:100%;
     margin:0 auto;
@@ -472,9 +481,13 @@ a.button, a.button:link, a.button:visited{
   }
 
   #ffos-main-logo {
-    display: none;
+    //display: none;
   }
-
+  img#main-feature-banner{
+    height: 200px;
+    //height: auto;
+    width:auto;
+  }
   #nav-main-menu li{
     & a{
       color: #484848 !important;
@@ -490,10 +503,19 @@ a.button, a.button:link, a.button:visited{
       background-image:none;
     }
   }
-
+  #tabzilla{
+    display: none;
+  }
   #main-feature.banner {
     width: 100%;
-    //overflow:hidden;
+    overflow:hidden;
+  }
+  #head-inner{
+    position: fixed;
+    left: 0;
+    width:100%;
+    top:0;
+    border: 0;
   }
   #head-inner #head-wrap {
     margin: 0 auto;
@@ -502,6 +524,8 @@ a.button, a.button:link, a.button:visited{
   }
   #main-feature-banner{
       width:100%;
+      position: relative;
+      left:-5%;
       //min-height: 200px;
   }
   .content-list{
@@ -517,5 +541,8 @@ a.button, a.button:link, a.button:visited{
   }
   table{
     width:100%;
+  }
+  #nav-social-head{
+    padding-right: 1em;
   }
 }
