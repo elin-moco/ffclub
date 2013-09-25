@@ -511,11 +511,14 @@ ImageClock = (function () {
         var page4SlideIn = TweenMax.to($('.phone-page4'), 1, {css: {top: 0}});
         var foxHide = TweenMax.to($('.fxos-firefox'), 1, {css: {top: '100%'}});
         var page4SlideOut = TweenMax.to($('.phone-page4'), 1, {css: {top: '-100%'}});
-
+        function getPage5Slide(brick) {
+            return TweenMax.to($('.phone-brick-'+brick+' .phone-page5'), 1, {css: {left: 0}});
+        }
         var page6Slide = TweenMax.to($('.phone-page6'), 1, {css: {left: 0}});
 
         var brickFallStart = 750;
         var brickFallDur = 500;
+        var brickZoomDur = 1500;
         var brickFallInterval = 250;
         var brickFallPos = brickFallStart;
         function currentBrickFallPos() {
@@ -529,6 +532,16 @@ ImageClock = (function () {
             brickFallPos += interval;
             return brickFallPos;
         }
+
+        var brickWallZoom = TweenMax.to($('.phone-brick-wall'), 1, {css: {left: 'auto', width: '1920px', height: '1500px'}});
+        var brickAZoom = TweenMax.to($('.phone-brick-a'), 1, {css: {top: '0px', left: '0px', width: '828px', height: '558px'}});
+        var brickBZoom = TweenMax.to($('.phone-brick-b'), 1, {css: {top: '0px', left: '840px', width: '1092px', height: '840px'}});
+        var brickCZoom = TweenMax.to($('.phone-brick-c'), 1, {css: {top: '558px', left: '0px', width: '310px', height: '282px'}});
+        var brickDZoom = TweenMax.to($('.phone-brick-d'), 1, {css: {top: '558px', left: '310px', width: '518px', height: '282px'}});
+        var brickEZoom = TweenMax.to($('.phone-brick-e'), 1, {css: {top: '840px', left: '0px', width: '950px', height: '660px'}});
+        var brickFZoom = TweenMax.to($('.phone-brick-f'), 1, {css: {top: '840px', left: '950px', width: '660px', height: '332px'}});
+        var brickGZoom = TweenMax.to($('.phone-brick-g'), 1, {css: {top: '840px', left: '1610px', width: '310px', height: '660px'}});
+        var brickHZoom = TweenMax.to($('.phone-brick-h'), 1, {css: {top: '1172px', left: '950px', width: '660px', height: '328px'}});
 
         controller.addTween(bricksHook, brickHFall, brickFallDur, nextBrickFallPos());
         controller.addTween(bricksHook, brickGFall, brickFallDur, nextBrickFallPos());
@@ -548,10 +561,19 @@ ImageClock = (function () {
 
 
         for (var i in bricks) {
-            var page5Slide = TweenMax.to($('.phone-brick-'+bricks[i]+' .phone-page5'), 1, {css: {left: 0}});
-            controller.addTween(bricksHook, page5Slide, 500, addNextBrickFallPos(500));
+            controller.addTween(bricksHook, getPage5Slide(bricks[i]), 500, addNextBrickFallPos(500));
         }
         controller.addTween(bricksHook, page6Slide, 500, addNextBrickFallPos(2000));
+
+        controller.addTween(bricksHook, brickHZoom, brickZoomDur, addNextBrickFallPos(1000));
+        controller.addTween(bricksHook, brickGZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickFZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickEZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickDZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickCZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickBZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickAZoom, brickZoomDur, currentBrickFallPos());
+        controller.addTween(bricksHook, brickWallZoom, brickZoomDur, currentBrickFallPos());
 
         bricksHook.css('height', currentBrickFallPos()+'px');
     }
