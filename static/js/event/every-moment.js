@@ -487,7 +487,7 @@ ImageClock = (function () {
         clock = new ImageClock('#clock-content');
         $('#clock').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
             $('#scroll-tip').fadeIn(500);
-            $('body').css('overflow', 'auto');
+            $('body').css('overflow-y', 'auto');
         })
     }
 
@@ -533,7 +533,7 @@ ImageClock = (function () {
             return brickFallPos;
         }
 
-        var brickWallZoom = TweenMax.to($('.phone-brick-wall'), 1, {css: {left: 'auto', width: '1920px', height: '1500px'}});
+        var brickWallZoom = TweenMax.to($('.phone-brick-wall'), 1, {css: {'padding': '0 828px 0 0', width: '1920px', height: '1500px'}});
         var brickAZoom = TweenMax.to($('.phone-brick-a'), 1, {css: {top: '0px', left: '0px', width: '828px', height: '558px'}});
         var brickBZoom = TweenMax.to($('.phone-brick-b'), 1, {css: {top: '0px', left: '840px', width: '1092px', height: '840px'}});
         var brickCZoom = TweenMax.to($('.phone-brick-c'), 1, {css: {top: '558px', left: '0px', width: '310px', height: '282px'}});
