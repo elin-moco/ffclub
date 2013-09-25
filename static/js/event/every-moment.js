@@ -551,7 +551,7 @@ ImageClock = (function () {
             var page5Slide = TweenMax.to($('.phone-brick-'+bricks[i]+' .phone-page5'), 1, {css: {left: 0}});
             controller.addTween(bricksHook, page5Slide, 500, addNextBrickFallPos(500));
         }
-        controller.addTween(bricksHook, page6Slide, 500, addNextBrickFallPos(1500));
+        controller.addTween(bricksHook, page6Slide, 500, addNextBrickFallPos(2000));
 
         bricksHook.css('height', currentBrickFallPos()+'px');
     }
