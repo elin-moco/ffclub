@@ -19,5 +19,7 @@
 {% block content %}
   <div class="message">
     <h1>抱歉囉，你已經上傳滿五張了！</h1>
+    <a id="view-wall" href="{{ url('campaign.every.moment.wall') }}"></a>
+    <div id="view-wall-tip"></div>
   </div>
 {% endblock %}
