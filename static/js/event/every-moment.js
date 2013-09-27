@@ -620,7 +620,7 @@ ImageClock = (function () {
 
 
         for (var i in bricks) {
-            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(500));
+            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(i % 2 == 1 ? -100 : 200));
         }
         controller.addTween(bricksHook, brickPage6Slide, pageSlideDur, addNextPos(1000));
 
