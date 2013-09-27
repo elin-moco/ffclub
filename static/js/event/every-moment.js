@@ -520,7 +520,7 @@ ImageClock = (function () {
 
         var brickFallStart = 400;
         var brickFallDur = 400;
-        var brickZoomDur = 1500;
+        var brickZoomDur = 800;
         var pageSlideDur = 250;
         var brickFallInterval = 200;
         var brickFallPos = brickFallStart;
@@ -614,13 +614,13 @@ ImageClock = (function () {
         controller.addTween(bricksHook, brickPage2On, brickFallDur, addNextPos(500));
         controller.addTween(bricksHook, brickPage3On, brickFallDur, addNextPos(1000));
         controller.addTween(bricksHook, foxShow, brickFallDur, addNextPos(500));
-        controller.addTween(bricksHook, brickPage4SlideIn, pageSlideDur, addNextPos(250));
-        controller.addTween(bricksHook, foxHide, brickFallDur, addNextPos(1500));
+        controller.addTween(bricksHook, brickPage4SlideIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, foxHide, brickFallDur, addNextPos(pagePinDur));
         controller.addTween(bricksHook, brickPage4SlideOut, pageSlideDur, currentPos());
 
 
         for (var i in bricks) {
-            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(i % 2 == 1 ? -100 : 200));
+            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(i % 2 == 1 ? -100 : 250));
         }
         controller.addTween(bricksHook, brickPage6Slide, pageSlideDur, addNextPos(1000));
 
