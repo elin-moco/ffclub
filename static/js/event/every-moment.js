@@ -507,13 +507,15 @@ ImageClock = (function () {
 
         var brickPage2On = TweenMax.to($('.phone-brick .phone-page2'), 1, {css: {opacity: 1}});
         var brickPage3On = TweenMax.to($('.phone-brick .phone-page3'), 1, {css: {opacity: 1}});
-        var foxShow = TweenMax.to($('.fxos-firefox'), 1, {css: {left: '38px'}});
+        var foxShow = TweenMax.to($('.phone-brick-wall .fxos-firefox'), 1, {css: {left: '38px'}});
         var brickPage4SlideIn = TweenMax.to($('.phone-brick .phone-page4'), 1, {css: {top: 0}});
-        var foxHide = TweenMax.to($('.fxos-firefox'), 1, {css: {top: '100%'}});
+        var foxHide = TweenMax.to($('.phone-brick-wall .fxos-firefox'), 1, {css: {top: '100%'}});
         var brickPage4SlideOut = TweenMax.to($('.phone-brick .phone-page4'), 1, {css: {top: '-100%'}});
+
         function getBrickPage5Slide(brick) {
-            return TweenMax.to($('.phone-brick-'+brick+' .phone-page5'), 1, {css: {left: 0}});
+            return TweenMax.to($('.phone-brick-' + brick + ' .phone-page5'), 1, {css: {left: 0}});
         }
+
         var brickPage6Slide = TweenMax.to($('.phone-brick .phone-page6'), 1, {css: {left: 0}});
 
         var brickFallStart = 750;
@@ -522,13 +524,16 @@ ImageClock = (function () {
         var pageSlideDur = 250;
         var brickFallInterval = 250;
         var brickFallPos = brickFallStart;
+
         function currentPos() {
             return brickFallPos;
         }
+
         function nextPos() {
             brickFallPos += brickFallInterval;
             return brickFallPos;
         }
+
         function addNextPos(interval) {
             brickFallPos += interval;
             return brickFallPos;
@@ -561,10 +566,6 @@ ImageClock = (function () {
 
         var woodDeskExpand = TweenMax.to($('#wood-desk'), 1, {css: {width: '120%', top: '-1000px', bottom: '-1000px'}});
         var phoneMove = TweenMax.to($('#rules #description .fxos-phone'), 1, {css: {top: '210px'}});
-//        var woodDeskExpand2 = TweenMax.to($('#rules #description'), 1, {css: {width: '200%'}});
-
-        var woodDeskTurn = TweenMax.to($('#wood-desk'), 1, {css: {transform: 'rotate(90deg)'}});
-        var phoneRotate = TweenMax.to($('#rules #description .fxos-phone'), 1, {css: {transform: 'rotate(90deg)', paddingTop: '150px', paddingLeft: '200px', width: '300px', height: '555px'}});
 
         var phonePage1Out = TweenMax.to($('#rules #description .fxos-phone .phone-page1'), 1, {css: {left: '-100%', opacity: 0}});
         var phonePage2In = TweenMax.to($('#rules #description .fxos-phone .phone-page2'), 1, {css: {left: 0}});
@@ -573,6 +574,31 @@ ImageClock = (function () {
         var phonePage3Out = TweenMax.to($('#rules #description .fxos-phone .phone-page3'), 1, {css: {left: '-100%', opacity: 0}});
         var phonePage4In = TweenMax.to($('#rules #description .fxos-phone .phone-page4'), 1, {css: {left: 0}});
         var phonePage4Out = TweenMax.to($('#rules #description .fxos-phone .phone-page4'), 1, {css: {left: '-100%', opacity: 0}});
+
+        var woodDeskTurn = TweenMax.to($('#wood-desk'), 1, {css: {transform: 'rotate(90deg)'}});
+        var phoneRotate = TweenMax.to($('#rules #description .fxos-phone'), 1, {css: {transform: 'rotate(90deg)', paddingTop: '14px', paddingLeft: '225px', width: '336px', height: '636px', top: '140px'}});
+
+        var phoneBgOut = TweenMax.to($('#rules #description .fxos-phone .phone-bg'), 1, {css: {opacity: 0}});
+        var phoneStep1PageIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page1'), 1, {css: {opacity: 1}});
+        var phoneStep1TextIn = TweenMax.to($('#rules #flow .step1'), 1, {css: {opacity: 1}});
+
+        var phoneStep1PageOut = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page1'), 1, {css: {left: '-100%', opacity: 1}});
+        var phoneStep2PageIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page2'), 1, {css: {left: '0', opacity: 1}});
+        var phoneStep2TextIn = TweenMax.to($('#rules #flow .step2'), 1, {css: {opacity: 1}});
+
+        var phoneStep3FoxIn = TweenMax.to($('#rules #flow .fxos-firefox'), 1, {css: {top: '296px'}});
+        var phoneStep3TailIn = TweenMax.to($('#rules #flow .fxos-firefox-tail'), 1, {css: {top: '160px'}});
+        var phoneStep3TextIn = TweenMax.to($('#rules #flow .step3'), 1, {css: {opacity: 1}});
+
+        var phoneStep4PageIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page3'), 1, {css: {left: '0', opacity: 1}});
+        var phoneStep4TextIn = TweenMax.to($('#rules #flow .step4'), 1, {css: {opacity: 1}});
+
+        var phoneStep4PageOut = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page3'), 1, {css: {left: '-100%', opacity: 1}});
+        var phoneStep5PageIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page4'), 1, {css: {left: '0', opacity: 1}});
+        var phoneStep5TextIn = TweenMax.to($('#rules #flow .step5'), 1, {css: {opacity: 1}});
+
+        var phoneStep6ButtonIn = TweenMax.to($('#rules #flow .start-upload-button'), 1, {css: {bottom: '100px'}});
+        var phoneStep6TextIn = TweenMax.to($('#rules #flow .upload-tip'), 1, {css: {bottom: '20px'}});
 
         controller.addTween(bricksHook, brickHFall, brickFallDur, nextPos());
         controller.addTween(bricksHook, brickGFall, brickFallDur, nextPos());
@@ -634,7 +660,25 @@ ImageClock = (function () {
 
         controller.addTween(bricksHook, woodDeskTurn, brickZoomDur, addNextPos(1500));
         controller.addTween(bricksHook, phoneRotate, brickZoomDur, currentPos());
-        bricksHook.css('height', currentPos()+'px');
+
+        controller.addTween(bricksHook, phoneBgOut, pageSlideDur, addNextPos(1500));
+        controller.addTween(bricksHook, phoneStep1PageIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep1TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep1PageOut, pageSlideDur, addNextPos(1000));
+        controller.addTween(bricksHook, phoneStep2PageIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep2TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep3FoxIn, pageSlideDur, addNextPos(1000));
+        controller.addTween(bricksHook, phoneStep3TailIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep3TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep4PageIn, pageSlideDur, addNextPos(1000));
+        controller.addTween(bricksHook, phoneStep4TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep4PageOut, pageSlideDur, addNextPos(1000));
+        controller.addTween(bricksHook, phoneStep5PageIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep5TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, phoneStep6ButtonIn, pageSlideDur, addNextPos(1000));
+        controller.addTween(bricksHook, phoneStep6TextIn, pageSlideDur, currentPos());
+
+        bricksHook.css('height', currentPos() + 'px');
     }
 
     /**

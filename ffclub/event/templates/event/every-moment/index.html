@@ -172,9 +172,27 @@
         <div class="fxos-firefox-tail">
         </div>
         <div class="fxos-phone-vertical">
-          <div class="phone-bg">
-          </div>
-          <div class="phone-info">
+{#          <div class="phone-bg">#}
+{#          </div>#}
+          <div class="phone-pages">
+            <div class="phone-page1">
+              <span class="persona-login">Persona</span>
+              <span class="fb-login">Facebook</span>
+            </div>
+            <div class="phone-page2">
+            </div>
+            <div class="phone-page3">
+              <div class="form">
+                <ul>
+                  <li><label>標題</label><input type="text" value="跳躍" disabled></li>
+                  <li><label>暱稱</label><input type="text" value="小明" disabled></li>
+                  <li><label>Email</label><input type="text" value="xiaomin@firefox.com" disabled></li>
+                </ul>
+              </div>
+            </div>
+            <div class="phone-page4">
+              <span class="success"></span>
+            </div>
           </div>
           <div class="phone-frame">
           </div>
@@ -182,12 +200,12 @@
         <div class="fxos-firefox">
         </div>
         <div class="upload-flow">
-          <h3>上傳流程</h3>
+          <h3 class="step1">上傳流程</h3>
           <ol>
-            <li>使用 Facebook 或 Persona 登入網站</li>
-            <li>上傳你覺得生活中美好一刻的照片<br>與 FIrefox 活動相框結合<br>最多可上傳 5 張照片</li>
-            <li>填寫個人資料</li>
-            <li>完成上傳</li>
+            <li class="step1">使用 Facebook 或 Persona 登入網站</li>
+            <li class="step2">上傳你覺得生活中美好一刻的照片<div class="step3">與 Firefox 活動相框結合<br>最多可上傳 5 張照片</div></li>
+            <li class="step4">填寫個人資料</li>
+            <li class="step5">完成上傳</li>
           </ol>
         </div>
         {% if not request.user.is_active %}
