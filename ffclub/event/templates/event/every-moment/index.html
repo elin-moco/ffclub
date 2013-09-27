@@ -1,7 +1,7 @@
 {% set page_title = '美好時刻' %}
 {% set login_url = url('campaign.every.moment.upload') %}
 {% set logout_url = url('campaign.every.moment') %}
-{% extends "base.html" %}
+{% extends "event/every-moment/base.html" %}
 {% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
   {{ css('base') }}
@@ -10,7 +10,6 @@
 {% block base_js %}
   {{ js('every-moment') }}
 {% endblock %}
-{% block head %}{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
   <div id="scratch">

@@ -1,5 +1,5 @@
 {% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
-{% extends "base.html" %}
+{% extends "event/every-moment/base.html" %}
 {% block title %}Firefox OS 讓你盡情享受每一刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
   {{ css('base') }}
@@ -9,12 +9,15 @@
   {{ js('every-moment-wall') }}
 {% endblock %}
 {% block head %}
-  <div id="header-bar">
-    <div class="header-content">
-      <div class="fxos-logo"></div>
-      <div class="every-moment"></div>
-    </div>
-  </div>
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
 {% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}

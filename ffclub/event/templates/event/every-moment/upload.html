@@ -1,5 +1,5 @@
 {% set page_title = '上傳屬於你的珍貴時刻' %}
-{% extends "base.html" %}
+{% extends "event/every-moment/base.html" %}
 {% block title %}上傳屬於你的珍貴時刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
   {{ css('base') }}
@@ -8,7 +8,17 @@
 {% block base_js %}
   {{ js('every-moment-upload') }}
 {% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block top_menu %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
   <div class="{{ 'uploaded' if uploaded else 'entrance' }}">

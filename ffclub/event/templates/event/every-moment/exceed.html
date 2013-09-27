@@ -1,5 +1,5 @@
 {% set page_title = '上傳額滿 - Firefox OS 讓你盡情享受每一刻' %}
-{% extends "base.html" %}
+{% extends "event/every-moment/base.html" %}
 {% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
 {% block title %}Firefox OS 讓你盡情享受每一刻{% endblock %}
 {% block base_css %}
@@ -7,12 +7,15 @@
   {{ css('every-moment-exceed') }}
 {% endblock %}
 {% block head %}
-  <div id="header-bar">
-    <div class="header-content">
-      <div class="fxos-logo"></div>
-      <div class="every-moment"></div>
-    </div>
-  </div>
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
 {% endblock %}
 {% block banner %}
 {% endblock %}

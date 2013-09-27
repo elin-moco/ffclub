@@ -127,6 +127,8 @@ def every_moment_exceed(request):
 
 
 def check_exceed_upload_times(user, slug, max=5):
+    if user.is_superuser:
+        return False
     campaign = Campaign.objects.get(slug=slug)
     return ImageUpload.objects.filter(entity_id=campaign.id, create_user=user).count() >= max
 
