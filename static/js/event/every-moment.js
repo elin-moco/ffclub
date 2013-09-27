@@ -601,6 +601,7 @@ ImageClock = (function () {
         var phoneStep6StepsUp = TweenMax.to($('#rules #flow .upload-flow'), 1, {css: {top: '120px'}});
         var phoneStep6ButtonIn = TweenMax.to($('#rules #flow .start-upload-button'), 1, {css: {bottom: '180px'}});
         var phoneStep6TextIn = TweenMax.to($('#rules #flow .upload-tip'), 1, {css: {bottom: '100px'}});
+        var scrollTipOut = TweenMax.to($('#scroll-tip'), 1, {css: {opacity: 0}});
 
         controller.addTween(bricksHook, brickHFall, brickFallDur, currentPos());
         controller.addTween(bricksHook, brickGFall, brickFallDur, nextPos());
@@ -620,7 +621,7 @@ ImageClock = (function () {
 
 
         for (var i in bricks) {
-            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(i % 2 == 1 ? -100 : 250));
+            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(pageSlideDur - 50));
         }
         controller.addTween(bricksHook, brickPage6Slide, pageSlideDur, addNextPos(1000));
 
@@ -637,19 +638,19 @@ ImageClock = (function () {
         controller.addTween(bricksHook, woodDeskShow, 1, currentPos());
         controller.addTween(bricksHook, brickBHide2, 200, addNextPos(brickZoomDur));
 
-        controller.addTween(bricksHook, brickHZoom2, brickZoomDur, addNextPos(100));
-        controller.addTween(bricksHook, brickGZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickFZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickEZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickDZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickCZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickBZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickAZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickWallZoom2, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, woodDeskExpand, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, phoneMove, brickZoomDur, currentPos());
+        controller.addTween(bricksHook, brickHZoom2, brickZoomDur/2, addNextPos(100));
+        controller.addTween(bricksHook, brickGZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickFZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickEZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickDZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickCZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickBZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickAZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, brickWallZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, woodDeskExpand, brickZoomDur/2, currentPos());
+        controller.addTween(bricksHook, phoneMove, brickZoomDur/2, currentPos());
 
-        controller.addTween(bricksHook, bricksHide, brickZoomDur, addNextPos(brickZoomDur));
+        controller.addTween(bricksHook, bricksHide, brickZoomDur/2, addNextPos(brickZoomDur/2));
 
         controller.addTween(bricksHook, phonePage1Out, pageSlideDur, currentPos());
         controller.addTween(bricksHook, phonePage2In, pageSlideDur, currentPos());
@@ -679,6 +680,7 @@ ImageClock = (function () {
         controller.addTween(bricksHook, phoneStep6StepsUp, pageSlideDur, addNextPos(600));
         controller.addTween(bricksHook, phoneStep6ButtonIn, pageSlideDur, currentPos());
         controller.addTween(bricksHook, phoneStep6TextIn, pageSlideDur, currentPos());
+        controller.addTween(bricksHook, scrollTipOut, pageSlideDur, currentPos());
 
         bricksHook.css('height', currentPos() + 'px');
     }
