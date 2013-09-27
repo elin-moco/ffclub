@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {% block tabzilla %}
+    <header id="masthead">
+      <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+    </header>
+  {% endblock %}
+
+  {% block header_bar %}
+  <div id="header-bar">
+    <div class="header-content">
+      <div class="fxos-logo"></div>
+      <div class="every-moment"></div>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block main_menu %}
+  <nav id="main-nav" role="navigation">
+    <ul>
+      <li><a class="nav rules" href="#campaign-rules" title="活動說明"></a></li>
+      <li><a class="nav flow" href="#campaign-flow" title="上傳流程"></a></li>
+      <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
+      <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
+      <li><a class="nav back-top" href="#every-moment" title="回到頂端"></a></li>
+      <li><a class="nav share" href="javascript:void(0);" title="社群分享"></a></li>
+    </ul>
+  </nav>
+  {% endblock %}
+
+  {% block top_menu %}
+  <nav id="top-nav" role="navigation">
+    <ul>
+      <li><a class="nav fb" href="" title="Facebook"></a></li>
+      <li><a class="nav gplus" href="" title="Google Plus"></a></li>
+      <li><a class="nav plurk" href="" title="Plurk"></a></li>
+      <li><a class="nav flickr" href="" title="Flickr"></a></li>
+      <li><a class="nav youtube" href="" title="Youtube"></a></li>
+      <li><a class="nav blog" href="" title="Blug"></a></li>
+    </ul>
+  </nav>
+  {% endblock %}
+
+  {% block side_menu %}
+  <nav id="side-nav" role="navigation">
+    <ul>
+      <li><a class="nav" href="#every-moment" title="Firefox OS 讓你享受每一刻">Firefox OS 讓你享受每一刻</a></li>
+      <li><a class="nav" href="#wonderful-experience" title="Firefox OS 給你絕紗體驗">Firefox OS 給你絕紗體驗</a></li>
+      <li><a class="nav" href="#built-for-you" title="Firefox OS 專為你的生活打造">Firefox OS 專為你的生活打造</a></li>
+      <li><a class="nav" href="#campaign-rules" title="活動說明">活動說明</a></li>
+      <li><a class="nav" href="#campaign-timeline" title="活動時程">活動時程</a></li>
+      <li><a class="nav" href="#campaign-award" title="活動時程">活動獎項</a></li>
+      <li><a class="nav" href="#campaign-flow" title="活動流程">活動流程</a></li>
+      <li><a class="share" href="#share" aria-controls="share-pane" role="button" title="Share">Share</a></li>
+    </ul>
+    <div id="share-pane" aria-expanded="false">
+      <a class="share close" href="#share" role="button" title="Close"><span>Close</span></a>
+      <div class="socialshare" data-type="small-bubbles"></div>
+    </div>
+  </nav>
+  {% endblock %}
+
+{% endblock %}
