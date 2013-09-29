@@ -617,6 +617,8 @@ MINIFY_BUNDLES = {
             'js/event/coming-soon.js',
         ),
         'every-moment': (
+            'js/libs/jquery.scrollTo.js',
+            'js/libs/jquery.localScroll.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/libs/jquery.pageslide.min.js',

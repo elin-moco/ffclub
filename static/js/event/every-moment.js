@@ -494,6 +494,12 @@ ImageClock = (function () {
     function initAnimations() {
         var controller = $.superscrollorama({playoutAnimations: false});
         var bricksHook = $('#bricks-hook');
+        var wonderfulHook = $('#wonderful-experience');
+        var builtHook = $('#built-for-you');
+        var rulesHook = $('#campaign-rules');
+        var timelineHook = $('#campaign-timeline');
+        var awardHook = $('#campaign-award');
+        var flowHook = $('#campaign-flow');
         var bricks = 'abcedfgh';
 
         var brickAFall = TweenMax.to($('.phone-brick-a'), 1, {css: {top: 0}});
@@ -525,6 +531,10 @@ ImageClock = (function () {
         var brickFallInterval = 200;
         var brickFallPos = brickFallStart;
         var pagePinDur = 1200;
+
+        function resetPos() {
+            return brickFallPos = 0;
+        }
 
         function currentPos() {
             return brickFallPos;
@@ -615,74 +625,99 @@ ImageClock = (function () {
         controller.addTween(bricksHook, brickPage2On, brickFallDur, addNextPos(500));
         controller.addTween(bricksHook, brickPage3On, brickFallDur, addNextPos(1000));
         controller.addTween(bricksHook, foxShow, brickFallDur, addNextPos(500));
-        controller.addTween(bricksHook, brickPage4SlideIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, foxHide, brickFallDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, brickPage4SlideOut, pageSlideDur, currentPos());
+
+        bricksHook.css('height', currentPos() + 'px');
+        resetPos();
+
+        controller.addTween(wonderfulHook, brickPage4SlideIn, pageSlideDur, currentPos());
+        controller.addTween(wonderfulHook, foxHide, brickFallDur, addNextPos(pagePinDur));
+        controller.addTween(wonderfulHook, brickPage4SlideOut, pageSlideDur, currentPos());
 
 
         for (var i in bricks) {
-            controller.addTween(bricksHook, getBrickPage5Slide(bricks[i]), pageSlideDur, addNextPos(pageSlideDur - 50));
+            controller.addTween(wonderfulHook, getBrickPage5Slide(bricks[i]), pageSlideDur + (i == 7 ? 250 : 0), addNextPos(pageSlideDur));
         }
-        controller.addTween(bricksHook, brickPage6Slide, pageSlideDur, addNextPos(1000));
 
-        controller.addTween(bricksHook, brickHZoom, brickZoomDur, addNextPos(pageSlideDur));
-        controller.addTween(bricksHook, brickGZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickFZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickEZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickDZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickCZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickBZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickAZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickWallZoom, brickZoomDur, currentPos());
-        controller.addTween(bricksHook, brickBHide1, 1, currentPos());
-        controller.addTween(bricksHook, woodDeskShow, 1, currentPos());
-        controller.addTween(bricksHook, brickBHide2, 200, addNextPos(brickZoomDur));
+        wonderfulHook.css('height', (currentPos() + 250) + 'px');
+        resetPos();
 
-        controller.addTween(bricksHook, brickHZoom2, brickZoomDur/2, addNextPos(100));
-        controller.addTween(bricksHook, brickGZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickFZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickEZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickDZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickCZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickBZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickAZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, brickWallZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, woodDeskExpand, brickZoomDur/2, currentPos());
-        controller.addTween(bricksHook, phoneMove, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickPage6Slide, pageSlideDur + 250, addNextPos(1000));
 
-        controller.addTween(bricksHook, bricksHide, brickZoomDur/2, addNextPos(brickZoomDur/2));
+        controller.addTween(builtHook, brickHZoom, brickZoomDur, addNextPos(pageSlideDur + 250));
+        controller.addTween(builtHook, brickGZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickFZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickEZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickDZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickCZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickBZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickAZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickWallZoom, brickZoomDur, currentPos());
+        controller.addTween(builtHook, brickBHide1, 1, currentPos());
+        controller.addTween(builtHook, woodDeskShow, 1, currentPos());
+        controller.addTween(builtHook, brickBHide2, 200, addNextPos(brickZoomDur));
 
-        controller.addTween(bricksHook, phonePage1Out, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phonePage2In, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phonePage2Out, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phonePage3In, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phonePage3Out, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phonePage4In, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phonePage4Out, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(builtHook, brickHZoom2, brickZoomDur/2, addNextPos(100));
+        controller.addTween(builtHook, brickGZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickFZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickEZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickDZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickCZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickBZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickAZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickWallZoom2, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, woodDeskExpand, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, phoneMove, brickZoomDur/2, currentPos());
 
-        controller.addTween(bricksHook, woodDeskTurn, brickZoomDur, addNextPos(pageSlideDur));
-        controller.addTween(bricksHook, phoneRotate, brickZoomDur, currentPos());
+        controller.addTween(builtHook, bricksHide, brickZoomDur/2, addNextPos(brickZoomDur/2));
 
-        controller.addTween(bricksHook, phoneBgOut, pageSlideDur, addNextPos(brickZoomDur));
-        controller.addTween(bricksHook, phoneStep1PageIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep1TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep1PageOut, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phoneStep2PageIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep2TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep3FoxIn, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phoneStep3TailIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep3TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep4PageIn, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phoneStep4TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep4PageOut, pageSlideDur, addNextPos(pagePinDur));
-        controller.addTween(bricksHook, phoneStep5PageIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep5TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep6StepsUp, pageSlideDur, addNextPos(600));
-        controller.addTween(bricksHook, phoneStep6ButtonIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, phoneStep6TextIn, pageSlideDur, currentPos());
-        controller.addTween(bricksHook, scrollTipOut, pageSlideDur, currentPos());
+        controller.addTween(builtHook, phonePage1Out, pageSlideDur, currentPos());
 
-        bricksHook.css('height', currentPos() + 'px');
+        builtHook.css('height', currentPos() + 'px');
+        resetPos();
+
+        controller.addTween(rulesHook, phonePage2In, pageSlideDur, currentPos());
+        controller.addTween(rulesHook, phonePage2Out, pageSlideDur, addNextPos(pagePinDur));
+
+        rulesHook.css('height', currentPos() + 'px');
+        resetPos();
+
+        controller.addTween(timelineHook, phonePage3In, pageSlideDur, currentPos());
+        controller.addTween(timelineHook, phonePage3Out, pageSlideDur, addNextPos(pagePinDur));
+
+        timelineHook.css('height', currentPos() + 'px');
+        resetPos();
+
+        controller.addTween(awardHook, phonePage4In, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phonePage4Out, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(awardHook, woodDeskTurn, brickZoomDur, addNextPos(pageSlideDur));
+        controller.addTween(awardHook, phoneRotate, brickZoomDur, currentPos());
+        controller.addTween(awardHook, phoneBgOut, pageSlideDur, addNextPos(brickZoomDur));
+
+        controller.addTween(awardHook, phoneStep1PageIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep1TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep1PageOut, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(awardHook, phoneStep2PageIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep2TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep3FoxIn, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(awardHook, phoneStep3TailIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep3TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep4PageIn, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(awardHook, phoneStep4TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep4PageOut, pageSlideDur, addNextPos(pagePinDur));
+        controller.addTween(awardHook, phoneStep5PageIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep5TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep6StepsUp, pageSlideDur, addNextPos(600));
+        controller.addTween(awardHook, phoneStep6ButtonIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep6TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, scrollTipOut, pageSlideDur, currentPos());
+
+        awardHook.css('height', currentPos() + 'px');
+
+        $('body').keyup(function(e) {
+            if (13 == e.keyCode) {
+                $.scrollTo($(document).height(), 23000);
+            }
+        });
     }
 
     /**
@@ -690,7 +725,19 @@ ImageClock = (function () {
      */
     $(function () {
         if (supportsCanvas()) {
-            window.scrollTo(0, 0);
+            $.localScroll({
+                target: 'body', // could be a selector or a jQuery object too.
+                queue:true,
+                duration:1000,
+                hash:true,
+                onBefore:function( e, anchor, $target ){
+                // The 'this' is the settings object, can be modified
+                },
+                onAfter:function( anchor, settings ){
+                // The 'this' contains the scrolled element (#content)
+                }
+            });
+            $.scrollTo(0);
             initScratcher();
             initClock();
             initAnimations();
