@@ -137,9 +137,12 @@ def every_moment_upload(request):
     uploaded = False
     photo = None
     campaignSlug = 'every-moment'
-    if check_exceed_upload_times(request.user, campaignSlug):
+    if not request.user.is_active:
+        uploadForm = CampaignImageUploadForm()
+        personForm = PersonEmailNicknameForm()
+    elif check_exceed_upload_times(request.user, campaignSlug):
         return redirect('campaign.every.moment.exceed')
-    if request.method == 'POST':
+    elif request.method == 'POST':
         currentCampaign = Campaign.objects.get(slug=campaignSlug)
         currentUser = auth.get_user(request)
         uploadForm = CampaignImageUploadForm(request.POST, request.FILES)
@@ -161,12 +164,11 @@ def every_moment_upload(request):
             photo = upload
             uploaded = True
     else:
-        if request.user.is_active:
-            uploadForm = CampaignImageUploadForm()
-            try:
-                personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
-            except ObjectDoesNotExist:
-                personForm = PersonEmailNicknameForm()
+        uploadForm = CampaignImageUploadForm()
+        try:
+            personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
+        except ObjectDoesNotExist:
+            personForm = PersonEmailNicknameForm()
     data = {
         'uploadForm': uploadForm,
         'personForm': personForm,

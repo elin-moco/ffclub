@@ -1,3 +1,6 @@
+{% set login_url = url('campaign.every.moment.upload') %}
+{% set logout_url = url('campaign.every.moment') %}
+
 {% extends "base.html" %}
 
 {% block head %}
@@ -21,7 +24,11 @@
     <ul>
       <li><a class="nav rules" href="#campaign-rules" title="活動說明"></a></li>
       <li><a class="nav flow" href="#campaign-flow" title="上傳流程"></a></li>
+      {% if not request.user.is_active %}
+      <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
+      {% else %}
       <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
+      {% endif %}
       <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
       <li><a class="nav back-top" href="#every-moment" title="回到頂端"></a></li>
       <li><a class="nav share" href="javascript:void(0);" title="社群分享"></a></li>
@@ -32,12 +39,12 @@
   {% block top_menu %}
   <nav id="top-nav" role="navigation">
     <ul>
-      <li><a class="nav fb" href="" title="Facebook"></a></li>
-      <li><a class="nav gplus" href="" title="Google Plus"></a></li>
-      <li><a class="nav plurk" href="" title="Plurk"></a></li>
-      <li><a class="nav flickr" href="" title="Flickr"></a></li>
-      <li><a class="nav youtube" href="" title="Youtube"></a></li>
-      <li><a class="nav blog" href="" title="Blug"></a></li>
+      <li><a target="_blank" class="nav fb" href="https://www.facebook.com/MozillaTaiwan" title="Facebook"></a></li>
+      <li><a target="_blank" class="nav gplus" href="https://plus.google.com/u/0/114653167240123163859/posts" title="Google Plus"></a></li>
+      <li><a target="_blank" class="nav plurk" href="http://plurk.com/MozillaTaiwan" title="Plurk"></a></li>
+      <li><a target="_blank" class="nav flickr" href="http://www.flickr.com/photos/mozillataiwan/" title="Flickr"></a></li>
+      <li><a target="_blank" class="nav youtube" href="http://www.youtube.com/user/MozillaTaiwan" title="Youtube"></a></li>
+      <li><a target="_blank" class="nav newsletter" href="http://mozilla.com.tw/newsletter/subscribe/" title="Newsletter"></a></li>
     </ul>
   </nav>
   {% endblock %}

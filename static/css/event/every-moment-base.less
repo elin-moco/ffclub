@@ -8,14 +8,17 @@
   right: 0;
 }
 
+#tabzilla {
+  margin-top: -2px;
+  .transition(all 0.2s ease-in-out);
+}
 #tabzilla-panel {
   position: fixed;
   width: 100%;
   z-index: 1000;
 }
 #tabzilla.tabzilla-opened {
-  margin-top: 210px;
-  .transition(all 0.2s ease-in-out);
+  margin-top: 208px;
 }
 #main-nav {
   position: fixed;
@@ -47,6 +50,7 @@
       a.nav {
         line-height: 40px;
         text-shadow: none;
+        text-indent: 0;
         font-weight: bold;
         display: block;
         width: 186px;
@@ -156,7 +160,7 @@
             background: url(/static/img/event/every-moment/guide/socialmedia-youtube-c.png) no-repeat center;
           }
         }
-        &.blog {
+        &.newsletter {
           background: url(/static/img/event/every-moment/guide/socialmedia-news-b.png) no-repeat center;
           background-size: 75%;
           &:hover {

@@ -40,7 +40,11 @@
       {% endif %}
       <div class="phone-frame">
       </div>
+      {% if not request.user.is_active %}
+      <a id="upload" class="loginButton" href="javascript:void(0);"></a>
+      {% else %}
       <a id="upload" class="choose-file" href="javascript:void(0);"></a>
+      {% endif %}
       <div class="upload-tip">
       </div>
     </div>
