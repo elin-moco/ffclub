@@ -12,20 +12,24 @@
   margin-top: -2px;
   .transition(all 0.2s ease-in-out);
 }
+
 #tabzilla-panel {
   position: fixed;
   width: 100%;
   z-index: 1000;
 }
+
 #tabzilla.tabzilla-opened {
   margin-top: 208px;
 }
+
 #main-nav {
   position: fixed;
   z-index: 1000;
   bottom: 5%;
   left: 0;
   width: 40px;
+  height: 240px;
   padding: 0;
   overflow: hidden;
   &:hover {
@@ -41,13 +45,15 @@
     pointer-events: none;
   }
   ul {
+    position: absolute;
+    z-index: 2;
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     li {
       display: block;
-      a.nav {
+      .nav {
         line-height: 40px;
         text-shadow: none;
         text-indent: 0;
@@ -89,7 +95,14 @@
           }
         }
         &.share {
-          background: url(/static/img/event/every-moment/guide/bt-shareword.png) right no-repeat;
+          position: relative;
+          img {
+            position: absolute;
+            width: 144px;
+            height: 40px;
+            top: 0;
+            left: 40px;
+          }
           &:before {
             background: url(/static/img/event/every-moment/guide/bt-share.png) no-repeat;
           }
@@ -171,6 +184,7 @@
     }
   }
 }
+
 //fixed position left hand navigation
 #side-nav {
   position: fixed;
@@ -206,20 +220,14 @@
       background: #fff;
       .border-radius(7px);
     }
-    li .share {
-      height: 27px;
-      border-top: 1px dashed #666;
-      background: transparent url('/static/img/event/every-moment/guide/heart-nav.png') 0 12px no-repeat;
-      padding: 12px 1px 1px 1px;
-    }
   }
 
   #share-pane {
     position: relative;
     display: none;
     width: auto;
-    background: rgb(255,255,255);
-    background: rgba(255,255,255,0.5);
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.5);
     padding: @baseLine / 2;
     margin: -(@baseLine * 2) 0 0 @baseLine;
     .border-radius(@baseLine / 4);
