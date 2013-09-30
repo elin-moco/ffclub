@@ -88,11 +88,10 @@
      
     }, 1000);
 }
-
+showBlackout();
+/*
 if (window.addEventListener)
-    showBlackout();
     //window.addEventListener('load', function(){ showBlackout() }, false);
 else if (window.attachEvent)
-    showBlackout();
-    //window.attachEvent('on' + 'load', function(){ showBlackout() });
+    //window.attachEvent('on' + 'load', function(){ showBlackout() });*/
 })();

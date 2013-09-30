@@ -48,17 +48,21 @@ $(function() {
 		return false;
 	});
 
+	var counter = 0;
 	$(".unpub").click(function(e) {
+		counter++;
 		e.preventDefault();
 		var headID = document.getElementsByTagName("head")[0];
-		var newCss = document.createElement('link');
-		newCss.type = 'text/css';
-		newCss.rel = "stylesheet";
-		newCss.href = "/static/css/event/coming-soon.less.css";
-		headID.appendChild(newCss);
+		if(counter == 1){
+			var newCss = document.createElement('link');
+			newCss.type = 'text/css';
+			newCss.rel = "stylesheet";
+			newCss.href = "/static/css/event/coming-soon.less.css";
+			headID.appendChild(newCss);
+		}
 		var newJs = document.createElement('script');
-		newJs .type = 'text/javascript';
-		newJs .src= "/static/js/event/coming-soon.js";
+		newJs.type = 'text/javascript';
+		newJs.src= "/static/js/event/coming-soon.js";
 		headID.appendChild(newJs);
 		document.getElementById('blackout').remove();
 	});
