@@ -610,6 +610,7 @@ ImageClock = (function () {
 
         var phoneStep6StepsUp = TweenMax.to($('#rules #flow .upload-flow'), 1, {css: {top: '120px'}});
         var phoneStep6ButtonIn = TweenMax.to($('#rules #flow .start-upload-button'), 1, {css: {bottom: '180px'}});
+        var phoneStep6SpotlightIn = TweenMax.to($('#rules #flow .spotlight'), 1, {css: {bottom: '150px'}});
         var phoneStep6TextIn = TweenMax.to($('#rules #flow .upload-tip'), 1, {css: {bottom: '100px'}});
         var scrollTipOut = TweenMax.to($('#scroll-tip'), 1, {css: {opacity: 0}});
 
@@ -708,6 +709,7 @@ ImageClock = (function () {
         controller.addTween(awardHook, phoneStep5TextIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, phoneStep6StepsUp, pageSlideDur, addNextPos(600));
         controller.addTween(awardHook, phoneStep6ButtonIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep6SpotlightIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, phoneStep6TextIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, scrollTipOut, pageSlideDur, currentPos());
 
@@ -758,6 +760,7 @@ ImageClock = (function () {
         if (!$('#moment').hasClass('appear')) {
             $('body').css('overflow-y', 'auto');
             $('#moment').addClass('appear')
+            $('#scroll-tip').fadeIn(500);
         }
     }
 

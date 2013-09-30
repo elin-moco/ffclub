@@ -101,7 +101,7 @@
             width: 144px;
             height: 40px;
             top: 0;
-            left: 40px;
+            left: 42px;
           }
           &:before {
             background: url(/static/img/event/every-moment/guide/bt-share.png) no-repeat;
@@ -291,4 +291,70 @@
     width: 155px;
     height: 35px;
   }
+}
+
+
+.spotTextKeyFrames() {
+  0% {
+    text-shadow: 0 0 0 #ffffff;
+  }
+  50% {
+    text-shadow: 0 0 3px #ffffff;
+  }
+  100% {
+    text-shadow: 0 0 0 #ffffff;
+  }
+}
+
+@keyframes spotText {
+  .spotTextKeyFrames();
+}
+@-moz-keyframes spot {
+  .spotTextKeyFrames();
+}
+@-webkit-keyframes spot {
+  .spotTextKeyFrames();
+}
+@-o-keyframes spot {
+  .spotTextKeyFrames();
+}
+@-ms-keyframes spot {
+  .spotTextKeyFrames();
+}
+
+
+.spotlightKeyFrames() {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spot {
+  .spotlightKeyFrames();
+}
+@-moz-keyframes spot {
+  .spotlightKeyFrames();
+}
+@-webkit-keyframes spot {
+  .spotlightKeyFrames();
+}
+@-o-keyframes spot {
+  .spotlightKeyFrames();
+}
+@-ms-keyframes spot {
+  .spotlightKeyFrames();
+}
+
+.spotlight {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+    .animate(spot 1s infinite);
 }
