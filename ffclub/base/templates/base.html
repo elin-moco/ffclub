@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="js">
+<html class="windows no-js">
 <head>
 {% if not page_image %}
   {% set page_image = 'images/css/banner_default.jpg' %}
@@ -88,7 +88,9 @@
 </div>
 <!-- end of outer-wrapper-->
 </div>
-{% include "sandstone/footer.html" %}
+{% block footer %}
+  {% include "sandstone/footer.html" %}
+{% endblock %}
 <!--end of body_warpper-->
 <div class="popup">
   {% block popup %}

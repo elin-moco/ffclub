@@ -12,7 +12,8 @@ from ffclub.upload.models import ImageUpload
 class Activity(models.Model):
     title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
     description = models.CharField(max_length=255, blank=True, default='', verbose_name='活動說明')
-    slug = models.CharField(max_length=255, blank=True, default='', verbose_name='固定名稱', help_text='用於網址和程式查詢，訂定後勿改動。')
+    slug = models.CharField(max_length=255, unique=True, blank=True, default='', verbose_name='固定名稱',
+                            help_text='用於網址和程式查詢，訂定後勿改動。')
     url = models.URLField(blank=True, default='', verbose_name='活動網址')
 
     create_user = models.ForeignKey(User, related_name='hostedActivities')

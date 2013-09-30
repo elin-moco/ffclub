@@ -19,7 +19,7 @@ from django.dispatch import receiver
 class Person(models.Model):
     user = models.OneToOneField(User, primary_key=True, unique=True)
     nickname = models.CharField(max_length=255, verbose_name='暱稱', blank=True)
-    email = models.EmailField(verbose_name='電子郵件', blank=True)
+    email = models.EmailField(verbose_name='Email', blank=True)
     fullname = models.CharField(max_length=255, verbose_name='姓名(*)', blank=True)
     gender = models.CharField(max_length=7, verbose_name='性別(*)',
                               choices=(('unknown', '未指定'), ('male', '男性'), ('female', '女性')), default='unknown')

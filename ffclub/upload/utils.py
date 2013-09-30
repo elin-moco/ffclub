@@ -4,6 +4,7 @@ import commonware.log
 
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
+from ffclub.settings import SHARE_FILE_PATH
 
 
 log = commonware.log.getLogger('ffclub')
@@ -78,3 +79,18 @@ def resize_image(name, image, new_size, content_type, rotate_degree=0, crop_box=
     temp_handle.seek(0)
     return SimpleUploadedFile(os.path.split(name)[-1],
                               temp_handle.read(), content_type=content_type)
+
+
+def generate_share_image(upload, campaignSlug):
+    upload.image_large.open()
+    suffix = upload.image_large.name.split('.')[-1]
+    phoneFrame = Image.open('static/img/event/every-moment/facebook/facebook02.png')
+    blueBg = Image.open('static/img/event/every-moment/facebook/facebook01.png')
+    image = open_image(upload.image_large)
+    new_size = compute_new_size((upload.image_large_width, upload.image_large_height),
+                                (250, 382), RESIZE_MODE_ASPECT_FIT)
+    image.thumbnail(new_size, Image.ANTIALIAS)
+    blueBg.paste(image, (195, 100))
+    blueBg.paste(phoneFrame, (0, 0), phoneFrame)
+    image_path = 'media/%s%s/' % (SHARE_FILE_PATH, campaignSlug)
+    blueBg.save(image_path + '%s.%s' % (upload.id, suffix))

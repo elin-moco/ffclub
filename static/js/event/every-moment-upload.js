@@ -2,8 +2,10 @@
 
 
 (function () {
-    var maxWidth = 320;
-    var maxHeight = 480;
+//    var maxWidth = 320;
+//    var maxHeight = 480;
+    var maxWidth = 250;
+    var maxHeight = 382;
     var ratio = maxWidth / maxHeight
     var horizontal = true;
 
@@ -52,7 +54,7 @@
             container.css('left', initPosition + 'px');
             container.css('top', '0');
             horizontal = true;
-            $('input#dragLeft').attr('value', -initPosition / 2);
+            $('input#dragLeft').attr('value', Math.round(-initPosition / 2));
             $('input#dragTop').attr('value', 0);
         }
         else {
@@ -62,7 +64,7 @@
             container.css('width', maxWidth + 'px');
             container.css('top', initPosition + 'px');
             container.css('left', '0');
-            $('input#dragTop').attr('value', -initPosition / 2);
+            $('input#dragTop').attr('value', Math.round(-initPosition / 2));
             $('input#dragLeft').attr('value', 0);
             horizontal = false;
         }
@@ -97,6 +99,7 @@
             initImagePosition(this, rotated);
             $(image).appendTo('#dragger');
             $('div.entrance').removeAttr('class').addClass('uploaded');
+            $('.curtain').hide();
             if (image.width / image.height != ratio) {
                 $('#dragger').draggable('enable');
                 $('#dragger').draggable({
@@ -129,19 +132,17 @@
     function previewImage() {
         var reader = new FileReader();
         var file = document.getElementById("id_image_large").files[0];
-//        console.info(EXIF.readFromBinaryFile(file));
         reader.readAsDataURL(file);
         reader.onload = loadImage;
-//        reader.onload = function(e) {
-//            EXIF.readFromBinaryFile(BinaryFile(reader.result));
-//            console.info();
-//        };
     }
 
     $('input#frameWidth').attr('value', maxWidth);
     $('input#frameHeight').attr('value', maxHeight);
     $('#id_image_large').change(previewImage);
-    $('button.uploadButton').click(function () {
+    $('.choose-file').click(function () {
         $('#id_image_large').click();
+    });
+    $('.upload-button').click(function() {
+        $('form.details-form').submit();
     });
 })();

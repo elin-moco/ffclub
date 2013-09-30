@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, TextInput
 from ffclub.person.models import Person
 
 
@@ -34,4 +34,7 @@ class PersonEmailNicknameForm(ModelForm):
     class Meta:
         model = Person
         fields = ('nickname', 'email',)
-
+        widgets = {
+            'nickname': TextInput(attrs={'placeholder': '請輸入暱稱'}),
+            'email': TextInput(attrs={'placeholder': '請輸入電子郵件'}),
+        }

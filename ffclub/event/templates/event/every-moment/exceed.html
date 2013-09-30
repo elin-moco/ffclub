@@ -1,0 +1,28 @@
+{% set page_title = '上傳額滿 - Firefox OS 讓你盡情享受每一刻' %}
+{% extends "event/every-moment/base.html" %}
+{% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
+{% block title %}Firefox OS 讓你盡情享受每一刻{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment-exceed') }}
+{% endblock %}
+{% block head %}
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
+{% block banner %}
+{% endblock %}
+{% block content %}
+  <div class="message">
+    <h1>抱歉囉，你已經上傳滿五張了！</h1>
+    <a id="view-wall" href="{{ url('campaign.every.moment.wall') }}"></a>
+    <div id="view-wall-tip"></div>
+  </div>
+{% endblock %}

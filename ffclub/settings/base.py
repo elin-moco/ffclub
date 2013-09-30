@@ -569,11 +569,18 @@ MINIFY_BUNDLES = {
         'every-moment-wall': (
             'css/event/every-moment-wall.less',
         ),
+        'every-moment-photo': (
+            'css/event/every-moment-photo.less',
+        ),
+        'every-moment-exceed': (
+            'css/event/every-moment-exceed.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
         'site': (
             'js/libs/jquery-1.9.1.js',
+            'js/global.js',
             'js/sandstone/sandstone-tabzilla-nav-all.js',
             'js/main.js',
             'js/slides.js',
@@ -611,6 +618,17 @@ MINIFY_BUNDLES = {
             'js/event/coming-soon.js',
         ),
         'every-moment': (
+            'js/libs/jquery.scrollTo.js',
+            'js/libs/jquery.localScroll.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/libs/jquery.pageslide.min.js',
+            'js/libs/tweenmax.1.9.7.min.js',
+            'js/libs/superscrollorama-1.0.1.js',
+            'js/libs/jquery.plusslider.js',
+            'js/libs/jquery.color.js',
+            'js/libs/script.js',
+            # 'js/libs/socialshare.min.js',
             'js/event/every-moment.js',
         ),
         'every-moment-upload': (
@@ -621,6 +639,10 @@ MINIFY_BUNDLES = {
             'js/fb-share.js',
         ),
         'every-moment-wall': (
+            'js/libs/jquery-ui.js',
+            'js/libs/jquery.masonry.min.js',
+            'js/libs/jquery.imagesloaded.min.js',
+            'js/libs/jquery.infinitescroll.js',
             'js/event/every-moment-wall.js',
         ),
     }
@@ -714,3 +736,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details'
 )
+
+SHARE_FILE_PATH = 'share/'

@@ -1,0 +1,294 @@
+@import "../sandstone/lib";
+@import "../ffcstyle";
+
+#masthead {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+#tabzilla {
+  margin-top: -2px;
+  .transition(all 0.2s ease-in-out);
+}
+
+#tabzilla-panel {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+#tabzilla.tabzilla-opened {
+  margin-top: 208px;
+}
+
+#main-nav {
+  position: fixed;
+  z-index: 1000;
+  bottom: 5%;
+  left: 0;
+  width: 40px;
+  height: 240px;
+  padding: 0;
+  overflow: hidden;
+  &:hover {
+    width: 192px;
+  }
+  &:before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  ul {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: block;
+      .nav {
+        line-height: 40px;
+        text-shadow: none;
+        text-indent: 0;
+        font-weight: bold;
+        display: block;
+        width: 186px;
+        height: 40px;
+        span {
+          display: inline-block;
+        }
+        &.rules {
+          background: url(/static/img/event/every-moment/guide/bt-infoword.png) right no-repeat;
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-info.png) no-repeat;
+          }
+        }
+        &.flow {
+          background: url(/static/img/event/every-moment/guide/bt-stepword.png) right no-repeat;
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-step.png) no-repeat;
+          }
+        }
+        &.upload {
+          background: url(/static/img/event/every-moment/guide/bt-uploadword.png) right no-repeat;
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-upload.png) no-repeat;
+          }
+        }
+        &.wall {
+          background: url(/static/img/event/every-moment/guide/bt-newuploadword.png) right no-repeat;
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-newupload.png) no-repeat;
+          }
+        }
+        &.back-top {
+          background: url(/static/img/event/every-moment/guide/bt-backword.png) right no-repeat;
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-back.png) no-repeat;
+          }
+        }
+        &.share {
+          position: relative;
+          img {
+            position: absolute;
+            width: 144px;
+            height: 40px;
+            top: 0;
+            left: 40px;
+          }
+          &:before {
+            background: url(/static/img/event/every-moment/guide/bt-share.png) no-repeat;
+          }
+        }
+        &:before {
+          content: " ";
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+#top-nav {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  width: 210px;
+  height: 30px;
+  padding: 0;
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      width: 30px;
+      a.nav {
+        display: block;
+        width: 30px;
+        height: 30px;
+        &.fb {
+          background: url(/static/img/event/every-moment/guide/socialmedia-fb-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-fb-c.png) no-repeat center;
+          }
+        }
+        &.gplus {
+          background: url(/static/img/event/every-moment/guide/socialmedia-g-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-g-c.png) no-repeat center;
+          }
+        }
+        &.plurk {
+          background: url(/static/img/event/every-moment/guide/socialmedia-plurk-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-plurk-c.png) no-repeat center;
+          }
+        }
+        &.flickr {
+          background: url(/static/img/event/every-moment/guide/socialmedia-flickr-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-flickr-c.png) no-repeat center;
+          }
+        }
+        &.youtube {
+          background: url(/static/img/event/every-moment/guide/socialmedia-youtube-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-youtube-c.png) no-repeat center;
+          }
+        }
+        &.newsletter {
+          background: url(/static/img/event/every-moment/guide/socialmedia-news-b.png) no-repeat center;
+          background-size: 75%;
+          &:hover {
+            background: url(/static/img/event/every-moment/guide/socialmedia-news-c.png) no-repeat center;
+          }
+        }
+      }
+    }
+  }
+}
+
+//fixed position left hand navigation
+#side-nav {
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  right: 30px;
+  width: 20px;
+  margin-top: -77px;
+  padding: 0;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 12px 0;
+    }
+    li a {
+      display: block;
+      width: 12px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 0.5;
+      .transition();
+      &:hover, &:focus, &.curr {
+        opacity: 1;
+      }
+    }
+    li a.nav {
+      height: 12px;
+      padding: 0;
+      background: #fff;
+      .border-radius(7px);
+    }
+  }
+
+  #share-pane {
+    position: relative;
+    display: none;
+    width: auto;
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.5);
+    padding: @baseLine / 2;
+    margin: -(@baseLine * 2) 0 0 @baseLine;
+    .border-radius(@baseLine / 4);
+    .share-button {
+      visibility: hidden;
+      display: none;
+    }
+    #share-options {
+      margin-top: @baseLine / 2;
+    }
+    ul li {
+      margin: 0;
+      padding: 0;
+    }
+    a.close {
+      position: absolute;
+      top: 0;
+      right: @baseLine / 2;
+      height: 20px;
+      width: 20px;
+      font-size: 20px;
+      color: #484848;
+      span {
+        display: block;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      &:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "\00D7";
+        font-weight: bold;
+      }
+    }
+
+  }
+}
+
+#header-bar {
+  position: absolute;
+  background-color: #CAE1F4;
+  width: 100%;
+  height: 48px;
+  .header-content {
+    width: 960px;
+    margin: auto;
+  }
+  .fxos-logo {
+    background: url(/static/img/event/every-moment/newupload/newupload-firefoxos.png);
+    display: inline-block;
+    margin-top: 7px;
+    width: 122px;
+    height: 35px;
+  }
+  .every-moment {
+    background: url(/static/img/event/every-moment/newupload/newupload-title.png);
+    display: inline-block;
+    margin-top: 5px;
+    width: 155px;
+    height: 35px;
+  }
+}

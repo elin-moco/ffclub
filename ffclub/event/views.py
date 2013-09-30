@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import commonware.log
 
@@ -17,6 +17,8 @@ from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
 from ffclub.person.forms import PersonEmailNicknameForm
+from ffclub.person.models import Person
+from ffclub.upload.utils import generate_share_image
 
 log = commonware.log.getLogger('ffclub')
 
@@ -29,9 +31,12 @@ def shareOnFacebook(data, upload):
     if all(key in data.keys() for key in ('shareOnFb', 'fbToken')):
         try:
             graph = facebook.GraphAPI(data['fbToken'])
-            upload.image_large.open()
-            graph.put_photo(StringIO(upload.image_large.read()), upload.description.encode('utf-8'))
-            graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_url())
+            image = upload.get_share_image()
+            if image.closed:
+                image.open()
+            graph.put_photo(StringIO(image.read()),
+                            upload.description.encode('utf-8') + '\n' + SITE_URL + upload.get_absolute_share_url())
+            graph.put_object('me', FB_APP_NAMESPACE + ':upload', picture=SITE_URL + upload.get_absolute_share_url())
         except facebook.GraphAPIError as e:
             log.error(e)
 
@@ -40,18 +45,12 @@ def wall_page(request, page_number=1):
     uploadForm = ImageUploadForm(user=request.user)
 
     if request.method == 'POST':
-        # eventForm = EventForm(request.POST)
         uploadForm = ImageUploadForm(request.user, request.POST, request.FILES)
-        if uploadForm.is_valid():  # and eventForm.is_valid():
-            # event = eventForm.save(commit=False)
+        if uploadForm.is_valid():
             upload = uploadForm.save(commit=False)
-            # event.create_user = auth.get_user(request)
             upload.create_user = auth.get_user(request)
-            # event.save()
-            # upload.entity_object = event
             upload.save()
             shareOnFacebook(request.POST, upload)
-            # eventForm = EventForm()
             uploadForm = ImageUploadForm(user=request.user)
     allEventPhotos = ImageUpload.objects.filter(
         content_type=ContentType.objects.get(model='event')
@@ -63,7 +62,6 @@ def wall_page(request, page_number=1):
             eventPhoto.create_username = ''
     paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
     data = {
-        # 'form': eventForm,
         'upload_form': uploadForm,
         'event_photos': paginator.page(page_number),
     }
@@ -124,9 +122,28 @@ def every_moment(request):
     return render(request, 'event/every-moment/index.html')
 
 
+def every_moment_exceed(request):
+    return render(request, 'event/every-moment/exceed.html')
+
+
+def check_exceed_upload_times(user, slug, max=5):
+    if user.is_superuser:
+        return False
+    campaign = Campaign.objects.get(slug=slug)
+    return ImageUpload.objects.filter(entity_id=campaign.id, create_user=user).count() >= max
+
+
 def every_moment_upload(request):
-    if request.method == 'POST':
-        currentCampaign = Campaign.objects.get(slug='every-moment')
+    uploaded = False
+    photo = None
+    campaignSlug = 'every-moment'
+    if not request.user.is_active:
+        uploadForm = CampaignImageUploadForm()
+        personForm = PersonEmailNicknameForm()
+    elif check_exceed_upload_times(request.user, campaignSlug):
+        return redirect('campaign.every.moment.exceed')
+    elif request.method == 'POST':
+        currentCampaign = Campaign.objects.get(slug=campaignSlug)
         currentUser = auth.get_user(request)
         uploadForm = CampaignImageUploadForm(request.POST, request.FILES)
         try:
@@ -142,23 +159,21 @@ def every_moment_upload(request):
             upload.entity_object = currentCampaign
             person.save()
             upload.save()
+            generate_share_image(upload, campaignSlug)
             shareOnFacebook(request.POST, upload)
-            if request.user.is_active:
-                uploadForm = CampaignImageUploadForm()
-                try:
-                    personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
-                except ObjectDoesNotExist:
-                    personForm = PersonEmailNicknameForm()
+            photo = upload
+            uploaded = True
     else:
-        if request.user.is_active:
-            uploadForm = CampaignImageUploadForm()
-            try:
-                personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
-            except ObjectDoesNotExist:
-                personForm = PersonEmailNicknameForm()
+        uploadForm = CampaignImageUploadForm()
+        try:
+            personForm = PersonEmailNicknameForm(instance=request.user.get_profile())
+        except ObjectDoesNotExist:
+            personForm = PersonEmailNicknameForm()
     data = {
         'uploadForm': uploadForm,
         'personForm': personForm,
+        'uploaded': uploaded,
+        'photo': photo,
     }
     return render(request, 'event/every-moment/upload.html', data)
 
@@ -167,17 +182,48 @@ def every_moment_wall(request):
     return every_moment_wall_page(request, 1)
 
 
+def campaign_photo(request, slug, photo_id):
+    campaign = Campaign.objects.get(slug=slug)
+    data = {
+        'photo': ImageUpload.objects.get(id=photo_id, entity_id=campaign.id,
+                                         content_type=ContentType.objects.get(model='campaign'))
+    }
+    return render(request, 'event/%s/photo.html' % slug, data)
+
+
+def prefetch_profile_name(uploads):
+    uids = []
+    for upload in uploads:
+        uids += (upload.create_user.id,)
+    people = Person.objects.filter(user_id__in=uids)
+    for upload in uploads:
+        for person in people:
+            if upload.create_user.id == person.user_id:
+                # print person.fullname
+                upload.create_username = person.nickname
+    return uploads
+
+
 def every_moment_wall_page(request, page_number=1):
-    allEventPhotos = ImageUpload.objects.filter(
-        content_type=ContentType.objects.get(model='campaign'), entity_id=Campaign.objects.get(slug='every-moment').id
-    ).order_by('-create_time').prefetch_related('create_user', 'create_user__person')
-    for eventPhoto in allEventPhotos:
-        try:
-            eventPhoto.create_username = eventPhoto.create_user.person.fullname
-        except ObjectDoesNotExist:
-            eventPhoto.create_username = ''
-    paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
-    return render(request, 'event/every-moment/wall.html', {'event_photos': paginator.page(page_number)})
+    page_number = int(page_number)
+    contentTypeId = ContentType.objects.get(model='campaign').id
+    entityId = Campaign.objects.get(slug='every-moment').id
+    if request.user.is_active:
+        allEventPhotos = list(ImageUpload.objects.raw(
+            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
+            'ORDER BY create_user_id=%d DESC, create_time DESC LIMIT %d, %d' %
+            (contentTypeId, entityId, request.user.id,
+             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+        )
+    else:
+        allEventPhotos = list(ImageUpload.objects.raw(
+            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
+            'ORDER BY create_time DESC LIMIT %d, %d' %
+            (contentTypeId, entityId,
+             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+        )
+    prefetch_profile_name(uploads=allEventPhotos)
+    return render(request, 'event/every-moment/wall.html', {'event_photos': allEventPhotos})
 
 
 def attack_on_web(request):

@@ -1,12 +1,23 @@
-{% set page_title = '美好時刻' %}
-{% extends "base.html" %}
-{% block title %}美好時刻 - Mozilla Taiwan{% endblock %}
+{% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
+{% extends "event/every-moment/base.html" %}
+{% block title %}Firefox OS 讓你盡情享受每一刻 - Mozilla Taiwan{% endblock %}
 {% block base_css %}
   {{ css('base') }}
   {{ css('every-moment-wall') }}
 {% endblock %}
 {% block base_js %}
   {{ js('every-moment-wall') }}
+{% endblock %}
+{% block head %}
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
 {% endblock %}
 {% block banner %}{% endblock %}
 {% block content %}
@@ -21,13 +32,13 @@
           <li class="eventPhoto">
             <div class="photoFrame">
               <a class="eventPhotoLink"
-                 href="{{ request.build_absolute_uri(url('activity.photo', type='campaign', photo_id=event_photo.id)) }}"
+                 href="{{ request.build_absolute_uri(url('campaign.photo', slug='every-moment', photo_id=event_photo.id)) }}"
                  title="{{ event_photo.description }}">
-                <img data-full-width="{{ event_photo.image_large_width }}"
-                     data-full-height="{{ event_photo.image_large_height }}"
-                     data-large-src="{{ STATIC_URL }}{{ event_photo.get_large_path() }}"
-                     width="260" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 260 }}"
-                     src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
+                <img data-full-width="600"
+                     data-full-height="600"
+                     data-large-src="{{ static(event_photo.get_share_path()) }}"
+                     width="250" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 250 }}"
+                     src="{{ static(event_photo.get_medium_path()) }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
 
@@ -54,19 +65,26 @@
               <p>{{ event_photo.description }}</p>
             </div>
             <div class="photoInfo">
-              <p>投稿者：<b>{{ event_photo.create_username }}</b>
-
-              <p>發表於：<b><span class="time" title="{{ event_photo.create_time }}"></span></b>
+              <p>by <b>{{ event_photo.create_username }}</b>
             </div>
-
+{#            <a class="shareButton" href="javascript:void(0);">#}
+{#              <div class="shareText"></div>#}
+{#            </a>#}
           </li>
         {% endfor %}
       </ul>
     {% endif %}
     {% if event_photos|length > 0 %}
       <div id="page-nav">
-        <a href="{{ url('event.wall.page', page_number=2) }}"></a>
+        <a href="{{ url('campaign.every.moment.wall.page', page_number=2) }}"></a>
       </div>
     {% endif %}
   </div>
+  <div id="fxos-phone-frame">
+    <a class="bigShareButton" href="javascript:void(0);">
+      <div class="bigShareText"></div>
+    </a>
+  </div>
+
 {% endblock %}
+{% block footer %}{% endblock %}

@@ -22,7 +22,7 @@ def wall(request):
     # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
     #     return redirect('user.register')
 
-    products = Product.objects.all().prefetch_related('photos')
+    products = Product.objects.filter(status='normal').prefetch_related('photos')
     orderDetailData = []
 
     for product in products:

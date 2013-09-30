@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.encoding import iri_to_uri
 # from ffclub.event.models import Vote
-from ffclub.settings import STATIC_URL, SITE_URL
+from ffclub.settings import MEDIA_URL, SITE_URL, MEDIA_ROOT
 
 from utils import *
 
@@ -115,8 +115,28 @@ class ImageUpload(models.Model):
 
         return super(ImageUpload, self).save()
 
+    def get_share_image(self):
+        if hasattr(self.entity_object, 'slug') and self.content_type.model == 'campaign':
+            return open('%s/%s%s/%ld.%s' % (MEDIA_ROOT, SHARE_FILE_PATH, self.entity_object.slug, self.id,
+                                            self.image_large.name.split('.')[-1]), 'r')
+        else:
+            return self.image_large
+
     def get_absolute_url(self):
-        return reverse('event.photo', kwargs={'photo_id': self.id})
+        return reverse('activity.photo', kwargs={'type': self.content_type.model, 'photo_id': self.id})
+
+    def get_absolute_share_url(self):
+        if hasattr(self.entity_object, 'slug') and self.content_type.model == 'campaign':
+            return reverse('campaign.photo', kwargs={'slug': self.entity_object.slug, 'photo_id': self.id})
+        else:
+            return self.get_absolute_url()
+
+    def get_share_path(self):
+        if hasattr(self.entity_object, 'slug'):
+            return '%s%s/%ld.%s' % (SHARE_FILE_PATH, self.entity_object.slug, self.id,
+                                    self.image_large.name.split('.')[-1])
+        else:
+            return self.get_large_path()
 
     def get_large_path(self):
         return iri_to_uri(self.image_large.name)

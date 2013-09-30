@@ -1,10 +1,96 @@
-@import "../ffcstyle";
+@import "every-moment-base";
 
-#wrapper{
-  background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
-  padding-bottom:50px;
+#wrapper {
+  background: url(/static/img/event/every-moment/upload/bg-blue.png) left top repeat;
+  background-size: 100%;
 }
 
 #main-content {
   background: transparent;
+  margin: auto;
+  width: 960px;
+  height: auto;
+  .eventPhotos {
+    margin: 0 auto;
+    .eventPhoto {
+      margin-left: 35px;
+      margin-right: 35px;
+      margin-bottom: 23px;
+      .photoDescription p {
+        overflow: hidden;
+        margin: 0 11px;
+        line-height: 18px;
+        height: 54px;
+      }
+    }
+  }
+}
+
+.eventWall {
+  padding-top: 135px;
+
+  .eventPhoto {
+    width: 250px;
+    height: 460px;
+    box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
+    border-radius: 0;
+    background-color: #ffffff;
+  }
+
+  .socialButtons {
+    display: none;
+  }
+
+  .photoFrame {
+    width: 250px;
+    height: 388px;
+  }
+  .photoDescription {
+    height: 40px;
+  }
+  .photoInfo {
+    text-align: right;
+    margin: 0 11px;
+  }
+  .shareButton {
+    background: url(/static/img/event/every-moment/newupload/newupload-btblue.png);
+    display: block;
+    width: 47px;
+    height: 21px;
+    margin-top: -12px;
+    margin-left: auto;
+    margin-right: auto;
+    .shareText {
+      background: url(/static/img/event/every-moment/newupload/newupload-share.png);
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+#fxos-phone-frame {
+  background: url(/static/img/event/every-moment/newupload/newupload-fox01.png) no-repeat;
+  display: none;
+  position: absolute;
+  width: 551px;
+  height: 618px;
+  overflow: visible;
+  pointer-events: none;
+  .bigShareButton {
+    background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
+    display: block;
+    position: absolute;
+    width: 72px;
+    height: 31px;
+    margin: auto;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    pointer-events: visible;
+    .bigShareText {
+      background: url(/static/img/event/every-moment/newupload/newupload-bt-big.png);
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

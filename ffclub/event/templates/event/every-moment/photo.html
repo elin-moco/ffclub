@@ -1,0 +1,32 @@
+{% set page_image = photo.get_share_path() %}
+{% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
+{% set page_description = photo.description %}
+{% extends "event/every-moment/base.html" %}
+{% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
+{% block title %}{{ photo.description }} - Firefox OS 讓你盡情享受每一刻{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment-photo') }}
+{% endblock %}
+{% block head %}
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
+{% block banner %}
+{% endblock %}
+{% block content %}
+  <div class="eventPhoto">
+    <a class="eventPhotoLink" href="{{ static(photo.get_share_path()) }}" title="{{ photo.description }}">
+      <img src="{{ static(photo.get_share_path()) }}" alt="{{ photo.description }}" title="{{ photo.description }}"/>
+    </a>
+
+    <p>{{ photo.description }}</p>
+  </div>
+{% endblock %}

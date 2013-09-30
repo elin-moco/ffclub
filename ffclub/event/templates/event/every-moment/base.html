@@ -1,0 +1,139 @@
+{% set login_url = url('campaign.every.moment.upload') %}
+{% set logout_url = url('campaign.every.moment') %}
+{% set share_url = SITE_URL + url('campaign.every.moment') %}
+
+{% extends "base.html" %}
+
+{% macro facebook_share_url(url) -%}
+  {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
+{%- endmacro %}
+
+{% macro twitter_share_url(url, tweet_text) -%}
+  {% if tweet_text %}
+    {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
+  {% else %}
+    {{ 'https://www.twitter.com/intent/tweet?url=%s'|format(url|urlencode|urlencode)|e }}
+  {% endif %}
+{%- endmacro %}
+
+{% macro gplus_share_url(url) -%}
+  {{ 'https://plus.google.com/share?url=%s'|format(url|urlencode)|e }}
+{%- endmacro %}
+
+{% macro plurk_share_url(url, title) -%}
+  {% if title %}
+    {{ 'http://www.plurk.com/?qualifier=shares&status=%s'|format(url+'('+title+')'|urlencode)|e }}
+  {% else %}
+    {{ 'http://www.plurk.com/?qualifier=shares&status=%s'|format(url|urlencode)|e }}
+  {% endif %}
+{%- endmacro %}
+
+{% macro pinterest_share_url(url) -%}
+  {{ 'http://www.pinterest.com/pin/find/?url=%s'|format(url|urlencode)|e }}
+{%- endmacro %}
+
+
+{% block head %}
+  {% block tabzilla %}
+    <header id="masthead">
+      <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+      <nav id="nav-main" role="navigation">
+        <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+        <ul id="nav-main-menu" class="has-submenus" role="menubar">
+          {% if request %}
+            {% if request.user.is_active %}
+              <li role="menuitem" class="topMenu no-mobile-submenu last">
+                <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
+                   aria-owns="nav-user-submenu" aria-haspopup="true">
+                  已登入
+                  {% if request.user.fullname %}
+                    : {{ request.user.fullname }}
+                  {% endif %}
+                  </a>
+                <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
+                  <li class="last">
+                    <a title="登出網站" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}" tabindex="-1">登出</a>
+                  </li>
+                </ul>
+              </li>
+            {% else %}
+              <li role="menuitem" class="last">
+                <a title="直接登入並開始上傳照片" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
+                   aria-haspopup="false">登入上傳</a>
+              </li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+  {% endblock %}
+
+  {% block header_bar %}
+  <div id="header-bar">
+    <div class="header-content">
+      <div class="fxos-logo"></div>
+      <div class="every-moment"></div>
+    </div>
+  </div>
+  {% endblock %}
+
+  {% block main_menu %}
+  <nav id="main-nav" role="navigation">
+    <ul>
+      <li><a class="nav rules" href="{{ url('campaign.every.moment') }}#campaign-rules" title="活動說明"></a></li>
+      <li><a class="nav flow" href="{{ url('campaign.every.moment') }}#campaign-flow" title="上傳流程"></a></li>
+      {% if not request.user.is_active %}
+      <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
+      {% else %}
+      <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
+      {% endif %}
+      <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
+      <li><a class="nav back-top" href="{{ url('campaign.every.moment') }}#moment" title="回到頂端"></a></li>
+      <li>
+        <div class="nav share" title="社群分享">
+          <img src="/static/img/event/every-moment/guide/bt-shareword.png" class="nav share" title="社群分享" usemap="#social-share-map">
+        </div>
+      </li>
+    </ul>
+    <map id="social-share-map">
+      <area shape="circle" coords="16,22,12" href="{{ facebook_share_url(share_url) }}" target="_blank">
+      <area shape="circle" coords="44,22,12" href="{{ gplus_share_url(share_url) }}" target="_blank">
+      <area shape="circle" coords="70,22,12" href="{{ plurk_share_url(share_url) }}" target="_blank">
+      <area shape="circle" coords="96,22,12" href="{{ pinterest_share_url(share_url) }}" target="_blank">
+      <area shape="circle" coords="124,22,12" href="{{ twitter_share_url(share_url) }}" target="_blank">
+    </map>
+  </nav>
+  {% endblock %}
+
+  {% block top_menu %}
+  <nav id="top-nav" role="navigation">
+    <ul>
+      <li><a target="_blank" class="nav fb" href="https://www.facebook.com/MozillaTaiwan" title="Facebook"></a></li>
+      <li><a target="_blank" class="nav gplus" href="https://plus.google.com/u/0/114653167240123163859/posts" title="Google Plus"></a></li>
+      <li><a target="_blank" class="nav plurk" href="http://plurk.com/MozillaTaiwan" title="Plurk"></a></li>
+      <li><a target="_blank" class="nav flickr" href="http://www.flickr.com/photos/mozillataiwan/" title="Flickr"></a></li>
+      <li><a target="_blank" class="nav youtube" href="http://www.youtube.com/user/MozillaTaiwan" title="Youtube"></a></li>
+      <li><a target="_blank" class="nav newsletter" href="http://mozilla.com.tw/newsletter/subscribe/" title="Newsletter"></a></li>
+    </ul>
+  </nav>
+  {% endblock %}
+
+  {% block side_menu %}
+  <nav id="side-nav" role="navigation">
+    <ul>
+      <li><a class="nav" href="#moment" title="Firefox OS 讓你享受每一刻">Firefox OS 讓你享受每一刻</a></li>
+      <li><a class="nav" href="#wonderful-experience" title="Firefox OS 給你絕紗體驗">Firefox OS 給你絕紗體驗</a></li>
+      <li><a class="nav" href="#built-for-you" title="Firefox OS 專為你的生活打造">Firefox OS 專為你的生活打造</a></li>
+      <li><a class="nav" href="#campaign-rules" title="活動說明">活動說明</a></li>
+      <li><a class="nav" href="#campaign-timeline" title="活動時程">活動時程</a></li>
+      <li><a class="nav" href="#campaign-award" title="活動時程">活動獎項</a></li>
+      <li><a class="nav" href="#campaign-flow" title="活動流程">活動流程</a></li>
+    </ul>
+    <div id="share-pane" aria-expanded="false">
+      <a class="share close" href="#share" role="button" title="Close"><span>Close</span></a>
+      <div class="socialshare" data-type="small-bubbles"></div>
+    </div>
+  </nav>
+  {% endblock %}
+
+{% endblock %}

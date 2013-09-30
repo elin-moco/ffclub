@@ -1,48 +1,736 @@
-@import "../ffcstyle";
+@import "every-moment-base";
 
-#wrapper{
-  background: url(/static/img/event/every-moment/scratch/bg-navy.png) left top repeat-x;
-  padding-bottom:50px;
+
+.js body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#masthead nav > ul > li > a, #masthead nav > ul > li > a:link, #masthead nav > ul > li > a:visited {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.momentContent {
+
+  .moment-content {
+    transition: all 0.5s ease-in 1s;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+
+  .title-image {
+    transition: all 0.5s ease-in 1.5s;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+
+  #clock {
+    transition: all 0.5s ease-in 2s;
+    left: 43px;
+  }
+}
+
+#wrapper {
+  background: none;
+  padding-bottom: 50px;
 }
 
 #main-content {
-  background: transparent;
+  background: none;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: auto;
 }
 
-.scratcher {
-  display: none;
-  width: 125px;
-  height: 125px;
-  margin: 200px auto;
-  position: relative;
-  background: url(/static/img/event/every-moment/scratch/scratch-white.png) no-repeat;
-  #fx-scratcher, #fx-icon {
-    position: absolute;
-  }
-  #fx-scratcher {
-    transition: all 0.5s ease-out 0s;
-  }
-  &.complete #fx-scratcher {
-    opacity: 0;
-  }
-  #fx-icon {
-    transition: all 0.5s ease-out 1s;
-    left: 0;
-    top: 0;
+#scratch {
+  background: url(/static/img/event/every-moment/scratch/bg-navy-s.png) left top repeat-x;
+  width: 100%;
+  height: 750px;
+  margin: 0;
+  position: absolute;
+
+  .scratcher {
+    display: none;
     width: 125px;
     height: 125px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background: url(/static/img/event/every-moment/scratch/scratch-white.png) no-repeat;
+    #fx-scratcher, #fx-icon {
+      position: absolute;
+    }
+    #fx-scratcher {
+      transition: all 0.5s ease-out 0s;
+    }
+    &.complete #fx-scratcher {
+      opacity: 0;
+    }
+    #fx-icon {
+      transition: all 0.5s ease-out 0.5s;
+      left: 0;
+      top: 0;
+      width: 125px;
+      height: 125px;
+    }
+    &.complete #fx-icon {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+      left: -83px;
+      top: -100px;
+    }
   }
-  &.complete #fx-icon {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-    left: -83px;
-    top: -100px;
+
+  #scratch-tip {
+    position: absolute;
+    padding-left: 200px;
+    padding-bottom: 160px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }
 
-#scratch-tip {
+.no-js #intro #moment {
+  .momentContent;
+  .moment-content {
+    position: absolute;
+    z-index: 0;
+  }
+  #clock {
+    display: none;
+  }
+}
+
+#intro {
+  //  background: url(/static/img/event/every-moment/home/bg-blue.png);
+  //  background-size: 100% auto;
+  #moment {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+
+    .moment-content {
+      position: fixed;
+      background: url(/static/img/event/every-moment/home/bg-blue.png);
+      background-size: 100% auto;
+      margin: auto;
+      top: 330px;
+      left: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .title-image {
+      position: absolute;
+      left: -100%;
+      right: 100%;
+      margin: auto;
+      top: 188px;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    #clock {
+      position: absolute;
+      left: 100%;
+      bottom: 120px;
+      width: 100%;
+      height: 120px;
+      z-index: 2;
+      #clock-content {
+        position: absolute;
+        z-index: 100;
+        margin: auto;
+        top: 25px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding-right: 86px;
+      }
+      .clock-digit {
+        background: url(/static/img/event/every-moment/home/clock/number-b.png);
+      }
+      .clock-colon {
+        margin: 0 61px;
+      }
+      &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        opacity: 0.5;
+      }
+    }
+
+  }
+  #moment.appear {
+    .momentContent;
+  }
+
+  .wall {
+    position: absolute;
+    background: url(/static/img/event/every-moment/home/bg-blue.png);
+    background-size: 100% auto;
+    width: 100%;
+    height: 750px;
+    .phone-brick-wall {
+      width: 960px;
+      height: 750px;
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+    }
+    .phone-brick {
+      display: inline-block;
+      position: absolute;
+      width: auto;
+      height: auto;
+      overflow: hidden;
+    }
+    .phone-page1 {
+      z-index: 2;
+    }
+    .phone-page2 {
+      z-index: 3;
+      opacity: 0;
+    }
+    .phone-page3 {
+      z-index: 4;
+      opacity: 0;
+    }
+    .phone-page4 {
+      top: -100%;
+      z-index: 6;
+    }
+    .phone-page5 {
+      right: -100%;
+      z-index: 7;
+      width: 100%;
+      height: 100%;
+    }
+    .phone-page6 {
+      right: -100%;
+      z-index: 8;
+      width: 100%;
+      height: 100%;
+    }
+    .phone-brick-text {
+      position: absolute;
+    }
+    .phone-brick-pic {
+      position: absolute;
+    }
+    .phone-brick-frame {
+      //      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .phone-brick-a {
+      width: 414px;
+      height: 279px;
+
+      top: -100%;
+    }
+    .phone-brick-b {
+      width: 546px;
+      height: 420px;
+//      right: 0;
+      left: 414px;
+      top: -100%;
+    }
+    .phone-brick-c {
+      width: 155px;
+      height: 141px;
+//      top: 279px;
+      top: -100%;
+    }
+    .phone-brick-d {
+      width: 259px;
+      height: 141px;
+//      top: 279px;
+      left: 155px;
+
+      top: -100%;
+    }
+    .phone-brick-e {
+      width: 475px;
+      height: 330px;
+//      top: 420px;
+      top: -100%;
+    }
+    .phone-brick-f {
+      width: 330px;
+      height: 166px;
+//      top: 420px;
+      left: 475px;
+
+      top: -100%;
+    }
+    .phone-brick-g {
+      width: 155px;
+      height: 330px;
+//      top: 420px;
+      left: 805px;
+
+      top: -100%;
+    }
+    .phone-brick-h {
+      width: 330px;
+      height: 164px;
+//      top: 586px;
+      left: 475px;
+
+      top: -100%;
+    }
+  }
+  #wall1 {
+    .wall;
+    .phone-brick-wall {
+      z-index: 4;
+//      background-color: red;
+      position: fixed;
+      left: -2000px;
+      right: -2000px;
+      top: 0;
+    }
+    .fxos-firefox {
+      position: absolute;
+      top: 150px;
+//      left: 38px;
+      left: 100%;
+      z-index: 5;
+    }
+    .phone-brick-frame {
+      z-index: 10;
+    }
+    .phone-brick {
+//      position: fixed;
+      img {
+        position: absolute;
+      }
+    }
+  }
+  #wall2 {
+    .wall;
+    .titleText {
+      right: 0;
+    }
+    .phone-brick-a {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-a.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-a.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-b {
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/mobile-pic-b.png);
+      }
+    }
+    .phone-brick-c {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-c.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-c.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-d {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-d.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-d.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-e {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-e.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-e.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-f {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-f.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-f.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-g {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-g.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-g.png);
+        background-size: 100%;
+      }
+    }
+    .phone-brick-h {
+      background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-pic-h.png);
+      background-size: 100%;
+      .phone-brick-frame {
+        background: url(/static/img/event/every-moment/home/mobile/big/mobile-big-word-h.png);
+        background-size: 100%;
+      }
+    }
+  }
+}
+
+.fxos-phone-horizontal(@image) {
+  width: 636px;
+  height: 336px;
+  margin: auto;
   position: absolute;
-  top: -60px;
-  right: 240px;
+  top: 263px;
+  left: 0;
+  right: 0;
+  transform-origin: 50% 0;
+  -webkit-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  img {
+    position: absolute;
+  }
+  .phone-pages {
+    position: absolute;
+    width: 72%;
+    height: 90%;
+    margin-left: 14.4%;
+    margin-top: 2.5%;
+    overflow: hidden;
+  }
+  .phone-page2 {
+    left: 100%;
+  }
+  .phone-page3 {
+    left: 100%;
+  }
+  .phone-page4 {
+    left: 100%;
+  }
+  .phone-frame {
+    position: absolute;
+    background: url(/static/img/event/every-moment/home/info/phone.png) no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+  }
+  .phone-info {
+    position: absolute;
+    background: url('/static/img/event/every-moment/home/info/@{image}') no-repeat;
+    background-size: 100%;
+    width: 72%;
+    height: 90%;
+    margin-left: 14.4%;
+    margin-top: 2.5%;
+  }
+  .phone-bg {
+    position: absolute;
+    background: url(/static/img/event/every-moment/home/info/blue.png) no-repeat;
+    background-size: 100%;
+    width: 72%;
+    height: 90%;
+    margin-left: 14.4%;
+    margin-top: 2.5%;
+  }
+}
+
+.wood-desk {
+  position: absolute;
+  width: 966px;
+  background: url(/static/img/event/every-moment/home/bg-wood.png);
+  background-position: left top;
+  height: 2096px;
+  transform-origin: 50% 50%;
+}
+
+#wood-desk {
+  .wood-desk;
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: -1000px;
+    right: -1000px;
+    margin: auto;
+    opacity: 0;
+}
+
+#rules {
+//  background: url(/static/img/event/every-moment/home/bg-wood.png);
+//  background-size: 100% auto;
+
+  #description {
+    .wood-desk;
+    background: none;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    opacity: 0;
+
+    .fxos-phone {
+      .fxos-phone-horizontal('firefoxos.png');
+    }
+  }
+  #timeline {
+    .wood-desk;
+    .fxos-phone {
+      .fxos-phone-horizontal('time.png');
+    }
+  }
+  #prizes {
+    .wood-desk;
+    .fxos-phone {
+      .fxos-phone-horizontal('award.png');
+    }
+  }
+  #flow {
+    .flow-content {
+      margin: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 960px;
+      height: 100%;
+    }
+    .upload-flow {
+      position: absolute;
+      z-index: 1;
+      top: 220px;
+      right: 60px;
+      color: #ffffff;
+      h3 {
+        opacity: 0;
+//        margin-top: -50px;
+        color: #ffffff;
+        font-size: 40px;
+        font-style: normal;
+        box-shadow: none;
+        margin-bottom: 20px;
+      }
+      ol li {
+        opacity: 0;
+//        margin-top: -40px;
+        font-size: 16px;
+        margin-top: 10px;
+        list-style: none;
+        counter-increment: customlistcounter;
+        div {
+          opacity: 0;
+//          margin-top: -50px;
+        }
+        &:before {
+          content: counter(customlistcounter) " ";
+          display: inline-block;
+          font-weight: bold;
+          text-indent: 7px;
+          line-height: 20px;
+          width: 22px;
+          height: 22px;
+          margin-top: 1px;
+          margin-left: -28px;
+          float: left;
+          background: url(/static/img/event/every-moment/home/step/number-blue.png) no-repeat;
+        }
+      }
+    }
+    .wood-desk;
+    .fxos-firefox {
+      z-index: 4;
+      background: url(/static/img/event/every-moment/home/step/upload-fox01.png);
+      position: absolute;
+      width: 463px;
+      height: 375px;
+//      top: 296px;
+      top: -375px;
+      left: 72px;
+    }
+    .fxos-firefox-tail {
+      background: url(/static/img/event/every-moment/home/step/upload-fox02.png);
+      z-index: 2;
+      position: absolute;
+      width: 537px;
+      height: 226px;
+      top: -511px;
+//      top: 160px;
+      left: -4px;
+    }
+    .fxos-phone-vertical {
+      z-index: 2;
+      width: 300px;
+      height: 555px;
+      position: absolute;
+      top: 94px;
+      left: 170px;
+      .phone-frame {
+        position: absolute;
+//        background: url(/static/img/event/every-moment/home/step/upload-phone.png);
+        width: 100%;
+        height: 100%;
+      }
+      .phone-page1 {
+        color: #ffffff;
+        line-height: 42px;
+        text-indent: 63px;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: url(/static/img/event/every-moment/home/step/blue.png);
+        background-size: 100%;
+        position: absolute;
+
+        .fb-login {
+          background: url(/static/img/event/every-moment/home/step/fb-login.png);
+          width: 168px;
+          height: 46px;
+          left: 56px;
+          top: 193px;
+          position: absolute;
+        }
+        .persona-login {
+          background: url(/static/img/event/every-moment/home/step/persona-login.png);
+          width: 168px;
+          height: 46px;
+          left: 56px;
+          top: 138px;
+          position: absolute;
+        }
+      }
+      .phone-page2 {
+        position: absolute;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background: url(/static/img/event/every-moment/home/step/photo.png);
+        background-size: 100%;
+      }
+      .phone-page3 {
+        position: absolute;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background-size: 100%;
+        background: url(/static/img/event/every-moment/home/step/blue-opacity.png);
+        .form {
+          background: #ffffff;
+          ul {
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+          ul li {
+            list-style: none;
+            padding-top: 5px;
+            padding-bottom: 5px;
+          }
+          label {
+            display: inline-block;
+            width: 50px;
+          }
+          input {
+            display: inline-block;
+          }
+        }
+      }
+      .phone-page4 {
+        position: absolute;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background-size: 100%;
+        background: url(/static/img/event/every-moment/home/step/blue-opacity.png);
+        .success {
+          background: url(/static/img/event/every-moment/home/step/success.png);
+          background-size: 100%;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .phone-pages {
+        position: absolute;
+        width: 266px;
+        height: 401px;
+        margin-top: 68px;
+        margin-left: 17px;
+        overflow: hidden;
+      }
+      .phone-info {
+        position: absolute;
+        width: 266px;
+        height: 401px;
+        margin-top: 68px;
+        margin-left: 17px;
+      }
+      .phone-bg {
+        position: absolute;
+        background: url(/static/img/event/every-moment/home/step/photo.png);
+        width: 266px;
+        height: 401px;
+        margin-top: 68px;
+        margin-left: 17px;
+      }
+    }
+
+    .start-upload-button {
+      display: block;
+      z-index: 10;
+      position: absolute;
+      right: 150px;
+      bottom: -200px;
+//      bottom: 100px;
+      width: 138px;
+      height: 138px;
+      background: url(/static/img/event/every-moment/home/step/upload-bt.png);
+    }
+    .upload-tip {
+      display: block;
+      z-index: 1;
+      position: absolute;
+      right: 150px;
+      bottom: -280px;
+//      bottom: 20px;
+      width: 138px;
+      height: 95px;
+      background: url(/static/img/event/every-moment/home/step/upload-bt-word.png);
+    }
+  }
+}
+
+#scroll-tip {
+  display: none;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 100;
+  color: #ffffff;
+  text-align: center;
+  .arrow {
+    display: block;
+    height: 6px;
+  }
 }
