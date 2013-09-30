@@ -1968,7 +1968,11 @@ td.ss-rightlabel {
     margin: 0.5em 0 0;
     padding: 0;
 }
-
+.ss-choice-item {
+    line-height: 1.3em;
+    margin: 0;
+    padding-bottom: 0.5em;
+}
 .ss-required-asterisk {
     color: #C43B1D;
 }

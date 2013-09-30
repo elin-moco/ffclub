@@ -554,7 +554,7 @@ MINIFY_BUNDLES = {
             'css/event/attack-on-web.less',
         ),
         'applyform': (
-            'css/event/1835473341-formview_ltr.css',
+            'css/event/3904611051-formview_ltr.css',
             'css/event/722395648-mobile_formview_ltr.css',
         ),
         'coming-soon': (
@@ -608,10 +608,11 @@ MINIFY_BUNDLES = {
             'js/product.js',
         ),
         'attack-on-web': (
+            'js/main.js',
             'js/event/attack-on-web.js',
         ),
         'applyform': (
-            'js/event/3328389227-formviewer_prd.js',
+            'js/event/3661387036-formviewer_prd__zh_tw.js',
         ),
         'coming-soon': (
             'js/event/coming-soon.js',
