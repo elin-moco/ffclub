@@ -208,12 +208,20 @@ def every_moment_wall_page(request, page_number=1):
     page_number = int(page_number)
     contentTypeId = ContentType.objects.get(model='campaign').id
     entityId = Campaign.objects.get(slug='every-moment').id
-    allEventPhotos = list(ImageUpload.objects.raw(
-        'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
-        'ORDER BY create_user_id=%d DESC, create_time DESC LIMIT %d, %d' %
-        (contentTypeId, entityId, request.user.id,
-         EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
-    )
+    if request.user.is_active:
+        allEventPhotos = list(ImageUpload.objects.raw(
+            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
+            'ORDER BY create_user_id=%d DESC, create_time DESC LIMIT %d, %d' %
+            (contentTypeId, entityId, request.user.id,
+             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+        )
+    else:
+        allEventPhotos = list(ImageUpload.objects.raw(
+            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
+            'ORDER BY create_time DESC LIMIT %d, %d' %
+            (contentTypeId, entityId,
+             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+        )
     prefetch_profile_name(uploads=allEventPhotos)
     return render(request, 'event/every-moment/wall.html', {'event_photos': allEventPhotos})
 

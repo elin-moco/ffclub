@@ -52,15 +52,15 @@
   {% block main_menu %}
   <nav id="main-nav" role="navigation">
     <ul>
-      <li><a class="nav rules" href="#campaign-rules" title="活動說明"></a></li>
-      <li><a class="nav flow" href="#campaign-flow" title="上傳流程"></a></li>
+      <li><a class="nav rules" href="{{ url('campaign.every.moment') }}#campaign-rules" title="活動說明"></a></li>
+      <li><a class="nav flow" href="{{ url('campaign.every.moment') }}#campaign-flow" title="上傳流程"></a></li>
       {% if not request.user.is_active %}
       <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
       {% else %}
       <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
       {% endif %}
       <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
-      <li><a class="nav back-top" href="#moment" title="回到頂端"></a></li>
+      <li><a class="nav back-top" href="{{ url('campaign.every.moment') }}#moment" title="回到頂端"></a></li>
       <li>
         <div class="nav share" title="社群分享">
           <img src="/static/img/event/every-moment/guide/bt-shareword.png" class="nav share" title="社群分享" usemap="#social-share-map">
