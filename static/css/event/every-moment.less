@@ -736,11 +736,21 @@
   color: #ffffff;
   text-align: center;
   text-shadow: 0 0 5px #ffffff;
-  span {
-    text-shadow: 0 0 5px #ffffff;
-  }
+//  .animate(spotText 1.5s infinite);
   .arrow {
     display: block;
     height: 6px;
+//    text-shadow: 0 0 5px #ffffff;
+  }
+  .text {
+    .animate(spotText 1.5s infinite);
+  }
+  .arrow1 {
+    .arrow;
+    .animate(spotText 1.5s infinite 0.25s);
+  }
+  .arrow2 {
+    .arrow;
+    .animate(spotText 1.5s infinite 0.5s);
   }
 }

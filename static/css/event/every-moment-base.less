@@ -296,29 +296,36 @@
 
 .spotTextKeyFrames() {
   0% {
-    text-shadow: 0 0 0 #ffffff;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ffffff;
   }
-  50% {
+  30% {
+    color: #6A7B86;
+    text-shadow: 0 0 0 #6A7B86;
+  }
+  60% {
+    color: #ffffff;
     text-shadow: 0 0 3px #ffffff;
   }
   100% {
-    text-shadow: 0 0 0 #ffffff;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ffffff;
   }
 }
 
 @keyframes spotText {
   .spotTextKeyFrames();
 }
-@-moz-keyframes spot {
+@-moz-keyframes spotText {
   .spotTextKeyFrames();
 }
-@-webkit-keyframes spot {
+@-webkit-keyframes spotText {
   .spotTextKeyFrames();
 }
-@-o-keyframes spot {
+@-o-keyframes spotText {
   .spotTextKeyFrames();
 }
-@-ms-keyframes spot {
+@-ms-keyframes spotText {
   .spotTextKeyFrames();
 }
 
@@ -356,5 +363,5 @@
     width: 200px;
     height: 200px;
     background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
-    .animate(spot 1s infinite);
+    .animate(spot 1.5s infinite);
 }
