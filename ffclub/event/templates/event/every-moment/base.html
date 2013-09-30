@@ -32,7 +32,7 @@
 {%- endmacro %}
 
 {% macro pinterest_share_url(url, image, title) -%}
-  {{ 'http://www.pinterest.com/pin/find/?url=%s&media=%s&description=%s'|format(url|urlencode, image|urlencode, title|urlencode)|e }}
+  {{ 'http://www.pinterest.com/pin/create/button/?url=%s&media=%s&description=%s'|format(url|urlencode, image|urlencode, title|urlencode)|e }}
 {%- endmacro %}
 
 
