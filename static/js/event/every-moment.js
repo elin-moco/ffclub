@@ -656,19 +656,19 @@ ImageClock = (function () {
         controller.addTween(builtHook, woodDeskShow, 1, currentPos());
         controller.addTween(builtHook, brickBHide2, 200, addNextPos(brickZoomDur));
 
-        controller.addTween(builtHook, brickHZoom2, brickZoomDur/2, addNextPos(100));
-        controller.addTween(builtHook, brickGZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickFZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickEZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickDZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickCZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickBZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickAZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, brickWallZoom2, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, woodDeskExpand, brickZoomDur/2, currentPos());
-        controller.addTween(builtHook, phoneMove, brickZoomDur/2, currentPos());
+        controller.addTween(builtHook, brickHZoom2, brickZoomDur / 2, addNextPos(100));
+        controller.addTween(builtHook, brickGZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickFZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickEZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickDZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickCZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickBZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickAZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, brickWallZoom2, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, woodDeskExpand, brickZoomDur / 2, currentPos());
+        controller.addTween(builtHook, phoneMove, brickZoomDur / 2, currentPos());
 
-        controller.addTween(builtHook, bricksHide, brickZoomDur/2, addNextPos(brickZoomDur/2));
+        controller.addTween(builtHook, bricksHide, brickZoomDur / 2, addNextPos(brickZoomDur / 2));
 
         controller.addTween(builtHook, phonePage1Out, pageSlideDur, currentPos());
 
@@ -713,11 +713,52 @@ ImageClock = (function () {
 
         awardHook.css('height', currentPos() + 'px');
 
-        $('body').keyup(function(e) {
+        $('body').keyup(function (e) {
             if (13 == e.keyCode) {
                 $.scrollTo($(document).height(), 23000);
             }
         });
+        $.localScroll({
+            target: 'body', // could be a selector or a jQuery object too.
+            queue: true,
+            duration: 1500,
+            hash: true,
+            onBefore: skipScratcher,
+            onAfter: function (anchor, settings) {
+                // The 'this' contains the scrolled element (#content)
+            }
+        });
+
+        $side_nav = $('#side-nav');
+
+        var side_nav_targets = [];
+        // store possible nav targets in array for easier searching
+        $side_nav.find('a').each(function (index, anchor) {
+            side_nav_targets.push(anchor.getAttribute('href'));
+        });
+        $('.nav-anchor').waypoint(function (direction) {
+            $side_nav.find('a').removeClass('curr');
+
+            if (direction === 'down') {
+                $side_nav.find('a[href="#' + $(this).attr('id') + '"]').addClass('curr');
+            } else {
+                // find index in nav array of currently scrolled to target
+                var cur_target_index = $.inArray('#' + $(this).attr('id'), side_nav_targets);
+
+                // if there's a previous target, update the active navs
+                if (cur_target_index > 0) {
+                    $side_nav.find('a[href="' + side_nav_targets[cur_target_index - 1] + '"]').addClass('curr');
+                }
+            }
+        });
+
+    }
+
+    function skipScratcher() {
+        if (!$('#moment').hasClass('appear')) {
+            $('body').css('overflow-y', 'auto');
+            $('#moment').addClass('appear')
+        }
     }
 
     /**
@@ -725,19 +766,8 @@ ImageClock = (function () {
      */
     $(function () {
         if (supportsCanvas()) {
-            $.localScroll({
-                target: 'body', // could be a selector or a jQuery object too.
-                queue:true,
-                duration:1000,
-                hash:true,
-                onBefore:function( e, anchor, $target ){
-                // The 'this' is the settings object, can be modified
-                },
-                onAfter:function( anchor, settings ){
-                // The 'this' contains the scrolled element (#content)
-                }
-            });
-            $.scrollTo(0);
+            $(window).scrollTop(0)
+            $('#side-nav a.nav, #main-nav a.rules, #main-nav a.flow, #main-nav a.back-top').click(skipScratcher);
             initScratcher();
             initClock();
             initAnimations();
