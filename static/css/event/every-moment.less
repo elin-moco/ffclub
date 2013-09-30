@@ -460,6 +460,8 @@
   background-position: left top;
   height: 2096px;
   transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
 }
 
 #wood-desk {
@@ -742,15 +744,21 @@
     height: 6px;
 //    text-shadow: 0 0 5px #ffffff;
   }
-  .text {
+  .text1 {
+    display: block;
     .animate(spotText 1.5s infinite);
+  }
+  .text2 {
+    display: block;
+    font-size: 9px;
+    .animate(spotText 1.5s infinite 0.2s);
   }
   .arrow1 {
     .arrow;
-    .animate(spotText 1.5s infinite 0.25s);
+    .animate(spotText 1.5s infinite 0.4s);
   }
   .arrow2 {
     .arrow;
-    .animate(spotText 1.5s infinite 0.5s);
+    .animate(spotText 1.5s infinite 0.6s);
   }
 }

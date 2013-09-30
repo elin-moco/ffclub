@@ -433,7 +433,7 @@ ImageClock = (function () {
  */
 (function () {
     var clock;
-
+    var autoScrolling = false;
     /**
      * Returns true if this browser supports canvas
      *
@@ -717,7 +717,15 @@ ImageClock = (function () {
 
         $('body').keyup(function (e) {
             if (13 == e.keyCode) {
-                $.scrollTo($(document).height(), 23000);
+                if (!autoScrolling) {
+                    skipScratcher();
+                    $.scrollTo($(document).height(), 23000);
+                    autoScrolling = true;
+                }
+                else {
+                    $.scrollTo.window().stop(true);
+                    autoScrolling = false;
+                }
             }
         });
         $.localScroll({
