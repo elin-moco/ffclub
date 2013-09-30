@@ -23,7 +23,11 @@
 {% block content %}
   <ul class="content-list">
     <li id="main-context">
-        <p><h2 id="finish_hidden" name="finish_hidden" style="color:#C43B1D;display:none;">恭喜！您已經跨出第一步了&#9786;</h2></p>
+        <div id="finish_hidden" name="finish_hidden" style="display:none;">
+            <h2 style="color:#C43B1D;">恭喜！您已經跨出第一步了&#9786;</h2>
+            <div>若需要更企劃書資訊，您可以：1. 繼續編輯<a id="finish_hidden_link" target="_blank" name="finish_hidden_link" href="#!">企劃書內容</a>，以實際企劃書文件內容為準。 2. 重新上傳表單，以截止前最後一次上傳內容為準。</div>
+            <div>或是：<a target="_blank" href="https://www.google.com/calendar/render?cid=ergh3tgrvcdbkjhqo8198665p8%40group.calendar.google.com">訂閱活動行事曆</a>、<a target="_blank" href="/static/external/20130829_Developer Pitch Kit_(zh-TW)_final.pdf">看看開發者資訊</a></div>
+        </div>
         <script type="text/javascript">
             /**
             * @license
@@ -37,7 +41,7 @@
             <div class="ss-form-heading"><h2 dir="ltr">進撃の Web 企劃書繳交</h2>
             <hr style="display:none;" class="ss-email-break">
             <div class="ss-required-asterisk">*必填</div></div></div>
-            <div class="ss-form"><script type="text/javascript">var submitted_awzsszcc=false;</script><iframe name="hidden_iframe_awzsszcc" id="hidden_iframe_awzsszcc" style="display:none;" onload="if(submitted_awzsszcc){finish_hidden.style.display='block';$('body, html').stop();
+            <div class="ss-form"><script type="text/javascript">var submitted_awzsszcc=false;</script><iframe name="hidden_iframe_awzsszcc" id="hidden_iframe_awzsszcc" style="display:none;" onload="if(submitted_awzsszcc){$('#finish_hidden_link').attr('href', $('#entry_1385908824').val() );finish_hidden.style.display='block';$('body, html').stop();
 $('body, html').animate({scrollTop:0});document.getElementById('ss-form-container').style.display='none';}"></iframe><form action="https://docs.google.com/forms/d/1n27Szc6Z6YCXqWRrMMbU4E3OqOAOuKYzMHLCvSvTfHg/formResponse" method="post" target="hidden_iframe_awzsszcc" onsubmit="submitted_awzsszcc=true;" id="ss-form" target="_self" onsubmit=""><ol style="padding-left: 0">
             <div class="ss-form-question errorbox-good">
             <div class="ss-item ss-item-required ss-radio" dir="ltr"><div class="ss-form-entry"><label for="entry_1744947634" class="ss-q-item-label"><div class="ss-q-title">隊名

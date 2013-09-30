@@ -4,7 +4,7 @@ window.mobilecheck = function() {
 	return check; 
 }
 
-jQuery(document).ready(function() {
+$(function() {
 	if(mobilecheck()){
 		var topbar = document.getElementById('head-inner');
 		window.onscroll = function(){
@@ -41,15 +41,25 @@ jQuery(document).ready(function() {
 				$("html, body").animate({ scrollTop: 0 }, 600);
 		})
 	}
-	return false;
-});
 
-$('#menu-principal.menu li a').click(function() {
-	$('body, html').stop();
-	$('body, html').animate({ scrollTop: ($($(this).attr("href")).offset().top - 70) }, "slow");
-	return false;
-});
+	$('#menu-principal.menu li a').click(function() {
+		$('body, html').stop();
+		$('body, html').animate({ scrollTop: ($($(this).attr("href")).offset().top - 70) }, "slow");
+		return false;
+	});
 
-$(".unpub").click(function(e) {
-	e.preventDefault();
+	$(".unpub").click(function(e) {
+		e.preventDefault();
+		var headID = document.getElementsByTagName("head")[0];
+		var newCss = document.createElement('link');
+		newCss.type = 'text/css';
+		newCss.rel = "stylesheet";
+		newCss.href = "/static/css/event/coming-soon.less.css";
+		headID.appendChild(newCss);
+		var newJs = document.createElement('script');
+		newJs .type = 'text/javascript';
+		newJs .src= "/static/js/event/coming-soon.js";
+		headID.appendChild(newJs);
+		document.getElementById('blackout').remove();
+	});
 });

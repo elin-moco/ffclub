@@ -12,7 +12,7 @@
     );
     blackout_css.appendChild(blackout_css_content);
     //initialize countdown node
-    var target_date = new Date("Dec 12, 2013").getTime();
+    var target_date = new Date("Nov 20, 2013").getTime();
     var days, hours, minutes, seconds;
     var current_date = new Date().getTime();
     var seconds_left = (target_date - current_date) / 1000;
@@ -90,7 +90,9 @@
 }
 
 if (window.addEventListener)
-    window.addEventListener('load', function(){ showBlackout() }, false);
+    showBlackout();
+    //window.addEventListener('load', function(){ showBlackout() }, false);
 else if (window.attachEvent)
-    window.attachEvent('on' + 'load', function(){ showBlackout() });
+    showBlackout();
+    //window.attachEvent('on' + 'load', function(){ showBlackout() });
 })();
