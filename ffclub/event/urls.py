@@ -19,6 +19,6 @@ urlpatterns = patterns(
     url(r'^events/attack-on-web/$', views.attack_on_web, name='event.attack.on.web'),
     url(r'^events/attack-on-web/prizes/$', views.prizes, name='event.attack.on.web.prizes'),
     url(r'^events/attack-on-web/apply/$', views.apply, name='event.attack.on.web.apply'),
-    url(r'^events/attack-on-web/demo$/', views.demo, name='event.attack.on.web.demo'),
+    url(r'^events/attack-on-web/demo/$', views.demo, name='event.attack.on.web.demo'),
     url(r'^events/attack-on-web/microfilm/$', views.microfilm, name='event.attack.on.web.microfilm'),
 )

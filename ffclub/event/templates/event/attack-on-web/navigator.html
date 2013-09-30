@@ -5,52 +5,54 @@
             <nav id="nav-main" role="navigation">
               <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
               <ul id="nav-main-menu" class="has-submenus" role="menubar">
-            <li id="nav-main-products" role="menuitem" class="topMenu first">
-              <a title="首頁" href="{{ url('event.attack.on.web') }}" tabindex="0"
-                 aria-owns="nav-main-submenu" aria-haspopup="true">首頁</a>
-            </li>
-            <li id="nav-main-products" role="menuitem" class="topMenu first">
-              <a title="活動獎項" href="{{ url('event.attack.on.web.prizes') }}" tabindex="0"
-                 aria-owns="nav-main-submenu" aria-haspopup="true">活動獎項</a>
-            </li>
-            <li id="nav-main-products" role="menuitem" class="topMenu first">
-              <a title="線上報名" href="{{ url('event.attack.on.web.apply') }}" tabindex="0"
-                 aria-owns="nav-main-submenu" aria-haspopup="true">線上報名</a>
-            </li>
-            <li id="nav-main-products" role="menuitem" class="topMenu first unpub">
-              <a title="成果展示" href="{{ url('event.attack.on.web.demo') }}" tabindex="0"
-                 aria-owns="nav-main-submenu" aria-haspopup="true">成果展示</a>
-            </li>
-            <li id="nav-main-products" role="menuitem" class="topMenu first">
-              <a title="活動微電影" href="{{ url('event.attack.on.web.microfilm') }}" tabindex="0"
-                 aria-owns="nav-main-submenu" aria-haspopup="true">活動微電影</a>
-            </li>
-            {% if request %}
-              {% if request.user.is_active %}
-                <li role="menuitem" class="topMenu no-mobile-submenu last">
-                  <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
-                     aria-owns="nav-user-submenu" aria-haspopup="true">
-                    帳號
-                    {% if request.user.fullname %}
-                      : {{ request.user.fullname }}
-                    {% endif %}
-                    </a>
-                  <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
-                    <li class="first">
-                      <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
-                    </li>
-                    <li class="last">
-                      <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
-                    </li>
-                  </ul>
+                <li id="nav-main-products" role="menuitem" class="topMenu first">
+                  <a title="首頁" href="{{ url('event.attack.on.web') }}" tabindex="0"
+                     aria-owns="nav-main-submenu" aria-haspopup="true">活動說明</a>
                 </li>
-              {% else %}
-                <li role="menuitem" class="last">
-                  <a title="登入" class="browserid no-submenu" tabindex="-1" href="javascript:void(0);"
-                     aria-haspopup="false">登入</a>
+                <li id="nav-main-products" role="menuitem" class="topMenu first">
+                  <a title="活動獎項" href="{{ url('event.attack.on.web.prizes') }}" tabindex="0"
+                     aria-owns="nav-main-submenu" aria-haspopup="true">活動獎項</a>
                 </li>
+                <li id="nav-main-products" role="menuitem" class="topMenu first">
+                  <a title="線上報名" href="{{ url('event.attack.on.web.apply') }}" tabindex="0"
+                     aria-owns="nav-main-submenu" aria-haspopup="true">線上報名</a>
+                </li>
+                <li id="nav-main-products" role="menuitem" class="topMenu first unpub">
+                  <a title="成果展示" href="#!" tabindex="0"
+                     aria-owns="nav-main-submenu" aria-haspopup="true">成果發佈</a>
+                </li>
+                <li id="nav-main-products" role="menuitem" class="topMenu first">
+                  <a title="活動微電影" href="{{ url('event.attack.on.web.microfilm') }}" tabindex="0"
+                     aria-owns="nav-main-submenu" aria-haspopup="true">活動微電影</a>
+                </li>
+                {% if request %}
+                  {% if request.user.is_active %}
+                  <li role="menuitem" class="topMenu no-mobile-submenu last">
+                    <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
+                       aria-owns="nav-user-submenu" aria-haspopup="true">
+                      帳號
+                      {% if request.user.fullname %}
+                        : {{ request.user.fullname }}
+                      {% endif %}
+                      </a>
+                    <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
+                      <li class="first">
+                        <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
+                      </li>
+                      <li class="last">
+                        <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
+                      </li>
+                    </ul>
+                  </li>
+                {% else %}
+                  <li role="menuitem" class="last">
+                    <a title="登入" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
+                       aria-haspopup="false">
+                       登入
+                     </a>
+                  </li>
+                {% endif %}
               {% endif %}
-            {% endif %}
               </ul>
             </nav>
             <h2 id="ffos-main-logo">

@@ -246,11 +246,6 @@ td.ss-rightlabel {
     margin: 0.5em 0 0;
     padding: 0;
 }
-.ss-choice-item {
-    line-height: 1.3em;
-    margin: 0;
-    padding-bottom: 0.5em;
-}
 .ss-required-asterisk {
     color: #C43B1D;
 }
@@ -289,10 +284,6 @@ td.ss-rightlabel {
 .embeddable-object-menu .jfk-button-collapse-left {
     margin-right: 0;
 }
-.ss-form-container {
-    margin: 0 auto;
-    width: 90%;
-}
 .ss-edit-link {
     display: none;
 }
@@ -303,9 +294,6 @@ input[type="text"], input:not([type]) {
     display: block;
     margin-left: 0;
     text-align: left;
-}
-.ss-form, .ss-form-heading, .ss-footer {
-    padding: 0.5em;
 }
 h1.ss-form-title {
     margin-top: 0;
