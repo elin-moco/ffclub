@@ -23,8 +23,8 @@
   <ul class="content-list">
     <li id="main-context">
       <h2>活動微電影</h2>
-      <p>
-        2013 年一場您絕不能錯過的校園創意競賽「進撃のWeb：Firefox&nbsp;OS APP&nbsp;校園創意競賽」各區微電影搶先看！看完了各區微電影，別忘了點選我要報名以及活動辦法立馬加入，敬請把握 10/30 前的報名時間。
+      <p id="film-loading">
+        載入中...
       </p>
     </li>
     <li id="sidebar">
@@ -35,4 +35,5 @@
 
 {% block base_js %}
   {{ js('attack-on-web') }}
+  {{ js('film') }}
 {% endblock %}
