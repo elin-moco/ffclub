@@ -44,7 +44,7 @@
       {% if not request.user.is_active %}
       <a id="upload" class="loginButton" href="javascript:void(0);"></a>
       {% else %}
-      <a id="upload" class="choose-file" href="javascript:void(0);"></a>
+      <label for="id_image_large" id="upload" class="choose-file" href="javascript:void(0);"></label>
       {% endif %}
       <div class="upload-tip"></div>
       <div class="spotlight"></div>
@@ -65,7 +65,7 @@
         <div id="view-wall-tip"></div>
 
       {% else %}
-      <form class="details-form" enctype="multipart/form-data" method="post">
+      <form id="details-form" class="details-form" enctype="multipart/form-data" method="post" action="{{ url('campaign.every.moment.upload') }}">
         {{ csrf() }}
         <ul>
           {{ uploadForm.as_ul() }}
