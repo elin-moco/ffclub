@@ -657,7 +657,7 @@ ImageClock = (function () {
         controller.addTween(builtHook, brickWallZoom, brickZoomDur, currentPos());
         controller.addTween(builtHook, brickBHide1, 1, currentPos());
         controller.addTween(builtHook, woodDeskShow, 1, currentPos());
-        controller.addTween(builtHook, brickBHide2, 200, addNextPos(brickZoomDur));
+        controller.addTween(builtHook, brickBHide2, 5, addNextPos(brickZoomDur));
 
         controller.addTween(builtHook, brickHZoom2, brickZoomDur / 2, addNextPos(100));
         controller.addTween(builtHook, brickGZoom2, brickZoomDur / 2, currentPos());
