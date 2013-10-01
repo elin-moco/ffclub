@@ -113,8 +113,8 @@
     bottom: 50px;
     left: 0;
     right: 0;
-    width: 70%;
-    height: 250px;
+    width: 659px;
+    height: 300px;
     #download-firefox {
       display: block;
       z-index: 1000;
@@ -146,6 +146,7 @@
         font-size: 16px;
         vertical-align: top;
         margin-left: 40px;
+        width: 360px;
     }
       &:before {
         content: " ";
@@ -166,7 +167,6 @@
       opacity: 0.5;
     }
   }
-
   #nav-main {
     display: none;
   }
@@ -197,6 +197,10 @@
   #rules {
     display: none;
   }
+}
+
+.lt-ie9, .lt-ie10 {
+  .no-js;
 }
 
 #intro {
@@ -562,6 +566,7 @@
     right: -1000px;
     margin: auto;
     opacity: 0;
+  pointer-events: none;
 }
 
 #rules {
@@ -605,7 +610,7 @@
       right: 0;
       width: 960px;
       height: 100%;
-      z-index: 1;
+//      z-index: 3;
     }
     .upload-flow {
       position: absolute;
@@ -795,7 +800,7 @@
     }
     .start-upload-button {
       display: block;
-      z-index: 10;
+      z-index: 1000;
       position: absolute;
       right: 150px;
       bottom: -200px;
