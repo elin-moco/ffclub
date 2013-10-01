@@ -1,5 +1,10 @@
 @import "every-moment-base";
 
+body {
+  background: url(/static/img/event/every-moment/upload/bg-blue.png) left top repeat;
+  background-size: 100%;
+}
+
 #wrapper {
   background: url(/static/img/event/every-moment/upload/bg-blue.png) left top repeat;
   background-size: 100%;
@@ -12,6 +17,11 @@
   height: auto;
   .eventPhotos {
     margin: 0 auto;
+    > h1 {
+      color: #ffffff;
+      font-style: normal;
+      text-shadow: 0 1px #333333;
+    }
     .eventPhoto {
       margin-left: 35px;
       margin-right: 35px;
@@ -93,4 +103,12 @@
       height: 100%;
     }
   }
+}
+
+a#join {
+  display: block;
+  background: url(/static/img/event/every-moment/join.png);
+  width: 283px;
+  height: 144px;
+  margin-top: 40px;
 }
