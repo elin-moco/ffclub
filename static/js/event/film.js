@@ -5,10 +5,10 @@
 	}
 	var film_ids = new Array();
 	var n1, n2, tmp, videoContainer;
-	film_ids[0] = '//www.youtube.com/embed/QEDvKYUCD38';
-	film_ids[1] = '//www.youtube.com/embed/IhqP4Vl-ODk';
-	film_ids[2] = '//www.youtube.com/embed/SbSiKqgcg3s';
-	film_ids[3] = '//www.youtube.com/embed/oUm9iKAkHlQ';
+	film_ids[0] = '//www.youtube.com/embed/QEDvKYUCD38'+'?wmode=opaque';
+	film_ids[1] = '//www.youtube.com/embed/IhqP4Vl-ODk'+'?wmode=opaque';
+	film_ids[2] = '//www.youtube.com/embed/SbSiKqgcg3s'+'?wmode=opaque';
+	film_ids[3] = '//www.youtube.com/embed/oUm9iKAkHlQ'+'?wmode=opaque';
 	for(i=0; i < 4; i++){
 		n1 = Math.floor(Math.random() * 4);
 		n2 = Math.floor(Math.random() * 4);
@@ -28,6 +28,5 @@
 		videoContainer.appendChild(ifrm);
 		document.getElementById("main-context").appendChild(videoContainer);
 	}
-	//document.getElementById("film-loading").remove();
 	remove("film-loading");
 })();
