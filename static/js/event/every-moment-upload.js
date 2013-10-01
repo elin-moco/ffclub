@@ -139,10 +139,10 @@
     $('input#frameWidth').attr('value', maxWidth);
     $('input#frameHeight').attr('value', maxHeight);
     $('#id_image_large').change(previewImage);
-    $('.choose-file').click(function () {
-        $('#id_image_large').click();
-    });
+//    $('.choose-file').click(function () {
+//        $('#id_image_large').click();
+//    });
     $('.upload-button').click(function() {
-        $('form.details-form').submit();
+        $('.details-form').submit();
     });
 })();

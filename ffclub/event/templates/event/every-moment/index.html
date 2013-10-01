@@ -210,16 +210,16 @@
             <li class="step5">完成上傳</li>
           </ol>
         </div>
-        {% if not request.user.is_active %}
-        <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
-        {% else %}
-        <a class="start-upload-button" href="{{ url('campaign.every.moment.upload') }}"></a>
-        {% endif %}
-        <div class="upload-tip"></div>
-        <div class="spotlight"></div>
       </div>
     </div>
   </div>
+  {% if not request.user.is_active %}
+  <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
+  {% else %}
+  <a class="start-upload-button" href="{{ url('campaign.every.moment.upload') }}"></a>
+  {% endif %}
+  <div class="upload-tip"></div>
+  <div class="spotlight"></div>
   <span id="scroll-tip">
     <span class="text1">向下滾動</span>
     <span class="text2">（或按 Enter 自動播放）</span>
