@@ -1,3 +1,4 @@
+{% set page_image = 'img/event/every-moment/campaignFB.jpg' %}
 {% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
 {% extends "event/every-moment/base.html" %}
 {% block title %}Firefox OS 讓你盡情享受每一刻 - Mozilla Taiwan{% endblock %}
@@ -24,7 +25,8 @@
   <div class="eventWall">
     {% if event_photos|length == 0 %}
       <div class="eventPhotos">
-        <p>目前没有任何照片分享，成為第一個分享的人吧！</p>
+        <h1>目前没有任何照片分享，<br>成為第一個分享的人吧！</h1>
+        <a id="join" href="{{ url('campaign.every.moment') }}"></a>
       </div>
     {% else %}
       <ul class="eventPhotos">

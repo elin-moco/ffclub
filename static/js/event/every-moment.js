@@ -433,7 +433,7 @@ ImageClock = (function () {
  */
 (function () {
     var clock;
-
+    var autoScrolling = false;
     /**
      * Returns true if this browser supports canvas
      *
@@ -589,6 +589,8 @@ ImageClock = (function () {
         var woodDeskTurn = TweenMax.to($('#wood-desk'), 1, {css: {transform: 'rotate(90deg)'}});
         var phoneRotate = TweenMax.to($('#rules #description .fxos-phone'), 1, {css: {transform: 'rotate(90deg)', paddingTop: '14px', paddingLeft: '225px', width: '336px', height: '636px', top: '140px'}});
 
+        var nextPhoneFrameIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-frame'), 1, {css: {opacity: 1}});
+        var prevPhoneFrameOut = TweenMax.to($('#rules #description .fxos-phone .phone-frame'), 1, {css: {opacity: 0}});
         var phoneBgOut = TweenMax.to($('#rules #description .fxos-phone .phone-bg'), 1, {css: {opacity: 0}});
         var phoneStep1PageIn = TweenMax.to($('#rules #flow .fxos-phone-vertical .phone-page1'), 1, {css: {opacity: 1}});
         var phoneStep1TextIn = TweenMax.to($('#rules #flow .step1'), 1, {css: {opacity: 1}});
@@ -692,10 +694,14 @@ ImageClock = (function () {
         controller.addTween(awardHook, phonePage4Out, pageSlideDur, addNextPos(pagePinDur));
         controller.addTween(awardHook, woodDeskTurn, brickZoomDur, addNextPos(pageSlideDur));
         controller.addTween(awardHook, phoneRotate, brickZoomDur, currentPos());
-        controller.addTween(awardHook, phoneBgOut, pageSlideDur, addNextPos(brickZoomDur));
 
-        controller.addTween(awardHook, phoneStep1PageIn, pageSlideDur, currentPos());
-        controller.addTween(awardHook, phoneStep1TextIn, pageSlideDur, currentPos());
+        controller.addTween(awardHook, phoneStep1PageIn, 1, addNextPos(brickZoomDur));
+        controller.addTween(awardHook, phoneStep1TextIn, 1, currentPos());
+
+        controller.addTween(awardHook, phoneBgOut, pageSlideDur, currentPos());
+        controller.addTween(awardHook, nextPhoneFrameIn, 1, addNextPos(pageSlideDur));
+        controller.addTween(awardHook, prevPhoneFrameOut, 1, addNextPos(5));
+
         controller.addTween(awardHook, phoneStep1PageOut, pageSlideDur, addNextPos(pagePinDur));
         controller.addTween(awardHook, phoneStep2PageIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, phoneStep2TextIn, pageSlideDur, currentPos());
@@ -717,7 +723,15 @@ ImageClock = (function () {
 
         $('body').keyup(function (e) {
             if (13 == e.keyCode) {
-                $.scrollTo($(document).height(), 23000);
+                if (!autoScrolling) {
+                    skipScratcher();
+                    $.scrollTo($(document).height(), 23000);
+                    autoScrolling = true;
+                }
+                else {
+                    $.scrollTo.window().stop(true);
+                    autoScrolling = false;
+                }
             }
         });
         $.localScroll({
