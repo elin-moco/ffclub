@@ -89,6 +89,7 @@
   {% block main_menu %}
   <nav id="main-nav" role="navigation">
     <ul>
+      <li><a class="nav os" href="//mozilla.com.tw/firefox/os/" title="Firefox OS 介紹" target="_blank"></a></li>
       <li><a class="nav rules" href="{{ url('campaign.every.moment') }}#campaign-rules" title="活動說明"></a></li>
       <li><a class="nav flow" href="{{ url('campaign.every.moment') }}#campaign-flow" title="上傳流程"></a></li>
       {% if not request.user.is_active %}
