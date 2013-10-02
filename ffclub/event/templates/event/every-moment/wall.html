@@ -38,9 +38,9 @@
                  title="{{ event_photo.description }}">
                 <img data-full-width="600"
                      data-full-height="600"
-                     data-large-src="{{ static(event_photo.get_share_path()) }}"
+                     data-large-src="{{ STATIC_URL }}{{ event_photo.get_share_path() }}"
                      width="250" height="{{ event_photo.image_medium_height / event_photo.image_medium_width * 250 }}"
-                     src="{{ static(event_photo.get_medium_path()) }}"
+                     src="{{ STATIC_URL }}{{ event_photo.get_medium_path() }}"
                      alt="{{ event_photo.description }}" title="{{ event_photo.description }}"/>
               </a>
 
