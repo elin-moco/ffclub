@@ -615,6 +615,7 @@ ImageClock = (function () {
         var phoneStep6SpotlightIn = TweenMax.to($('.spotlight'), 1, {css: {bottom: '150px'}});
         var phoneStep6TextIn = TweenMax.to($('.upload-tip'), 1, {css: {bottom: '100px'}});
         var scrollTipOut = TweenMax.to($('#scroll-tip'), 1, {css: {opacity: 0}});
+        var noticeIn = TweenMax.to($('#notice'), 1, {css: {opacity: 0.8}});
 
         controller.addTween(bricksHook, brickHFall, brickFallDur, currentPos());
         controller.addTween(bricksHook, brickGFall, brickFallDur, nextPos());
@@ -718,6 +719,7 @@ ImageClock = (function () {
         controller.addTween(awardHook, phoneStep6SpotlightIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, phoneStep6TextIn, pageSlideDur, currentPos());
         controller.addTween(awardHook, scrollTipOut, pageSlideDur, currentPos());
+        controller.addTween(awardHook, noticeIn, pageSlideDur, currentPos());
 
         awardHook.css('height', currentPos() + 'px');
 
