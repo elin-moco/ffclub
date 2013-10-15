@@ -87,19 +87,44 @@ body {
   height: 618px;
   overflow: visible;
   pointer-events: none;
+  .votes {
+    display: block;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 20px;
+    text-align: center;
+    color: #ffffff;
+  }
   .bigShareButton {
     background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
     display: block;
     position: absolute;
     width: 72px;
     height: 31px;
-    margin: auto;
+//    margin: auto;
     bottom: 80px;
-    left: 0;
-    right: 0;
+    right: 280px;
     pointer-events: visible;
     .bigShareText {
       background: url(/static/img/event/every-moment/newupload/newupload-bt-big.png);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .bigVoteButton {
+    background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
+    display: block;
+    position: absolute;
+    width: 72px;
+    height: 31px;
+//    margin: auto;
+    right: 180px;
+    bottom: 80px;
+    pointer-events: visible;
+    .bigVoteText {
+      background: url(/static/img/event/every-moment/newupload/newupload-vote-big.png);
       width: 100%;
       height: 100%;
     }

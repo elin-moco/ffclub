@@ -17,7 +17,28 @@
             }
         );
     });
-
+    $('.bigVoteButton').click(function () {
+        var $voteButton = $(this);
+        $.ajax({
+            dataType: 'json',
+            url: $(this).attr('data-url')
+        }).done(function (response) {
+                if ('success' == response.result) {
+                    var $photo = $('#'+$voteButton.attr('data-id'));
+                    var voteCount = 1 + parseInt($photo.attr('data-vote-count'));
+                    $photo.attr('data-vote-count', voteCount);
+                    $photo.attr('data-voted', 'True');
+                    $('.votes em').text(voteCount);
+                    $voteButton.css('opacity', 0.5);
+                    $voteButton.css('pointer-events', 'none');
+                    alert(response.message);
+                }
+                else {
+                    alert(response.errorMessage);
+                }
+            }
+        );
+    });
     var lightbox = new Modal().Lightbox('.eventPhotos');
 
     var eventPhotos = $('.eventPhotos');
@@ -47,6 +68,7 @@
         $(photos).mouseover(function () {
             var url = $(this).find('a').attr('href');
             var caption = $(this).find('.photoDescription p').text();
+            var voteUrl = $(this).find('.votePhoto').attr('href');
             $('#fxos-phone-frame').show();
             $('#fxos-phone-frame').position({
                 my: 'center',
@@ -58,6 +80,17 @@
             });
             $('.bigShareButton').attr('data-url', url);
             $('.bigShareButton').attr('data-caption', caption);
+            $('.bigVoteButton').attr('data-url', voteUrl);
+            $('.bigVoteButton').attr('data-id', $(this).attr('id'));
+            $('.votes em').text($(this).attr('data-vote-count'));
+            if ($(this).attr('data-voted') == 'True') {
+                $('.bigVoteButton').css('opacity', 0.5);
+                $('.bigVoteButton').css('pointer-events', 'none');
+            }
+            else {
+                $('.bigVoteButton').css('opacity', 1);
+                $('.bigVoteButton').css('pointer-events', 'auto');
+            }
         });
         $(photos).find('.eventPhotoLink').click(
             function (e) {

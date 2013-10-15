@@ -2,7 +2,7 @@
 from cStringIO import StringIO
 from django.contrib import auth
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied, SuspiciousOperation
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -11,8 +11,8 @@ import commonware.log
 
 from django.utils import simplejson
 import facebook
-from ffclub.event.models import Campaign
-from ffclub.event.utils import send_photo_report_mail
+from ffclub.event.models import Campaign, Vote
+from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
@@ -84,9 +84,9 @@ def activity_photo_remove(request, type, photo_id):
         photo.delete()
         data = {'result': 'success'}
     except ObjectDoesNotExist:
-        data = {'result': 'failed', 'error': '照片不存在！'}
+        data = {'result': 'failed', 'errorMessage': '照片不存在！'}
     except PermissionDenied:
-        data = {'result': 'failed', 'error': '無存取權限！'}
+        data = {'result': 'failed', 'errorMessage': '無存取權限！'}
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
@@ -110,9 +110,32 @@ def activity_photo_report(request, type, photo_id):
         send_photo_report_mail(from_name, to_name, photo_id)
         data = {'result': 'success'}
     except ObjectDoesNotExist:
-        data = {'result': 'failed', 'error': '照片不存在！'}
+        data = {'result': 'failed', 'errorMessage': '照片不存在！'}
     except PermissionDenied:
-        data = {'result': 'failed', 'error': '無存取權限！'}
+        data = {'result': 'failed', 'errorMessage': '無存取權限！'}
+
+    json = simplejson.dumps(data)
+    return HttpResponse(json, mimetype='application/x-javascript')
+
+
+def activity_photo_vote(request, type, photo_id):
+    try:
+        if not request.user.is_active:
+            raise PersmissionDenied
+        photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model=type))
+        currentUser = auth.get_user(request)
+        if Vote.objects.filter(entity_id=photo_id, voter=currentUser,
+                               content_type=ContentType.objects.get(model='imageupload')).exists():
+            raise SuspiciousOperation
+        vote = Vote(entity_object=photo, status='approve', voter=currentUser)
+        vote.save()
+        data = {'result': 'success', 'message': '投票完成！'}
+    except ObjectDoesNotExist:
+        data = {'result': 'failed', 'errorMessage': '照片不存在！'}
+    except PermissionDenied:
+        data = {'result': 'failed', 'errorMessage': '無存取權限！'}
+    except SuspiciousOperation:
+        data = {'result': 'failed', 'errorMessage': '一張照片只能投一票喔！'}
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
@@ -191,37 +214,19 @@ def campaign_photo(request, slug, photo_id):
     return render(request, 'event/%s/photo.html' % slug, data)
 
 
-def prefetch_profile_name(uploads):
-    uids = []
-    for upload in uploads:
-        uids += (upload.create_user.id,)
-    people = Person.objects.filter(user_id__in=uids)
-    for upload in uploads:
-        for person in people:
-            if upload.create_user.id == person.user_id:
-                # print person.fullname
-                upload.create_username = person.nickname
-    return uploads
-
-
 def every_moment_wall_page(request, page_number=1):
     page_number = int(page_number)
+    photoContentTypeId = ContentType.objects.get(model='imageupload').id
     contentTypeId = ContentType.objects.get(model='campaign').id
     entityId = Campaign.objects.get(slug='every-moment').id
-    if request.user.is_active:
-        allEventPhotos = list(ImageUpload.objects.raw(
-            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
-            'ORDER BY create_user_id=%d DESC, create_time DESC LIMIT %d, %d' %
-            (contentTypeId, entityId, request.user.id,
-             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
-        )
-    else:
-        allEventPhotos = list(ImageUpload.objects.raw(
-            'SELECT * FROM upload_imageupload WHERE content_type_id=%d AND entity_id=%d '
-            'ORDER BY create_time DESC LIMIT %d, %d' %
-            (contentTypeId, entityId,
-             EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
-        )
+    allEventPhotos = list(ImageUpload.objects.raw(
+        'SELECT * FROM upload_imageupload WHERE content_type_id=%s AND entity_id=%s '
+        'ORDER BY create_user_id=%s DESC, create_time DESC LIMIT %s, %s',
+        (contentTypeId, entityId,
+         request.user.id if request.user.is_active else -1,
+         EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
+    )
+    prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request))
     prefetch_profile_name(uploads=allEventPhotos)
     return render(request, 'event/every-moment/wall.html', {'event_photos': allEventPhotos})
 
