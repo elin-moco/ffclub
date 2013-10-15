@@ -2,21 +2,6 @@
 
 
 (function () {
-    $('.eventPhoto').mouseover(function () {
-        var url = $(this).find('a').attr('href');
-        var caption = $(this).find('.photoDescription p').text();
-        $('#fxos-phone-frame').show();
-        $('#fxos-phone-frame').position({
-            my: 'center',
-            at: 'center',
-            of: $(this),
-            using: function (css) {
-                $('#fxos-phone-frame').animate(css, 150);
-            }
-        });
-        $('.bigShareButton').attr('data-url', url);
-        $('.bigShareButton').attr('data-caption', caption);
-    });
     $('.bigShareButton').click(function () {
         FB.ui({
                 method: 'feed',
@@ -59,6 +44,21 @@
         });
 
     var init_photo_actions = function (photos) {
+        $(photos).mouseover(function () {
+            var url = $(this).find('a').attr('href');
+            var caption = $(this).find('.photoDescription p').text();
+            $('#fxos-phone-frame').show();
+            $('#fxos-phone-frame').position({
+                my: 'center',
+                at: 'center',
+                of: $(this),
+                using: function (css) {
+                    $('#fxos-phone-frame').animate(css, 150);
+                }
+            });
+            $('.bigShareButton').attr('data-url', url);
+            $('.bigShareButton').attr('data-caption', caption);
+        });
         $(photos).find('.eventPhotoLink').click(
             function (e) {
                 e.preventDefault();
