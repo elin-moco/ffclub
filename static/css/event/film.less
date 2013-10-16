@@ -1,0 +1,43 @@
+li#main-context{
+	width:100%;
+	clear:both;
+    .entry-list {
+        font-family: "Open Sans",sans-serif;
+        list-style: none outside none;
+        margin: 0 auto;
+        overflow: auto;
+    
+        .entry {
+            clear:none !important;
+            list-style: none outside none;
+            float: left;
+            margin: 0 10px 2em;
+            width: 215px;
+            overflow: hidden;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+            background: #fff;
+            &:hover{
+                opacity: 0.9;
+            }
+        }
+        .entry:nth-child(4n+1) {
+            clear: left;
+            margin-left: 25px;
+        }
+        hgroup, p{
+            padding: 0 5px;
+            height:15px;
+            h1,h2,h3,h4,h5,h6{
+                font-size: 16px;
+            }
+        }
+        .thumbnail{
+            height: 161px;
+            width: 215px;
+            border: none;
+            border-bottom: solid 1px #000000;
+            box-shadow: 0 1px 2px #000000;
+        }
+    }
+}
