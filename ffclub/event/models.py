@@ -90,3 +90,18 @@ class Vote(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '活動投票'
+
+
+class Video(models.Model):
+    title = models.CharField(max_length=255, blank=True, default='')
+    description = models.CharField(max_length=255, blank=True, default='')
+    url = models.URLField()
+    create_user = models.ForeignKey(User, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
+
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('reported', '被檢舉'), ('spam', '垃圾')),
+                              default='normal')
+
+    class Meta:
+        verbose_name = verbose_name_plural = '影片'

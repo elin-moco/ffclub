@@ -141,6 +141,27 @@ def activity_photo_vote(request, type, photo_id):
     return HttpResponse(json, mimetype='application/x-javascript')
 
 
+def generic_vote(request, type, id):
+    try:
+        if not request.user.is_active:
+            raise PersmissionDenied
+        currentUser = auth.get_user(request)
+        contentType = ContentType.objects.get(model=type)
+        if Vote.objects.filter(entity_id=id, voter=currentUser,
+                               content_type=contentType).exists():
+            raise SuspiciousOperation
+        vote = Vote(entity_id=photo, content_type=contentType, status='approve', voter=currentUser)
+        vote.save()
+        data = {'result': 'success', 'message': '投票完成！'}
+    except PermissionDenied:
+        data = {'result': 'failed', 'errorMessage': '無存取權限！'}
+    except SuspiciousOperation:
+        data = {'result': 'failed', 'errorMessage': '一張照片只能投一票喔！'}
+
+    json = simplejson.dumps(data)
+    return HttpResponse(json, mimetype='application/x-javascript')
+
+
 def every_moment(request):
     return render(request, 'event/every-moment/index.html')
 
