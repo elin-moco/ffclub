@@ -19,25 +19,67 @@
     });
     $('.bigVoteButton').click(function () {
         var $voteButton = $(this);
-        $.ajax({
-            dataType: 'json',
-            url: $(this).attr('data-url')
-        }).done(function (response) {
-                if ('success' == response.result) {
-                    var $photo = $('#'+$voteButton.attr('data-id'));
-                    var voteCount = 1 + parseInt($photo.attr('data-vote-count'));
-                    $photo.attr('data-vote-count', voteCount);
-                    $photo.attr('data-voted', 'True');
-                    $('.votes em').text(voteCount);
-                    $voteButton.css('opacity', 0.5);
-                    $voteButton.css('pointer-events', 'none');
-                    alert(response.message);
+        var voteUrl = $(this).attr('data-url');
+        if (voteUrl) {
+            $.ajax({
+                dataType: 'json',
+                url: voteUrl
+            }).done(function (response) {
+                    if ('success' == response.result) {
+                        var $photo = $('#'+$voteButton.attr('data-id'));
+                        var voteCount = 1 + parseInt($photo.attr('data-vote-count'));
+                        $photo.attr('data-vote-count', voteCount);
+                        $photo.attr('data-voted', 'True');
+                        $('.voteCount em').text(voteCount);
+                        $voteButton.css('opacity', 0.5);
+                        $voteButton.css('pointer-events', 'none');
+                        var fb_sync_action = function() {
+                            var fb_publish_action = function() {
+                                FB.api('/me/' + $voteButton.attr('fb-namespace') + ':vote',
+                                    'post', {picture: $photo.find('.eventPhotoLink').attr('href')},
+                                    function(response) {
+                                       console.info(response);
+                                       if (!response || response.error) {
+                                          alert('同步 Facebook 發生問題');
+                                       } else {
+                                          alert('同步成功！');
+                                       }
+                                    }
+                                )
+                            };
+                            FB.getLoginStatus(function (response) {
+                                if (response.status === 'connected') {
+                                    fb_publish_action();
+                                } else {
+                                    // the user isn't logged in to Facebook.
+                                    FB.login(function(response) {
+                                        if (response.status === 'connected') {
+                                            fb_publish_action();
+                                        }
+                                    });
+                                }
+                            });
+                        };
+                        $('#vote-confirm-dialog').dialog({
+                            resizable:false,
+                            modal:true,
+                            buttons: {
+                                '確定': function() {
+                                    fb_sync_action();
+                                    $(this).dialog('close');
+                                },
+                                '取消': function() {
+                                    $(this).dialog('close');
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        alert(response.errorMessage);
+                    }
                 }
-                else {
-                    alert(response.errorMessage);
-                }
-            }
-        );
+            );
+        }
     });
     var lightbox = new Modal().Lightbox('.eventPhotos');
 
@@ -78,12 +120,13 @@
                     $('#fxos-phone-frame').animate(css, 150);
                 }
             });
+            $('.voteCount').css('right', -60);
+            $(this).find('.voteCount').css('right', -68);
             $('.bigShareButton').attr('data-url', url);
             $('.bigShareButton').attr('data-caption', caption);
             $('.bigVoteButton').attr('data-url', voteUrl);
             $('.bigVoteButton').attr('data-id', $(this).attr('id'));
-            $('.votes em').text($(this).attr('data-vote-count'));
-            if ($(this).attr('data-voted') == 'True') {
+            if (!voteUrl || $(this).attr('data-voted') == 'True') {
                 $('.bigVoteButton').css('opacity', 0.5);
                 $('.bigVoteButton').css('pointer-events', 'none');
             }

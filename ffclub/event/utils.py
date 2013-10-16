@@ -17,7 +17,8 @@ def prefetch_votes(uploads, currentUser):
     for upload in uploads:
         if upload.id not in ids:
             ids += (upload.id,)
-    voted = Vote.objects.filter(entity_id__in=ids, voter=currentUser).values_list('entity_id', flat=True)
+    voted = Vote.objects.filter(entity_id__in=ids, voter=currentUser).values_list('entity_id', flat=True) \
+        if currentUser else []
     print voted
     votes = Vote.objects.filter(entity_id__in=ids).values('entity_id').annotate(vote_count=Count('entity_id'))
     for upload in uploads:

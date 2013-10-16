@@ -46,6 +46,22 @@ body {
     box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
     border-radius: 0;
     background-color: #ffffff;
+
+    .voteCount {
+      background: url(/static/img/event/every-moment/newupload/newupload-btorange.png) no-repeat;
+      background-size: 100% 100%;
+      display: block;
+      position: absolute;
+      width: 72px;
+      height: 31px;
+      top: 0;
+      right: -60px;
+      color: #ffffff;
+      text-align: right;
+      line-height: 26px;
+      padding-right: 6px;
+    }
+
   }
 
   .socialButtons {
@@ -55,6 +71,7 @@ body {
   .photoFrame {
     width: 250px;
     height: 388px;
+    position: absolute;
   }
   .photoDescription {
     height: 40px;
@@ -138,4 +155,8 @@ a#join {
   height: 144px;
   margin: auto;
   margin-top: 40px;
+}
+
+#vote-confirm-dialog {
+  display: none;
 }

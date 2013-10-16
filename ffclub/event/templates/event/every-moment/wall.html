@@ -32,6 +32,7 @@
       <ul class="eventPhotos">
         {% for event_photo in event_photos %}
           <li id="{{ event_photo.id }}" class="eventPhoto" data-vote-count="{{ event_photo.vote_count }}" data-voted="{{ event_photo.voted }}">
+            <div class="voteCount"><em>{{ event_photo.vote_count }}</em>票</div>
             <div class="photoFrame">
               <a class="eventPhotoLink"
                  href="{{ request.build_absolute_uri(url('campaign.photo', slug='every-moment', photo_id=event_photo.id)) }}"
@@ -86,14 +87,15 @@
     {% endif %}
   </div>
   <div id="fxos-phone-frame">
-    <span class="votes"><em>0</em> 票</span>
     <a class="bigShareButton" href="javascript:void(0);">
       <div class="bigShareText"></div>
     </a>
-    <a class="bigVoteButton" href="javascript:void(0);">
+    <a class="bigVoteButton" href="javascript:void(0);" fb-namespace="{{ FB_APP_NAMESPACE }}">
       <div class="bigVoteText"></div>
     </a>
   </div>
-
+  <div id="vote-confirm-dialog" title="投票完成！">
+    <p>要把投票狀態同步到 Facebook 嗎？</p>
+  </div>
 {% endblock %}
 {% block footer %}{% endblock %}

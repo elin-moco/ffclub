@@ -226,9 +226,10 @@ def every_moment_wall_page(request, page_number=1):
          request.user.id if request.user.is_active else -1,
          EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
     )
-    prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request))
+    prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request) if request.user.is_active else None)
     prefetch_profile_name(uploads=allEventPhotos)
-    return render(request, 'event/every-moment/wall.html', {'event_photos': allEventPhotos})
+    return render(request, 'event/every-moment/wall.html',
+                  {'event_photos': allEventPhotos, 'FB_APP_NAMESPACE': FB_APP_NAMESPACE})
 
 
 def attack_on_web(request):
