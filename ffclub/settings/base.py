@@ -560,6 +560,9 @@ MINIFY_BUNDLES = {
         'coming-soon': (
             'css/event/coming-soon.less',        
         ),
+        'film': (
+            'css/event/film.less',
+        ),
         'every-moment': (
             'css/event/every-moment.less',
         ),
@@ -616,9 +619,6 @@ MINIFY_BUNDLES = {
         ),
         'coming-soon': (
             'js/event/coming-soon.js',
-        ),
-        'film': (
-            'js/event/film.js',
         ),
         'every-moment': (
             'js/libs/jquery.scrollTo.js',
