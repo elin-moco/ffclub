@@ -86,7 +86,7 @@
     var eventPhotos = $('.eventPhotos');
     eventPhotos.masonry({
         'itemSelector': '.eventPhoto',
-        columnWidth: 320,
+        columnWidth: 330,
         isAnimated: true
     });
     eventPhotos.infinitescroll({
@@ -121,7 +121,7 @@
                 }
             });
             $('.voteCount').css('right', -60);
-            $(this).find('.voteCount').css('right', -68);
+            $(this).find('.voteCount').css('right', -70);
             $('.bigShareButton').attr('data-url', url);
             $('.bigShareButton').attr('data-caption', caption);
             $('.bigVoteButton').attr('data-url', voteUrl);
