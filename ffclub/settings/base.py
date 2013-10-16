@@ -570,6 +570,7 @@ MINIFY_BUNDLES = {
             'css/event/every-moment-upload.less',
         ),
         'every-moment-wall': (
+            'css/libs/jquery-ui-1.10.3.custom.css',
             'css/event/every-moment-wall.less',
         ),
         'every-moment-photo': (

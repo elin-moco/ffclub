@@ -11,6 +11,7 @@ urlpatterns = patterns(
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/$', views.activity_photo, name='activity.photo'),
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/report/$', views.activity_photo_report, name='activity.photo.report'),
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/remove/$', views.activity_photo_remove, name='activity.photo.remove'),
+    url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/vote/$', views.activity_photo_vote, name='activity.photo.vote'),
     url(r'^campaign/every-moment/$', views.every_moment, name='campaign.every.moment'),
     url(r'^campaign/every-moment/upload/$', views.every_moment_upload, name='campaign.every.moment.upload'),
     url(r'^campaign/every-moment/exceed/$', views.every_moment_exceed, name='campaign.every.moment.exceed'),

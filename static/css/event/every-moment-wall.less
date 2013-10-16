@@ -13,7 +13,7 @@ body {
 #main-content {
   background: transparent;
   margin: auto;
-  width: 960px;
+  width: 1000px;
   height: auto;
   .eventPhotos {
     margin: 0 auto;
@@ -24,8 +24,8 @@ body {
       text-align: center;
     }
     .eventPhoto {
-      margin-left: 35px;
-      margin-right: 35px;
+      margin-left: 40px;
+      margin-right: 40px;
       margin-bottom: 23px;
       .photoDescription p {
         overflow: hidden;
@@ -46,6 +46,22 @@ body {
     box-shadow: 0 0 0 1px rgb(255, 255, 255) inset;
     border-radius: 0;
     background-color: #ffffff;
+
+    .voteCount {
+      background: url(/static/img/event/every-moment/newupload/newupload-btorange.png) no-repeat;
+      background-size: 100% 100%;
+      display: block;
+      position: absolute;
+      width: 72px;
+      height: 31px;
+      top: 0;
+      right: -60px;
+      color: #ffffff;
+      text-align: right;
+      line-height: 26px;
+      padding-right: 6px;
+    }
+
   }
 
   .socialButtons {
@@ -55,13 +71,19 @@ body {
   .photoFrame {
     width: 250px;
     height: 388px;
+    position: absolute;
   }
   .photoDescription {
     height: 40px;
+    position: absolute;
+    bottom: 32px;
   }
   .photoInfo {
     text-align: right;
     margin: 0 11px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
   .shareButton {
     background: url(/static/img/event/every-moment/newupload/newupload-btblue.png);
@@ -87,19 +109,44 @@ body {
   height: 618px;
   overflow: visible;
   pointer-events: none;
+  .votes {
+    display: block;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 20px;
+    text-align: center;
+    color: #ffffff;
+  }
   .bigShareButton {
     background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
     display: block;
     position: absolute;
     width: 72px;
     height: 31px;
-    margin: auto;
+//    margin: auto;
     bottom: 80px;
-    left: 0;
-    right: 0;
+    right: 280px;
     pointer-events: visible;
     .bigShareText {
       background: url(/static/img/event/every-moment/newupload/newupload-bt-big.png);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .bigVoteButton {
+    background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
+    display: block;
+    position: absolute;
+    width: 72px;
+    height: 31px;
+//    margin: auto;
+    right: 180px;
+    bottom: 80px;
+    pointer-events: visible;
+    .bigVoteText {
+      background: url(/static/img/event/every-moment/newupload/newupload-vote-big.png);
       width: 100%;
       height: 100%;
     }
@@ -113,4 +160,8 @@ a#join {
   height: 144px;
   margin: auto;
   margin-top: 40px;
+}
+
+#vote-confirm-dialog {
+  display: none;
 }
