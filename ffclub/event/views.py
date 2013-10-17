@@ -151,7 +151,7 @@ def generic_vote(request, type, id):
         if Vote.objects.filter(entity_id=id, voter=currentUser,
                                content_type=contentType).exists():
             raise SuspiciousOperation
-        vote = Vote(entity_id=photo, content_type=contentType, status='approve', voter=currentUser)
+        vote = Vote(entity_id=id, content_type=contentType, status='approve', voter=currentUser)
         vote.save()
         data = {'result': 'success', 'message': '投票完成！'}
     except PermissionDenied:

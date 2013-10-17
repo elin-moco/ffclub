@@ -45,7 +45,7 @@ class Event(Activity):
                               default='normal')
 
     def __unicode__(self):
-        return unicode(self.title + ': ' + self.status)
+        return unicode('%s: %s' % (self.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '實體活動'
@@ -57,7 +57,7 @@ class Campaign(Activity):
                               default='preparing')
 
     def __unicode__(self):
-        return unicode(self.title + ': ' + self.status)
+        return unicode('%s: %s' % (self.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '線上活動'
@@ -70,6 +70,9 @@ class Participation(models.Model):
     status = models.CharField(max_length=20,
                               choices=(('attend', '參加'), ('decline', '拒絕'), ('maybe', '或許'), ('invited', '已邀請')),
                               default='invited')
+
+    def __unicode__(self):
+        return unicode('%s@%s: %s' % (self.participant.fullname, self.activity.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '活動參與'
@@ -88,6 +91,9 @@ class Vote(models.Model):
                               choices=(('approve', '贊成'), ('oppose', '反對'), ('neutral', '廢票')),
                               default='neutral')
 
+    def __unicode__(self):
+        return unicode('%s + %s/%s: %s' % (self.voter.username, self.content_type, str(self.entity_id), self.status))
+
     class Meta:
         verbose_name = verbose_name_plural = '活動投票'
 
@@ -102,6 +108,9 @@ class Video(models.Model):
     status = models.CharField(max_length=20,
                               choices=(('normal', '正常'), ('reported', '被檢舉'), ('spam', '垃圾')),
                               default='normal')
+
+    def __unicode__(self):
+        return unicode('%s: %s' % (self.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '影片'
