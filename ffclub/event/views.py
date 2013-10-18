@@ -122,8 +122,10 @@ def activity_photo_report(request, type, photo_id):
 def activity_photo_vote(request, type, photo_id):
     try:
         if not request.user.is_active:
-            raise PersmissionDenied
+            raise PermissionDenied
         photo = ImageUpload.objects.get(id=photo_id, content_type=ContentType.objects.get(model=type))
+        if not 'voting' == photo.entity_object.status:
+            raise PermissionDenied
         currentUser = auth.get_user(request)
         if Vote.objects.filter(entity_id=photo_id, voter=currentUser,
                                content_type=ContentType.objects.get(model='imageupload')).exists():
@@ -145,7 +147,7 @@ def activity_photo_vote(request, type, photo_id):
 def generic_vote(request, type, id):
     try:
         if not request.user.is_active:
-            raise PersmissionDenied
+            raise PermissionDenied
         currentUser = auth.get_user(request)
         contentType = ContentType.objects.get(model=type)
         if Vote.objects.filter(entity_id=id, voter=currentUser,
@@ -162,33 +164,37 @@ def generic_vote(request, type, id):
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
 
+everyMomentCampaignSlug = 'every-moment'
+
 
 def every_moment(request):
-    return render(request, 'event/every-moment/index.html')
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    return render(request, 'event/every-moment/index.html', {'campaign': currentCampaign})
 
 
 def every_moment_exceed(request):
-    return render(request, 'event/every-moment/exceed.html')
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    return render(request, 'event/every-moment/exceed.html', {'campaign': currentCampaign})
 
 
-def check_exceed_upload_times(user, slug, max=5):
+def check_exceed_upload_times(user, campaign, max=5):
     if user.is_superuser:
         return False
-    campaign = Campaign.objects.get(slug=slug)
     return ImageUpload.objects.filter(entity_id=campaign.id, create_user=user).count() >= max
 
 
 def every_moment_upload(request):
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    if not 'running' == currentCampaign.status:
+        raise PermissionDenied
     uploaded = False
     photo = None
-    campaignSlug = 'every-moment'
     if not request.user.is_active:
         uploadForm = CampaignImageUploadForm()
         personForm = PersonEmailNicknameForm()
-    elif check_exceed_upload_times(request.user, campaignSlug):
+    elif check_exceed_upload_times(request.user, currentCampaign):
         return redirect('campaign.every.moment.exceed')
     elif request.method == 'POST':
-        currentCampaign = Campaign.objects.get(slug=campaignSlug)
         currentUser = auth.get_user(request)
         uploadForm = CampaignImageUploadForm(request.POST, request.FILES)
         try:
@@ -204,7 +210,7 @@ def every_moment_upload(request):
             upload.entity_object = currentCampaign
             person.save()
             upload.save()
-            generate_share_image(upload, campaignSlug)
+            generate_share_image(upload, everyMomentCampaignSlug)
             shareOnFacebook(request.POST, upload)
             photo = upload
             uploaded = True
@@ -215,6 +221,7 @@ def every_moment_upload(request):
         except ObjectDoesNotExist:
             personForm = PersonEmailNicknameForm()
     data = {
+        'campaign': currentCampaign,
         'uploadForm': uploadForm,
         'personForm': personForm,
         'uploaded': uploaded,
@@ -228,19 +235,21 @@ def every_moment_wall(request):
 
 
 def campaign_photo(request, slug, photo_id):
-    campaign = Campaign.objects.get(slug=slug)
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
     data = {
-        'photo': ImageUpload.objects.get(id=photo_id, entity_id=campaign.id,
+        'campaign': currentCampaign,
+        'photo': ImageUpload.objects.get(id=photo_id, entity_id=currentCampaign.id,
                                          content_type=ContentType.objects.get(model='campaign'))
     }
     return render(request, 'event/%s/photo.html' % slug, data)
 
 
 def every_moment_wall_page(request, page_number=1):
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
     page_number = int(page_number)
     photoContentTypeId = ContentType.objects.get(model='imageupload').id
     contentTypeId = ContentType.objects.get(model='campaign').id
-    entityId = Campaign.objects.get(slug='every-moment').id
+    entityId = currentCampaign.id
     allEventPhotos = list(ImageUpload.objects.raw(
         'SELECT * FROM upload_imageupload WHERE content_type_id=%s AND entity_id=%s '
         'ORDER BY create_user_id=%s DESC, RAND(%s) DESC LIMIT %s, %s',
@@ -251,7 +260,7 @@ def every_moment_wall_page(request, page_number=1):
     prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request) if request.user.is_active else None)
     prefetch_profile_name(uploads=allEventPhotos)
     return render(request, 'event/every-moment/wall.html',
-                  {'event_photos': allEventPhotos, 'FB_APP_NAMESPACE': FB_APP_NAMESPACE})
+                  {'event_photos': allEventPhotos, 'FB_APP_NAMESPACE': FB_APP_NAMESPACE, 'campaign': currentCampaign})
 
 
 def attack_on_web(request):
@@ -268,6 +277,7 @@ def apply(request):
 
 def demo(request):
     return render(request, 'event/attack-on-web/demo.html')
+
 
 def microfilm(request):
     filmList = range(4)

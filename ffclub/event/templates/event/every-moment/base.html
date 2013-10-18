@@ -1,4 +1,8 @@
+{% if campaign.status == 'running' %}
 {% set login_url = url('campaign.every.moment.upload') %}
+{% else %}
+{% set login_url = url('campaign.every.moment.wall') %}
+{% endif %}
 {% set logout_url = url('campaign.every.moment') %}
 {% set share_url = SITE_URL + url('campaign.every.moment') %}
 {% set share_image = SITE_URL + STATIC_URL + page_image %}
@@ -9,7 +13,7 @@
 {% extends "base.html" %}
 
 {% block html_tag %}
-<html class="windows no-js{{ ' lt-ie9' if LT_IE9 }}{{ ' lt-ie10' if LT_IE10 }}">
+<html class="windows no-js{{ ' lt-ie9' if LT_IE9 }}{{ ' lt-ie10' if LT_IE10 }} status-{{ campaign.status }}">
 {% endblock %}
 
 
@@ -68,7 +72,7 @@
             {% else %}
               <li role="menuitem" class="last">
                 <a title="直接登入並開始上傳照片" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
-                   aria-haspopup="false">登入上傳</a>
+                   aria-haspopup="false">登入{% if campaign.status == 'running' %}上傳{% elif campaign.status == 'voting' %}投票{% endif %}</a>
               </li>
             {% endif %}
           {% endif %}
@@ -92,12 +96,22 @@
       <li><a class="nav os" href="//mozilla.com.tw/firefox/os/" title="Firefox OS 介紹" target="_blank"></a></li>
       <li><a class="nav rules" href="{{ url('campaign.every.moment') }}#campaign-rules" title="活動說明"></a></li>
       <li><a class="nav flow" href="{{ url('campaign.every.moment') }}#campaign-flow" title="上傳流程"></a></li>
-      {% if not request.user.is_active %}
-      <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
-      {% else %}
-      <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
+      {% if campaign.status == 'running' %}
+        {% if not request.user.is_active %}
+        <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
+        {% else %}
+        <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
+        {% endif %}
       {% endif %}
+      {% if not campaign.status == 'voting' %}
       <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
+      {% else %}
+        {% if not request.user.is_active %}
+        <li><a class="nav vote loginButton" href="javascript:void(0);" title="我要投票"></a></li>
+        {% else %}
+        <li><a class="nav vote" href="{{ url('campaign.every.moment.wall') }}" title="我要投票"></a></li>
+        {% endif %}
+      {% endif %}
       <li><a class="nav back-top" href="{{ url('campaign.every.moment') }}#moment" title="回到頂端"></a></li>
       <li>
         <div class="nav share" title="社群分享">
