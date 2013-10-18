@@ -627,6 +627,15 @@
         box-shadow: none;
         margin-bottom: 20px;
       }
+      h4 {
+        opacity: 0;
+//        margin-top: -50px;
+        color: #ffffff;
+        font-size: 20px;
+        font-style: normal;
+        box-shadow: none;
+        margin-bottom: 20px;
+      }
       ol li {
         opacity: 0;
 //        margin-top: -40px;
@@ -801,6 +810,14 @@
   right: 170px;
   bottom: -230px;
 }
+
+.status-running .start-upload-button {
+  background: url(/static/img/event/every-moment/home/step/upload-bt.png);
+}
+.status-voting .start-upload-button {
+  background: url(/static/img/event/every-moment/home/step/vote-bt.png);
+}
+
 .start-upload-button {
   display: block;
   z-index: 200;
@@ -810,7 +827,16 @@
 //      bottom: 100px;
   width: 138px;
   height: 138px;
-  background: url(/static/img/event/every-moment/home/step/upload-bt.png);
+  background: url(/static/img/event/every-moment/upload/upload-bt-newupload.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+
+.status-running .upload-tip {
+  background: url(/static/img/event/every-moment/home/step/upload-bt-word.png);
+}
+.status-voting .upload-tip {
+  background: url(/static/img/event/every-moment/home/step/vote-bt-word.png);
 }
 .upload-tip {
   display: block;
@@ -821,7 +847,7 @@
 //      bottom: 20px;
   width: 138px;
   height: 95px;
-  background: url(/static/img/event/every-moment/home/step/upload-bt-word.png);
+  background: url(/static/img/event/every-moment/home/step/newupload-bt-word.png) no-repeat;
 }
 
 #scroll-tip {

@@ -41,3 +41,11 @@ class VoteAdmin(ModelAdmin):
 
 
 admin.site.register(Vote, VoteAdmin)
+
+
+class VideoAdmin(ModelAdmin):
+    search_fields = ['title', 'description']
+    list_filter = ['create_time', 'status']
+
+
+admin.site.register(Video, VideoAdmin)

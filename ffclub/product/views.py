@@ -13,7 +13,7 @@ from ffclub.settings import CUSTOM_ORDER_DETAIL_CHOICES, CUSTOM_PRODUCT_KEYWORDS
 from ffclub.person.models import Person
 from tasks import *
 from utils import *
-
+import uuid
 
 log = commonware.log.getLogger('ffclub')
 
@@ -50,6 +50,7 @@ def wall(request):
             order = orderForm.save(commit=False)
             event.create_user = currentUser
             order.create_user = currentUser
+            event.slug = uuid.uuid1().__str__()
             event.save()
             order.event = event
             order.save()

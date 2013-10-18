@@ -42,7 +42,7 @@
       <div class="phone-frame">
       </div>
       {% if not request.user.is_active %}
-      <a id="upload" class="loginButton" href="javascript:void(0);"></a>
+      <a id="upload" class="loginButton" href="javascript:void(0);" title="登入並開始上傳照片"></a>
       {% else %}
       <label for="id_image_large" id="upload" class="choose-file" href="javascript:void(0);"></label>
       {% endif %}

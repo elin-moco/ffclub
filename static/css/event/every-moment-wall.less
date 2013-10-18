@@ -37,6 +37,13 @@ body {
   }
 }
 
+.status-voting .eventWall .eventPhoto .voteCount {
+  display: block;
+}
+.status-end .eventWall .eventPhoto .voteCount {
+  display: block;
+}
+
 .eventWall {
   padding-top: 135px;
 
@@ -48,9 +55,9 @@ body {
     background-color: #ffffff;
 
     .voteCount {
+      display: none;
       background: url(/static/img/event/every-moment/newupload/newupload-btorange.png) no-repeat;
       background-size: 100% 100%;
-      display: block;
       position: absolute;
       width: 72px;
       height: 31px;
@@ -101,6 +108,14 @@ body {
   }
 }
 
+.status-voting #fxos-phone-frame .bigShareButton {
+  right: 280px;
+  left: auto;
+}
+.status-voting #fxos-phone-frame .bigVoteButton {
+  display: block;
+}
+
 #fxos-phone-frame {
   background: url(/static/img/event/every-moment/newupload/newupload-fox01.png) no-repeat;
   display: none;
@@ -125,9 +140,10 @@ body {
     position: absolute;
     width: 72px;
     height: 31px;
-//    margin: auto;
+    margin: auto;
     bottom: 80px;
-    right: 280px;
+    left: 0;
+    right: 0;
     pointer-events: visible;
     .bigShareText {
       background: url(/static/img/event/every-moment/newupload/newupload-bt-big.png);
@@ -137,7 +153,7 @@ body {
   }
   .bigVoteButton {
     background: url(/static/img/event/every-moment/newupload/newupload-share-big.png);
-    display: block;
+    display: none;
     position: absolute;
     width: 72px;
     height: 31px;

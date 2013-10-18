@@ -2,16 +2,24 @@
 
 $(function(){
     var loginPopup = new Modal().Popup('.loginPopup');
-    $('.loginButton, .loginLink').click(function () {
-        loginPopup.show();
+    var loginHandler = function (e, msg) {
+        var title = '登入 Firefox 活力軍';
+        if ($(this).attr('title')) {
+            title = $(this).attr('title');
+        }
+        if (msg) {
+            title = msg;
+        }
+        loginPopup.show(title);
         var fbpile = $('div.fbpile');
         if (fbpile.children().length == 0) {
             fbpile.append('<div class="fb-facepile" data-app-id="' + fbpile.attr('data-app-id') +
                 '" data-action="Comma separated list of action of action types" data-width="400" data-max-rows="1"></div>');
             FB.XFBML.parse(fbpile.get(0));
         }
-    });
-
+    };
+    $('.loginButton, .loginLink').click(loginHandler);
+    $(document).on('ffclubLogin', loginHandler);
 /*
 	$('#tabzilla').click( function(e){
 		e.preventDefault();

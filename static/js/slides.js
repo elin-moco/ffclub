@@ -392,8 +392,9 @@ window.Modal = function () {
         attachTouchEvents();
     }
 
-    function showPopup() {
+    function showPopup(title) {
         attachEvents();
+        wrapper.find('.popupTitle').text(title);
         wrapper.show();
     }
 
