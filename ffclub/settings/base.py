@@ -652,6 +652,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.infinitescroll.js',
             'js/event/every-moment-wall.js',
         ),
+        'microfilm-vote':{
+            'js/main.js',
+            'js/event/microfilm-vote.js'
+        }
     }
 }
 

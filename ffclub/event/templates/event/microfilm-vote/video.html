@@ -9,6 +9,11 @@
   {{ css('microfilm-vote') }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
+
+{% block base_js %}
+  {{ js('microfilm-vote') }}
+{% endblock %}
+
 {% block head %}
 	{% include "event/microfilm-vote/navigator.html" %}
 {% endblock %}
@@ -19,7 +24,7 @@
 {% block content %}
 	<div>
 	  <article>
-	  	<iframe width="100%" height="529" src="//www.youtube.com/embed/{{filmYid}}" frameborder="0" allowfullscreen></iframe>
+	  	<iframe width="100%" height="529" src="{{filmYurl}}" frameborder="0" allowfullscreen></iframe>
 	  </article>
 	</div>
 	<div class="video-details">
@@ -29,9 +34,9 @@
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel magna sed neque sollicitudin scelerisque. Nunc suscipit ipsum ut mi varius, rutrum venenatis urna volutpat. Phasellus quis turpis porttitor, placerat magna a, rhoncus augue. Integer mollis dignissim turpis quis malesuada. Nullam tristique ante ac neque fringilla dictum. Praesent leo dui, elementum sed gravida et, lacinia id lacus. Fusce laoreet condimentum sem, sed sollicitudin velit tempus vitae. Aenean quis gravida augue. Quisque interdum adipiscing nunc ornare lobortis.
 			</p>
 			<div class="vote-control">
-				<div class="vote">投票</div>
-				<div class="share"><a href="#!" class="toogle">分享影片<i class="icon-share"></i></a></div>
-				<div><h3>{0}票</h3></div>
+				<div class="vote" data-vote-url="{{ url('generic.vote', type='video', id=filmId) }}">投票</div>
+				<div class="share"><a class="toogle">分享影片<i class="icon-share"></i></a></div>
+				<div><h3><em class="voteCount">{{ voteCount }}</em> 票</h3></div>
 				<div><h3><a href="#!">{看看其他影片}</a></h3></div>
 			</div>
 		</article>

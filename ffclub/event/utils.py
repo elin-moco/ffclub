@@ -12,17 +12,18 @@ from django.db.models import Count
 log = commonware.log.getLogger('ffclub')
 
 
-def prefetch_votes(uploads, currentUser):
+def prefetch_votes(uploads, contentType, currentUser):
     ids = []
     for upload in uploads:
         if upload.id not in ids:
             ids += (upload.id,)
-    voted = Vote.objects.filter(entity_id__in=ids, voter=currentUser).values_list('entity_id', flat=True) \
+    voted = Vote.objects.filter(entity_id__in=ids, content_type=contentType, voter=currentUser).values_list('entity_id', flat=True) \
         if currentUser else []
-    print voted
-    votes = Vote.objects.filter(entity_id__in=ids).values('entity_id').annotate(vote_count=Count('entity_id'))
+
+    votes = Vote.objects.filter(entity_id__in=ids, content_type=contentType).values('entity_id').annotate(vote_count=Count('entity_id'))
     for upload in uploads:
         upload.vote_count = 0
+        upload.voted = False
         for vote in votes:
             if upload.id == vote['entity_id']:
                 upload.vote_count = vote['vote_count']
