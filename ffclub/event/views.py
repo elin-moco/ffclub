@@ -266,3 +266,11 @@ def microfilm(request):
         filmYid[n1] = filmYid[n2]
         filmYid[n2] = tmp
     return render(request, 'event/attack-on-web/microfilm.html', {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
+
+def microfilm_vote(request):
+    return render(request, 'event/microfilm-vote/index.html')
+
+def microfilm_vote_video(request, video_id):
+    filmName = [u"Firefox OS app 開發大賽－謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
+    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    return render(request, 'event/microfilm-vote/video.html', {'filmName':filmName[int(video_id)-1], 'filmYid':filmYid[int(video_id)-1]})

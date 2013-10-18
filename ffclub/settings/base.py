@@ -579,6 +579,9 @@ MINIFY_BUNDLES = {
         'every-moment-exceed': (
             'css/event/every-moment-exceed.less',
         ),
+        'microfilm-vote':{
+            'css/event/microfilm-vote.less'
+        }
     },
     'js': {
         # 'site' is automatically included across whole site

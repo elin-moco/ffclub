@@ -1,0 +1,45 @@
+    <header id="masthead" class="">
+        <div id="head-inner">
+          <div id="head-wrap">
+            <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+            <nav id="nav-main" role="navigation">
+              <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+              <ul id="nav-main-menu" class="has-submenus" role="menubar">
+                {% if request %}
+                  {% if request.user.is_active %}
+                  <li role="menuitem" class="topMenu no-mobile-submenu last">
+                    <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
+                       aria-owns="nav-user-submenu" aria-haspopup="true">
+                      帳號
+                      {% if request.user.fullname %}
+                        : {{ request.user.fullname }}
+                      {% endif %}
+                      </a>
+                    <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
+                      <li class="first">
+                        <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
+                      </li>
+                      <li class="last">
+                        <a title="登出網站" href="{{ url('intro.logout') }}" tabindex="-1">登出</a>
+                      </li>
+                    </ul>
+                  </li>
+                {% else %}
+                  <li role="menuitem" class="last">
+                    <a title="登入" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
+                       aria-haspopup="false">
+                       登入
+                     </a>
+                  </li>
+                {% endif %}
+              {% endif %}
+              </ul>
+            </nav>
+            <h2 id="ffos-main-logo">
+            <a class="nav" href="//mozilla.com.tw">
+            <img alt="Firefox OS" title="Firefox OS" src="/static/img/firefoxos-white.png">
+            </a>
+            </h2>
+          </div>
+        </div>
+    </header>

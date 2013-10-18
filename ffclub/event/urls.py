@@ -22,4 +22,6 @@ urlpatterns = patterns(
     url(r'^events/attack-on-web/apply/$', views.apply, name='event.attack.on.web.apply'),
     url(r'^events/attack-on-web/demo/$', views.demo, name='event.attack.on.web.demo'),
     url(r'^events/attack-on-web/microfilm/$', views.microfilm, name='event.attack.on.web.microfilm'),
+    url(r'^events/microfilm-vote/$', views.microfilm_vote, name='event.microfilm'),
+    url(r'^events/microfilm-vote/video/(?P<video_id>[1-4])/$', views.microfilm_vote_video, name='event.microfilm.vote.video'),
 )
