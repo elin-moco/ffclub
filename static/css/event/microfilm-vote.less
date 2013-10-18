@@ -281,7 +281,15 @@ a.button, a.button:link, a.button:visited{
     }
   }
 }
-
+ul.content-list{
+	list-style: none;
+	max-width: @film_page_width;
+	margin: 0 auto;
+	li#main-context{
+		list-style: none !important;
+		margin: 0;
+	}
+}
 @media only screen and (max-width: 960px){
   html, body{
     width:100%;

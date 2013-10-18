@@ -300,7 +300,23 @@ def microfilm(request):
     return render(request, 'event/attack-on-web/microfilm.html', {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
 
 def microfilm_vote(request):
-    return render(request, 'event/microfilm-vote/index.html')
+    filmList = range(4)
+    filmName = [u"Firefox OS app 開發大賽－謀智其中(HD)", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
+    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    filmProducer = [];
+    for film in filmList:
+        n1 = random.randint(0, len(filmList)-1)
+        n2 = random.randint(0, len(filmList)-1)
+        tmp = filmList[n1]
+        filmList[n1] = filmList[n2]
+        filmList[n2] = tmp
+        tmp = filmName[n1]
+        filmName[n1] = filmName[n2]
+        filmName[n2] = tmp
+        tmp = filmYid[n1]
+        filmYid[n1] = filmYid[n2]
+        filmYid[n2] = tmp
+    return render(request, 'event/microfilm-vote/index.html',  {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
 
 def microfilm_vote_video(request, video_id):
     filmName = [u"Firefox OS app 開發大賽－謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
