@@ -112,15 +112,12 @@
         <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
         {% endif %}
       {% endif %}
-      {% if not campaign.status == 'voting' %}
-      <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
+      {% if not request.user.is_active %}
+      <li><a class="nav vote loginButton" href="javascript:void(0);" title="我要投票"></a></li>
       {% else %}
-        {% if not request.user.is_active %}
-        <li><a class="nav vote loginButton" href="javascript:void(0);" title="我要投票"></a></li>
-        {% else %}
-        <li><a class="nav vote" href="{{ url('campaign.every.moment.wall') }}" title="我要投票"></a></li>
-        {% endif %}
+      <li><a class="nav vote" href="{{ url('campaign.every.moment.wall') }}" title="我要投票"></a></li>
       {% endif %}
+      <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
       <li><a class="nav back-top" href="{{ url('campaign.every.moment') }}#moment" title="回到頂端"></a></li>
       <li>
         <div class="nav share" title="社群分享">
