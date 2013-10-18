@@ -64,11 +64,11 @@
                             resizable:false,
                             modal:true,
                             buttons: {
-                                '確定': function() {
+                                '是': function() {
                                     fb_sync_action();
                                     $(this).dialog('close');
                                 },
-                                '取消': function() {
+                                '否': function() {
                                     $(this).dialog('close');
                                 }
                             }

@@ -1,12 +1,21 @@
 {% if campaign.status == 'running' %}
-{% set login_url = url('campaign.every.moment.upload') %}
+  {% set login_url = url('campaign.every.moment.upload') %}
 {% else %}
-{% set login_url = url('campaign.every.moment.wall') %}
+  {% set login_url = url('campaign.every.moment.wall') %}
 {% endif %}
 {% set logout_url = url('campaign.every.moment') %}
 {% set share_url = SITE_URL + url('campaign.every.moment') %}
 {% set share_image = SITE_URL + STATIC_URL + page_image %}
-{% set page_title = 'Firefox OS 讓你盡情享受每一刻' %}
+{% if campaign.status == 'voting' %}
+  {% set page_title_postfix = ' - 活動投票中' %}
+{% elif campaign.status == 'preparing' %}
+  {% set page_title_postfix = ' - 活動上傳截止，10/23開放投票' %}
+{% elif campaign.status == 'end' %}
+  {% set page_title_postfix = ' - 活動已截止' %}
+{% else %}
+  {% set page_title_postfix = ' - 上傳照片就有機會得到 Firefox OS 手機！' %}
+{% endif %}
+{% set page_title = 'Firefox OS 讓你盡情享受每一刻' + page_title_postfix  %}
 {% set page_description = 'Firefox 瀏覽器將使用者擺在第一位，提供全新的選擇，從此改變了瀏覽器的發展。如今 Firefox OS 將再次新起浪潮，為智慧型手機帶來絕妙的行動瀏覽經驗，讓你能完全掌握自己的線上生活，隨時隨地都能體現最佳的 Web 感受。' %}
 {% set share_text = page_title %}
 

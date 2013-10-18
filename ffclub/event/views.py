@@ -250,11 +250,13 @@ def every_moment_wall_page(request, page_number=1):
     photoContentTypeId = ContentType.objects.get(model='imageupload').id
     contentTypeId = ContentType.objects.get(model='campaign').id
     entityId = currentCampaign.id
+    orderByClause = ('RAND(%d)' % request.user.id if request.user.is_active else 0) \
+        if currentCampaign.status == 'voting' else 'create_time'
     allEventPhotos = list(ImageUpload.objects.raw(
         'SELECT * FROM upload_imageupload WHERE content_type_id=%s AND entity_id=%s '
-        'ORDER BY create_user_id=%s DESC, RAND(%s) DESC LIMIT %s, %s',
+        'ORDER BY create_user_id=%s DESC, ' + orderByClause + ' DESC LIMIT %s, %s',
         (contentTypeId, entityId,
-         request.user.id if request.user.is_active else -1, request.user.id if request.user.is_active else -1,
+         request.user.id if request.user.is_active else 0,
          EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
     )
     prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request) if request.user.is_active else None)

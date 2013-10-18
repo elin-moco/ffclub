@@ -207,6 +207,8 @@
           <h4 class="step1">（已截止，投票中）</h4>
           {% elif campaign.status == 'preparing' %}
           <h4 class="step1">（已截止，10/23 開放投票）</h4>
+          {% elif campaign.status == 'end' %}
+          <h4 class="step1">（活動已截止）</h4>
           {% endif %}
           <ol>
             <li class="step1">使用 Facebook 或 Persona 登入網站</li>
@@ -218,7 +220,7 @@
       </div>
     </div>
   </div>
-  {% if not request.user.is_active %}
+  {% if not request.user.is_active and campaign.status in ('running', 'voting') %}
   <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
   {% else %}
   <a class="start-upload-button" href="{% if campaign.status == 'running' %}{{ url('campaign.every.moment.upload') }}{% else %}{{ url('campaign.every.moment.wall') }}{% endif %}"></a>
