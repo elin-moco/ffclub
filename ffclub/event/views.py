@@ -12,7 +12,7 @@ import random
 
 from django.utils import simplejson
 import facebook
-from ffclub.event.models import Campaign, Vote
+from ffclub.event.models import Campaign, Vote, Video
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
@@ -247,7 +247,8 @@ def campaign_photo(request, slug, photo_id):
 def every_moment_wall_page(request, page_number=1):
     currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
     page_number = int(page_number)
-    photoContentTypeId = ContentType.objects.get(model='imageupload').id
+    photoContentType = ContentType.objects.get(model='imageupload')
+    photoContentTypeId = photoContentType.id
     contentTypeId = ContentType.objects.get(model='campaign').id
     entityId = currentCampaign.id
     orderByClause = ('RAND(%d)' % (request.user.id if request.user.is_active else -1)) \
@@ -258,7 +259,7 @@ def every_moment_wall_page(request, page_number=1):
         (contentTypeId, entityId, request.user.id if request.user.is_active else -1,
          EVENT_WALL_PHOTOS_PER_PAGE * (page_number - 1), EVENT_WALL_PHOTOS_PER_PAGE))
     )
-    prefetch_votes(uploads=allEventPhotos, currentUser=auth.get_user(request) if request.user.is_active else None)
+    prefetch_votes(uploads=allEventPhotos, contentType=photoContentType, currentUser=auth.get_user(request) if request.user.is_active else None)
     prefetch_profile_name(uploads=allEventPhotos)
     return render(request, 'event/every-moment/wall.html',
                   {'event_photos': allEventPhotos, 'FB_APP_NAMESPACE': FB_APP_NAMESPACE, 'campaign': currentCampaign})
@@ -299,6 +300,7 @@ def microfilm(request):
         filmYid[n2] = tmp
     return render(request, 'event/attack-on-web/microfilm.html', {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
 
+
 def microfilm_vote(request):
     filmList = range(4)
     filmName = [u"Firefox OS app 開發大賽－謀智其中(HD)", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
@@ -318,7 +320,13 @@ def microfilm_vote(request):
         filmYid[n2] = tmp
     return render(request, 'event/microfilm-vote/index.html',  {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
 
+
 def microfilm_vote_video(request, video_id):
-    filmName = [u"Firefox OS app 開發大賽－謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
-    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
-    return render(request, 'event/microfilm-vote/video.html', {'filmName':filmName[int(video_id)-1], 'filmYid':filmYid[int(video_id)-1]})
+    #filmName = [u"Firefox OS app 開發大賽－謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
+    #filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    video = Video.objects.get(pk=video_id)
+    contentType = ContentType.objects.get(model='video')
+    prefetch_votes((video, ), contentType, auth.get_user(request) if request.user.is_active else None)
+    return render(request, 'event/microfilm-vote/video.html',
+                  {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
+                   'voteCount': video.vote_count, 'voted': video.voted})
