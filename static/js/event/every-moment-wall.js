@@ -80,6 +80,9 @@
                 }
             );
         }
+        else {
+            $(document).trigger('ffclubLogin', ['投票前請先登入！']);
+        }
     });
     var lightbox = new Modal().Lightbox('.eventPhotos');
 
@@ -111,8 +114,11 @@
             var url = $(this).find('a').attr('href');
             var caption = $(this).find('.photoDescription p').text();
             var voteUrl = $(this).find('.votePhoto').attr('href');
-            $('#fxos-phone-frame').show();
-            $('#fxos-phone-frame').position({
+            var $phoneFrame = $('#fxos-phone-frame');
+            var $shareButton = $('.bigShareButton');
+            var $voteButton = $('.bigVoteButton');
+            $phoneFrame.show();
+            $phoneFrame.position({
                 my: 'center',
                 at: 'center',
                 of: $(this),
@@ -122,17 +128,17 @@
             });
             $('.voteCount').css('right', -60);
             $(this).find('.voteCount').css('right', -70);
-            $('.bigShareButton').attr('data-url', url);
-            $('.bigShareButton').attr('data-caption', caption);
-            $('.bigVoteButton').attr('data-url', voteUrl);
-            $('.bigVoteButton').attr('data-id', $(this).attr('id'));
-            if (!voteUrl || $(this).attr('data-voted') == 'True') {
-                $('.bigVoteButton').css('opacity', 0.5);
-                $('.bigVoteButton').css('pointer-events', 'none');
+            $shareButton.attr('data-url', url);
+            $shareButton.attr('data-caption', caption);
+            $voteButton.attr('data-url', voteUrl);
+            $voteButton.attr('data-id', $(this).attr('id'));
+            if ($(this).attr('data-voted') == 'True') {
+                $voteButton.css('opacity', 0.5);
+                $voteButton.css('pointer-events', 'none');
             }
             else {
-                $('.bigVoteButton').css('opacity', 1);
-                $('.bigVoteButton').css('pointer-events', 'auto');
+                $voteButton.css('opacity', 1);
+                $voteButton.css('pointer-events', 'auto');
             }
         });
         $(photos).find('.eventPhotoLink').click(

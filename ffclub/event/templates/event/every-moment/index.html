@@ -221,7 +221,8 @@
     </div>
   </div>
   {% if not request.user.is_active and campaign.status in ('running', 'voting') %}
-  <a class="start-upload-button loginButton" href="javascript:void(0);"></a>
+  <a class="start-upload-button loginButton" href="javascript:void(0);"
+     title="{{ '上傳前請先登入' if campaign.status == 'running' else '投票前請先登入' }}"></a>
   {% else %}
   <a class="start-upload-button" href="{% if campaign.status == 'running' %}{{ url('campaign.every.moment.upload') }}{% else %}{{ url('campaign.every.moment.wall') }}{% endif %}"></a>
   {% endif %}

@@ -80,7 +80,7 @@
               </li>
             {% else %}
               <li role="menuitem" class="last">
-                <a title="直接登入並開始上傳照片" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
+                <a title="登入{% if campaign.status == 'running' %}並開始上傳照片{% elif campaign.status == 'voting' %}並開始投票{% endif %}" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
                    aria-haspopup="false">登入{% if campaign.status == 'running' %}上傳{% elif campaign.status == 'voting' %}投票{% endif %}</a>
               </li>
             {% endif %}
@@ -107,13 +107,13 @@
       <li><a class="nav flow" href="{{ url('campaign.every.moment') }}#campaign-flow" title="上傳流程"></a></li>
       {% if campaign.status == 'running' %}
         {% if not request.user.is_active %}
-        <li><a class="nav upload loginButton" href="javascript:void(0);" title="我要上傳"></a></li>
+        <li><a class="nav upload loginButton" href="javascript:void(0);" title="上傳前請先登入"></a></li>
         {% else %}
         <li><a class="nav upload" href="{{ url('campaign.every.moment.upload') }}" title="我要上傳"></a></li>
         {% endif %}
       {% endif %}
       {% if not request.user.is_active %}
-      <li><a class="nav vote loginButton" href="javascript:void(0);" title="我要投票"></a></li>
+      <li><a class="nav vote loginButton" href="javascript:void(0);" title="投票前請先登入"></a></li>
       {% else %}
       <li><a class="nav vote" href="{{ url('campaign.every.moment.wall') }}" title="我要投票"></a></li>
       {% endif %}
