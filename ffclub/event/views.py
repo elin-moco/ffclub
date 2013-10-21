@@ -302,7 +302,23 @@ def microfilm(request):
 
 
 def microfilm_vote(request):
-    return render(request, 'event/microfilm-vote/index.html')
+    filmList = range(4)
+    filmName = [u"Firefox OS app 開發大賽－謀智其中(HD)", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
+    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    filmProducer = [];
+    for film in filmList:
+        n1 = random.randint(0, len(filmList)-1)
+        n2 = random.randint(0, len(filmList)-1)
+        tmp = filmList[n1]
+        filmList[n1] = filmList[n2]
+        filmList[n2] = tmp
+        tmp = filmName[n1]
+        filmName[n1] = filmName[n2]
+        filmName[n2] = tmp
+        tmp = filmYid[n1]
+        filmYid[n1] = filmYid[n2]
+        filmYid[n2] = tmp
+    return render(request, 'event/microfilm-vote/index.html',  {'filmList': filmList, 'filmName': filmName, 'filmYid':filmYid})
 
 
 def microfilm_vote_video(request, video_id):
@@ -311,6 +327,7 @@ def microfilm_vote_video(request, video_id):
     video = Video.objects.get(pk=video_id)
     contentType = ContentType.objects.get(model='video')
     prefetch_votes((video, ), contentType, auth.get_user(request) if request.user.is_active else None)
+    video_descriptions = [u"2013，台中。 因為一群身懷抱負、來自Mozilla組織的人們， 在這一如往常喧囂的城市當中，有甚麼正默默的醞釀著，且蓄勢待發…… 這個改變將帶來新希望，成為一股強勢的力量，翻轉人們的看法， 並徹底改寫網路世界的歷史…… Firefox OS—全新手機作業系統，與更美好的生活。", u"火狐女孩人見人愛，孰料竟遭邪惡的 Talking Tom 綁架，火狐先生要如何打破所有平台的屏障，成功搶救火狐女孩呢？", u"Firefox OS 的推出，行動作業的開放又向前跨了一大步。且看 Firefox OS 如何在各系統平台之間移動自如、暢行無阻。", u"夢想，是每個人生活的目標；希望，是讓人前進的動力。Firefox OS 提供的不單單只是手機，而是一個夢想及希望。"]
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
-                   'voteCount': video.vote_count, 'voted': video.voted})
+                   'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
