@@ -25,7 +25,7 @@
     <li id="main-context">   
       <ul class="entry-list">
         <li class="entry">
-          <a href="http://youtu.be/{{filmYid[0]}}" target="_blank">
+          <a href="{{ url('event.microfilm.vote.video', video_id=filmList[0]+1)}}" target="_blank">
             <img class="thumbnail" alt="{{filmName[0]}}" title="{{filmName[0]}}" src="/static/img/{{filmList[0]}}.jpg">
             <hgroup>
               <h2 class="title">{{filmName[0]}}</h2>    
@@ -34,7 +34,7 @@
           <p></p>
         </li>
                 <li class="entry">
-          <a href="http://youtu.be/{{filmYid[1]}}" target="_blank">
+          <a href="{{ url('event.microfilm.vote.video', video_id=filmList[1]+1)}}" target="_blank">
             <img class="thumbnail" alt="{{filmName[1]}}" title="{{filmName[1]}}" src="/static/img/{{filmList[1]}}.jpg">
             <hgroup>
               <h2 class="title">{{filmName[1]}}</h2>
@@ -44,7 +44,7 @@
           <p></p>
         </li>
         <li class="entry">
-          <a href="http://youtu.be/{{filmYid[2]}}" target="_blank">
+          <a href="{{ url('event.microfilm.vote.video', video_id=filmList[2]+1)}}" target="_blank">
             <img class="thumbnail" alt="{{filmName[2]}}" title="{{filmName[2]}}" src="/static/img/{{filmList[2]}}.jpg">
             <hgroup>
               <h2 class="title">{{filmName[2]}}</h2>
@@ -54,7 +54,7 @@
           <p></p>
         </li>
         <li class="entry">
-          <a href="http://youtu.be/{{filmYid[3]}}" target="_blank">
+          <a href="{{ url('event.microfilm.vote.video', video_id=filmList[3]+1)}}" target="_blank">
             <img class="thumbnail" alt="{{filmName[3]}}" title="{{filmName[3]}}" src="/static/img/{{filmList[3]}}.jpg">
             <hgroup>
               <h2 class="title">{{filmName[3]}}</h2>
