@@ -3,7 +3,8 @@
 {% set page_image = 'img/'+imageId+'.jpg' %}
 {% set page_description = description %}
 {% set page_keywords = 'Mozilla,Mozilla Taiwan,Firefox,Firefox OS,Firefox OS APP,APP,APPs,Web APP,application,創意競賽,開發者,行動裝置,smartphone,developer,iOS,Android,apper,firefox phone,app競賽' %}
-
+{% set login_url = url('event.microfilm.vote.video', video_id=filmId) %}
+{% set logout_url = login_url %}
 
 {% block base_css %}
   {{ css('microfilm-vote') }}
@@ -15,7 +16,9 @@
 {% endblock %}
 
 {% block head %}
-	{% include "event/microfilm-vote/navigator.html" %}
+  {% with logout_url = logout_url %}
+	  {% include "event/microfilm-vote/navigator.html" %}
+  {% endwith %}
 {% endblock %}
 
 {% block banner %}
@@ -44,7 +47,11 @@
 			<h2>{{filmName}}</h2>
 			<p>{{description}}</p>
 			<div class="vote-control">
+        {% if request.user.is_active %}
 				<div class="vote" data-vote-url="{{ url('generic.vote', type='video', id=filmId) }}">投票</div>
+        {% else %}
+				<div class="vote loginLink" title="投票前請先登入">投票</div>
+        {% endif %}
 				<div class="share"><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ SITE_URL }}{{ request.build_absolute_uri() }}&p[images][0]=http://firefox.club.tw/static/img/{{imageId+'.jpg'}}&p[title]={{filmName}}&p[summary]={{description}}" class="toogle">分享影片<i class="icon-share"></i></a></div>
 				<div><h3><em class="voteCount">{{ voteCount }}</em> 票</h3></div>
 				<div><h3><a href="{{ url('event.microfilm')}}">看看其他影片</a></h3></div>
