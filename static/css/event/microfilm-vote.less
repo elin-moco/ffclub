@@ -366,9 +366,32 @@ ul.content-list{
   }
   article{
   	padding: 15px;
+  	text-align: center;
   }
   iframe{
-  	width:100%;
-  	height: 169px;
+  	width:800px;
+  	height: 450px;
+  	margin: 0 auto;
   }
+}
+
+@media only screen and (max-width: 800px){
+	iframe{
+  		width:600px;
+  		height: 338px;
+  	}
+}
+
+@media only screen and (max-width: 640px){
+	iframe{
+  		width:480px;
+  		height: 270px;
+  	}
+}
+
+@media only screen and (max-width: 480px){
+	iframe{
+  		width:320px;
+  		height: 180px;
+  	}
 }
