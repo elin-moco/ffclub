@@ -159,7 +159,7 @@ def generic_vote(request, type, id):
     except PermissionDenied:
         data = {'result': 'failed', 'errorMessage': '無存取權限！'}
     except SuspiciousOperation:
-        data = {'result': 'failed', 'errorMessage': '一張照片只能投一票喔！'}
+        data = {'result': 'failed', 'errorMessage': '一部微電影只能投一票喔！'}
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
