@@ -30,9 +30,10 @@
                         var voteCount = 1 + parseInt($photo.attr('data-vote-count'));
                         $photo.attr('data-vote-count', voteCount);
                         $photo.attr('data-voted', 'True');
-                        $('.voteCount em').text(voteCount);
+                        $photo.find('.voteCount em').text(voteCount);
                         $voteButton.css('opacity', 0.5);
                         $voteButton.css('pointer-events', 'none');
+                        /*
                         var fb_sync_action = function() {
                             var fb_publish_action = function() {
                                 FB.api('/me/' + $voteButton.attr('fb-namespace') + ':vote',
@@ -73,6 +74,7 @@
                                 }
                             }
                         });
+                        */
                     }
                     else {
                         alert(response.errorMessage);
