@@ -749,3 +749,5 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 SHARE_FILE_PATH = 'share/'
+
+API_SECRET = 'hush'
