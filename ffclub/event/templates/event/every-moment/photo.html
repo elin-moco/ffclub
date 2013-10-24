@@ -28,7 +28,7 @@
 
     <p>{{ photo.description }}</p>
 
-    <a id="join" href="{{ url('campaign.every.moment') }}"></a>
-
+    <a id="join" href="{{ url('campaign.every.moment.wall') if campaign.status == 'voting' else url('campaign.every.moment') }}"></a>
+    <div class="join-tip"> </div>
   </div>
 {% endblock %}

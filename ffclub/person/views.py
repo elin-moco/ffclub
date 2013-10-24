@@ -7,9 +7,10 @@ import commonware.log
 import facebook
 from social_auth.db.django_models import UserSocialAuth
 
+from django.contrib.auth.models import User
 from forms import PersonForm
 from models import Person
-
+from ffclub.settings import API_SECRET
 
 log = commonware.log.getLogger('ffclub')
 genderMap = {u'男性': 'male', u'女性': 'female'}
@@ -60,3 +61,14 @@ def register_complete(request):
     data = {}  # You'd add data here that you're sending to the template.
 
     return render(request, 'person/register_complete.html', data)
+
+
+def registered_user_count(request, provider=None):
+    if 'secret' in request.GET and request.GET['secret'] == API_SECRET:
+        if provider == 'facebook':
+            count = UserSocialAuth.objects.filter(provider='facebook').count()
+        else:
+            count = User.objects.filter(is_active=True).count()
+    else:
+        raise PermissionDenied
+    return HttpResponse(str(count), content_type='application/json')
