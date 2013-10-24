@@ -283,8 +283,8 @@ def demo(request):
 
 def microfilm(request):
     filmList = range(4)
-    filmName = [u"Firefox OS app 開發大賽－謀智其中(HD)", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
-    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    filmName = [u"謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"夢想，從現在開始"]
+    filmYid = ["qoWb2ngNe9k", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
     filmProducer = [];
     for film in filmList:
         n1 = random.randint(0, len(filmList)-1)
@@ -303,8 +303,8 @@ def microfilm(request):
 
 def microfilm_vote(request):
     filmList = range(4)
-    filmName = [u"Firefox OS app 開發大賽－謀智其中(HD)", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"Firefox第二屆校園大使 東南區微電影"]
-    filmYid = ["QEDvKYUCD38", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
+    filmName = [u"謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"夢想，從現在開始"]
+    filmYid = ["qoWb2ngNe9k", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
     filmProducer = [];
     for film in filmList:
         n1 = random.randint(0, len(filmList)-1)
