@@ -25,7 +25,8 @@ class Person(models.Model):
                               choices=(('unknown', '未指定'), ('male', '男性'), ('female', '女性')), default='unknown')
     address = models.CharField(max_length=255, verbose_name='地址(*)', blank=True)
     occupation = models.CharField(max_length=255, verbose_name='職業(*)', blank=True)
-    education = models.CharField(max_length=255, verbose_name='學歷', blank=True)
+    education = models.CharField(max_length=255, verbose_name='學歷', blank=True,
+                                 choices=(('graduate_school', '研究所'), ('college', '大學'), ('specialized_school', '專科'), ('highschool', '高中')), default='')
     birthday = models.DateTimeField(blank=True, null=True, verbose_name='生日')
     status = models.CharField(max_length=20,
                               choices=(('normal', '正常'), ('spam', '垃圾')),
