@@ -1,0 +1,74 @@
+@import "ffcstyle";
+#main-content{
+  width: 800px;
+  height: auto;
+  background-color: #fff;
+}
+#main-content div.eventRegister {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-left: 55px;
+  margin-right: 55px;
+  display: block;
+  .registerHeading {
+    padding-top: 20px;
+  }
+  .registerForm ul {
+    padding-top: 20px;
+    li {
+      list-style: none;
+      width: 100%;
+      display: block;
+      float: left;
+      padding-bottom: 20px;
+      margin-left: 0;
+      label {
+        float: left;
+        width: 60px;
+        line-height: 23px;
+        &[for="id_subscribing"] {
+          width: 200px;
+        }
+      }
+      select {
+        float: left;
+        margin-right: 10px;
+      }
+      input {
+        float: left;
+        &[type="checkbox"] {
+          margin-top: 3px;
+        }
+
+        &#id_fullname {
+          width: 100px;
+        }
+
+        &#id_gender {
+          width: 70px;
+        }
+
+        &#id_address {
+          width: 400px;
+        }
+
+        &#id_occupation {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 800px){
+  #masthead {
+    width: 100%;
+  }
+
+  div#main-content {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+}

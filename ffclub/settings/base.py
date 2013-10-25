@@ -541,6 +541,9 @@ MINIFY_BUNDLES = {
         'event_photo': (
             'css/event_photo.less',
         ),
+        'event_register': (
+            'css/event_register.less',
+        ),
         'product': (
             'css/product.less',
         ),

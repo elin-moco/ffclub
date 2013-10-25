@@ -1,11 +1,11 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin, StackedInline
+from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 from .models import *
 from ffclub.product.models import Order
 from ffclub.upload.admin import ImageUploadInline
 
 
-class ParticipationInline(StackedInline):
+class ParticipationInline(TabularInline):
     model = Participation
     extra = 0
 

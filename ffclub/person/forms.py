@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.forms import ModelForm, ValidationError, TextInput
+from django.forms.extras import SelectDateWidget
 from ffclub.person.models import Person
+
+
+currentYear = datetime.now().year
 
 
 class PersonForm(ModelForm):
@@ -11,6 +16,8 @@ class PersonForm(ModelForm):
         self.fields['fullname'].required = True
         self.fields['address'].required = True
         self.fields['occupation'].required = True
+        self.fields['birthday'].required = False
+        self.fields['birthday'].widget = SelectDateWidget(years=reversed(range(currentYear - 100, currentYear - 6)))
 
     def clean_gender(self):
         gender = self.cleaned_data['gender']
@@ -21,7 +28,7 @@ class PersonForm(ModelForm):
 
     class Meta:
         model = Person
-        fields = ('fullname', 'gender', 'address', 'occupation', 'subscribing')
+        fields = ('fullname', 'gender', 'address', 'occupation', 'education', 'birthday', 'subscribing')
 
 
 class PersonEmailNicknameForm(ModelForm):

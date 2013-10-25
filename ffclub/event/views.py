@@ -12,14 +12,15 @@ import random
 
 from django.utils import simplejson
 import facebook
-from ffclub.event.models import Campaign, Vote, Video
+from ffclub.event.models import Event, Campaign, Vote, Video, Participation
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
-from ffclub.person.forms import PersonEmailNicknameForm
+from ffclub.person.forms import PersonForm, PersonEmailNicknameForm
 from ffclub.person.models import Person
 from ffclub.upload.utils import generate_share_image
+from social_auth.db.django_models import UserSocialAuth
 
 log = commonware.log.getLogger('ffclub')
 
@@ -331,3 +332,46 @@ def microfilm_vote_video(request, video_id):
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
                    'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
+
+
+def event_register(request, event_slug):
+    currentEvent = Event.objects.get(slug=event_slug, status__in=('preparing', 'enrolling', 'enrolled'))
+    currentUser = auth.get_user(request)
+    data = {'event': currentEvent}
+    if request.method == 'POST':
+        if not request.user.is_authenticated():
+            raise PermissionDenied
+        is_update = Person.objects.filter(user=request.user).exists()
+        if is_update:
+            form = PersonForm(request.POST, instance=Person.objects.get(user=request.user))
+        else:
+            form = PersonForm(request.POST)
+        data['form'] = form
+        if form.is_valid():
+            person = form.save(commit=False)
+            if is_update:
+                person.save()
+            else:
+                person.user = currentUser
+                person.save()
+            if not Participation.objects.filter(activity=currentEvent, participant=currentUser).exists():
+                participation = Participation(activity=currentEvent, participant=currentUser, status='attend')
+                participation.save()
+            data['registered'] = True
+    elif request.user.is_authenticated():
+        if Person.objects.filter(user=currentUser).exists():
+            data['form'] = PersonForm(instance=currentUser.get_profile())
+        else:
+            fbAuth = UserSocialAuth.objects.filter(user=currentUser, provider='facebook')
+            initData = {}
+            if fbAuth.exists():
+                token = fbAuth.get().tokens['access_token']
+                if token:
+                    graph = facebook.GraphAPI(token)
+                    me = graph.get_object('me', locale='zh_TW')
+                    if 'name' in me:
+                        initData['fullname'] = me['name']
+                    if 'gender' in me and me['gender'] in genderMap.keys():
+                        initData['gender'] = genderMap[me['gender']]
+            data['form'] = PersonForm(initial=initData)
+    return render(request, 'event/event_register.html', data)

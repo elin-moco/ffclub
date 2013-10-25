@@ -41,7 +41,8 @@ class Event(Activity):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     status = models.CharField(max_length=20,
-                              choices=(('normal', '正常'), ('enrolling', '報名中'), ('shared', '已分享'), ('spam', '垃圾')),
+                              choices=(('preparing', '未開放'), ('enrolling', '報名中'), ('enrolled', '報名截止'),
+                                       ('normal', '正常'), ('shared', '已分享'), ('spam', '垃圾')),
                               default='normal')
 
     def __unicode__(self):
@@ -72,7 +73,7 @@ class Participation(models.Model):
                               default='invited')
 
     def __unicode__(self):
-        return unicode('%s@%s: %s' % (self.participant.fullname, self.activity.title, self.status))
+        return unicode('%s@%s: %s' % (self.participant.username, self.activity.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '活動參與'
