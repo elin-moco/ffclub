@@ -352,6 +352,7 @@ INSTALLED_APPS = (
     '%s.person' % PROJECT_MODULE,
     '%s.product' % PROJECT_MODULE,
     '%s.event' % PROJECT_MODULE,
+    '%s.newsletter' % PROJECT_MODULE,
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
