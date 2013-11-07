@@ -1,0 +1,54 @@
+{% set page_image = 'img/event/every-moment/campaignFB.jpg' %}
+{% set page_title = '上傳額滿 - Firefox OS 讓你盡情享受每一刻' %}
+{% extends "event/every-moment/base.html" %}
+{% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
+{% block title %}Firefox OS 讓你盡情享受每一刻{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('every-moment-exceed') }}
+{% endblock %}
+{% block head %}
+  {% block tabzilla %}
+    {{ super() }}
+  {% endblock %}
+  {% block header_bar %}
+    {{ super() }}
+  {% endblock %}
+  {% block main_menu %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
+{% block banner %}
+{% endblock %}
+{% block content %}
+  <div class="message">
+
+    <h1>得獎公佈</h1>
+
+    <h2>最高人氣獎</h2>
+
+    <h3>第一名</h3>
+
+    <p>恭喜獨得 Firefox OS 行動裝置 1 台、限量 USB 隨身碟 1 個
+
+    (得獎人姓名)
+
+    <h3>前二十名</h3>
+
+    <p>恭喜獲得 Mozilla 限量悠遊卡(空卡) 1 張、Firefox 限量潮帽 1 頂</p>
+
+    (得獎人名單)
+
+    <h2>投票幸運獎</h2>
+
+    <h3>共五十名</h3>
+
+    <p>恭喜獲得 Firefox 購物袋 1個</p>
+
+    (得獎人名單)
+
+    <p></p>本活動得奬者資格確認截止日期為 2013 年 11月 22 日晚上12 點，為加速贈品寄送時效，請得獎人把握時間儘速上網登錄得奬者資料！
+
+    得獎者登錄資料
+  </div>
+{% endblock %}

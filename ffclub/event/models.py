@@ -54,7 +54,8 @@ class Event(Activity):
 
 class Campaign(Activity):
     status = models.CharField(max_length=20,
-                              choices=(('running', '進行中'), ('preparing', '準備中'), ('voting', '投票中'), ('end', '已結束')),
+                              choices=(('running', '進行中'), ('preparing', '準備中'), ('voting', '投票中'),
+                                       ('end', '已結束'), ('result', '公佈結果')),
                               default='preparing')
 
     def __unicode__(self):

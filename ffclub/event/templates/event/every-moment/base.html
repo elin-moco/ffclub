@@ -11,7 +11,7 @@
 {% elif campaign.status == 'preparing' %}
   {% set page_title_postfix = ' - 活動上傳截止，10/23開放投票' %}
 {% elif campaign.status == 'end' %}
-  {% set page_title_postfix = ' - 活動已截止' %}
+  {% set page_title_postfix = ' - 活動已截止，11/15 公佈得獎名單' %}
 {% else %}
   {% set page_title_postfix = ' - 上傳照片就有機會得到 Firefox OS 手機！' %}
 {% endif %}
@@ -118,6 +118,9 @@
         {% else %}
         <li><a class="nav vote" href="{{ url('campaign.every.moment.wall') }}" title="我要投票"></a></li>
         {% endif %}
+      {% endif %}
+      {% if campaign.status == 'result' %}
+        <li><a class="nav result" href="{{ url('campaign.every.moment.result') }}" title="得獎名單"></a></li>
       {% endif %}
       <li><a class="nav wall" href="{{ url('campaign.every.moment.wall') }}" title="最新上傳"></a></li>
       <li><a class="nav back-top" href="{{ url('campaign.every.moment') }}#moment" title="回到頂端"></a></li>

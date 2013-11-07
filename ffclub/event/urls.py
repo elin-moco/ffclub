@@ -17,6 +17,7 @@ urlpatterns = patterns(
     url(r'^campaign/every-moment/$', views.every_moment, name='campaign.every.moment'),
     url(r'^campaign/every-moment/upload/$', views.every_moment_upload, name='campaign.every.moment.upload'),
     url(r'^campaign/every-moment/exceed/$', views.every_moment_exceed, name='campaign.every.moment.exceed'),
+    url(r'^campaign/every-moment/result/$', views.every_moment_result, name='campaign.every.moment.result'),
     url(r'^campaign/every-moment/wall/$', views.every_moment_wall, name='campaign.every.moment.wall'),
     url(r'^campaign/every-moment/wall/(?P<page_number>\d+)/$', views.every_moment_wall_page, name='campaign.every.moment.wall.page'),
     url(r'^events/attack-on-web/$', views.attack_on_web, name='event.attack.on.web'),

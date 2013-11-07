@@ -178,6 +178,11 @@ def every_moment_exceed(request):
     return render(request, 'event/every-moment/exceed.html', {'campaign': currentCampaign})
 
 
+def every_moment_result(request):
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    return render(request, 'event/every-moment/result.html', {'campaign': currentCampaign})
+
+
 def check_exceed_upload_times(user, campaign, max=5):
     if user.is_superuser:
         return False
