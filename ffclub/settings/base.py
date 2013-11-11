@@ -545,6 +545,9 @@ MINIFY_BUNDLES = {
         'event_register': (
             'css/event_register.less',
         ),
+        'campaign_claim_award': (
+            'css/campaign_claim_award.less',
+        ),
         'product': (
             'css/product.less',
         ),

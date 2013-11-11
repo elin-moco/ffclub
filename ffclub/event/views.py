@@ -17,7 +17,7 @@ from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, pr
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
-from ffclub.person.forms import PersonForm, PersonEmailNicknameForm
+from ffclub.person.forms import PersonForm, PersonEmailNicknameForm, AwardClaimForm
 from ffclub.person.models import Person
 from ffclub.upload.utils import generate_share_image
 from social_auth.db.django_models import UserSocialAuth
@@ -385,15 +385,15 @@ def event_register(request, event_slug):
 def campaign_claim_award(request, campaign_slug):
     currentCampaign = Campaign.objects.get(slug=campaign_slug, status=('result'))
     currentUser = auth.get_user(request)
-    data = {'event': currentCampaign}
+    data = {'campaign': currentCampaign}
     if request.method == 'POST':
         if not request.user.is_authenticated():
             raise PermissionDenied
         is_update = Person.objects.filter(user=request.user).exists()
         if is_update:
-            form = PersonForm(request.POST, instance=Person.objects.get(user=request.user))
+            form = AwardClaimForm(request.POST, instance=Person.objects.get(user=request.user))
         else:
-            form = PersonForm(request.POST)
+            form = AwardClaimForm(request.POST)
         data['form'] = form
         if form.is_valid():
             person = form.save(commit=False)
@@ -408,7 +408,7 @@ def campaign_claim_award(request, campaign_slug):
             data['registered'] = True
     elif request.user.is_authenticated():
         if Person.objects.filter(user=currentUser).exists():
-            data['form'] = PersonForm(instance=currentUser.get_profile())
+            data['form'] = AwardClaimForm(instance=currentUser.get_profile())
         else:
             fbAuth = UserSocialAuth.objects.filter(user=currentUser, provider='facebook')
             initData = {}
@@ -421,5 +421,5 @@ def campaign_claim_award(request, campaign_slug):
                         initData['fullname'] = me['name']
                     if 'gender' in me and me['gender'] in genderMap.keys():
                         initData['gender'] = genderMap[me['gender']]
-            data['form'] = PersonForm(initial=initData)
-    return render(request, 'event/event_register.html', data)
+            data['form'] = AwardClaimForm(initial=initData)
+    return render(request, 'event/campaign_claim_award.html', data)

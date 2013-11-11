@@ -45,3 +45,18 @@ class PersonEmailNicknameForm(ModelForm):
             'nickname': TextInput(attrs={'placeholder': '請輸入暱稱'}),
             'email': TextInput(attrs={'placeholder': '請輸入電子郵件'}),
         }
+
+
+class AwardClaimForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AwardClaimForm, self).__init__(*args, **kwargs)
+        self.fields['fullname'].required = True
+        #self.fields['email'].required = True
+        self.fields['phone'].required = True
+        self.fields['address'].required = True
+
+    class Meta:
+        model = Person
+        fields = ('fullname', 'phone', 'address', 'subscribing')
+

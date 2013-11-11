@@ -21,9 +21,10 @@
 {% block banner %}
 {% endblock %}
 {% block content %}
-  <div class="eventRegister">
   <h1>{{ event.title }}</h1>
   <h2>{{ event.description }}</h2>
+  <div class="eventBanner"></div>
+  <div class="eventRegister">
   {% if registered %}
     報名完成！感謝你的參與。
   {% elif event.status == 'preparing' %}

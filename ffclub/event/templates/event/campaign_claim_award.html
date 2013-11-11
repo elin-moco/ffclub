@@ -1,14 +1,14 @@
-{% set page_title = event.title + ' 活動報名' %}
-{% set page_description = event.description %}
+{% set page_title = campaign.title + ' 活動報名' %}
+{% set page_description = campaign.description %}
 {% set login_url = request.build_absolute_uri() %}
 {% set logout_url = login_url %}
 {% extends "base.html" %}
 {% block html_tag %}
-<html class="windows no-js status-{{ event.status }}">
+<html class="windows no-js status-{{ campaign.status }}">
 {% endblock %}
 {% block base_css %}
   {{ css('base') }}
-  {{ css('event_register') }}
+  {{ css('campaign_claim_award') }}
 {% endblock %}
 {% block head %}
   <header id="masthead">
@@ -21,20 +21,18 @@
 {% block banner %}
 {% endblock %}
 {% block content %}
-  <div class="eventRegister">
-  <h1>{{ event.title }}</h1>
-  <h2>{{ event.description }}</h2>
+  <h1>{{ campaign.title }}</h1>
+  <h2>{{ campaign.description }}</h2>
+  <div class="campaignBanner">
+  </div>
+  <div class="campaignClaimAward">
   {% if registered %}
-    報名完成！感謝你的參與。
-  {% elif event.status == 'preparing' %}
-    <p>投票尚未開放</p>
-  {% elif event.status == 'enrolled' %}
-    <p>投票已截止</p>
-  {% elif event.status == 'enrolling' %}
+    登錄完成！感謝你的參與。
+  {% elif campaign.status == 'result' %}
     {% if request.user.is_active %}
     <form method="post">
       <div class="registerHeading">
-        請填寫或確認以下報名資料：
+        請填寫或確認以下得獎人資料：
         {{ csrf() }}
       </div>
       <div class="registerForm">
@@ -50,7 +48,7 @@
             <a href="http://www.mozilla.org/en-US/privacy-policy.html" target="_blank">隱私權保護政策</a>。
         </div>
         <div class="register">
-          <button type="submit" class="submitButton" value="1">完成報名</button>
+          <button type="submit" class="submitButton" value="1">完成登錄</button>
         </div>
       </div>
       <div class="registerPicture">
@@ -58,8 +56,10 @@
     </form>
 
     {% else %}
-      <button class="loginButton" title="登入並填寫報名資料">我要報名</button>
+      <button class="loginButton" title="登入並填寫得獎人資料">我要登錄</button>
     {% endif %}
+  {% else %}
+    <p>尚未開放登錄</p>
   {% endif %}
   </div>
 {% endblock %}
