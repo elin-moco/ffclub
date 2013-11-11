@@ -1,11 +1,12 @@
+{% extends "event/every-moment/base.html" %}
+
 {% set page_image = 'img/event/every-moment/campaignFB.jpg' %}
 {% set page_title = '上傳額滿 - Firefox OS 讓你盡情享受每一刻' %}
-{% extends "event/every-moment/base.html" %}
 {% block og_type %}{{ FB_APP_NAMESPACE }}:picture{% endblock %}
 {% block title %}Firefox OS 讓你盡情享受每一刻{% endblock %}
 {% block base_css %}
   {{ css('base') }}
-  {{ css('every-moment-exceed') }}
+  {{ css('every-moment-result') }}
 {% endblock %}
 {% block head %}
   {% block tabzilla %}
@@ -25,30 +26,30 @@
 
     <h1>得獎公佈</h1>
 
-    <h2>最高人氣獎</h2>
+    <h2 class="award">最高人氣獎</h2>
 
-    <h3>第一名</h3>
-
-    <p>恭喜獨得 Firefox OS 行動裝置 1 台、限量 USB 隨身碟 1 個
-
+    <h3>第一名<br>恭喜獨得 Firefox OS 行動裝置 1 台、限量 USB 隨身碟 1 個</h3>
+<p></p>
     (得獎人姓名)
+<p></p>
 
-    <h3>前二十名</h3>
+    <h3>前二十名<br>恭喜獲得 Mozilla 限量悠遊卡(空卡) 1 張、Firefox 限量潮帽 1 頂</h3>
 
-    <p>恭喜獲得 Mozilla 限量悠遊卡(空卡) 1 張、Firefox 限量潮帽 1 頂</p>
-
+<p></p>
     (得獎人名單)
+<p></p>
 
-    <h2>投票幸運獎</h2>
+    <h2 class="award">投票幸運獎</h2>
 
-    <h3>共五十名</h3>
+    <h3>共五十名<br>恭喜獲得 Firefox 購物袋 1個</h3>
 
-    <p>恭喜獲得 Firefox 購物袋 1個</p>
-
+<p></p>
     (得獎人名單)
+<p></p>
 
-    <p></p>本活動得奬者資格確認截止日期為 2013 年 11月 22 日晚上12 點，為加速贈品寄送時效，請得獎人把握時間儘速上網登錄得奬者資料！
-
-    得獎者登錄資料
+    <h3>本活動得奬者資格確認截止日期為 2013 年 11月 22 日晚上12 點，為加速贈品寄送時效，請得獎人把握時間儘速上網登錄得奬者資料！</h3>
+    <div class="actionBlock">
+      {% if request.user.is_active %}<a title="得獎者登錄資料" href="{{ url('campaign.claim.award', campaign_slug='every-moment') }}" class="submitButton">{% else %}<a title="得獎者登入" href="javascript:void(0)" class="submitButton loginLink">{% endif %}得獎者點此登錄</a> 登錄前，請先參閱我們的<a href="http://www.mozilla.org/zh-TW/privacy-policy.html">穩私資料政策</a>和<a href="{{ url('tos') }}">服務條款</a>
+    </div>
   </div>
 {% endblock %}

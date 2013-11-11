@@ -1,0 +1,65 @@
+{% set page_title = event.title + ' 活動報名' %}
+{% set page_description = event.description %}
+{% set login_url = request.build_absolute_uri() %}
+{% set logout_url = login_url %}
+{% extends "base.html" %}
+{% block html_tag %}
+<html class="windows no-js status-{{ event.status }}">
+{% endblock %}
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('event_register') }}
+{% endblock %}
+{% block head %}
+  <header id="masthead">
+    <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+    {% with logout_url = logout_url %}
+      {% include "navigator.html" %}
+    {% endwith %}
+  </header>
+{% endblock %}
+{% block banner %}
+{% endblock %}
+{% block content %}
+  <div class="eventRegister">
+  <h1>{{ event.title }}</h1>
+  <h2>{{ event.description }}</h2>
+  {% if registered %}
+    報名完成！感謝你的參與。
+  {% elif event.status == 'preparing' %}
+    <p>投票尚未開放</p>
+  {% elif event.status == 'enrolled' %}
+    <p>投票已截止</p>
+  {% elif event.status == 'enrolling' %}
+    {% if request.user.is_active %}
+    <form method="post">
+      <div class="registerHeading">
+        請填寫或確認以下報名資料：
+        {{ csrf() }}
+      </div>
+      <div class="registerForm">
+        <ul>
+          {{ form.as_ul() }}
+        </ul>
+      </div>
+      <div class="registerAgreement">
+        <div class="agreement">
+          <p>
+            若繼續，代表你接受 Firefox 的
+            <a href="{{ url('tos') }}" target="_blank">使用條款</a> 與
+            <a href="http://www.mozilla.org/en-US/privacy-policy.html" target="_blank">隱私權保護政策</a>。
+        </div>
+        <div class="register">
+          <button type="submit" class="submitButton" value="1">完成報名</button>
+        </div>
+      </div>
+      <div class="registerPicture">
+      </div>
+    </form>
+
+    {% else %}
+      <button class="loginButton" title="登入並填寫報名資料">我要報名</button>
+    {% endif %}
+  {% endif %}
+  </div>
+{% endblock %}

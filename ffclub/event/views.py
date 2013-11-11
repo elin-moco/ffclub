@@ -380,3 +380,46 @@ def event_register(request, event_slug):
                         initData['gender'] = genderMap[me['gender']]
             data['form'] = PersonForm(initial=initData)
     return render(request, 'event/event_register.html', data)
+
+
+def campaign_claim_award(request, campaign_slug):
+    currentCampaign = Campaign.objects.get(slug=campaign_slug, status=('result'))
+    currentUser = auth.get_user(request)
+    data = {'event': currentCampaign}
+    if request.method == 'POST':
+        if not request.user.is_authenticated():
+            raise PermissionDenied
+        is_update = Person.objects.filter(user=request.user).exists()
+        if is_update:
+            form = PersonForm(request.POST, instance=Person.objects.get(user=request.user))
+        else:
+            form = PersonForm(request.POST)
+        data['form'] = form
+        if form.is_valid():
+            person = form.save(commit=False)
+            if is_update:
+                person.save()
+            else:
+                person.user = currentUser
+                person.save()
+            if not Participation.objects.filter(activity=currentCampaign, participant=currentUser).exists():
+                participation = Participation(activity=currentCampaign, participant=currentUser, status='attend')
+                participation.save()
+            data['registered'] = True
+    elif request.user.is_authenticated():
+        if Person.objects.filter(user=currentUser).exists():
+            data['form'] = PersonForm(instance=currentUser.get_profile())
+        else:
+            fbAuth = UserSocialAuth.objects.filter(user=currentUser, provider='facebook')
+            initData = {}
+            if fbAuth.exists():
+                token = fbAuth.get().tokens['access_token']
+                if token:
+                    graph = facebook.GraphAPI(token)
+                    me = graph.get_object('me', locale='zh_TW')
+                    if 'name' in me:
+                        initData['fullname'] = me['name']
+                    if 'gender' in me and me['gender'] in genderMap.keys():
+                        initData['gender'] = genderMap[me['gender']]
+            data['form'] = PersonForm(initial=initData)
+    return render(request, 'event/event_register.html', data)

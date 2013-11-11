@@ -583,6 +583,9 @@ MINIFY_BUNDLES = {
         'every-moment-exceed': (
             'css/event/every-moment-exceed.less',
         ),
+        'every-moment-result': (
+            'css/event/every-moment-result.less',
+        ),
         'microfilm-vote':{
             'css/event/microfilm-vote.less'
         }

@@ -1,5 +1,7 @@
 {% if campaign.status == 'running' %}
   {% set login_url = url('campaign.every.moment.upload') %}
+{% elif campaign.status == 'result' %}
+  {% set login_url = url('campaign.claim.award', campaign_slug='every-moment') %}
 {% else %}
   {% set login_url = url('campaign.every.moment.wall') %}
 {% endif %}
@@ -80,7 +82,7 @@
               </li>
             {% else %}
               <li role="menuitem" class="last">
-                <a title="登入{% if campaign.status == 'running' %}並開始上傳照片{% elif campaign.status == 'voting' %}並開始投票{% endif %}" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
+                <a title="{% if campaign.status == 'result' %}得獎者{% endif %}登入{% if campaign.status == 'running' %}並開始上傳照片{% elif campaign.status == 'voting' %}並開始投票{% endif %}" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
                    aria-haspopup="false">登入{% if campaign.status == 'running' %}上傳{% elif campaign.status == 'voting' %}投票{% endif %}</a>
               </li>
             {% endif %}
