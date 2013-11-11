@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 # from django.contrib.auth.models import User
 
@@ -23,6 +24,8 @@ class Person(models.Model):
     fullname = models.CharField(max_length=255, verbose_name='姓名(*)', blank=True)
     gender = models.CharField(max_length=7, verbose_name='性別(*)',
                               choices=(('unknown', '未指定'), ('male', '男性'), ('female', '女性')), default='unknown')
+    phone = models.CharField(max_length=255, verbose_name='聯絡電話(*)', blank=True,
+                                validators=[RegexValidator('^\+?[-0-9\s]*(\([-0-9\s]+\))?[-0-9\s]+$')])
     address = models.CharField(max_length=255, verbose_name='地址(*)', blank=True)
     occupation = models.CharField(max_length=255, verbose_name='職業(*)', blank=True)
     education = models.CharField(max_length=255, verbose_name='學歷', blank=True,
