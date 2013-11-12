@@ -100,6 +100,24 @@ class Vote(models.Model):
         verbose_name = verbose_name_plural = '活動投票'
 
 
+class Award(models.Model):
+    name = models.CharField(max_length=255, blank=True, default='', verbose_name='獎項名稱',
+                            help_text='用於網址和程式查詢，訂定後勿改動。')
+    order = models.IntegerField(default=0, verbose_name='得獎順位')
+    note = models.CharField(max_length=255, blank=True, default='')
+    winner = models.ForeignKey(User, related_name='+', verbose_name='得獎者')
+    activity = models.ForeignKey(Activity, related_name='+')
+    status = models.CharField(max_length=20,
+                              choices=(('waiting', '待確認'), ('claimed', '已確認'), ('awarded', '已頒發')),
+                              default='waiting')
+
+    def __unicode__(self):
+        return unicode('%s+%s@%s: %s' % (self.winner.username, self.name, self.activity.title, self.status))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '活動頒獎'
+
+
 class Video(models.Model):
     title = models.CharField(max_length=255, blank=True, default='')
     description = models.CharField(max_length=255, blank=True, default='')
