@@ -209,6 +209,8 @@
           <h4 class="step1">（已截止，10/23 開放投票）</h4>
           {% elif campaign.status == 'end' %}
           <h4 class="step1">（已截止，11/15 公佈得獎名單）</h4>
+          {% elif campaign.status == 'result' %}
+          <h4 class="step1">（已公佈得獎名單，請得獎者登錄）</h4>
           {% endif %}
           <ol>
             <li class="step1">使用 Facebook 或 Persona 登入網站</li>
