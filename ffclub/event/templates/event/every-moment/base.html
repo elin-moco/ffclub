@@ -14,6 +14,8 @@
   {% set page_title_postfix = ' - 活動上傳截止，10/23開放投票' %}
 {% elif campaign.status == 'end' %}
   {% set page_title_postfix = ' - 活動已截止，11/15 公佈得獎名單' %}
+{% elif campaign.status == 'result' %}
+  {% set page_title_postfix = ' - 得獎名單公佈，請得獎者登錄資料' %}
 {% else %}
   {% set page_title_postfix = ' - 上傳照片就有機會得到 Firefox OS 手機！' %}
 {% endif %}
