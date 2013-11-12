@@ -10,6 +10,11 @@ class ParticipationInline(TabularInline):
     extra = 0
 
 
+class AwardInline(TabularInline):
+    model = Award
+    extra = 0
+
+
 class OrderInline(StackedInline):
     model = Order
     extra = 0
@@ -20,7 +25,7 @@ class EventAdmin(ModelAdmin):
                      'orders__usage', 'orders__fullname', 'orders__email',
                      'orders__address', 'orders__occupation', 'orders__feedback']
     list_filter = ['num_of_ppl', 'create_time', 'status', 'orders__create_time', 'orders__status']
-    inlines = [OrderInline, ParticipationInline, ImageUploadInline]
+    inlines = [AwardInline, OrderInline, ParticipationInline, ImageUploadInline]
 
 
 admin.site.register(Event, EventAdmin)
@@ -29,7 +34,7 @@ admin.site.register(Event, EventAdmin)
 class CampaignAdmin(ModelAdmin):
     search_fields = ['title', 'description']
     list_filter = ['create_time', 'status']
-    inlines = [ParticipationInline, ImageUploadInline]
+    inlines = [AwardInline, ParticipationInline, ImageUploadInline]
 
 
 admin.site.register(Campaign, CampaignAdmin)
