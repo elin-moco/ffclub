@@ -513,6 +513,9 @@ MINIFY_BUNDLES = {
             # imported using less
             # 'css/ffcstyle.css',
         ),
+        'admin_login': (
+            'css/admin_login.less',
+        ),
         'base': (
             'css/base.less',
         ),
