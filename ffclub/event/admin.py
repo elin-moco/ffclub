@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ffclub.base import admin
 from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 from .models import *
@@ -20,7 +21,11 @@ class OrderInline(StackedInline):
     extra = 0
 
 
-class EventAdmin(ModelAdmin):
+class ActivityAdmin(ModelAdmin):
+    change_form_template = 'admin/custom_activity_change_form.html'
+
+
+class EventAdmin(ActivityAdmin):
     search_fields = ['title', 'description', 'location',
                      'orders__usage', 'orders__fullname', 'orders__email',
                      'orders__address', 'orders__occupation', 'orders__feedback']
@@ -31,7 +36,7 @@ class EventAdmin(ModelAdmin):
 admin.site.register(Event, EventAdmin)
 
 
-class CampaignAdmin(ModelAdmin):
+class CampaignAdmin(ActivityAdmin):
     search_fields = ['title', 'description']
     list_filter = ['create_time', 'status']
     inlines = [AwardInline, ParticipationInline, ImageUploadInline]

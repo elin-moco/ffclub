@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cStringIO import StringIO
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import auth
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied, SuspiciousOperation
@@ -11,8 +12,9 @@ import commonware.log
 import random
 
 from django.utils import simplejson
+from django.utils.encoding import force_unicode
 import facebook
-from ffclub.event.models import Event, Campaign, Vote, Video, Participation
+from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
@@ -423,3 +425,44 @@ def campaign_claim_award(request, campaign_slug):
                         initData['gender'] = genderMap[me['gender']]
             data['form'] = AwardClaimForm(initial=initData)
     return render(request, 'event/campaign_claim_award.html', data)
+
+@staff_member_required
+def activity_award_prizes(request, type, activity_id):
+    if type == 'event':
+        activity = Event.objects.get(pk=activity_id)
+    elif type == 'campaign':
+        activity = Campaign.objects.get(pk=activity_id)
+    else:
+        activity = Activity.objects.get(pk=activity_id)
+    opts = activity._meta
+    app_label = opts.app_label
+    object_name = force_unicode(opts.verbose_name)
+    data = {
+        'title': '頒獎典禮',
+        "object_name": object_name,
+        "object": activity,
+        "opts": opts,
+        "app_label": app_label,
+    }
+    return render(request, 'admin/activity_award_prizes.html', data)
+
+
+@staff_member_required
+def activity_export_winners(request, type, activity_id):
+    if type == 'event':
+        activity = Event.objects.get(pk=activity_id)
+    elif type == 'campaign':
+        activity = Campaign.objects.get(pk=activity_id)
+    else:
+        activity = Activity.objects.get(pk=activity_id)
+    opts = activity._meta
+    app_label = opts.app_label
+    object_name = force_unicode(opts.verbose_name)
+    data = {
+        'title': '匯出得獎名單',
+        "object_name": object_name,
+        "object": activity,
+        "opts": opts,
+        "app_label": app_label,
+    }
+    return render(request, 'admin/activity_export_winners.html', data)
