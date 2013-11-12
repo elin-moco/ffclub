@@ -1,4 +1,4 @@
-from django.contrib import admin
+from ffclub.base import admin
 from django.contrib.admin import ModelAdmin, TabularInline
 from .models import *
 from ffclub.upload.admin import ImageUploadInline

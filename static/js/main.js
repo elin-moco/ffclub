@@ -17,6 +17,7 @@ $(function(){
                 '" data-action="Comma separated list of action of action types" data-width="400" data-max-rows="1"></div>');
             FB.XFBML.parse(fbpile.get(0));
         }
+        console.info('login!!!');
     };
     $('.loginButton, .loginLink').click(loginHandler);
     $(document).on('ffclubLogin', loginHandler);

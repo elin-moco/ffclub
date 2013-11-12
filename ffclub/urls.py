@@ -1,9 +1,10 @@
+from django.contrib.admin import autodiscover
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sitemaps import GenericSitemap
 from django.http import HttpResponse
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib import admin, sitemaps
+from django.contrib import sitemaps
 from django.views.generic.simple import redirect_to
 from ffclub.base import ViewsSitemap
 from ffclub.intro.views import login_redirect
@@ -14,10 +15,11 @@ from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 from funfactory.monkeypatches import patch
 from ffclub.product.models import Product
 from ffclub.upload.models import ImageUpload
+from ffclub.base import admin
 
 patch()
 
-admin.autodiscover()
+autodiscover()
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin

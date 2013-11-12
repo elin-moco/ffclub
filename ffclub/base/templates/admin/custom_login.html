@@ -1,0 +1,102 @@
+{% extends "admin/login.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "css/login.less.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/persona-buttons.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/slides.css" %}" />
+{% endblock %}
+
+{% block content %}
+{% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+<p class="errornote">
+登入錯誤
+</p>
+{% endif %}
+
+{% if form.non_field_errors or form.this_is_the_login_form.errors %}
+{% for error in form.non_field_errors|add:form.this_is_the_login_form.errors %}
+<p class="errornote">
+    {{ error }}
+</p>
+{% endfor %}
+{% endif %}
+
+<div id="content-main">
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  <div class="form-row">
+    {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+    <label for="id_username" class="required">帳號：</label> {{ form.username }}
+  </div>
+  <div class="form-row">
+    {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+    <label for="id_password" class="required">密碼：</label> {{ form.password }}
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">忘記密碼？</a>
+  </div>
+  {% endif %}
+  <div class="submit-row">
+    <input type="submit" value="登入" />
+  </div>
+  <div class="alt-login-row">
+    <p class="altLogin">你也可以用：</p>
+    <a class="loginButton" href="#">Persona/FB 登入</a>
+  </div>
+</form>
+
+{% with login_url='/admin' logout_url='/admin' %}
+<div class="loginPopup">
+  <div class="loginBox">
+    <span class="popupTitle"></span>
+    <div class="innerBox">
+      <a class="persona-button browserid-login browserid" href="javascript:void(0)"><span>使用 Persona 登入</span></a>
+      <p>
+        更簡易、更安全的登入方式－<a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
+      </p>
+      <p>或者你也可以：</p>
+      <a class="persona-button facebook-login" href="{% url socialauth_begin "facebook" %}{% if login_url %}?next={{ request.build_absolute_uri }}{% endif %}"><span>使用 Facebook 登入</span></a>
+      <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
+  {#    <div class="fb-login-button" data-width="300" show-faces="true" size="large"></div>#}
+    </div>
+  </div>
+</div>
+
+{% if not request.user.is_active %}
+<form method="POST" action="{% url browserid_verify %}">
+  {% csrf_token %}
+  {% if login_url %}
+    <input type="hidden" name="next" value="{{ login_url }}">
+  {% endif %}
+  {{ browserid_form.as_p }}
+</form>
+{% endif %}
+
+<script type="text/javascript" src="{% static "js/libs/jquery-1.9.1.js" %}"></script>
+<script type="text/javascript" src="{% static "js/slides.js" %}"></script>
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+{% if not request.user.is_active %}
+<script type="text/javascript" src="{% static "js/browserid.js" %}"></script>
+<script type="text/javascript" src="https://browserid.org/include.js"></script>
+{% endif %}
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId={{ FB_APP_ID }}";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+{% endwith %}
+</div>
+{% endblock %}

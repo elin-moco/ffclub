@@ -1,4 +1,4 @@
-from django.contrib import admin
+from ffclub.base import admin
 from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 from .models import *
 from ffclub.product.models import Order

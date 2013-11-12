@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
+from ffclub.base import admin
 from django.contrib.admin import StackedInline, TabularInline
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib.auth.models import User, Group
 from social_auth.db.django_models import UserSocialAuth
 from .models import *
 
@@ -33,8 +33,9 @@ class CustomUserAdmin(UserAdmin):
 
 
 
-admin.site.unregister(User)
+#admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Group, GroupAdmin)
 
 # class PersonAdmin(ModelAdmin):
 #     search_fields = ['fullname', 'address', 'occupation']
