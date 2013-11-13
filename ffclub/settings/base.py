@@ -518,7 +518,7 @@ MINIFY_BUNDLES = {
             # 'css/ffcstyle.css',
         ),
         'admin': (
-            'css/admin_login.less',
+            'css/admin/login.less',
             'css/admin/activity_forms.less',
         ),
         'base': (
