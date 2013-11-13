@@ -4,24 +4,94 @@
 {% load admin_urls admin_static %}
 
 {% block extrastyle %}{{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% static "css/admin/activity_forms.less.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/admin/activity_forms.less.css" %}"/>
 {% endblock %}
 
 {% block breadcrumbs %}
-<div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst }}</a>
-&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst|escape }}</a>
-&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}">{{ object|truncatewords:"18" }}</a>
-&rsaquo; 頒獎
-</div>
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst|escape }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}">{{ object|truncatewords:"18" }}</a>
+    &rsaquo; 頒獎
+  </div>
 {% endblock %}
 
 {% block content %}
-    <p>頒發獎項給 {{ object_name }} "{{ object.title|escape }}" 的參與者</p>
-    <form action="" method="post">{% csrf_token %}
-    <input type="hidden" name="post" value="yes" />
-    <input type="submit" value="頒獎" />
-    <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}" class="button">回到活動編輯頁</a>
-    </form>
+  <p>頒發獎項給 {{ object_name }} "{{ object.title|escape }}" 的參與者</p>
+  <form id="activity_award_form" action="" method="post">{% csrf_token %}
+    <ul>
+      <li>
+        <label for="award_name">獎項名稱：</label>
+        <input type="text" id="award_name" name="award_name"/>
+      </li>
+      <li>
+        <label for="awarded_role">得獎角色：</label>
+        <select id="awarded_role" name="awarded_role">
+          <option value="participant">報名者</option>
+          <option value="voter">投票者</option>
+          <option value="uploader">上傳者</option>
+        </select>
+      </li>
+      <li>
+        <label for="awarded_role">得獎人數：</label>
+        <input type="number" id="winner_amount" name="winner_amount"/>
+      </li>
+      <li>
+        <label for="award_type">頒獎方式：</label>
+        <select id="award_type" name="award_type">
+          <option value="random">隨機</option>
+          <option value="votes">上傳得票數</option>
+        </select>
+      </li>
+      <li>
+        <label>重覆處理：</label>
+        <input type="radio" id="repeat-no" name="repeat" value="no" checked/>
+        <label class="radioLabel" for="repeat-nos">避開</label>
+        <input type="radio" id="repeat-yes" name="repeat" value="yes"/>
+        <label class="radioLabel" for="repeat-yes">不避開</label>
+      </li>
+      <li>
+        <label>重新頒獎：</label>
+        <input type="radio" id="re-award-yes" name="re-award" value="yes" checked/>
+        <label class="radioLabel" for="re-award-yes">重頒</label>
+        <input type="radio" id="re-award-no" name="re-award" value="no"/>
+        <label class="radioLabel" for="re-award-no">加頒</label>
+      </li>
+      <li>
+        <input type="hidden" name="post" value="yes"/>
+        <input type="submit" value="頒獎"/>
+        <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}" class="button">回到活動編輯頁</a>
+      </li>
+    </ul>
+  </form>
+  <h2>活動得獎名單</h2>
+  <h2>活動參與名單</h2>
+  <h3>活動報名者</h3>
+  <table>
+    {% for participant in participants %}
+    <tr>
+      <td>{{ participant.first_name  }} {{ participant.last_name }}</td>
+      <td>{{ participant.email }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <h3>活動投票者</h3>
+  <table>
+    {% for voter in voters %}
+    <tr>
+      <td>{{ voter.first_name }} {{ voter.last_name }}</td>
+      <td>{{ voter.email }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <h3>活動上傳者</h3>
+  <table>
+    {% for uploader in uploaders %}
+    <tr>
+      <td>{{ uploader.first_name }} {{ uploader.last_name }}</td>
+      <td>{{ uploader.email }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}

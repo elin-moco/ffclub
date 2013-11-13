@@ -77,7 +77,7 @@ class Participation(models.Model):
         return unicode('%s@%s: %s' % (self.participant.username, self.activity.title, self.status))
 
     class Meta:
-        verbose_name = verbose_name_plural = '活動參與'
+        verbose_name = verbose_name_plural = '活動報名'
 
 
 class Vote(models.Model):

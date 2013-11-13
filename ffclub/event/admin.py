@@ -61,17 +61,40 @@ class ActivityAdmin(ModelAdmin):
 
         obj = self.get_object(request, unquote(object_id))
         object_name = force_unicode(opts.verbose_name)
+        participations = Participation.objects.filter(activity=obj).select_related('participant')
+        participants = []
+        for participation in participations:
+            if not participation.participant in participants:
+                participants += [participation.participant, ]
+        uploads = ImageUpload.objects.filter(
+            entity_id=obj.id,
+            content_type=ContentType.objects.get_for_model(self.model)).select_related('create_user')
+        uploaders = []
+        uploadIds = []
+        for upload in uploads:
+            uploadIds += [upload.id, ]
+            if not upload.create_user in uploaders:
+                uploaders += [upload.create_user, ]
+        votes = Vote.objects.filter(
+            entity_id__in=uploadIds,
+            content_type=ContentType.objects.get(model='imageupload')).select_related('voter')
+        voters = []
+        for vote in votes:
+            if not vote.voter in voters:
+                voters += [vote.voter, ]
         if request.POST:
             obj_display = force_unicode(obj.title)
             self.message_user(request, u'%(name)s "%(obj)s" 已完成頒獎！' %
                                        {'name': force_unicode(opts.verbose_name), 'obj': force_unicode(obj_display)})
-
         data = {
             'title': '頒獎典禮',
-            "object_name": object_name,
-            "object": obj,
-            "opts": opts,
-            "app_label": app_label,
+            'object_name': object_name,
+            'object': obj,
+            'opts': opts,
+            'app_label': app_label,
+            'participants': participants,
+            'uploaders': uploaders,
+            'voters': voters,
         }
         return render(request, 'admin/activity_award_prizes.html', data)
 
@@ -89,10 +112,10 @@ class ActivityAdmin(ModelAdmin):
                                        {'name': force_unicode(opts.verbose_name), 'obj': force_unicode(obj_display)})
         data = {
             'title': '匯出得獎名單',
-            "object_name": object_name,
-            "object": obj,
-            "opts": opts,
-            "app_label": app_label,
+            'object_name': object_name,
+            'object': obj,
+            'opts': opts,
+            'app_label': app_label,
         }
         return render(request, 'admin/activity_export_winners.html', data)
 
