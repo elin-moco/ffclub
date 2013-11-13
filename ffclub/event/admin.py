@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.db import transaction
 from functools import update_wrapper
-
+from django.db.models import Max, Count
 
 csrf_protect_m = method_decorator(csrf_protect)
 
@@ -68,7 +68,7 @@ class ActivityAdmin(ModelAdmin):
                 participants += [participation.participant, ]
         uploads = ImageUpload.objects.filter(
             entity_id=obj.id,
-            content_type=ContentType.objects.get_for_model(self.model)).select_related('create_user')
+            content_type=ContentType.objects.get_for_model(self.model)).select_related('create_user').annotate(Count('votes')).order_by('-votes__count')
         uploaders = []
         uploadIds = []
         for upload in uploads:
@@ -83,9 +83,56 @@ class ActivityAdmin(ModelAdmin):
             if not vote.voter in voters:
                 voters += [vote.voter, ]
         if request.POST:
+            award_name = request.POST['award_name']
+            #awarded_role = request.POST['awarded_role']
+            winner_amount = int(request.POST['winner_amount'])
+            #award_type = request.POST['award_type']
+            repeat = request.POST['repeat']
+            reaward = request.POST['reaward']
             obj_display = force_unicode(obj.title)
-            self.message_user(request, u'%(name)s "%(obj)s" 已完成頒獎！' %
-                                       {'name': force_unicode(opts.verbose_name), 'obj': force_unicode(obj_display)})
+            if award_name == u'最高人氣獎':
+                if reaward == 'yes':
+                    Award.objects.filter(name=u'最高人氣獎', activity=obj).delete()
+                    startIndex = 1
+                else:
+                    startIndex = Award.objects.filter(name=u'最高人氣獎', activity=obj).aggregate(Max('order'))['order__max'] + 1
+                awardedWinners = Award.objects.filter(name=u'最高人氣獎', activity=obj).values('winner_id')
+                awardedIds = [awardedWinner['winner_id'] for awardedWinner in awardedWinners]
+                popUploaders = []
+                for upload in uploads:
+                    print upload.votes__count
+                    if upload.create_user.id not in awardedIds and upload.create_user not in popUploaders:
+                        popUploaders += [upload.create_user, ]
+                for index, uploader in enumerate(popUploaders):
+                    if index == winner_amount:
+                        break
+                    award = Award(name=u'最高人氣獎', order=index+startIndex, winner=uploader, activity=obj)
+                    award.save()
+                self.message_user(request, u'已完成 %s 頒獎！' % award_name)
+            elif award_name == u'投票幸運獎':
+                if reaward == 'yes':
+                    Award.objects.filter(name=u'投票幸運獎', activity=obj).delete()
+                    startIndex = 1
+                else:
+                    startIndex = Award.objects.filter(name=u'投票幸運獎', activity=obj).aggregate(Max('order'))['order__max'] + 1
+                if repeat == 'no':
+                    awardedWinners = Award.objects.filter(activity=obj).values('winner_id')
+                    awardedIds = [awardedWinner['winner_id'] for awardedWinner in awardedWinners]
+                    filtered_voters = [voter for voter in voters if voter.id not in awardedIds]
+                else:
+                    filtered_voters = voters
+                from random import shuffle
+                shuffle(filtered_voters)
+                for index, voter in enumerate(filtered_voters):
+                    if index == winner_amount:
+                        break
+                    award = Award(name=u'投票幸運獎', order=index+startIndex, winner=voter, activity=obj)
+                    award.save()
+                self.message_user(request, u'已完成 %s 頒獎！' % award_name)
+            else:
+                self.message_user(request, u'目前不支援此頒獎組合！請選擇正確的得獎角色和頒獎方式。')
+        popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).select_related('winner').order_by('order')
+        luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).select_related('winner').order_by('order')
         data = {
             'title': '頒獎典禮',
             'object_name': object_name,
@@ -95,6 +142,10 @@ class ActivityAdmin(ModelAdmin):
             'participants': participants,
             'uploaders': uploaders,
             'voters': voters,
+            'awards': {
+                u'最高人氣獎': popularAwards,
+                u'投票幸運獎': luckyAwards,
+            }
         }
         return render(request, 'admin/activity_award_prizes.html', data)
 

@@ -23,40 +23,51 @@
     <ul>
       <li>
         <label for="award_name">獎項名稱：</label>
-        <input type="text" id="award_name" name="award_name"/>
-      </li>
-      <li>
-        <label for="awarded_role">得獎角色：</label>
-        <select id="awarded_role" name="awarded_role">
-          <option value="participant">報名者</option>
-          <option value="voter">投票者</option>
-          <option value="uploader">上傳者</option>
+        <select id="award_name" name="award_name">
+          <option value="最高人氣獎">最高人氣獎</option>
+          <option value="投票幸運獎">投票幸運獎</option>
         </select>
       </li>
+      {% comment %}
+        <li>
+          <label for="award_name">獎項名稱：</label>
+          <input type="text" id="award_name" name="award_name" placeholder="如：最高人氣獎" required/>
+        </li>
+        <li>
+          <label for="awarded_role">得獎角色：</label>
+          <select id="awarded_role" name="awarded_role">
+            <option value="participant">報名者</option>
+            <option value="voter">投票者</option>
+            <option value="uploader">上傳者</option>
+          </select>
+        </li>
+      {% endcomment %}
       <li>
         <label for="awarded_role">得獎人數：</label>
-        <input type="number" id="winner_amount" name="winner_amount"/>
+        <input type="number" min="1" max="100" size="3" value="1" id="winner_amount" name="winner_amount" required/>
       </li>
-      <li>
-        <label for="award_type">頒獎方式：</label>
-        <select id="award_type" name="award_type">
-          <option value="random">隨機</option>
-          <option value="votes">上傳得票數</option>
-        </select>
-      </li>
+      {% comment %}
+        <li>
+          <label for="award_type">頒獎方式：</label>
+          <select id="award_type" name="award_type">
+            <option value="random">隨機</option>
+            <option value="votes">上傳得票數</option>
+          </select>
+        </li>
+      {% endcomment %}
       <li>
         <label>重覆處理：</label>
         <input type="radio" id="repeat-no" name="repeat" value="no" checked/>
-        <label class="radioLabel" for="repeat-nos">避開</label>
+        <label class="radioLabel" for="repeat-no">避開</label>
         <input type="radio" id="repeat-yes" name="repeat" value="yes"/>
         <label class="radioLabel" for="repeat-yes">不避開</label>
       </li>
       <li>
         <label>重新頒獎：</label>
-        <input type="radio" id="re-award-yes" name="re-award" value="yes" checked/>
-        <label class="radioLabel" for="re-award-yes">重頒</label>
-        <input type="radio" id="re-award-no" name="re-award" value="no"/>
-        <label class="radioLabel" for="re-award-no">加頒</label>
+        <input type="radio" id="reaward-yes" name="reaward" value="yes" checked/>
+        <label class="radioLabel" for="reaward-yes">重頒</label>
+        <input type="radio" id="reaward-no" name="reaward" value="no"/>
+        <label class="radioLabel" for="reaward-no">加頒</label>
       </li>
       <li>
         <input type="hidden" name="post" value="yes"/>
@@ -66,32 +77,62 @@
     </ul>
   </form>
   <h2>活動得獎名單</h2>
+  {% for award_name, awarded_list in awards.items %}
+    <h3>{{ award_name }}</h3>
+    <table>
+      {% for awarded in awarded_list %}
+      <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ awarded.order }}</td>
+          <td>{{ awarded.winner.first_name }} {{ awarded.winner.last_name }}</td>
+          <td>{{ awarded.winner.email }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endfor %}
   <h2>活動參與名單</h2>
   <h3>活動報名者</h3>
   <table>
-    {% for participant in participants %}
-    <tr>
-      <td>{{ participant.first_name  }} {{ participant.last_name }}</td>
-      <td>{{ participant.email }}</td>
-    </tr>
-    {% endfor %}
+    {% if participants|length > 0 %}
+      {% for participant in participants %}
+        <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ participant.first_name }} {{ participant.last_name }}</td>
+          <td>{{ participant.email }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td>無</td>
+      </tr>
+    {% endif %}
   </table>
   <h3>活動投票者</h3>
   <table>
-    {% for voter in voters %}
-    <tr>
-      <td>{{ voter.first_name }} {{ voter.last_name }}</td>
-      <td>{{ voter.email }}</td>
-    </tr>
-    {% endfor %}
+    {% if voters|length > 0 %}
+      {% for voter in voters %}
+        <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ voter.first_name }} {{ voter.last_name }}</td>
+          <td>{{ voter.email }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td>無</td>
+      </tr>
+    {% endif %}
   </table>
   <h3>活動上傳者</h3>
   <table>
-    {% for uploader in uploaders %}
-    <tr>
-      <td>{{ uploader.first_name }} {{ uploader.last_name }}</td>
-      <td>{{ uploader.email }}</td>
-    </tr>
-    {% endfor %}
+    {% if uploaders|length > 0 %}
+      {% for uploader in uploaders %}
+        <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ uploader.first_name }} {{ uploader.last_name }}</td>
+          <td>{{ uploader.email }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td>無</td>
+      </tr>
+    {% endif %}
   </table>
 {% endblock %}
