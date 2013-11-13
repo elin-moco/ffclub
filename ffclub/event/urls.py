@@ -34,10 +34,4 @@ urlpatterns = patterns(
     url(r'^events/microfilm-vote/$', views.microfilm_vote, name='event.microfilm'),
     url(r'^events/microfilm-vote/video/(?P<video_id>[1-4])/$', views.microfilm_vote_video,
         name='event.microfilm.vote.video'),
-    # Admin views
-    url(r'^admin/event/(?P<type>event|campaign)/(?P<activity_id>\d+)/award/$', views.activity_award_prizes,
-        name='admin.activity.award.prizes'),
-    url(r'^admin/event/(?P<type>event|campaign)/(?P<activity_id>\d+)/export-winners/$', views.activity_export_winners,
-        name='admin.activity.export.winners'),
-
 )
