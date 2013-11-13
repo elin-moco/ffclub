@@ -13,12 +13,15 @@ import djcelery
 from django.utils.functional import lazy
 
 from funfactory.manage import ROOT, path
+from jinja2.environment import DEFAULT_FILTERS
+from ffclub.person.utils import blackout_name, blackout_email
 
 
 # Name of the top-level module where you put all your apps.
 # If you did not install Playdoh with the funfactory installer script
 # you may need to edit this value. See the docs about installing from a
 # clone.
+
 PROJECT_MODULE = 'ffclub'
 
 # Defines the views served for root URLs.
@@ -765,3 +768,6 @@ SOCIAL_AUTH_PIPELINE = (
 SHARE_FILE_PATH = 'share/'
 
 API_SECRET = 'hush'
+
+DEFAULT_FILTERS['blackout_name'] = blackout_name
+DEFAULT_FILTERS['blackout_email'] = blackout_email

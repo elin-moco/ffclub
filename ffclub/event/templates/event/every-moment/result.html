@@ -28,13 +28,19 @@
 
     <h3>第一名<br>恭喜獨得 Firefox OS 行動裝置 1 台、限量 USB 隨身碟 1 個</h3>
 <p></p>
-    (得獎人姓名)
+  <ul>
+    <li>{{ champion.winner.fullname|blackout_name }}<br>{{ champion.winner.email|blackout_email }}</li>
+  </ul>
 <p></p>
 
     <h3>前二十名<br>恭喜獲得 Mozilla 限量悠遊卡(空卡) 1 張、Firefox 限量潮帽 1 頂</h3>
 
 <p></p>
-    (得獎人名單)
+  <ul>
+    {% for award in popularAwards %}
+    <li>{{ award.winner.fullname|blackout_name }}<br>{{ award.winner.email|blackout_email }}</li>
+    {% endfor %}
+  </ul>
 <p></p>
 
     <h2 class="award">投票幸運獎</h2>
@@ -42,7 +48,11 @@
     <h3>共五十名<br>恭喜獲得 Firefox 購物袋 1個</h3>
 
 <p></p>
-    (得獎人名單)
+  <ul>
+    {% for award in luckyAwards %}
+    <li>{{ award.winner.fullname|blackout_name }}<br>{{ award.winner.email|blackout_email }}</li>
+    {% endfor %}
+  </ul>
 <p></p>
 
     <h3>本活動得奬者資格確認截止日期為 2013 年 11月 22 日晚上12 點，為加速贈品寄送時效，請得獎人把握時間儘速上網登錄得奬者資料！</h3>

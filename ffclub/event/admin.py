@@ -61,14 +61,14 @@ class ActivityAdmin(ModelAdmin):
 
         obj = self.get_object(request, unquote(object_id))
         object_name = force_unicode(opts.verbose_name)
-        participations = Participation.objects.filter(activity=obj).select_related('participant')
+        participations = Participation.objects.filter(activity=obj).prefetch_related('participant', 'participant__person')
         participants = []
         for participation in participations:
             if not participation.participant in participants:
                 participants += [participation.participant, ]
         uploads = ImageUpload.objects.filter(
             entity_id=obj.id,
-            content_type=ContentType.objects.get_for_model(self.model)).select_related('create_user').annotate(Count('votes')).order_by('-votes__count')
+            content_type=ContentType.objects.get_for_model(self.model)).prefetch_related('create_user', 'create_user__person').annotate(Count('votes')).order_by('-votes__count')
         uploaders = []
         uploadIds = []
         for upload in uploads:
@@ -77,7 +77,7 @@ class ActivityAdmin(ModelAdmin):
                 uploaders += [upload.create_user, ]
         votes = Vote.objects.filter(
             entity_id__in=uploadIds,
-            content_type=ContentType.objects.get(model='imageupload')).select_related('voter')
+            content_type=ContentType.objects.get(model='imageupload')).prefetch_related('voter', 'voter__person')
         voters = []
         for vote in votes:
             if not vote.voter in voters:
@@ -131,8 +131,8 @@ class ActivityAdmin(ModelAdmin):
                 self.message_user(request, u'已完成 %s 頒獎！' % award_name)
             else:
                 self.message_user(request, u'目前不支援此頒獎組合！請選擇正確的得獎角色和頒獎方式。')
-        popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).select_related('winner').order_by('order')
-        luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).select_related('winner').order_by('order')
+        popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
+        luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
         data = {
             'title': '頒獎典禮',
             'object_name': object_name,

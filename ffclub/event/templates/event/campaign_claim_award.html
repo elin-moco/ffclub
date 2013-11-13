@@ -26,7 +26,9 @@
   <div class="campaignBanner">
   </div>
   <div class="campaignClaimAward">
-  {% if registered %}
+  {% if not awarded %}
+    銘謝惠顧囉！請再接再勵！
+  {% elif registered %}
     登錄完成！感謝你的參與。
   {% elif campaign.status == 'result' %}
     {% if request.user.is_active %}

@@ -14,7 +14,7 @@ import random
 from django.utils import simplejson
 from django.utils.encoding import force_unicode
 import facebook
-from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation
+from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
@@ -181,8 +181,23 @@ def every_moment_exceed(request):
 
 
 def every_moment_result(request):
-    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
-    return render(request, 'event/every-moment/result.html', {'campaign': currentCampaign})
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug, status='result')
+    popularAwards = list(Award.objects.filter(name=u'最高人氣獎', activity=currentCampaign).prefetch_related('winner', 'winner__person').order_by('order'))
+    champion = popularAwards[0]
+    champion.winner.fullname = champion.winner.person.fullname if hasattr(champion.winner, 'person') else '%s %s' % (champion.winner.last_name, champion.winner.first_name)
+    popularAwards = popularAwards[1:]
+    for popularAward in popularAwards:
+        popularAward.winner.fullname = popularAward.winner.person.fullname if hasattr(popularAward.winner, 'person') else ('%s %s' % (popularAward.winner.last_name, popularAward.winner.first_name))
+    luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=currentCampaign).prefetch_related('winner', 'winner__person').order_by('order')
+    for luckyAward in luckyAwards:
+        luckyAward.winner.fullname = luckyAward.winner.person.fullname if hasattr(luckyAward.winner, 'person') else ('%s %s' % (luckyAward.winner.last_name, luckyAward.winner.first_name))
+    return render(request, 'event/every-moment/result.html',
+                  {
+                      'campaign': currentCampaign,
+                      'champion': champion,
+                      'popularAwards': popularAwards,
+                      'luckyAwards': luckyAwards,
+                  })
 
 
 def check_exceed_upload_times(user, campaign, max=5):
@@ -387,7 +402,9 @@ def event_register(request, event_slug):
 def campaign_claim_award(request, campaign_slug):
     currentCampaign = Campaign.objects.get(slug=campaign_slug, status=('result'))
     currentUser = auth.get_user(request)
-    data = {'campaign': currentCampaign}
+    currentAwards = Award.objects.filter(activity=currentCampaign, winner=currentUser)
+    awarded = currentAwards.exists()
+    data = {'campaign': currentCampaign, 'awarded': awarded}
     if request.method == 'POST':
         if not request.user.is_authenticated():
             raise PermissionDenied
@@ -401,6 +418,10 @@ def campaign_claim_award(request, campaign_slug):
             person = form.save(commit=False)
             if is_update:
                 person.save()
+                #TODO: update award status
+                for currentAward in currentAwards:
+                    currentAward.status = 'claimed'
+                    currentAward.save()
             else:
                 person.user = currentUser
                 person.save()

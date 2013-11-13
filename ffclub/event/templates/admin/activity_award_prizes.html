@@ -83,8 +83,15 @@
       {% for awarded in awarded_list %}
       <tr class="{% cycle 'odd' 'even' %}">
           <td>{{ awarded.order }}</td>
-          <td>{{ awarded.winner.first_name }} {{ awarded.winner.last_name }}</td>
+          {% if awarded.winner.person %}
+          <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
+          {% else %}
+          <td>{{ awarded.winner.last_name }} {{ awarded.winner.first_name }}</td>
+          {% endif %}
           <td>{{ awarded.winner.email }}</td>
+          <td>{{ awarded.winner.person.phone }}</td>
+          <td>{{ awarded.winner.person.address }}</td>
+          <td>{{ awarded.status }}</td>
       </tr>
       {% endfor %}
     </table>
@@ -95,7 +102,11 @@
     {% if participants|length > 0 %}
       {% for participant in participants %}
         <tr class="{% cycle 'odd' 'even' %}">
-          <td>{{ participant.first_name }} {{ participant.last_name }}</td>
+          {% if participant.person %}
+          <td>{{ participant.person.fullname }}</td>
+          {% else %}
+          <td>{{ participant.last_name }} {{ participant.first_name }}</td>
+          {% endif %}
           <td>{{ participant.email }}</td>
         </tr>
       {% endfor %}
@@ -110,7 +121,11 @@
     {% if voters|length > 0 %}
       {% for voter in voters %}
         <tr class="{% cycle 'odd' 'even' %}">
-          <td>{{ voter.first_name }} {{ voter.last_name }}</td>
+          {% if voter.person %}
+          <td>{{ voter.person.fullname }}</td>
+          {% else %}
+          <td>{{ voter.last_name }} {{ voter.first_name }}</td>
+          {% endif %}
           <td>{{ voter.email }}</td>
         </tr>
       {% endfor %}
@@ -125,7 +140,11 @@
     {% if uploaders|length > 0 %}
       {% for uploader in uploaders %}
         <tr class="{% cycle 'odd' 'even' %}">
-          <td>{{ uploader.first_name }} {{ uploader.last_name }}</td>
+          {% if uploader.person %}
+          <td>{{ uploader.person.fullname }}</td>
+          {% else %}
+          <td>{{ uploader.last_name }} {{ uploader.first_name }}</td>
+          {% endif %}
           <td>{{ uploader.email }}</td>
         </tr>
       {% endfor %}
