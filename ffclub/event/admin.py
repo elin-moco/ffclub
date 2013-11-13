@@ -14,6 +14,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.db import transaction
 from functools import update_wrapper
 from django.db.models import Max, Count
+import StringIO
+import csv
+from django.http import HttpResponse
 
 csrf_protect_m = method_decorator(csrf_protect)
 
@@ -152,23 +155,39 @@ class ActivityAdmin(ModelAdmin):
     @csrf_protect_m
     @transaction.commit_on_success
     def activity_export_winners(self, request, object_id, extra_context=None):
-        opts = self.model._meta
-        app_label = opts.app_label
-
         obj = self.get_object(request, unquote(object_id))
-        object_name = force_unicode(opts.verbose_name)
-        if request.POST:
-            obj_display = force_unicode(obj.title)
-            self.message_user(request, u'已從 %(name)s "%(obj)s" 匯出得獎名單！' %
-                                       {'name': force_unicode(opts.verbose_name), 'obj': force_unicode(obj_display)})
-        data = {
-            'title': '匯出得獎名單',
-            'object_name': object_name,
-            'object': obj,
-            'opts': opts,
-            'app_label': app_label,
-        }
-        return render(request, 'admin/activity_export_winners.html', data)
+        popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
+        luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
+        output = StringIO.StringIO()
+        writer = csv.writer(output)
+        writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '狀態'])
+        for popularAward in popularAwards:
+            winner = popularAward.winner
+            profile = winner.person if hasattr(winner, 'person') else None
+            row = ['最高人氣獎', ]
+            row += [popularAward.order, ]
+            row += [profile.fullname.encode('utf-8') if profile else '%s %s' % (winner.last_name.encode('utf-8'), winner.first_name.encode('utf-8')), ]
+            row += [profile.nickname.encode('utf-8') if profile else '']
+            row += [winner.email, ]
+            row += [profile.phone if profile else '']
+            row += [profile.address.encode('utf-8') if profile else '']
+            row += [popularAward.status, ]
+            writer.writerow(row)
+        for luckyAward in luckyAwards:
+            winner = luckyAward.winner
+            profile = winner.person if hasattr(winner, 'person') else None
+            row = ['投票幸運獎', ]
+            row += [luckyAward.order, ]
+            row += [profile.fullname.encode('utf-8') if profile else '%s %s' % (winner.last_name.encode('utf-8'), winner.first_name.encode('utf-8')), ]
+            row += [profile.nickname.encode('utf-8') if profile else '']
+            row += [winner.email, ]
+            row += [profile.phone if profile else '']
+            row += [profile.address.encode('utf-8') if profile else '']
+            row += [luckyAward.status, ]
+            writer.writerow(row)
+        response = HttpResponse(output.getvalue(), mimetype='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=every-moment-campaign-awards.csv'
+        return response
 
 
 class EventAdmin(ActivityAdmin):
