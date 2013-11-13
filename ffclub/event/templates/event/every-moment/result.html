@@ -29,7 +29,9 @@
     <h3>第一名<br>恭喜獨得 Firefox OS 行動裝置 1 台、限量 USB 隨身碟 1 個</h3>
 <p></p>
   <ul>
+    {% if champion.winner  %}
     <li>{{ champion.winner.fullname|blackout_name }}<br>{{ champion.winner.email|blackout_email }}</li>
+    {% endif %}
   </ul>
 <p></p>
 

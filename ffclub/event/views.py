@@ -183,11 +183,17 @@ def every_moment_exceed(request):
 def every_moment_result(request):
     currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug, status='result')
     popularAwards = list(Award.objects.filter(name=u'最高人氣獎', activity=currentCampaign).prefetch_related('winner', 'winner__person').order_by('order'))
-    champion = popularAwards[0]
-    champion.winner.fullname = champion.winner.person.fullname if hasattr(champion.winner, 'person') else '%s %s' % (champion.winner.last_name, champion.winner.first_name)
-    popularAwards = popularAwards[1:]
-    for popularAward in popularAwards:
-        popularAward.winner.fullname = popularAward.winner.person.fullname if hasattr(popularAward.winner, 'person') else ('%s %s' % (popularAward.winner.last_name, popularAward.winner.first_name))
+    if len(popularAwards) > 0:
+        champion = popularAwards[0]
+        champion.winner.fullname = champion.winner.person.fullname if hasattr(champion.winner, 'person') else '%s %s' % (champion.winner.last_name, champion.winner.first_name)
+    else:
+        champion = {}
+    if len(popularAwards) > 1:
+        popularAwards = popularAwards[1:]
+        for popularAward in popularAwards:
+            popularAward.winner.fullname = popularAward.winner.person.fullname if hasattr(popularAward.winner, 'person') else ('%s %s' % (popularAward.winner.last_name, popularAward.winner.first_name))
+    else:
+        popularAwards = []
     luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=currentCampaign).prefetch_related('winner', 'winner__person').order_by('order')
     for luckyAward in luckyAwards:
         luckyAward.winner.fullname = luckyAward.winner.person.fullname if hasattr(luckyAward.winner, 'person') else ('%s %s' % (luckyAward.winner.last_name, luckyAward.winner.first_name))
