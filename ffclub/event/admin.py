@@ -103,7 +103,6 @@ class ActivityAdmin(ModelAdmin):
                 awardedIds = [awardedWinner['winner_id'] for awardedWinner in awardedWinners]
                 popUploaders = []
                 for upload in uploads:
-                    print upload.votes__count
                     if upload.create_user.id not in awardedIds and upload.create_user not in popUploaders:
                         popUploaders += [upload.create_user, ]
                 for index, uploader in enumerate(popUploaders):

@@ -35,4 +35,22 @@ def blackout_email(email):
         emailSeq[break_index - 2] = '*'
     elif break_index > 1:
         emailSeq[break_index - 1] = '*'
+
+    if '.' in email:
+        dot_index = email.index('.', break_index)
+    else:
+        dot_index = len(email)
+
+    if dot_index - break_index > 7:
+        emailSeq[dot_index - 2] = '*'
+        emailSeq[dot_index - 3] = '*'
+        emailSeq[dot_index - 4] = '*'
+        emailSeq[dot_index - 5] = '*'
+    elif dot_index - break_index > 4:
+        emailSeq[dot_index - 1] = '*'
+        emailSeq[dot_index - 2] = '*'
+        emailSeq[dot_index - 3] = '*'
+    elif dot_index - break_index > 2:
+        emailSeq[dot_index - 1] = '*'
+
     return ''.join(emailSeq)
