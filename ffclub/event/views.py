@@ -21,6 +21,7 @@ from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
 from ffclub.person.forms import PersonForm, PersonEmailNicknameForm, AwardClaimForm
 from ffclub.person.models import Person
+from ffclub.person.views import genderMap
 from ffclub.upload.utils import generate_share_image
 from social_auth.db.django_models import UserSocialAuth
 
