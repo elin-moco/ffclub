@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 # from django.contrib.auth.models import User
@@ -15,6 +14,10 @@ from django.db import models
 #         verbose_name = verbose_name_plural = '使用者'
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from datetime import datetime
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
 
 
 class Person(models.Model):
@@ -41,6 +44,29 @@ class Person(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '個人資料'
+
+
+class Metadata(models.Model):
+    name = models.CharField(max_length=255, blank=True, default='')
+    value = models.CharField(max_length=255, blank=True, default='')
+    type = models.CharField(max_length=20,
+                            choices=(('number', '數字'), ('string', '字串'),
+                                     ('datetime', '日期時間'), ('file', '檔案')),
+                            default='string')
+    index = models.PositiveIntegerField()
+
+    create_user = models.ForeignKey(User, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
+
+    content_type = models.ForeignKey(ContentType, related_name='metadata')
+    entity_id = models.PositiveIntegerField()
+    entity_object = generic.GenericForeignKey('content_type', 'entity_id')
+
+    def __unicode__(self):
+        return unicode('%s = %s' % (self.name, self.value))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '擴充欄位'
 
 
 # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])
