@@ -58,15 +58,13 @@ class Metadata(models.Model):
     create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now)
 
-    content_type = models.ForeignKey(ContentType, related_name='metadata')
-    entity_id = models.PositiveIntegerField()
-    entity_object = generic.GenericForeignKey('content_type', 'entity_id')
+    owner = models.ForeignKey(User, related_name='metadata')
 
     def __unicode__(self):
         return unicode('%s = %s' % (self.name, self.value))
 
     class Meta:
-        verbose_name = verbose_name_plural = '擴充欄位'
+        verbose_name = verbose_name_plural = '個人資料擴充欄位'
 
 
 # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])

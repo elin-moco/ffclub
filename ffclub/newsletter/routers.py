@@ -15,7 +15,7 @@ class NewsletterRouter(object):
         """
         Attempts to write auth models go to auth_db.
         """
-        if model == 'newsletter':
+        if model._meta.app_label == 'newsletter':
             return 'newsletter'
         return None
 
@@ -23,8 +23,8 @@ class NewsletterRouter(object):
         """
         Allow relations if a model in the auth app is involved.
         """
-        if obj1 == 'newsletter' or \
-           obj2 == 'newsletter':
+        if obj1._meta.app_label == 'newsletter' or \
+           obj2._meta.app_label == 'newsletter':
             return True
         return None
 
@@ -34,7 +34,7 @@ class NewsletterRouter(object):
         database.
         """
         if db == 'newsletter':
-            return model == 'newsletter'
-        elif model == 'newsletter':
+            return model._meta.app_label == 'newsletter'
+        elif model._meta.app_label == 'newsletter':
             return False
         return None
