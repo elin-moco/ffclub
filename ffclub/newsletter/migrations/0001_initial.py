@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
-from south.db import db
+from south.db import dbs
 from south.v2 import SchemaMigration
 from django.db import models
 
@@ -9,31 +9,31 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Newsletter'
-        db.create_table(u'issue', (
+        dbs['newsletter'].create_table(u'issue', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.TextField')()),
             ('issue', self.gf('django.db.models.fields.DateField')()),
             ('volume', self.gf('django.db.models.fields.IntegerField')(default=1)),
             ('publish_date', self.gf('django.db.models.fields.DateField')(default=datetime.datetime.now)),
         ))
-        db.send_create_signal('newsletter', ['Newsletter'])
+        dbs['newsletter'].send_create_signal('newsletter', ['Newsletter'])
 
         # Adding model 'Subscription'
-        db.create_table(u'newsletter', (
+        dbs['newsletter'].create_table(u'newsletter', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('email', self.gf('django.db.models.fields.TextField')(db_column='u_email')),
             ('status', self.gf('django.db.models.fields.IntegerField')(default=1, db_column='u_status')),
             ('edit_date', self.gf('django.db.models.fields.DateField')(default=datetime.datetime.now)),
         ))
-        db.send_create_signal('newsletter', ['Subscription'])
+        dbs['newsletter'].send_create_signal('newsletter', ['Subscription'])
 
 
     def backwards(self, orm):
         # Deleting model 'Newsletter'
-        db.delete_table(u'issue')
+        dbs['newsletter'].delete_table(u'issue')
 
         # Deleting model 'Subscription'
-        db.delete_table(u'newsletter')
+        dbs['newsletter'].delete_table(u'newsletter')
 
 
     models = {

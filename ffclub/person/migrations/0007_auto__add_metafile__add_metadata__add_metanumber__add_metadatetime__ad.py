@@ -8,11 +8,17 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'MetaFile'
+        db.create_table('person_metafile', (
+            ('metadata_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['person.Metadata'], unique=True, primary_key=True)),
+            ('value', self.gf('django.db.models.fields.files.FileField')(max_length=255, db_index=True)),
+        ))
+        db.send_create_signal('person', ['MetaFile'])
+
         # Adding model 'Metadata'
         db.create_table('person_metadata', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
-            ('value', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
             ('type', self.gf('django.db.models.fields.CharField')(default='string', max_length=20)),
             ('index', self.gf('django.db.models.fields.PositiveIntegerField')()),
             ('create_user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='+', to=orm['auth.User'])),
@@ -21,10 +27,43 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('person', ['Metadata'])
 
+        # Adding model 'MetaNumber'
+        db.create_table('person_metanumber', (
+            ('metadata_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['person.Metadata'], unique=True, primary_key=True)),
+            ('value', self.gf('django.db.models.fields.FloatField')(default=0.0)),
+        ))
+        db.send_create_signal('person', ['MetaNumber'])
+
+        # Adding model 'MetaDatetime'
+        db.create_table('person_metadatetime', (
+            ('metadata_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['person.Metadata'], unique=True, primary_key=True)),
+            ('value', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
+        ))
+        db.send_create_signal('person', ['MetaDatetime'])
+
+        # Adding model 'MetaString'
+        db.create_table('person_metastring', (
+            ('metadata_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['person.Metadata'], unique=True, primary_key=True)),
+            ('value', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
+        ))
+        db.send_create_signal('person', ['MetaString'])
+
 
     def backwards(self, orm):
+        # Deleting model 'MetaFile'
+        db.delete_table('person_metafile')
+
         # Deleting model 'Metadata'
         db.delete_table('person_metadata')
+
+        # Deleting model 'MetaNumber'
+        db.delete_table('person_metanumber')
+
+        # Deleting model 'MetaDatetime'
+        db.delete_table('person_metadatetime')
+
+        # Deleting model 'MetaString'
+        db.delete_table('person_metastring')
 
 
     models = {
@@ -72,7 +111,26 @@ class Migration(SchemaMigration):
             'index': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'name': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'metadata'", 'to': "orm['auth.User']"}),
-            'type': ('django.db.models.fields.CharField', [], {'default': "'string'", 'max_length': '20'}),
+            'type': ('django.db.models.fields.CharField', [], {'default': "'string'", 'max_length': '20'})
+        },
+        'person.metadatetime': {
+            'Meta': {'object_name': 'MetaDatetime', '_ormbases': ['person.Metadata']},
+            'metadata_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['person.Metadata']", 'unique': 'True', 'primary_key': 'True'}),
+            'value': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'})
+        },
+        'person.metafile': {
+            'Meta': {'object_name': 'MetaFile', '_ormbases': ['person.Metadata']},
+            'metadata_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['person.Metadata']", 'unique': 'True', 'primary_key': 'True'}),
+            'value': ('django.db.models.fields.files.FileField', [], {'max_length': '255', 'db_index': 'True'})
+        },
+        'person.metanumber': {
+            'Meta': {'object_name': 'MetaNumber', '_ormbases': ['person.Metadata']},
+            'metadata_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['person.Metadata']", 'unique': 'True', 'primary_key': 'True'}),
+            'value': ('django.db.models.fields.FloatField', [], {'default': '0.0'})
+        },
+        'person.metastring': {
+            'Meta': {'object_name': 'MetaString', '_ormbases': ['person.Metadata']},
+            'metadata_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['person.Metadata']", 'unique': 'True', 'primary_key': 'True'}),
             'value': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'})
         },
         'person.person': {

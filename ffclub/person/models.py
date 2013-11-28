@@ -18,6 +18,7 @@ from datetime import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
+from ffclub import settings
 
 
 class Person(models.Model):
@@ -48,7 +49,6 @@ class Person(models.Model):
 
 class Metadata(models.Model):
     name = models.CharField(max_length=255, blank=True, default='')
-    value = models.CharField(max_length=255, blank=True, default='')
     type = models.CharField(max_length=20,
                             choices=(('number', '數字'), ('string', '字串'),
                                      ('datetime', '日期時間'), ('file', '檔案')),
@@ -65,6 +65,22 @@ class Metadata(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '個人資料擴充欄位'
+
+
+class MetaString(Metadata):
+    value = models.CharField(max_length=255, blank=True, default='', verbose_name='字串')
+
+
+class MetaNumber(Metadata):
+    value = models.FloatField(default=0.0, verbose_name='數字')
+
+
+class MetaDatetime(Metadata):
+    value = models.DateTimeField(default=datetime.now, verbose_name='時間')
+
+
+class MetaFile(Metadata):
+    value = models.FileField(upload_to=settings.FILE_PATH, max_length=255, db_index=True, verbose_name='檔案')
 
 
 # User.profile = property(lambda u: Person.objects.get_or_create(user=u)[0])
