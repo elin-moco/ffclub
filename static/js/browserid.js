@@ -10,6 +10,6 @@ $(document).ready(function() {
                 $e.val(assertion.toString());
                 $e.parent().submit();
             }
-        });
+        }, {'siteLogo': '/static/images/logo.png', 'termsOfService': '/tos', 'privacyPolicy': 'https://www.mozilla.org/en-US/privacy/'});
     });
 });

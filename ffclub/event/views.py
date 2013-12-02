@@ -425,13 +425,12 @@ def campaign_claim_award(request, campaign_slug):
             person = form.save(commit=False)
             if is_update:
                 person.save()
-                #TODO: update award status
-                for currentAward in currentAwards:
-                    currentAward.status = 'claimed'
-                    currentAward.save()
             else:
                 person.user = currentUser
                 person.save()
+            for currentAward in currentAwards:
+                currentAward.status = 'claimed'
+                currentAward.save()
             if not Participation.objects.filter(activity=currentCampaign, participant=currentUser).exists():
                 participation = Participation(activity=currentCampaign, participant=currentUser, status='attend')
                 participation.save()
