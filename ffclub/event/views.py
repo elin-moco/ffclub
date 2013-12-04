@@ -310,8 +310,7 @@ def apply(request):
 def demo(request, app_name=None, app_id=None):
     appslist = DemoApp.objects.order_by('pk').all()
     app_dict = range(appslist.count())
-    prevUrl = '#!'
-    nextUrl = '#!'
+    other_dict = range(int(appslist.count())-1)
     for i in range(appslist.count()):
         app_dict[i] = DemoApp.objects.get(pk=i+1)
         app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
@@ -328,7 +327,14 @@ def demo(request, app_name=None, app_id=None):
             nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
             prevAppTitle = DemoApp.objects.get(pk=prevAppId).en_title
             nextAppTitle = DemoApp.objects.get(pk=nextAppId).en_title
-            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle})
+            i = 0
+            for j in range(appslist.count()):
+                if j != (int(app_id)-1):
+                    other_dict[i] = (DemoApp.objects.get(pk=j+1))
+                    other_dict[i].en_title_fixed = DemoApp.objects.get(pk=j+1).en_title.replace('-',' ')
+                    i = i + 1
+                    #ther_dict.append(DemoApp.objects.get(1))
+            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
         else:
             return render(request, 'base/admin/404.html')
 
