@@ -6,7 +6,8 @@
 
 {% block base_css %}
   {{ css('attack-on-web') }}
-  {{ css('coming-soon') }}
+  {{ css('demo') }}
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 {% block head %}
 	{% include "event/attack-on-web/navigator.html" %}
@@ -20,10 +21,32 @@
 {% block content %}
 <div style="height:100%">
 <ul id="demo-app-list">
-	<li>1</li>
-	<li>2</li>
-	<li>3</li>
-	<li>4</li>
+	<li>
+		<div class="app-wrapper">
+			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+			<div class="app-title"><a href="#!">APP名稱</a></div>
+			<div class="app-description">
+				<div class="text">
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+		</div>
+	</li>
 </ul>
 </div>
 {% endblock %}

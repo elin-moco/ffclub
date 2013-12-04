@@ -307,9 +307,11 @@ def apply(request):
     return render(request, 'event/attack-on-web/apply.html')
 
 
-def demo(request):
-    return render(request, 'event/attack-on-web/demo.html')
-
+def demo(request, app_name=None):
+    if not app_name:
+        return render(request, 'event/attack-on-web/demo.html')
+    else:
+        return render(request, 'event/demo-app/index.html')
 
 def microfilm(request):
     filmList = range(4)
@@ -361,7 +363,6 @@ def microfilm_vote_video(request, video_id):
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
                    'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
-
 
 def event_register(request, event_slug):
     currentEvent = Event.objects.get(slug=event_slug, status__in=('preparing', 'enrolling', 'enrolled'))
