@@ -101,7 +101,7 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'}),
             'en_title': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'marketplace_url': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
+            'marketplace_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
             'status': ('django.db.models.fields.CharField', [], {'default': "'normal'", 'max_length': '20'})
         },
         'event.event': {

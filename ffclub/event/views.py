@@ -14,7 +14,7 @@ import random
 from django.utils import simplejson
 from django.utils.encoding import force_unicode
 import facebook
-from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award
+from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
@@ -307,11 +307,30 @@ def apply(request):
     return render(request, 'event/attack-on-web/apply.html')
 
 
-def demo(request, app_name=None):
+def demo(request, app_name=None, app_id=None):
+    appslist = DemoApp.objects.order_by('pk').all()
+    app_dict = range(appslist.count())
+    prevUrl = '#!'
+    nextUrl = '#!'
+    for i in range(appslist.count()):
+        app_dict[i] = DemoApp.objects.get(pk=i+1)
+        app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
     if not app_name:
-        return render(request, 'event/attack-on-web/demo.html')
+        return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
+    if not app_id:
+        return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
     else:
-        return render(request, 'event/demo-app/index.html')
+        targetApp = DemoApp.objects.get(pk=app_id)
+        otherApps = range(appslist.count()-1)
+        if(app_name.lower() == targetApp.en_title.lower()):
+            targetApp.en_title = targetApp.en_title.replace('-',' ')
+            prevAppId = appslist.count() if int(app_id) == 1 else int(app_id)-1
+            nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
+            prevAppTitle = DemoApp.objects.get(pk=prevAppId).en_title
+            nextAppTitle = DemoApp.objects.get(pk=nextAppId).en_title
+            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle})
+        else:
+            return render(request, 'base/admin/404.html')
 
 def microfilm(request):
     filmList = range(4)

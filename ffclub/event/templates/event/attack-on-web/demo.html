@@ -24,28 +24,46 @@
 <ul id="demo-app-list">
 	<li>
 		<div class="app-wrapper">
-			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
-			<div class="app-title"><a href="#!">APP名稱</a></div>
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[0].en_title, app_id=1) }}"><img title="{{applist[0].en_title}}" alt="{{applist[0].en_title}}" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[0].en_title, app_id=1) }}">{{applist[0].en_title_fixed}}</a></div>
 			<div class="app-description">
 				<div class="text">
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
+					{{applist[0].description}}
 				</div>
 			</div>
 		</div>
 	</li>
 	<li>
 		<div class="app-wrapper">
-			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[1].en_title, app_id=2) }}"><img title="{{applist[1].en_title}}" alt="{{applist[1].en_title}}" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[1].en_title, app_id=2) }}">{{applist[1].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[1].description}}
+				</div>
+			</div>
 		</div>
 	</li>
 	<li>
 		<div class="app-wrapper">
-			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[2].en_title, app_id=3) }}"><img title="{{applist[2].en_title}}" alt="{{applist[2].en_title}}" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[2].en_title, app_id=3) }}">{{applist[2].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[2].description}}
+				</div>
+			</div>
 		</div>
 	</li>
 	<li>
 		<div class="app-wrapper">
-			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[3].en_title, app_id=4) }}"><img title="{{applist[3].en_title}}" alt="{{applist[3].en_title}}" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[3].en_title, app_id=4) }}">{{applist[3].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[3].description}}
+				</div>
+			</div>
 		</div>
 	</li>
 </ul>

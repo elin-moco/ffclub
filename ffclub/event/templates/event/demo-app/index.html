@@ -23,17 +23,17 @@
 		<li id="demo-app-title">
 			<img title="" alt="" src="http://images.wikia.com/meme/images/c/c6/Challenge-denied-rage-face.jpg"></img>
 			<div class="app-title-box">
-				<h2>名稱</h2>
-				<h3>組別</h3>
+				<h2>{{thisApp.en_title}}</h2>
+				<h3>{{thisApp.ch_title}}</h3>
 				<div class="app-button-panel">
 					<a class="button" href="#!">安裝</a>
 					<a class="button" href="#!">投票</a>
 				</div>
 			</div>
 			<div class="app-navigation">
-				<a class="button" href="{{ url('event.attack.on.web.demo')}}"><i class="fa fa-th-large"></i></a>
-				<a class="button" href="#!">Prev</a>
-				<a class="button" href="#!">Next</a>
+				<a title="回到APP總覽" alt ="回到APP總覽" class="button" href="{{ url('event.attack.on.web.demo')}}"><i class="fa fa-th-large"></i></a>
+				<a title="前一個APP" alt ="前一個APP"class="button" href="{{ url('event.attack.on.web.demo.app', prevAppTitle, prevAppId) }}">Prev</a>
+				<a title="下一個APP" alt ="下一個APP"class="button" href="{{ url('event.attack.on.web.demo.app', nextAppTitle, nextAppId) }}">Next</a>
 			</div>
 		</li>
 		<li id="app-images">
@@ -52,10 +52,7 @@
 		</li>
 		<li id="app-description">
 			<h3>說明</h3>
-			<p>
-				 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu adipiscing dui. Nullam sit amet imperdiet magna. Sed ut egestas libero, non tincidunt dolor. In rutrum mollis quam, sit amet facilisis tortor feugiat at. Nulla ultrices feugiat imperdiet. Mauris malesuada porta nisl vitae adipiscing. Aliquam ac viverra odio. Nunc id tincidunt diam. Cras consequat dui eu facilisis egestas.
-
-Proin et augue vitae leo posuere varius eu nec sapien. Mauris sagittis pharetra feugiat. Aliquam elit dolor, tincidunt sagittis auctor in, consequat nec est. Nullam eget eleifend erat, in venenatis eros. Duis at aliquam justo. Proin sed est eget magna sodales sollicitudin. Aenean euismod faucibus cursus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in mi eros. In sagittis suscipit elit, quis viverra elit commodo ac. Etiam lacinia orci nibh, in gravida elit congue non. Proin tincidunt fermentum tellus nec scelerisque. Donec nunc massa, pretium quis orci vel, egestas ullamcorper diam. Aenean sollicitudin at ante consectetur facilisis. 
+			<p>{{thisApp.description}}
 			</p>
 		</li>
 		<li id="app-comment">
