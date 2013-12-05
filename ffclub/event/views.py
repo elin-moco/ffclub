@@ -313,7 +313,6 @@ def demo(request, app_name=None, app_id=None):
     other_dict = range(int(appslist.count())-1)
     for i in range(appslist.count()):
         app_dict[i] = DemoApp.objects.get(pk=i+1)
-        print app_dict[i].description
         app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
         #app_dict[i].description = unicode(app_dict[i].description , "utf-8")
     if not app_name:
@@ -364,7 +363,7 @@ def microfilm_vote(request):
     filmList = range(4)
     filmName = [u"謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"夢想，從現在開始"]
     filmYid = ["qoWb2ngNe9k", "oUm9iKAkHlQ", "SbSiKqgcg3s", "Qt0uy4VVurk"]
-    filmProducer = [];
+    filmProducer = []
     for film in filmList:
         n1 = random.randint(0, len(filmList)-1)
         n2 = random.randint(0, len(filmList)-1)
