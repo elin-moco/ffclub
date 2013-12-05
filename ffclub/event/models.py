@@ -134,3 +134,21 @@ class Video(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '影片'
+
+class DemoApp(models.Model):
+    en_title = models.CharField(max_length=255, blank=True, default='')
+    ch_title = models.CharField(max_length=255, blank=True, default='')
+    description = models.CharField(max_length=255, blank=True, default='')
+    marketplace_url = models.URLField(blank=True)
+    create_user = models.ForeignKey(User, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
+
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('reported', '被檢舉'), ('spam', '垃圾')),
+                              default='normal')
+
+    def __unicode__(self):
+        return unicode('%s: %s' % (self.en_title, self.status))
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'APP競賽'

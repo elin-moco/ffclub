@@ -14,7 +14,7 @@ import random
 from django.utils import simplejson
 from django.utils.encoding import force_unicode
 import facebook
-from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award
+from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp
 from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
@@ -307,9 +307,38 @@ def apply(request):
     return render(request, 'event/attack-on-web/apply.html')
 
 
-def demo(request):
-    return render(request, 'event/attack-on-web/demo.html')
-
+def demo(request, app_name=None, app_id=None):
+    appslist = DemoApp.objects.order_by('pk').all()
+    app_dict = range(appslist.count())
+    other_dict = range(int(appslist.count())-1)
+    for i in range(appslist.count()):
+        app_dict[i] = DemoApp.objects.get(pk=i+1)
+        print app_dict[i].description
+        app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
+        #app_dict[i].description = unicode(app_dict[i].description , "utf-8")
+    if not app_name:
+        return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
+    if not app_id:
+        return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
+    else:
+        targetApp = DemoApp.objects.get(pk=app_id)
+        otherApps = range(appslist.count()-1)
+        if(app_name.lower() == targetApp.en_title.lower()):
+            targetApp.en_title = targetApp.en_title.replace('-',' ')
+            prevAppId = appslist.count() if int(app_id) == 1 else int(app_id)-1
+            nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
+            prevAppTitle = DemoApp.objects.get(pk=prevAppId).en_title
+            nextAppTitle = DemoApp.objects.get(pk=nextAppId).en_title
+            i = 0
+            for j in range(appslist.count()):
+                if j != (int(app_id)-1):
+                    other_dict[i] = (DemoApp.objects.get(pk=j+1))
+                    other_dict[i].en_title_fixed = DemoApp.objects.get(pk=j+1).en_title.replace('-',' ')
+                    i = i + 1
+                    #ther_dict.append(DemoApp.objects.get(1))
+            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
+        else:
+            raise ObjectDoesNotExist
 
 def microfilm(request):
     filmList = range(4)
@@ -361,7 +390,6 @@ def microfilm_vote_video(request, video_id):
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
                    'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
-
 
 def event_register(request, event_slug):
     currentEvent = Event.objects.get(slug=event_slug, status__in=('preparing', 'enrolling', 'enrolled'))

@@ -599,6 +599,10 @@ MINIFY_BUNDLES = {
         ),
         'microfilm-vote':{
             'css/event/microfilm-vote.less'
+        },
+        'demo':{
+            'css/event/demo.less',
+            'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
         }
     },
     'js': {
