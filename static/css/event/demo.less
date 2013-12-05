@@ -35,6 +35,7 @@ ul#demo-app-list{
     -moz-box-sizing: border-box;
     div.app-wrapper{
       //padding: 5px;
+      width: 320px;
       padding: 10px;
       background: none repeat scroll 0 0 #FFFFFF;
       border-radius: 2px;
@@ -66,10 +67,16 @@ ul#demo-app-list{
         background: #FFF;
       }
     }
-    img{
+    .app-wrapper > a{
       width: 320px;
       height: 240px;
-      border: solid 1px #888888;
+      display: block;
+      overflow: hidden;
+    }
+    img{
+      width: 320px;
+      height: auto;
+      border: solid 1px #eee;
     }
   }
 }

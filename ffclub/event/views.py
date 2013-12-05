@@ -313,7 +313,9 @@ def demo(request, app_name=None, app_id=None):
     other_dict = range(int(appslist.count())-1)
     for i in range(appslist.count()):
         app_dict[i] = DemoApp.objects.get(pk=i+1)
+        print app_dict[i].description
         app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
+        #app_dict[i].description = unicode(app_dict[i].description , "utf-8")
     if not app_name:
         return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
     if not app_id:
@@ -336,7 +338,7 @@ def demo(request, app_name=None, app_id=None):
                     #ther_dict.append(DemoApp.objects.get(1))
             return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
         else:
-            return render(request, 'base/admin/404.html')
+            raise ObjectDoesNotExist
 
 def microfilm(request):
     filmList = range(4)
