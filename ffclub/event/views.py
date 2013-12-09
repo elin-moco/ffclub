@@ -328,6 +328,8 @@ def demo(request, app_name=None, app_id=None):
             nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
             prevAppTitle = DemoApp.objects.get(pk=prevAppId).en_title
             nextAppTitle = DemoApp.objects.get(pk=nextAppId).en_title
+            contentType = ContentType.objects.get(model='demoapp')
+            prefetch_votes((targetApp, ), contentType, auth.get_user(request) if request.user.is_active else None)
             i = 0
             for j in range(appslist.count()):
                 if j != (int(app_id)-1):
@@ -335,7 +337,7 @@ def demo(request, app_name=None, app_id=None):
                     other_dict[i].en_title_fixed = DemoApp.objects.get(pk=j+1).en_title.replace('-',' ')
                     i = i + 1
                     #ther_dict.append(DemoApp.objects.get(1))
-            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
+            return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'voteCount': targetApp.vote_count,'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
         else:
             raise ObjectDoesNotExist
 
