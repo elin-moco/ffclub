@@ -21,6 +21,7 @@
             );
         }
     });
+
     var total_width = 0;
     $('#image-gallery img').each(function(index){
         total_width += parseInt(this.width);
