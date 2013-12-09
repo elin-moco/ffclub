@@ -677,6 +677,9 @@ MINIFY_BUNDLES = {
         'microfilm-vote':{
             'js/main.js',
             'js/event/microfilm-vote.js'
+        },
+        'demo':{
+            'js/event/demo.js'
         }
     }
 }

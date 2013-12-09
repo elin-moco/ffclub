@@ -37,8 +37,12 @@
 				<h2>{{thisApp.en_title}}</h2>
 				<h3>{{thisApp.ch_title}}</h3>
 				<div class="app-button-panel">
-					<a class="button" href="{{thisApp.marketplace_url}}" target="_blank" title="_blank">安裝</a>
-					<!--<a class="button" href="#!">投票</a>!-->
+					<a class="button" href="{{thisApp.marketplace_url}}" target="_blank" title="_blank">試玩</a>
+					{% if request.user.is_active %}
+						<a class="vote button" data-vote-url="{{ url('generic.vote', type='demoapp', id=pk) }}">投票</a>
+					{% else %}
+						<a class="vote button loginLink" title="投票前請先登入">投票</a>
+					{% endif %}
 				</div>
 			</div>
 			<div class="app-navigation">
@@ -48,7 +52,8 @@
 			</div>
 		</li>
 		<li id="app-images">
-			<div class="image-panel-button">
+			<h3>{{thisApp.en_title}}&nbsp;截圖</h3>
+			<div id="image-moving-left" class="image-panel-button">
 				<i class="fa fa-caret-left"></i>
 			</div>
 			<div id="image-moving-right" class="image-panel-button">
@@ -61,12 +66,12 @@
 			</div>
 		</li>
 		<li id="app-description">
-			<h3>說明</h3>
+			<h3>{{thisApp.en_title}}&nbsp;說明</h3>
 			<p>{{thisApp.description}}
 			</p>
 		</li>
 		<li id="app-comment">
-			<h3>評論</h3>
+			<h3>給點意見</h3>
 			<div class="fb-comments" data-href="{{ request.build_absolute_uri() }}" data-width="960" data-numposts="5" data-colorscheme="light"></div>
 		</li>
 		<li id="app-other">
@@ -102,4 +107,5 @@
 
 {% block base_js %}
   {{ js('attack-on-web') }}
+  {{ js('demo') }}
 {% endblock %}
