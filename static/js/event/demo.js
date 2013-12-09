@@ -1,6 +1,6 @@
 "use strict";
 (function () {
-    $('.vote-control .vote').click(function (e) {
+    $('.vote').click(function (e) {
         e.preventDefault();
         var voteUrl = $(this).attr('data-vote-url');
         if (voteUrl) {

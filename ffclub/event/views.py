@@ -323,6 +323,7 @@ def demo(request, app_name=None, app_id=None):
         targetApp = DemoApp.objects.get(pk=app_id)
         otherApps = range(appslist.count()-1)
         if(app_name.lower() == targetApp.en_title.lower()):
+            targetApp.ori_title = targetApp.en_title
             targetApp.en_title = targetApp.en_title.replace('-',' ')
             prevAppId = appslist.count() if int(app_id) == 1 else int(app_id)-1
             nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
