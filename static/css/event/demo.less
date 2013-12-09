@@ -110,11 +110,13 @@ ul#demo-app-content-list{
   }
   li#demo-app-title{
     a.img-wrapper{
-      width: 320px;
+      width: auto;
+      padding-right: 10px;
       height: 240px;
       float: left;
       display: block;
       overflow: hidden;
+      text-align: left;
       img{
         width: auto;
         height: 240px;
@@ -181,6 +183,11 @@ ul#demo-app-content-list{
     overflow: hidden;
     text-align: left;
     position: relative;
+    min-height: 270px;
+    height: auto;
+    h3{
+      margin: 10px 0 10px 0;
+    }
     .image-panel-button{
       height: 240px;
       width: 30px;
@@ -210,12 +217,15 @@ ul#demo-app-content-list{
   }
   div#image-gallery{
     max-height: 240px;
+    height: 240px;
     overflow: hidden;
     //float: left;
     //white-space: nowrap;
     width: 9999px;
     z-index: 1;
+    position: absolute;
     img{
+      cursor: pointer;
       display: inline-block;
       text-align: left;
       float: left;
@@ -231,6 +241,7 @@ ul#demo-app-content-list{
     text-align: left;
     h3{
       font-style: normal;
+      margin: 10px 0 10px 0;
     }
   }
   li#app-other ul li{
@@ -251,7 +262,7 @@ ul#demo-app-content-list{
       margin-left: 10px;
     }
     a.img-wrapper{
-      width: 240px;
+      width: auto;
       height: 180px;
       display: block;
       overflow: hidden;
