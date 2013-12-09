@@ -43,10 +43,10 @@
 				<div class="app-button-panel">
 					<a class="button" href="{{thisApp.marketplace_url}}" target="_blank" title="_blank">試玩</a>
 					{% if request.user.is_active %}
-						<a class="vote button" data-vote-url="{{ url('generic.vote', type='demoapp', id=thisApp.pk) }}">投票 (<span class="voteCount">{{ voteCount }}</span>)
+						<a class="vote button" href="javascript: void(0)" data-vote-url="{{ url('generic.vote', type='demoapp', id=thisApp.pk) }}">投票 (<span class="voteCount">{{ voteCount }}</span>)
 						</a>
 					{% else %}
-						<a class="vote button loginLink" title="投票前請先登入">投票(<span class="voteCount">{{ voteCount }}</span>)
+						<a class="vote button loginLink" href="javascript: void(0)" title="投票前請先登入">投票(<span class="voteCount">{{ voteCount }}</span>)
 						</a>
 					{% endif %}
 				</div>
