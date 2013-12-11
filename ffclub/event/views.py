@@ -314,7 +314,8 @@ def demo(request, app_name=None, app_id=None):
     for i in range(appslist.count()):
         app_dict[i] = DemoApp.objects.get(pk=i+1)
         app_dict[i].en_title_fixed = app_dict[i].en_title.replace('-',' ')
-        #app_dict[i].description = unicode(app_dict[i].description , "utf-8")
+        if i == 3:
+            app_dict[i].en_title_fixed = 'Wake up!!!!'
     if not app_name:
         return render(request, 'event/attack-on-web/demo.html',{'applist':app_dict})
     if not app_id:
@@ -325,6 +326,8 @@ def demo(request, app_name=None, app_id=None):
         if(app_name.lower() == targetApp.en_title.lower()):
             targetApp.ori_title = targetApp.en_title
             targetApp.en_title = targetApp.en_title.replace('-',' ')
+            if int(app_id) == 4:
+                 targetApp.en_title = u"Wake up!!!!"
             prevAppId = appslist.count() if int(app_id) == 1 else int(app_id)-1
             nextAppId = 1 if int(app_id) == appslist.count() else int(app_id)+1
             prevAppTitle = DemoApp.objects.get(pk=prevAppId).en_title
@@ -336,6 +339,8 @@ def demo(request, app_name=None, app_id=None):
                 if j != (int(app_id)-1):
                     other_dict[i] = (DemoApp.objects.get(pk=j+1))
                     other_dict[i].en_title_fixed = DemoApp.objects.get(pk=j+1).en_title.replace('-',' ')
+                    if j == 3:
+                        other_dict[i].en_title_fixed = 'Wake up!!!!'
                     i = i + 1
                     #ther_dict.append(DemoApp.objects.get(1))
             return render(request, 'event/demo-app/index.html', {'thisApp':targetApp, 'voteCount': targetApp.vote_count,'prevAppId':prevAppId,'nextAppId':nextAppId,'prevAppTitle':prevAppTitle, 'nextAppTitle':nextAppTitle,'otherApps':other_dict})
