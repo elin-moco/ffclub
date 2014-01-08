@@ -1,12 +1,21 @@
 {% extends "base.html" %}
-{% set page_title = 'Firefox OS APP 校園創意競賽成果展示 - Mozilla Taiwan' %}
-{% set page_description = 'Firefox OS 的出現，給予有心開發行動 App 的 Apper (應用程式開發者) 一片無人踏入的新藍海外。由 Mozilla Taiwan 主辦的 Firefox OS APP 創意競賽將引領你搶先攻佔這片新市場。歡迎對於 APP 懷抱創意與夢想的你報名參加！' %}
+{% set page_title = 'Firefox OS APP 校園創意競賽參賽作品 (4)' %}
+{% set page_description = '十年寒窗無人問，一舉成名天下知！
+
+Firefox 校園大使經過半年的韜光養晦，即將以 Firefox OS APP 強勢回歸，帶領更多開發者一起進擊 APP 藍海市場！
+
+Firefox Marketplace 將擴大 APP 創業者的版圖。完全以 HTML5 技術打造的 Firefox OS，以 JavaScript、CSS 等技術搭配全新 WebAPI，讓 HTML5 的 應用程式擁有更多可能性。Firefox OS 為行動 APP 開發者開拓一個全新的戰場，而擅長 HTML5 的網站開發者也找到快速切入跨平台 APP 市場的方式。進擊的 Web 將席捲全球行動作業系統！
+
+一起支持 Firefox OS APP 和 Firefox 校園大使，投出你心目中的 APP 進擊的一票！
+
+You Are the APP of My Eye.' %}
 {% set page_keywords = 'Mozilla,Mozilla Taiwan,Firefox,Firefox OS,Firefox OS APP,APP,APPs,Web APP,application,創意競賽,開發者,行動裝置,smartphone,developer,iOS,Android,apper,firefox phone,app競賽' %}
 
 
 {% block base_css %}
   {{ css('attack-on-web') }}
-  {{ css('coming-soon') }}
+  {{ css('demo') }}
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 {% block head %}
 	{% include "event/attack-on-web/navigator.html" %}
@@ -14,33 +23,61 @@
 
 
 {% block banner %}
-  {% include "event/attack-on-web/social_navigator.html" %}
-  <div id="main-feature" class="banner">
-    <img id="main-feature-banner" src="/static/img/attack_on_web_main_feature.png" />
-  </div>
+  {% include "event/demo-app/social_navigator.html" %}
 {% endblock %}
 
 {% block content %}
-  <ul class="content-list">
-    <li id="main-context">
-      <h2 class="entry-title">成果展示</h2>
-      <h3 class="entry-title">即日起&dash;1/20 投票開跑，強力逗陣！</h3>
-      <p>
-        我們誠摯邀請您一起為「進撃のWeb：Firefox&nbsp;OS&nbsp;APP&nbsp;校園創意競賽」的所有參賽者大聲加油，透過您寶貴的一票，支持喜歡的作品並用力分享給最愛的朋友！
-      </p>
-      <p>
-        點選你喜歡的作品投票去
-      </p>
-      <p>創意組</p>
-      <p>實作組</p>
-    </li>
-    <li id="sidebar">
-      {% include "event/attack-on-web/sidebar.html" %}
-    </li>
-  </ul>
+<div style="height:100%">
+<center><h2>Firefox OS APP 校園創意競賽參賽作品&nbsp;(4)</h2></center>
+<ul id="demo-app-list">
+	<li>
+		<div class="app-wrapper">
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[0].en_title, app_id=1) }}"><img title="{{applist[0].en_title}}" alt="{{applist[0].en_title}}" src="/static/img/demoapp/{{applist[0].pk}}.png"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[0].en_title, app_id=1) }}">{{applist[0].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[0].description}}
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[1].en_title, app_id=2) }}"><img title="{{applist[1].en_title}}" alt="{{applist[1].en_title}}" src="/static/img/demoapp/{{applist[1].pk}}.png"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[1].en_title, app_id=2) }}">{{applist[1].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[1].description}}
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[2].en_title, app_id=3) }}"><img title="{{applist[2].en_title}}" alt="{{applist[2].en_title}}" src="/static/img/demoapp/{{applist[2].pk}}.png"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[2].en_title, app_id=3) }}">{{applist[2].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[2].description}}
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="app-wrapper">
+			<a href="{{ url('event.attack.on.web.demo.app', app_name=applist[3].en_title, app_id=4) }}"><img title="{{applist[3].en_title}}" alt="{{applist[3].en_title}}" src="/static/img/demoapp/{{applist[3].pk}}.png"></img></a>
+			<div class="app-title"><a href="{{ url('event.attack.on.web.demo.app', app_name=applist[3].en_title, app_id=4) }}">{{applist[3].en_title_fixed}}</a></div>
+			<div class="app-description">
+				<div class="text">
+					{{applist[3].description}}
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+</div>
 {% endblock %}
 
 {% block base_js %}
   {{ js('attack-on-web') }}
-  {{ js('coming-soon') }}
 {% endblock %}

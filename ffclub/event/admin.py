@@ -223,3 +223,10 @@ class VideoAdmin(ModelAdmin):
 
 
 admin.site.register(Video, VideoAdmin)
+
+class DemoAppAdmin(ModelAdmin):
+    search_fields = ['en_title', 'description']
+    list_filter = ['create_time', 'status']
+
+
+admin.site.register(DemoApp, DemoAppAdmin)
