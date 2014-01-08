@@ -10,6 +10,8 @@ $(document).ready(function() {
                 $e.val(assertion.toString());
                 $e.parent().submit();
             }
-        }, {'siteLogo': '/static/images/logo.png', 'termsOfService': '/tos', 'privacyPolicy': 'https://www.mozilla.org/en-US/privacy/'});
+        }, {'siteName': 'Firefox 活力軍', 'siteLogo': '/static/images/logo.png',
+            'termsOfService': '/tos', 'privacyPolicy': 'https://www.mozilla.org/en-US/privacy/',
+            'backgroundColor': '#F6F4EC'});
     });
 });
