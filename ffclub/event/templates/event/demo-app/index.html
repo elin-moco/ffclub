@@ -59,19 +59,19 @@
 				</div>
 			</div>
 			<div class="app-navigation">
-				<a title="回到APP總覽" alt ="回到APP總覽" class="button" href="{{ url('event.attack.on.web.demo')}}"><i class="fa fa-th-large"></i></a>
+				<a title="回到APP總覽" alt ="回到APP總覽" class="button" href="{{ url('event.attack.on.web.demo')}}">All</a>
 				<a title="前一個APP" alt ="前一個APP"class="button" href="{{ url('event.attack.on.web.demo.app', prevAppTitle, prevAppId) }}">Prev</a>
 				<a title="下一個APP" alt ="下一個APP"class="button" href="{{ url('event.attack.on.web.demo.app', nextAppTitle, nextAppId) }}">Next</a>
 			</div>
 		</li>
 		<li id="app-images">
 			<h3>{{thisApp.en_title}}&nbsp;截圖</h3>
-			<div id="image-moving-left" class="image-panel-button">
+			<!-- <div id="image-moving-left" class="image-panel-button">
 				<i class="fa fa-caret-left"></i>
 			</div>
 			<div id="image-moving-right" class="image-panel-button">
 				<i class="fa fa-caret-right"></i>
-			</div>
+			</div> -->
 			<div id="image-gallery">
 				<img title="{{thisApp.en_title}}" alt="{{thisApp.en_title}}" src="/static/img/demoapp/{{thisApp.pk}}-1.png"></img>
 				<img title="{{thisApp.en_title}}" alt="{{thisApp.en_title}}" src="/static/img/demoapp/{{thisApp.pk}}-2.png"></img>
@@ -120,5 +120,4 @@
 
 {% block base_js %}
   {{ js('attack-on-web') }}
-  {{ js('demo') }}
 {% endblock %}
