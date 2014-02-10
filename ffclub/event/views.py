@@ -169,6 +169,7 @@ def generic_vote(request, type, id):
     return HttpResponse(json, mimetype='application/x-javascript')
 
 everyMomentCampaignSlug = 'every-moment'
+lanternFestivalCampaignSlug = 'lantern-festival'
 
 
 def every_moment(request):
@@ -490,5 +491,23 @@ def campaign_claim_award(request, campaign_slug):
 
 
 def lantern_festival(request):
-    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
     return render(request, 'event/lantern-festival/index.html', {'campaign': currentCampaign})
+
+
+def lantern_claim_code(request):
+    currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
+    claimCodes = Award.objects.filter(name=u'產生認領碼', activity=currentCampaign, status='waiting')
+    if claimCodes.exists():
+        if 1 == claimCodes.count():
+            currentCampaign.status = 'end'
+            currentCampaign.save()
+        claimCode = claimCodes[0]
+        claimCode.status = 'awarded'
+        print claimCode.status
+        claimCode.save()
+        data = {'claim_code': claimCode.note}
+    else:
+        data = {'message': 'out of claim code.'}
+    json = simplejson.dumps(data)
+    return HttpResponse(json, mimetype='application/json')

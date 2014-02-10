@@ -43,7 +43,11 @@
     <div id="lanterns">
       <div id="heading">
         <h2>元宵點燈小遊戲</h2>
-        <span>請依序完成以下三個步驟，即可免費領取限量火狐燈籠</span>
+        {% if campaign.status == 'running' %}
+          <span>請依序完成以下三個步驟，即可免費領取限量火狐燈籠</span>
+        {% else %}
+          <span>火狐燈籠已發放完畢！<br>請依序完成以下三步驟，免費下載火狐燈籠檔案</span>
+        {% endif %}
       </div>
     </div>
     <div id="mini-game">
@@ -82,8 +86,13 @@
             <a id="share-myfx" class="submitButton" data-next="4" href="javascript:void(0);">分享文章</a>
           </div>
           <div id="step4" class="step">
-            <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
-            <p>您的火狐燈籠免費序號</p>
+            {% if campaign.status == 'running' %}
+              <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
+              <p>您的火狐燈籠免費序號：<span id="claim-code"></span></p>
+            {% else %}
+              <p>恭喜你點亮火狐元宵燈籠，並成為 Mozilla 捍衛網路自由的一份子！</p>
+              <p>目前火狐燈籠已全數發放完畢，請下載火狐燈籠檔案列印製作</p>
+            {% endif %}
             <a id="print-claim" class="submitButton" data-next="4" href="javascript:void(0);">友善列印</a>
             <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為 2014/2/14 10am~17pm，<br/>地點為 Mozilla Taiwan 辦公室，數量有限，請把握機會。</p>
           </div>

@@ -5,15 +5,20 @@
         $('#steps').attr('class', 'step' + next);
 
         $('#sparkle').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-            $('#steps').removeAttr('class');
+            var $steps = $('#steps');
+            $steps.removeAttr('class');
             $('#fox-lantern').css('background', 'url(/static/img/event/lantern-festival/fox-' + next + '.png)');
-            $('#steps').scrollTo('#step' + next, 1000, {axis: 'x'});
+            $steps.scrollTo('#step' + next, 1000, {axis: 'x'});
             $('#sparkle').unbind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
         });
-    }
-//    $('.submitButton').click(function() {
-//        nextStage($(this).attr('data-next'));
-//    });
+        if (4 == next) {
+            $.get('/campaign/lantern-festival/claim/', function(response) {
+                if ('claim_code' in response) {
+                    $('#claim-code').text(response.claim_code);
+                }
+            });
+        }
+    };
     $('#login-fb').click(function () {
         FB.getLoginStatus(function (response) {
             var page_id = "229264713799595";
@@ -50,9 +55,6 @@
         });
         FB.Event.subscribe('edge.create', function (response) {
             nextStage(2);
-        });
-        FB.Event.subscribe('xfbml.render', function (response) {
-            console.info(response);
         });
     };
     var firstLoad = true;
