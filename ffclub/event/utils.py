@@ -8,6 +8,8 @@ from ffclub.product.tasks import send_mail
 from ffclub.person.models import Person
 from ffclub.event.models import Vote
 from django.db.models import Count
+from random import choice
+import string
 
 log = commonware.log.getLogger('ffclub')
 
@@ -59,3 +61,7 @@ def send_photo_report_mail(from_name, to_name, photo_id):
                                   from_email=from_email, to=DEFAULT_NOTIFY_EMAIL)
     mail.attach_alternative(html_content, 'text/html')
     send_mail.delay(mail)
+
+
+def generate_claim_code(length=6):
+    return ''.join(choice(string.ascii_uppercase + string.digits) for x in range(length))

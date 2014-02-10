@@ -4,6 +4,7 @@
 {% if show_delete_link %}<p class="deletelink-box"><a href="delete/" class="deletelink">{% trans "Delete" %}</a></p>{% endif %}
 <p class="award-link-box"><a class="award-link" href="award/">頒獎</a></p>
 <p class="export-winners-link-box"><a class="export-winners-link" href="export-winners/">匯出得獎名單</a></p>
+<p class="claim-award-link-box"><a class="claim-award-link" href="claim-award/">領獎</a></p>
 {% if show_save_as_new %}<input type="submit" value="{% trans 'Save as new' %}" name="_saveasnew" {{ onclick_attrib }}/>{%endif%}
 {% if show_save_and_add_another %}<input type="submit" value="{% trans 'Save and add another' %}" name="_addanother" {{ onclick_attrib }} />{% endif %}
 {% if show_save_and_continue %}<input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue" {{ onclick_attrib }}/>{% endif %}

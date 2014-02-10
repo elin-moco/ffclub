@@ -1,0 +1,50 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% load url from future %}
+{% load admin_urls admin_static %}
+
+{% block extrastyle %}{{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "css/admin/activity_forms.less.css" %}"/>
+{% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst|escape }}</a>
+    &rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}">{{ object|truncatewords:"18" }}</a>
+    &rsaquo; 頒獎
+  </div>
+{% endblock %}
+
+{% block content %}
+  <p>輸入 {{ object_name }} "{{ object.title|escape }}" 的認領碼</p>
+  <form id="activity_award_form" action="" method="post">{% csrf_token %}
+    <ul>
+      <li>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        <label for="claim_code">認領碼：</label>
+        <input type="text" pattern="[A-z0-9]+" size="6" id="claim_code" name="claim_code" required/>
+      </li>
+      <li>
+        <input type="hidden" name="post" value="yes"/>
+        <input type="submit" value="認領"/>
+        <a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}" class="button">回到活動編輯頁</a>
+      </li>
+    </ul>
+  </form>
+  <h2>活動得獎名單</h2>
+    <h3>{{ award_name }}</h3>
+    <table>
+    {% for claim_code in claim_codes %}
+      <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ claim_code.order }}</td>
+          <td>{{ claim_code.note }}</td>
+          <td>{{ claim_code.status }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

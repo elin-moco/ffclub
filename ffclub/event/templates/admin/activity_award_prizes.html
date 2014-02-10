@@ -26,35 +26,13 @@
         <select id="award_name" name="award_name">
           <option value="最高人氣獎">最高人氣獎</option>
           <option value="投票幸運獎">投票幸運獎</option>
+          <option value="產生認領碼">產生認領碼</option>
         </select>
       </li>
-      {% comment %}
-        <li>
-          <label for="award_name">獎項名稱：</label>
-          <input type="text" id="award_name" name="award_name" placeholder="如：最高人氣獎" required/>
-        </li>
-        <li>
-          <label for="awarded_role">得獎角色：</label>
-          <select id="awarded_role" name="awarded_role">
-            <option value="participant">報名者</option>
-            <option value="voter">投票者</option>
-            <option value="uploader">上傳者</option>
-          </select>
-        </li>
-      {% endcomment %}
       <li>
         <label for="awarded_role">得獎人數：</label>
-        <input type="number" min="1" max="100" size="3" value="1" id="winner_amount" name="winner_amount" required/>
+        <input type="number" min="1" max="500" size="3" value="1" id="winner_amount" name="winner_amount" required/>
       </li>
-      {% comment %}
-        <li>
-          <label for="award_type">頒獎方式：</label>
-          <select id="award_type" name="award_type">
-            <option value="random">隨機</option>
-            <option value="votes">上傳得票數</option>
-          </select>
-        </li>
-      {% endcomment %}
       <li>
         <label>重覆處理：</label>
         <input type="radio" id="repeat-no" name="repeat" value="no" checked/>
@@ -83,14 +61,17 @@
       {% for awarded in awarded_list %}
       <tr class="{% cycle 'odd' 'even' %}">
           <td>{{ awarded.order }}</td>
-          {% if awarded.winner.person %}
-          <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
-          {% else %}
-          <td>{{ awarded.winner.last_name }} {{ awarded.winner.first_name }}</td>
+          {% if not awarded.no_profile %}
+            {% if awarded.winner.person %}
+            <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
+            {% else %}
+            <td>{{ awarded.winner.last_name }} {{ awarded.winner.first_name }}</td>
+            {% endif %}
+            <td>{{ awarded.winner.email }}</td>
+            <td>{{ awarded.winner.person.phone }}</td>
+            <td>{{ awarded.winner.person.address }}</td>
           {% endif %}
-          <td>{{ awarded.winner.email }}</td>
-          <td>{{ awarded.winner.person.phone }}</td>
-          <td>{{ awarded.winner.person.address }}</td>
+          <td>{{ awarded.note }}</td>
           <td>{{ awarded.status }}</td>
       </tr>
       {% endfor %}

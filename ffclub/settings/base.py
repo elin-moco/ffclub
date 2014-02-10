@@ -603,7 +603,10 @@ MINIFY_BUNDLES = {
         'demo':{
             'css/event/demo.less',
             'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
-        }
+        },
+        'lantern-festival': (
+            'css/event/lantern-festival.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -678,9 +681,13 @@ MINIFY_BUNDLES = {
             'js/main.js',
             'js/event/microfilm-vote.js'
         },
-        'demo':{
+        'demo': {
             'js/event/demo.js'
-        }
+        },
+        'lantern-festival': (
+            'js/libs/jquery.scrollTo.js',
+            'js/event/lantern-festival.js',
+        ),
     }
 }
 

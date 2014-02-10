@@ -487,3 +487,8 @@ def campaign_claim_award(request, campaign_slug):
                         initData['gender'] = genderMap[me['gender']]
             data['form'] = AwardClaimForm(initial=initData)
     return render(request, 'event/campaign_claim_award.html', data)
+
+
+def lantern_festival(request):
+    currentCampaign = Campaign.objects.get(slug=everyMomentCampaignSlug)
+    return render(request, 'event/lantern-festival/index.html', {'campaign': currentCampaign})

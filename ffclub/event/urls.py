@@ -19,6 +19,7 @@ urlpatterns = patterns(
     url(r'^(?P<type>event|campaign)/photos/(?P<photo_id>\d+)/vote/$', views.activity_photo_vote,
         name='activity.photo.vote'),
     url(r'^(?P<type>video|demoapp)/(?P<id>[1-4])/vote/$', views.generic_vote, name='generic.vote'),
+    url(r'^campaign/lantern-festival/$', views.lantern_festival, name='campaign.lantern.festival'),
     url(r'^campaign/every-moment/$', views.every_moment, name='campaign.every.moment'),
     url(r'^campaign/every-moment/upload/$', views.every_moment_upload, name='campaign.every.moment.upload'),
     url(r'^campaign/every-moment/exceed/$', views.every_moment_exceed, name='campaign.every.moment.exceed'),

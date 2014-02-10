@@ -17,6 +17,8 @@ from django.db.models import Max, Count
 import StringIO
 import csv
 from django.http import HttpResponse
+from ffclub.event.utils import generate_claim_code
+from django.core.exceptions import ValidationError
 
 csrf_protect_m = method_decorator(csrf_protect)
 
@@ -53,8 +55,46 @@ class ActivityAdmin(ModelAdmin):
             url(r'^(?P<object_id>\d+)/export-winners/$',
                 wrap(self.activity_export_winners),
                 name='admin.activity.export.winners'),
+            url(r'^(?P<object_id>\d+)/claim-award/$',
+                wrap(self.activity_claim_award),
+                name='admin.activity.claim.award'),
         )
         return my_urls + urls
+
+    @csrf_protect_m
+    @transaction.commit_on_success
+    def activity_claim_award(self, request, object_id, extra_context=None):
+        opts = self.model._meta
+        app_label = opts.app_label
+        obj = self.get_object(request, unquote(object_id))
+        object_name = force_unicode(opts.verbose_name)
+        error = None
+
+        claimCodes = Award.objects.filter(name=u'產生認領碼', activity=obj).order_by('order')
+        if request.POST:
+            claim_code = request.POST['claim_code']
+            claim = Award.objects.filter(name=u'產生認領碼', activity=obj, note=claim_code)
+            if claim.exists():
+                claim = claim[0]
+                if claim.status != 'claimed':
+                    claim.status = 'claimed'
+                    claim.save()
+                else:
+                    error = '認領碼已使用過'
+            else:
+                error = '認領碼不正確'
+
+        data = {
+            'title': '輸入認領碼',
+            'object_name': object_name,
+            'object': obj,
+            'opts': opts,
+            'app_label': app_label,
+            'error': error,
+            'claim_codes': claimCodes,
+        }
+        return render(request, 'admin/activity_claim_award.html', data)
+
 
     @csrf_protect_m
     @transaction.commit_on_success
@@ -131,10 +171,28 @@ class ActivityAdmin(ModelAdmin):
                     award = Award(name=u'投票幸運獎', order=index+startIndex, winner=voter, activity=obj)
                     award.save()
                 self.message_user(request, u'已完成 %s 頒獎！' % award_name)
+            elif award_name == u'產生認領碼':
+                if reaward == 'yes':
+                    Award.objects.filter(name=u'產生認領碼', activity=obj).delete()
+                    startIndex = 1
+                else:
+                    startIndex = Award.objects.filter(name=u'產生認領碼', activity=obj).aggregate(Max('order'))['order__max'] + 1
+                claim_codes = set()
+                while len(claim_codes) <= (winner_amount - startIndex):
+                    claim_codes.add(generate_claim_code())
+
+                for claim_code in claim_codes:
+                    award = Award(name=u'產生認領碼', winner=User.objects.get(pk=1), activity=obj, note=claim_code)
+                    award.save()
+                self.message_user(request, u'已完成 %s 頒獎！' % award_name)
+
             else:
                 self.message_user(request, u'目前不支援此頒獎組合！請選擇正確的得獎角色和頒獎方式。')
         popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
         luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
+        claimCodes = Award.objects.filter(name=u'產生認領碼', activity=obj).order_by('order')
+        for claimCode in claimCodes:
+            claimCode.no_profile = True
         data = {
             'title': '頒獎典禮',
             'object_name': object_name,
@@ -147,19 +205,19 @@ class ActivityAdmin(ModelAdmin):
             'awards': {
                 u'最高人氣獎': popularAwards,
                 u'投票幸運獎': luckyAwards,
+                u'產生認領碼': claimCodes,
             }
         }
         return render(request, 'admin/activity_award_prizes.html', data)
 
-    @csrf_protect_m
-    @transaction.commit_on_success
     def activity_export_winners(self, request, object_id, extra_context=None):
         obj = self.get_object(request, unquote(object_id))
         popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
         luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
+        claimCodes = Award.objects.filter(name=u'產生認領碼', activity=obj).order_by('order')
         output = StringIO.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '狀態'])
+        writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
         for popularAward in popularAwards:
             winner = popularAward.winner
             profile = winner.person if hasattr(winner, 'person') else None
@@ -170,6 +228,7 @@ class ActivityAdmin(ModelAdmin):
             row += [winner.email, ]
             row += [profile.phone if profile else '']
             row += [profile.address.encode('utf-8') if profile else '']
+            row += [popularAward.note, ]
             row += [popularAward.status, ]
             writer.writerow(row)
         for luckyAward in luckyAwards:
@@ -182,10 +241,22 @@ class ActivityAdmin(ModelAdmin):
             row += [winner.email, ]
             row += [profile.phone if profile else '']
             row += [profile.address.encode('utf-8') if profile else '']
+            row += [luckyAward.note, ]
             row += [luckyAward.status, ]
             writer.writerow(row)
+        for claimCode in claimCodes:
+            row = ['產生認領碼', ]
+            row += [claimCode.order, ]
+            row += ['', ]
+            row += ['', ]
+            row += ['', ]
+            row += ['', ]
+            row += ['', ]
+            row += [claimCode.note, ]
+            row += [claimCode.status, ]
+            writer.writerow(row)
         response = HttpResponse(output.getvalue(), mimetype='text/csv')
-        response['Content-Disposition'] = 'attachment; filename=every-moment-campaign-awards.csv'
+        response['Content-Disposition'] = 'attachment; filename=%s-campaign-awards.csv' % obj.slug
         return response
 
 

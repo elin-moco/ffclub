@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% block html_tag %}<html class="windows no-js">{% endblock %}
+{% block html_tag %}<html class="windows no-js {% block html_classes %}{% endblock %}">{% endblock %}
 <head>
 {% if not page_image %}
   {% set page_image = 'images/css/banner_default.jpg' %}

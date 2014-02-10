@@ -1,0 +1,81 @@
+"use strict";
+
+(function () {
+    var nextStage = function (next) {
+        $('#steps').attr('class', 'step' + next);
+
+        $('#sparkle').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+            $('#steps').removeAttr('class');
+            $('#fox-lantern').css('background', 'url(/static/img/event/lantern-festival/fox-' + next + '.png)');
+            $('#steps').scrollTo('#step' + next, 1000, {axis: 'x'});
+            $('#sparkle').unbind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
+        });
+    }
+//    $('.submitButton').click(function() {
+//        nextStage($(this).attr('data-next'));
+//    });
+    $('#login-fb').click(function () {
+        FB.getLoginStatus(function (response) {
+            var page_id = "229264713799595";
+            if (response && response.authResponse) {
+                var user_id = response.authResponse.userID;
+                var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
+                FB.Data.query(fql_query).wait(function (rows) {
+                    if (rows.length == 1 && rows[0].uid == user_id) {
+                        nextStage(2);
+                    }
+                });
+            } else {
+                FB.login(function (response) {
+                    if (response && response.authResponse) {
+                        var user_id = response.authResponse.userID;
+                        var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
+                        FB.Data.query(fql_query).wait(function (rows) {
+                            if (rows.length == 1 && rows[0].uid == user_id) {
+                                nextStage(2);
+                            }
+                        });
+                    }
+                }, {scope: 'user_likes'});
+            }
+        });
+    });
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '109615012545623',
+            status: true,
+            cookie: true,
+            xfbml: true,
+            oauth: true
+        });
+        FB.Event.subscribe('edge.create', function (response) {
+            nextStage(2);
+        });
+        FB.Event.subscribe('xfbml.render', function (response) {
+            console.info(response);
+        });
+    };
+    var firstLoad = true;
+    $('#subscription').load(function () {
+        if (!firstLoad) {
+            nextStage(3);
+        }
+        firstLoad = false;
+    });
+    $('#share-myfx').click(function () {
+        FB.ui(
+            {
+                method: 'feed',
+                link: 'http://myfirefox.com.tw/posts/20968/',
+            },
+            function (response) {
+                if (response && response.post_id) {
+                    nextStage(4);
+                }
+            }
+        );
+    });
+    $('#print-claim').click(function() {
+        window.print();
+    });
+})();

@@ -8,7 +8,6 @@ from django.contrib.contenttypes import generic
 
 from ffclub.upload.models import ImageUpload
 
-
 class Activity(models.Model):
     title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
     description = models.CharField(max_length=255, blank=True, default='', verbose_name='活動說明')

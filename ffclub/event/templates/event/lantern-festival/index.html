@@ -1,0 +1,101 @@
+{% set page_title = 'Firefox 元宵點燈' %}
+{% set page_description = '在充滿活力朝氣的馬年，Mozilla 為了感謝使用者的支持，邀請您進一步用行動加入打造網路光明未來的行列。請依步驟點亮 Firefox 火狐燈籠，為新的一年衝個吉利好彩頭，迎向光明的前途，狐狐生風！' %}
+{% set share_text = page_title %}
+
+{% extends "base.html" %}
+
+{% block html_classes %}
+  {{ (' lt-ie9' if LT_IE9 else '') +
+        (' lt-ie10' if LT_IE10 else '') +
+        (('status-'+ campaign.status) if campaign and campaign.status else '') }}
+{% endblock %}
+
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('lantern-festival') }}
+{% endblock %}
+{% block base_js %}
+  {{ js('lantern-festival') }}
+{% endblock %}
+
+{% block head %}
+  <header id="masthead">
+    <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+    {% include "navigator.html" %}
+  </header>
+{% endblock %}
+
+{% block banner %}
+  <div id="festival-banner">
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="curtain">
+    <div id="intro">
+      <p>Mozilla 十五年來致力於開創網路的光明未來，在全球擁有數億名 Firefox 愛好者，並受到志工社群的認同，共同打造亮眼的開放網路！</p>
+
+      <p>
+        在充滿活力朝氣的馬年，Mozilla 為了感謝使用者的支持，邀請您進一步用行動加入打造網路光明未來的行列。
+        請依步驟點亮 Firefox 火狐燈籠，為新的一年衝個吉利好彩頭，迎向光明的前途，狐狐生風！
+      </p>
+    </div>
+    <div id="lanterns">
+      <div id="heading">
+        <h2>元宵點燈小遊戲</h2>
+        <span>請依序完成以下三個步驟，即可免費領取限量火狐燈籠</span>
+      </div>
+    </div>
+    <div id="mini-game">
+      <div id="steps" class="step1">
+        <div id="step-scroller">
+          <div id="step1" class="step">
+            <p><strong class="step-title">步驟一：</strong></p>
+
+            <p>加入 Mozilla Taiwan 粉絲團，<br>讓你的社交生活充滿火狐的趣味</p>
+
+            <div class="fb-like-box" data-href="http://www.facebook.com/MozillaTaiwan" data-height="80"
+                 data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false"
+                 data-show-border="true"></div>
+            <p>若已按過讚，請按登入鈕進行驗證</p>
+            <a id="login-fb" class="submitButton" data-next="2" href="javascript:void(0);">登入驗證</a>
+          </div>
+          <div id="step2" class="step">
+            <p><strong class="step-title">步驟二：</strong></p>
+
+            <p>訂閱 Firefox 電子報，無時無刻掌握網路世界的第一手資訊</p>
+            <iframe id="subscription" border="0" width="100%" height="205"
+                    src="https://mozilla.com.tw/newsletter/subscribe/embed/"></iframe>
+          </div>
+          <div id="step3" class="step">
+            <p><strong class="step-title">步驟三：</strong></p>
+
+            <p>分享 MyFirefox 文章，成為科技生活萬事通</p>
+
+            <div class="myfx-post">
+              <div class="myfx-content">
+                <div class="myfx-title">Firefox Nightly 版本現可測試新的 Sync 功能</div>
+                <div class="myfx-description">Mozilla 已開始在 Firefox 每夜更新 (Nightly) 版上測試新的 Firefox Sync 同步功能。新設計的 Firefox Sync 可讓使用者在多款裝置之間，以完整的端點對端點加密 (End-to-end encryption) 方式，安全且輕鬆取得瀏覽資料 (包含書籤、密碼、已開啟的分頁)。而現在更能簡單設定相關服務並添增到多款裝置之上。</div>
+              </div>
+              <div class="myfx-thumb" width="100%" style="background: url(http://blog.mozilla.com.tw/wp-content/uploads/sync-logo.png) 20px 0 no-repeat; background-size: auto 100%;"></div>
+            </div>
+            <a id="share-myfx" class="submitButton" data-next="4" href="javascript:void(0);">分享文章</a>
+          </div>
+          <div id="step4" class="step">
+            <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
+            <p>您的火狐燈籠免費序號</p>
+            <a id="print-claim" class="submitButton" data-next="4" href="javascript:void(0);">友善列印</a>
+            <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為 2014/2/14 10am~17pm，<br/>地點為 Mozilla Taiwan 辦公室，數量有限，請把握機會。</p>
+          </div>
+        </div>
+      </div>
+      <div id="fox-lantern">
+
+      </div>
+      <div id="lead">
+        <div id="sparkle">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

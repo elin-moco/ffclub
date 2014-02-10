@@ -4,18 +4,27 @@
     float: left;
   }
 
+  p.export-winners-link-box {
+    float: left;
+  }
+
+  p.claim-award-link-box {
+    float: left;
+  }
+
   .award-link {
     background: url(/static/img/admin/trophy_icon.png) 0 50% no-repeat;
     padding-left: 20px;
     color: #000000;
   }
 
-  p.export-winners-link-box {
-    float: left;
-  }
-
   .export-winners-link {
     background: url(/static/img/admin/crown_icon.png) 0 50% no-repeat;
+    padding-left: 20px;
+    color: #000000;
+  }
+  .claim-award-link {
+    background: url(/static/img/admin/gift_icon.png) 0 50% no-repeat;
     padding-left: 20px;
     color: #000000;
   }
@@ -42,6 +51,31 @@
     }
     input, select {
       display: inline-block;
+    }
+    .error {
+      margin-left: 100px;
+      background-color: #AA1401;
+      border-radius: 4px 4px 4px 4px;
+      box-shadow: 0 1px #666666;
+      color: #FFFFFF;
+      font-weight: bold;
+      line-height: 16px;
+      max-width: 275px;
+      padding: 10px 15px;
+      position: relative;
+      text-align: center;
+      text-shadow: 0 1px #333333;
+      background-image: -moz-linear-gradient(center top , rgba(218, 81, 50, 0.9), #A91300);
+      &:after {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #A91300;
+        content: " ";
+        left: 15px;
+        position: absolute;
+        top: 100%;
+        visibility: visible;
+      }
     }
   }
   table {
