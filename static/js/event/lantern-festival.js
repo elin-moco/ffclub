@@ -47,13 +47,6 @@
         });
     });
     window.fbAsyncInit = function () {
-        FB.init({
-            appId: '109615012545623',
-            status: true,
-            cookie: true,
-            xfbml: true,
-            oauth: true
-        });
         FB.Event.subscribe('edge.create', function (response) {
             nextStage(2);
         });
