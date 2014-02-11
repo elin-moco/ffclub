@@ -120,15 +120,16 @@ iframe {
     h2 {
       font-size: 48px;
       color: #C13832;
-      margin: 0 0 14px 0;
+      margin: 0;
     }
     span {
       color: #000000;
       font-weight: bold;
+      line-height: 14px;
     }
     #heading {
       display: inline-block;
-      margin: 0 14px 0 16px;
+      margin: 0 10px 0 12px;
     }
     &:before {
       content: "";
@@ -146,7 +147,11 @@ iframe {
     }
   }
   .myfx-post {
+    display: none;
     background: #EAEFF2;
+    text-decoration: none;
+    color: #4D4E53;
+
     .myfx-content {
       display: inline-block;
       width: 200px;
@@ -159,10 +164,12 @@ iframe {
       font-size: 14px;
       font-weight: bold;
       padding-bottom: 12px;
+      color: #4D4E53;
     }
     .myfx-description {
       display: inline-block;
       font-size: 11px;
+      color: #4D4E53;
     }
     .myfx-thumb {
       display: inline-block;
@@ -208,6 +215,12 @@ iframe {
       p.notice {
         font-size: 14px;
         color: #C13832;
+        a {
+          font-size: 14px;
+          color: #C13832;
+          font-weight: bold;
+          text-decoration: underline;
+        }
       }
     }
   }

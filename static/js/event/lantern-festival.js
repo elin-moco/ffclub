@@ -4,6 +4,7 @@
     var page_id = "229264713799595";
     var pageLiked = false;
     var subscriber = '';
+    $('.myfx-post').eq(Math.floor((Math.random()*1000)%3)).css('display', 'block');
     var nextStage = function (next) {
         $('#steps').attr('class', 'step' + next);
         $.scrollTo('#fox-lantern');

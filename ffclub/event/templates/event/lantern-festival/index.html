@@ -44,7 +44,7 @@
       <div id="heading">
         <h2>元宵點燈小遊戲</h2>
         {% if campaign.status == 'running' %}
-          <span>請依序完成以下三個步驟，即可免費領取限量火狐燈籠</span>
+          <span><br/>請依序完成以下三個步驟，即可免費領取限量火狐燈籠</span>
         {% else %}
           <span>火狐燈籠已發放完畢！<br>請依序完成以下三步驟，免費下載火狐燈籠檔案</span>
         {% endif %}
@@ -75,14 +75,27 @@
             <p><strong class="step-title">步驟三：</strong></p>
 
             <p>分享 MyFirefox 文章，成為科技生活萬事通</p>
-
-            <div class="myfx-post">
+            <a class="myfx-post" href="http://myfirefox.com.tw/posts/20970/">
               <div class="myfx-content">
-                <div class="myfx-title">Firefox Nightly 版本現可測試新的 Sync 功能</div>
-                <div class="myfx-description">Mozilla 已開始在 Firefox 每夜更新 (Nightly) 版上測試新的 Firefox Sync 同步功能。新設計的 Firefox Sync 可讓使用者在多款裝置之間，以完整的端點對端點加密 (End-to-end encryption) 方式，安全且輕鬆取得瀏覽資料 (包含書籤、密碼、已開啟的分頁)。而現在更能簡單設定相關服務並添增到多款裝置之上。</div>
+                <div class="myfx-title">隆重介紹 Mozilla Firefox Accounts</div>
+                <div class="myfx-description">Mozilla 是受大家極度信賴的非營利組織，時時推動網路的開放、創新、機會並作為己身使命。我們不斷研發開放的技術，藉以推動所有人都能從中受益的標準，進而讓 Web 成為業界與開發者都適用的平台。我們專心研發有趣、豐富、新奇、強大的產品，讓大家都能簡單上手且愛不釋手，確實體現我們使命的價值。</div>
               </div>
-              <div class="myfx-thumb" width="100%" style="background: url(https://blog.mozilla.com.tw/wp-content/uploads/sync-logo.png) 20px 0 no-repeat; background-size: auto 100%;"></div>
-            </div>
+              <div class="myfx-thumb" width="100%" style="background: url(https://tech.mozilla.com.tw/wp-content/uploads/2013/12/nanoblock-firefox-preview.jpg) center no-repeat; background-size: 100% auto;"></div>
+            </a>
+            <a class="myfx-post" href="http://myfirefox.com.tw/posts/20981/">
+              <div class="myfx-content">
+                <div class="myfx-title">江湖一點訣，說穿不值錢——平台營運四口訣</div>
+                <div class="myfx-description">「我是經營二手OO交易平台的，要怎麼樣才可以讓更多人來運用我的平台？」 「我在做的是OO類資訊的平台，網友可以來Po文，讀者可以跟他留言互動，但是怎麼樣他們來用呢？」 也許因</div>
+              </div>
+              <div class="myfx-thumb" width="100%" style="background: url(http://static.inside.com.tw/wp-content/uploads/2014/02/%E6%8E%A8%E8%83%8C%E5%9C%96.jpg) center no-repeat; background-size: 100% auto;"></div>
+            </a>
+            <a class="myfx-post" href="http://myfirefox.com.tw/posts/20203/">
+              <div class="myfx-content">
+                <div class="myfx-title">一起動手做吧！用迷你積木拼出一隻小火狐</div>
+                <div class="myfx-description">難得破例不講技術，耶誕節快到了，應該要來點輕鬆的。 狐迷們，今天我們一起用積木來做一隻小火狐吧！首先要準備的積木材料如下圖： 底下開始詳細的圖文分解步驟，只要一步步照著做，很快就可以完成你的積木小火狐囉！ 1. 首先照上圖把小火狐的頭組裝起來，注意第四步最左邊的方塊底下要裝鼻子（如圖 3 ）， 所以不要讓底部的卡榫擋住中間，否則鼻子會裝不上去。</div>
+              </div>
+              <div class="myfx-thumb" width="100%" style="background: url(https://blog.mozilla.com.tw/wp-content/uploads/sync-logo.png) center no-repeat; background-size: 100% auto;"></div>
+            </a>
             <a id="share-myfx" class="submitButton" data-next="4" href="javascript:void(0);">分享文章</a>
           </div>
           <div id="step4" class="step">
@@ -90,7 +103,7 @@
               <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
               <p>您的火狐燈籠免費序號：<span id="claim-code"></span></p>
               <a id="print-claim" class="submitButton" data-next="4" href="javascript:void(0);">友善列印</a>
-              <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為 2014/2/13~14 10am~17pm，<br/>地點為 Mozilla Taiwan 辦公室，數量有限，請把握機會。</p>
+              <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為<br/> 2014/2/13~14 10am~17pm，<br/>地點為 <a href="http://mozilla.com.tw/about/contact/#address">Mozilla Taiwan 辦公室</a>，數量有限，請把握機會。</p>
             {% else %}
               <p>恭喜你點亮火狐元宵燈籠，並成為 Mozilla 捍衛網路自由的一份子！</p>
               <p>目前火狐燈籠已全數發放完畢，請下載火狐燈籠檔案列印製作</p>
