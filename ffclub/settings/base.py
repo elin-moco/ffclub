@@ -607,6 +607,9 @@ MINIFY_BUNDLES = {
         'lantern-festival': (
             'css/event/lantern-festival.less',
         ),
+        'lantern-festival-print': (
+            'css/event/lantern-festival-print.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
