@@ -77,10 +77,8 @@
         //run function//
         if (e.data) {
             var segments = e.data.split('=');
-            console.info(e.data);
             if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
                 subscriber = segments[1];
-                console.info(subscriber);
                 nextStage(3);
             }
         }
