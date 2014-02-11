@@ -4,7 +4,8 @@
     var page_id = "229264713799595";
     var pageLiked = false;
     var subscriber = '';
-    $('.myfx-post').eq(Math.floor((Math.random()*1000)%3)).css('display', 'block');
+    var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%3));
+    randomPost.css('display', 'block');
     var nextStage = function (next) {
         $('#steps').attr('class', 'step' + next);
         $.scrollTo('#fox-lantern');
@@ -88,7 +89,7 @@
         FB.ui(
             {
                 method: 'feed',
-                link: 'http://myfirefox.com.tw/posts/20968/',
+                link: randomPost.attr('href'),
             },
             function (response) {
                 if (response && response.post_id) {

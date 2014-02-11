@@ -103,17 +103,17 @@
               <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
               <p>您的火狐燈籠免費序號：<span id="claim-code"></span></p>
               <a id="print-claim" class="submitButton" data-next="4" href="javascript:void(0);">友善列印</a>
-              <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為<br/> 2014/2/13~14 10am~17pm，<br/>地點為 <a href="http://mozilla.com.tw/about/contact/#address">Mozilla Taiwan 辦公室</a>，數量有限，請把握機會。</p>
+              <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為<br/> 2014/2/13~14 10am~17pm，<br/>地點為 <a target="_blank" href="http://mozilla.com.tw/about/contact/#address">Mozilla Taiwan 辦公室</a>，數量有限，請把握機會。</p>
             {% else %}
               <p>恭喜你點亮火狐元宵燈籠，並成為 Mozilla 捍衛網路自由的一份子！</p>
               <p>目前火狐燈籠已全數發放完畢，請下載火狐燈籠檔案列印製作</p>
-              <a id="download-lantern" class="submitButton" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載製作檔</a>
+              <a id="download-lantern" class="submitButton" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載燈籠 DIY</a>
             {% endif %}
           </div>
         </div>
       </div>
       <div id="fox-lantern">
-        <a class="button download-button" target="_blank" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載製作檔</a>
+        <a class="button download-button" target="_blank" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載燈籠 DIY</a>
         <a class="button share-button" href="javascript:void(0);">分享</a>
       </div>
       <div id="lead">
@@ -124,7 +124,7 @@
   </div>
   <div id="popup">
     <img id="fox-lantern-large" src="/static/img/event/lantern-festival/firefox-lantern.png"/>
-    <a class="button download-button" target="_blank" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載製作檔</a>
+    <a class="button download-button" target="_blank" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載燈籠 DIY</a>
     <a class="button share-button" href="javascript:void(0);">分享</a>
   </div>
 {% endblock %}
