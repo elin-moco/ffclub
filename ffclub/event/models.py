@@ -105,6 +105,7 @@ class Award(models.Model):
     order = models.IntegerField(default=0, verbose_name='得獎順位')
     note = models.CharField(max_length=255, blank=True, default='')
     winner = models.ForeignKey(User, related_name='+', verbose_name='得獎者')
+    winner_extra = models.CharField(max_length=255, blank=True, default='')
     activity = models.ForeignKey(Activity, related_name='+')
     status = models.CharField(max_length=20,
                               choices=(('waiting', '待確認'), ('claimed', '已確認'), ('awarded', '已頒發')),

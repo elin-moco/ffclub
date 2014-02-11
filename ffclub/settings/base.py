@@ -685,6 +685,7 @@ MINIFY_BUNDLES = {
             'js/event/demo.js'
         },
         'lantern-festival': (
+            'js/libs/index.js',
             'js/libs/jquery.scrollTo.js',
             'js/event/lantern-festival.js',
         ),

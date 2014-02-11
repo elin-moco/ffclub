@@ -490,24 +490,28 @@ def campaign_claim_award(request, campaign_slug):
     return render(request, 'event/campaign_claim_award.html', data)
 
 
-def lantern_festival(request):
+def lantern_festival(request, subpath=''):
     currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
     return render(request, 'event/lantern-festival/index.html', {'campaign': currentCampaign})
 
 
 def lantern_claim_code(request):
     currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
+    subscriber = request.GET['subscriber']
+    existing = Award.objects.filter(name=u'產生認領碼', activity=currentCampaign, winner_extra=subscriber)
     claimCodes = Award.objects.filter(name=u'產生認領碼', activity=currentCampaign, status='waiting')
-    if claimCodes.exists():
+    if existing.exists():
+        data = {'message': 'already.claimed', 'claim_code': existing[0].note}
+    elif claimCodes.exists():
         if 1 == claimCodes.count():
             currentCampaign.status = 'end'
             currentCampaign.save()
         claimCode = claimCodes[0]
+        claimCode.winner_extra = subscriber
         claimCode.status = 'awarded'
-        print claimCode.status
         claimCode.save()
         data = {'claim_code': claimCode.note}
     else:
-        data = {'message': 'out of claim code.'}
+        data = {'message': 'out.of.claim.code'}
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/json')
