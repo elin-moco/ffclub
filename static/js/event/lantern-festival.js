@@ -1,6 +1,8 @@
 "use strict";
 
 (function () {
+    var page_id = "229264713799595";
+    var pageLiked = false;
     var subscriber = '';
     var nextStage = function (next) {
         $('#steps').attr('class', 'step' + next);
@@ -21,34 +23,38 @@
         }
     };
     $('#login-fb').click(function () {
+        if (pageLiked) {
+            nextStage(2);
+        }
+        else {
+            FB.login(function (response) {
+                if (response && response.authResponse) {
+                    var user_id = response.authResponse.userID;
+                    var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
+                    FB.Data.query(fql_query).wait(function (rows) {
+                        if (rows.length == 1 && rows[0].uid == user_id) {
+                            nextStage(2);
+                        }
+                    });
+                }
+            }, {scope: 'user_likes'});
+        }
+    });
+    window.fbAsyncInit = function () {
+        FB.Event.subscribe('edge.create', function (response) {
+            nextStage(2);
+        });
         FB.getLoginStatus(function (response) {
-            var page_id = "229264713799595";
             if (response && response.authResponse) {
                 var user_id = response.authResponse.userID;
                 var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
                 FB.Data.query(fql_query).wait(function (rows) {
                     if (rows.length == 1 && rows[0].uid == user_id) {
-                        nextStage(2);
+                        pageLiked = true;
+//                        nextStage(2);
                     }
                 });
-            } else {
-                FB.login(function (response) {
-                    if (response && response.authResponse) {
-                        var user_id = response.authResponse.userID;
-                        var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
-                        FB.Data.query(fql_query).wait(function (rows) {
-                            if (rows.length == 1 && rows[0].uid == user_id) {
-                                nextStage(2);
-                            }
-                        });
-                    }
-                }, {scope: 'user_likes'});
             }
-        });
-    });
-    window.fbAsyncInit = function () {
-        FB.Event.subscribe('edge.create', function (response) {
-            nextStage(2);
         });
     };
     /*
