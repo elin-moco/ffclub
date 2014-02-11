@@ -22,7 +22,23 @@
 {% block head %}
   <header id="masthead">
     <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
-    {% include "navigator.html" %}
+<nav id="nav-main" role="navigation">
+  <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
+  <ul id="nav-main-menu" role="menubar">
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="推廣 Firefox" href="{{ MOCO_URL }}/firefox/features/" tabindex="0">Firefox 產品特色</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="推廣 Firefox" href="{{ MOCO_URL }}/community/" tabindex="0">加入 Mozilla 社群</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="推廣 Firefox" href="{{ MOCO_URL }}/about/" tabindex="0">認識 Mozilla</a>
+    </li>
+    <li id="nav-main-products" role="menuitem" class="topMenu first">
+      <a title="推廣 Firefox" href="{{ MOCO_URL }}/firefox/download/" tabindex="0">下載 Firefox</a>
+    </li>
+  </ul>
+</nav>
   </header>
 {% endblock %}
 
