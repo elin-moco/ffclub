@@ -1,5 +1,6 @@
 {% set page_title = 'Firefox 元宵點燈' %}
 {% set page_description = '在充滿活力朝氣的馬年，Mozilla 為了感謝使用者的支持，邀請您進一步用行動加入打造網路光明未來的行列。請依步驟點亮 Firefox 火狐燈籠，為新的一年衝個吉利好彩頭，迎向光明的前途，狐狐生風！' %}
+{% set page_image = 'img/event/lantern-festival/firefox-lantern.png' %}
 {% set share_text = page_title %}
 
 {% extends "base.html" %}
@@ -9,6 +10,8 @@
         (' lt-ie10' if LT_IE10 else '') +
         (('status-'+ campaign.status) if campaign and campaign.status else '') }}
 {% endblock %}
+
+{% block canonical %}{{ request.build_absolute_uri(url('campaign.lantern.festival', '')) }}{% endblock %}
 
 {% block base_css %}
   {{ css('base') }}

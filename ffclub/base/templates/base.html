@@ -34,7 +34,7 @@
   {% endif %}
   <title>{% block title %}{{ page_title }}{% endblock %}</title>
   {% if request %}
-    <link rel="canonical" href="{{ request.build_absolute_uri() }}"/>
+    <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri() }}{% endblock %}"/>
   {% endif %}
   <link rel="shortcut icon" href="//mozilla.com/favicon.ico"/>
   <!--[if lte IE 8]>
