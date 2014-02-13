@@ -38,7 +38,7 @@ class Person(models.Model):
     status = models.CharField(max_length=20,
                               choices=(('normal', '正常'), ('spam', '垃圾')),
                               default='normal')
-    subscribing = models.BooleanField(default=True, verbose_name='我同意訂閱 Mozilla 電子報')
+    subscribing = models.BooleanField(default=True, verbose_name='我願意訂閱 Mozilla 電子報')
 
     def __unicode__(self):
         return unicode('%s (%s)' % (self.fullname, self.status))
