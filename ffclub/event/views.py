@@ -448,7 +448,8 @@ def campaign_claim_award(request, campaign_slug):
     if request.user.is_active:
         currentUser = auth.get_user(request)
         currentAwards = Award.objects.filter(activity=currentCampaign, winner=currentUser)
-        awarded = currentAwards.exists()
+        unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+        awarded = currentAwards.exists() or unregCurrentAwards.exists()
     data = {'campaign': currentCampaign, 'awarded': awarded}
     if request.method == 'POST':
         if not request.user.is_authenticated():
