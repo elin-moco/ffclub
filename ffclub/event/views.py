@@ -444,9 +444,11 @@ def event_register(request, event_slug):
 
 def campaign_claim_award(request, campaign_slug):
     currentCampaign = Campaign.objects.get(slug=campaign_slug, status=('result'))
-    currentUser = auth.get_user(request)
-    currentAwards = Award.objects.filter(activity=currentCampaign, winner=currentUser)
-    awarded = currentAwards.exists()
+    awarded = None
+    if request.user.is_active:
+        currentUser = auth.get_user(request)
+        currentAwards = Award.objects.filter(activity=currentCampaign, winner=currentUser)
+        awarded = currentAwards.exists()
     data = {'campaign': currentCampaign, 'awarded': awarded}
     if request.method == 'POST':
         if not request.user.is_authenticated():
@@ -471,7 +473,7 @@ def campaign_claim_award(request, campaign_slug):
                 participation = Participation(activity=currentCampaign, participant=currentUser, status='attend')
                 participation.save()
             data['registered'] = True
-    elif request.user.is_authenticated():
+    elif request.user.is_active:
         if Person.objects.filter(user=currentUser).exists():
             data['form'] = AwardClaimForm(instance=currentUser.get_profile())
         else:

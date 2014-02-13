@@ -1,4 +1,4 @@
-{% set page_title = campaign.title + ' 活動報名' %}
+{% set page_title = campaign.title + ' 活動領獎' %}
 {% set page_description = campaign.description %}
 {% set login_url = request.build_absolute_uri() %}
 {% set logout_url = login_url %}
@@ -21,42 +21,43 @@
 {% block banner %}
 {% endblock %}
 {% block content %}
-  <h1>{{ campaign.title }}</h1>
+  <h1>{{ campaign.title }}活動領獎</h1>
   <h2>{{ campaign.description }}</h2>
-  <div class="campaignBanner">
+  <div class="campaignBanner" style="background: url(/static/img/event/{{ campaign.slug }}/award-claim-banner.png) left bottom no-repeat">
   </div>
   <div class="campaignClaimAward">
-  {% if not awarded %}
-    銘謝惠顧囉！請再接再勵！
-  {% elif registered %}
-    登錄完成！感謝你的參與。
-  {% elif campaign.status == 'result' %}
+  {% if campaign.status == 'result' %}
     {% if request.user.is_active %}
-    <form method="post">
-      <div class="registerHeading">
-        請填寫或確認以下得獎人資料：
-        {{ csrf() }}
-      </div>
-      <div class="registerForm">
-        <ul>
-          {{ form.as_ul() }}
-        </ul>
-      </div>
-      <div class="registerAgreement">
-        <div class="agreement">
-          <p>
-            若繼續，代表你接受 Firefox 的
-            <a href="{{ url('tos') }}" target="_blank">使用條款</a> 與
-            <a href="http://www.mozilla.org/en-US/privacy-policy.html" target="_blank">隱私權保護政策</a>。
+      {% if registered %}
+        登錄完成！感謝你的參與。
+      {% elif awarded %}
+      <form method="post">
+        <div class="registerHeading">
+          請填寫或確認以下得獎人資料：
+          {{ csrf() }}
         </div>
-        <div class="register">
-          <button type="submit" class="submitButton" value="1">完成登錄</button>
+        <div class="registerForm">
+          <ul>
+            {{ form.as_ul() }}
+          </ul>
         </div>
-      </div>
-      <div class="registerPicture">
-      </div>
-    </form>
-
+        <div class="registerAgreement">
+          <div class="agreement">
+            <p>
+              若繼續，代表你接受 Firefox 的
+              <a href="{{ url('tos') }}" target="_blank">使用條款</a> 與
+              <a href="http://www.mozilla.org/en-US/privacy-policy.html" target="_blank">隱私權保護政策</a>。
+          </div>
+          <div class="register">
+            <button type="submit" class="submitButton" value="1">完成登錄</button>
+          </div>
+        </div>
+        <div class="registerPicture">
+        </div>
+      </form>
+      {% else %}
+        銘謝惠顧囉！請再接再勵！
+      {% endif %}
     {% else %}
       <button class="loginButton" title="登入並填寫得獎人資料">我要登錄</button>
     {% endif %}
