@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html xml:lang="zh-TW" lang="zh-TW">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="{{ params['banner-title'] }}">
+<title>Firefox 電子報第 {{ params['volume'] }} 期 － {{ params['title'] }} － Mozilla Taiwan</title>
+<link type="text/css" href="/static/css/libs/jquery-ui-1.10.3.custom.min.css"/>
+<link type="text/css" href="/static/css/libs/jquery-ui-editable.css"/>
+<style>
+* {
+  font-family: "Open Sans",Arial,Helvetica,"Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
+  letter-spacing: 0.06em;
+}
+
+body {
+  margin: 0;
+  background-color: #CAE1F4;
+  background: url("http://{{ MOCO_URL }}/media/img/sandstone/bg-gradient-sky.png") repeat-x scroll 0 0px, url("http://{{ MOCO_URL }}/media/img/sandstone/grain.png") repeat scroll 0 0px, none repeat scroll 0 0 rgb(238, 238, 238);
+}
+
+table, thead, tbody, tr, td {
+  border-collapse: collapse;
+  padding: 0;
+}
+
+a, a img {
+  outline: none;
+}
+
+img {
+  border: 0;
+}
+
+a, a p, a p b {
+  text-decoration: none;
+  border-width: 0;
+}
+
+b, p b {
+  color: #000000;
+}
+
+td, p, a {
+  color: #4D4E53;
+}
+
+table.container {
+  width: 700px;
+  margin: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+a.web-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+td.header-tip {
+  text-align: center;
+}
+td.header-tip small{
+  color: #808080;
+  text-decoration: underline;
+}
+table.header {
+  margin: 0 auto 8px auto;
+  width: 653px;
+  font-weight: bold;
+  color: #4D4E53;
+  font-size: 12px;
+}
+
+table.banner, table.content, table.downloads, table.links, table.quiz {
+  width: 653px;
+  margin: 0 auto 0 auto;
+}
+
+table.downloads {
+  font-size: 12px;
+}
+
+table.downloads p {
+  margin: 0;
+}
+
+table.banner td.main {
+  padding-right: 11px;
+  font-size: 16px;
+  line-height: 21px;
+}
+table.banner td.main a{
+  display: block;
+}
+table.banner td {
+  vertical-align: top;
+}
+
+table.banner b {
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+table.social-share {
+  background: #ffffff;
+  width: 140px;
+  height: 138px;
+  margin-top: 8px;
+  margin-bottom: 13px;
+}
+
+table.social-share td {
+  font-size: 13px;
+  vertical-align: top;
+  padding-left: 8px;
+  line-height: 25px;
+}
+
+table.social-share td a {
+  display: block;
+  width: 100px;
+  height: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+table.social-share td img {
+  vertical-align: middle;
+  padding: 0 6px 0 0;
+  margin: 0;
+}
+
+table.social-share td.head {
+  height: 25px;
+  border-bottom: 1px dotted #4D4E53;
+  font-weight: bold;
+}
+table.social-share td.link {
+  height: 28px;
+}
+
+td.subscribe img{
+  width: 140px;
+  height: 36px;
+}
+
+td.subscribe a {
+  color: #ffffff;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+table.header td.logo {
+  padding-top: 7px;
+}
+
+table.header td.issue {
+  text-align: right;
+  padding-top: 7px;
+}
+
+span.volume {
+  font-size: 42px;
+  line-height: 24px;
+}
+
+td.section-header {
+  text-align: center;
+}
+td.section-header img{
+  width: 653px;
+  height: 23px;
+  padding-top: 23px;
+  padding-bottom: 12px;
+}
+
+td.article-box {
+  display: inline-block;
+  width: 194px;
+  vertical-align: top;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+td.article-box p {
+  margin: 0;
+}
+
+td.article-box a.article-link {
+  display: block;
+  height: 215px;
+}
+
+td.padright {
+{#  padding-right: 30px;#}
+}
+
+td.padbottom {
+  padding-bottom: 18px;
+}
+
+td.padleft2 {
+  padding-left: 9px;
+}
+
+td.padright2 {
+  padding-right: 9px;
+}
+
+td.padbottom2 {
+  padding-bottom: 9px;
+}
+
+td.article-box img {
+  width: 194px;
+  height: 128px;
+}
+
+td p.quiz {
+  color: #000000;
+  font-size: 16px;
+  line-height: 21px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+td ol.answer {
+  color: #000000;
+  font-size: 16px;
+  line-height: 21px;
+  list-style-type: upper-alpha;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+td ol.answer a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+td p.deadline {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 23px;
+}
+td p.deadline #quiz-deadline{
+  font-weight: bold;
+}
+table.footer {
+  background: #ffffff;
+  width: 100%;
+}
+
+table.footer-content {
+  width: 653px;
+  margin: auto;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+td.mozilla-col {
+  padding-right: 20px;
+}
+td.mozilla-col img {
+  width: 80px;
+  height: 20px;
+}
+td.social-col, td.about-col {
+  vertical-align: top;
+  padding-top: 12px;
+  padding-bottom: 4px;
+  text-wrap: none;
+}
+td.social-col {
+  padding-right: 8px;
+}
+table.footer td.friend,
+table.footer table.social-media td,
+table.footer td.official,
+table.footer td.contact,
+table.footer td.license {
+  padding-bottom: 8px;
+  padding-right: 12px;
+}
+table.footer td.license {
+  font-size: 10px;
+}
+
+.articles > tbody > tr {
+  display: inline;
+}
+.articles .article-box {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+table.content {
+  width: 683px;
+  font-size: 0;
+}
+{% if admin %}
+#main-thumb {
+  border: 2px solid rgb(255, 255, 255);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+td .banner-link {
+  background: url(/static/img/admin/add_link.png) no-repeat;
+  display: block;
+  float: right;
+  text-align: right;
+  color: #ffffff;
+  font-size: 0px;
+  margin-top: -21px;
+  margin-bottom: 0;
+  padding-right: 7px;
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+  opacity: 0.2;
+}
+td.main:hover .banner-link {
+  opacity: 0.5;
+}
+
+td.article-box:hover .add-link {
+  opacity: 0.5;
+}
+
+table.downloads:hover #download-link {
+  opacity: 0.5;
+}
+
+td.article-box:hover .tag-label {
+  opacity: 0.8;
+}
+
+.tag-label {
+  display: block;
+  position: absolute;
+  width: 53px;
+  height: 53px;
+  background: linear-gradient(135deg, #000000, #FFFFFF);
+  color: transparent;
+  opacity: 0.5;
+  font-size: 0px;
+  -webkit-border-bottom-right-radius: 100px;
+  -moz-border-radius-bottomright: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.dnd-target-highlight {
+  display: inline-block;
+  border: 3px dashed rgba(0, 0, 0, 0.5);
+  width: 194px;
+  height: 169px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#title + .editable-inline {
+  width: 500px;
+}
+
+#title + .editable-inline input {
+  width: 80%;
+}
+
+#volume + .editable-inline input {
+  width: 60px;
+}
+#volume + .editable-inline {
+  width: 100px;
+}
+
+#banner-title + .editable-inline {
+  width: 80%;
+}
+
+#banner-title + .editable-inline textarea {
+  width: 100%;
+}
+
+#download-title + .editable-inline {
+  width: 90%;
+}
+
+#download-title + .editable-inline input {
+  width: 90%;
+}
+
+#quiz-question + .editable-inline {
+  width: 90%;
+}
+
+#quiz-question + .editable-inline textarea {
+  width: 100%;
+}
+
+.banner-link + .editable-inline {
+  float: right;
+}
+
+#download-link + .editable-inline {
+  float: right;
+}
+
+.article-desc + .editable-inline textarea {
+  font-size: 12px;
+}
+
+.header .header-subject img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header .header-subject h1 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+  width: 84%;
+}
+
+.add-link {
+  background: url(/static/img/admin/add_link.png) no-repeat;
+  display: block;
+  float: right;
+  text-align: right;
+  color: #ffffff;
+  font-size: 0;
+  margin-top: -6px;
+  margin-bottom: 0;
+  padding-right: 5px;
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+  opacity: 0.2;
+}
+
+.editable-inline {
+  display: inline-block;
+  background: #FFFFFF;
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow:    2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow:         2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.ui-datepicker {
+  width: 17em;
+  padding: .2em .2em 0;
+  display: none;
+  font-size: 12px;
+}
+.ui-datepicker .ui-datepicker-prev:before {
+  content: "<<";
+}
+.ui-datepicker .ui-datepicker-next:before {
+  content: ">>";
+}
+.ui-datepicker .ui-datepicker-header {
+  position: relative;
+  padding: .2em 0;
+}
+
+.ui-datepicker .ui-state-active {
+  background: rgb(51, 51, 51);
+  color: #FFFFFF !important;
+}
+
+.ui-datepicker .ui-state-disabled {
+  color: #CCCCCC;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  position: absolute;
+  top: 2px;
+  width: 1em;
+  height: 2em;
+  font-size: 20px;
+  display: block;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+  cursor: pointer;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+  top: 1px;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+  left: 2px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+  right: 2px;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover {
+  left: 1px;
+}
+
+.ui-datepicker .ui-datepicker-next-hover {
+  right: 1px;
+}
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  display: none;
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  top: 20%;
+  margin-top: -8px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 1em;
+  margin: 1px 0;
+}
+
+.ui-datepicker select.ui-datepicker-month-year {
+  width: 100%;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  width: 49%;
+}
+
+.ui-datepicker table {
+  width: 100%;
+  font-size: .9em;
+  border-collapse: collapse;
+  margin: 0 0 .4em;
+}
+
+.ui-datepicker th {
+  padding: .7em .3em;
+  text-align: center;
+  font-weight: bold;
+  border: 0;
+  color: #000000;
+}
+
+.ui-datepicker td {
+  border: 0;
+  padding: 1px;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+  display: block;
+  padding: .1em .2em;
+  text-align: right;
+  text-decoration: none;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+  background-image: none;
+  margin: .7em 0 0 0;
+  padding: 0 .2em;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+  float: right;
+  margin: .5em .2em .4em;
+  cursor: pointer;
+  padding: .2em .6em .3em .6em;
+  width: auto;
+  overflow: visible;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: left;
+}
+
+.ui-datepicker td:not(.highlight) a {
+  color: rgb(51, 51, 51);
+  pointer-events: none;
+}
+{% endif %}
+</style>
+{#{% if request %}#}
+{#  {% include 'includes/google-analytics.html' %}#}
+{#{% endif %}#}
+</head>
+<body>
+<table class="container">
+  <tr>
+    <td>
+        <table class="header">
+          {% if admin %}
+          <tr>
+            <td class="header-subject" colspan="2">
+              <img id="main-thumb" src="{{ params['main-thumb'] }}" width="70" height="70"/>
+              <h1><a id="title"title="電子報主旨" data-for="id_title">{{ params.title }}</a></h1>
+            </td>
+          </tr>
+          {% endif %}
+          {% if not request %}
+          <tr>
+            <td class="header-tip" colspan="2">
+              <a class="web-link" href="{{ NEWSLETTER_URL }}{{ params.tracking_code }}">
+                <small>無法正常顥示？請點此開啟網頁版</small>
+              </a>
+            </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td class="logo">
+              <a class="web-link" href="http://{{ MOCO_URL }}{{ params.tracking_code }}">
+                <img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/header.png{{ '?vol=%d' % params.volume if not request else '' }} ">
+              </a>
+            </td>
+            <td class="issue">
+              <a class="web-link" href="{{ NEWSLETTER_URL }}{{ params.tracking_code }}">
+              Vol. <span id="volume" class="volume" title="期號" data-for="id_volume">{{ params.volume }}</span><br>
+              <span id="issue" class="date" title="日期" data-for="id_issue">{{ params.issue }}</span>
+              </a>
+            </td>
+          </tr>
+        </table>
+      <table class="banner">
+        <tr>
+          <td class="main">
+            <a href="{{ params['banner-link'] }}{{ params.tracking_code }}" target="_blank">
+              <img id="banner" width="502" height="203" src="{{ params['banner'] }}"/>
+              <b id="banner-title" title="看板說明">
+                {{ params['banner-title'] }}
+              </b>
+              {% if admin %}
+              <div id="banner-link" class="banner-link" title="看板連結">{{ params['banner-link'] }}</div>
+              {% endif %}
+            </a>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>
+                  <a href="http://{{ MOCO_URL }}/firefox/download/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadfirefox.png"/></a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table class="social-share">
+                    <tr>
+                      <td class="head">分享電子報至</td>
+                    </tr>
+                    <tr>
+                      <td class="link"><a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ NEWSLETTER_URL|urlencode }}&p[images][0]={{ (NEWSLETTER_URL + 'images/mainpic.png')|urlencode }}&p[title]={{ params.title|urlencode }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharefb.png"/>Facebook</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="link"><a href="https://plus.google.com/share?url={{ NEWSLETTER_URL|urlencode }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharegoogle.png"/>Google+</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="link"><a href="http://www.plurk.com/?qualifier=shares&status={{ NEWSLETTER_URL|urlencode }}({{ params['title']|urlencode }})" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-shareplurk.png"/>Plurk</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="link"><a href="mailto:?subject={{ params.title }}&body=詳見 Firefox 電子報第 {{ params.volume }} 期：{{ NEWSLETTER_URL }}"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharemail.png"/>Email</a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="subscribe">
+                  <a href="http://{{ MOCO_URL }}/join_us/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadnewsletter-withtext.png"/></a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-news.png"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="content articles">
+        {% for article in range(0, 6) %}
+          {% if 1 == loop.index % 3 %}
+            <tr>
+          {% endif %}
+        <td class="article-box {{ 'padright' if 0 != loop.index % 3 }} {{ 'padbottom' if loop.index <= 6 }}" data-index="{{ loop.index }}">
+          <a class="article-link" target="_blank" href="{{ params['article-link'][loop.index] }}{{ params.tracking_code }}">
+            {% if admin %}
+              <div id="article-tag-{{ loop.index }}" class="tag-label" {% if params['article-tag'][loop.index] %}style="background: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-{{ params['article-tag'][loop.index] }}.png); opacity: 1.0;"{% endif %}></div>
+            {% endif %}
+            <img id="article-thumb-{{ loop.index }}" class="article-thumb" width="194" height="128" src="{{ params['article-thumb'][loop.index] }}"/>
+            <p>
+              <b><span id="article-title-{{ loop.index }}" class="article-title" title="文章標題">{{ params['article-title'][loop.index] }}</span> » </b>
+              <span id="article-desc-{{ loop.index }}" class="article-desc" title="文章說明">{{ params['article-desc'][loop.index] }}</span>
+            </p>
+          </a>
+          {% if admin %}
+          <a id="article-link-{{ loop.index }}" class="add-link" target="_blank" href="{{ params['article-link'][loop.index] }}" title="文章連結">
+            {{ params['article-link'][loop.index] }}
+          </a>
+          {% endif %}
+        </td>
+        {% if 0 == loop.index % 3 %}
+          </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-download.png"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="downloads">
+        <tr>
+          <td>
+            <a class="download-link" target="_blank" href="{{ params['download-link'] }}{{ params.tracking_code }}">
+              <img id="download-thumb" class="download-thumb" width="652" height="128" src="{{ params['download-thumb'] }}"/>
+              <p>
+                <b><span id="download-title" title="下載標題">{{ params['download-title'] }}</span> » </b>
+              </p>
+            </a>
+            {% if admin %}
+            <a id="download-link" class="add-link" target="_blank" href="{{ params['download-link'] }}" title="下載連結">
+              {{ params['download-link'] }}
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-links.png"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="links">
+        <tr>
+          <td class="padleft2 padright2 padbottom2"><a href="http://{{ MOCO_URL }}/community/student/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-fsa.png"/></a></td>
+          <td class="padright2 padbottom2"><a href="http://{{ TECH_URL }}/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-blog.png"/></a></td>
+          <td class="padright2 padbottom2"><a href="https://developer.mozilla.org/" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-mdn.png"/></a></td>
+          <td class="padbottom2"><a href="http://{{ FFCLUB_URL }}{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-ffclub.png"/></a></td>
+        </tr>
+        <tr>
+          <td class="padleft2 padright2"><a href="http://{{ MOCO_URL }}/sumo{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-sumo.png"/></a></td>
+          <td class="padright2"><a href="http://{{ MYFF_URL }}/videos/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-vision.png"/></a></td>
+          <td class="padright2"><a href="http://myfirefox.com.tw/" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-myfx.png"/></a></td>
+          <td class="padright2"><a href="http://tw.mall.yahoo.com/store/firefox" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-store.png"/></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% if admin or params['quiz-question'] %}
+  <tr>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-quiz.png"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="quiz">
+        <tr>
+          <td>
+            <p id="quiz-question" class="question" title="題目">
+              {{ params['quiz-question'] }}
+            </p>
+            <ol class="answers">
+              {% for answer in range(0, 3) %}
+                <li><a id="quiz-answer-{{ loop.index }}" class="answer" href="mailto:mozevent-tw@mozilla.com?subject=電子報有獎徵答&body={{ 'ABCDE'[loop.index - 1] }}. {{ params['quiz-answer'][loop.index] }}" title="答案">{{ params['quiz-answer'][loop.index] }}</a></li>
+              {% endfor %}
+            </ol>
+            <p class="deadline">
+              請<b>點選</b>一個上述的正確答案並將它寄給我們。<br>
+              我們會抽出 3 位得獎者，贈送 Firefox 貼心好禮一份！截止日期 <span id="quiz-deadline" title="截止日期">{{ params['quiz-deadline'] }}</span>。
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% endif %}
+</table>
+{% if not request %}
+<img src="{{ NEWSLETTER_URL }}email.gif"/>
+{% endif %}
+<table class="footer">
+  <tr>
+    <td>
+      <table class="footer-content">
+        <tr>
+          <td class="mozilla-col">
+            <a href="http://mozilla.org/en-US/" target="_blank">
+              <img style="border:0px;" alt="mozilla" src="http://{{ MOCO_URL }}/media/img/sandstone/footer-mozilla.png">
+            </a>
+          </td>
+          <td class="social-col">
+            <table>
+              <tr>
+                <td class="friend">與我們為友</td>
+              </tr>
+              <tr>
+                <td>
+                  <table class="social-media">
+                    <tr>
+                      <td><a href="https://www.facebook.com/MozillaTaiwan" target="_blank">Facebook</a></td>
+                      <td><a href="https://plus.google.com/u/0/114653167240123163859/posts" target="_blank">Google+</a></td>
+                      <td><a href="http://plurk.com/MozillaTaiwan" target="_blank">Plurk</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="http://www.youtube.com/user/MozillaTaiwan" target="_blank">Youtube</a></td>
+                      <td><a href="http://www.flickr.com/photos/mozillataiwan/" target="_blank">Flickr</a></td>
+                      <td><a href="http://mozilla.com.tw/join_us/{{ params.tracking_code }}" target="_blank">電子報</a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td class="about-col">
+            <table>
+              <tr>
+                <td class="official"><a href="http://{{ MOCO_URL }}{{ params.tracking_code }}">Mozilla Taiwan | 美商謀智 | mozilla.com.tw</a></td>
+              </tr>
+              <tr>
+                <td class="contact">聯繫我們：<a href="mailto:mozilla-tw@mozilla.com">mozilla-tw@mozilla.com.tw</a></td>
+              </tr>
+              <tr>
+                <td class="license">除另有註明外，本站內容皆採用<br>
+                  <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">創用 CC 姓名標示—相同方式分享條款 3.0</a> 或更新版本授權大眾使用。
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{% if admin %}
+<form id="edit-form" enctype="multipart/form-data" method="POST" action="">
+  {{ csrf() }}
+  {{ adminform.form }}
+  <input type="hidden" id="meta-article-order" name="meta-article-order"/>
+  <a href="{{ url('admin:newsletter_newsletter_changelist') }}">回到列表</a>
+  <button>發佈</button>
+  <input type="submit" value="Save"/>
+</form>
+
+<script type="text/javascript" src="/static/js/libs/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/static/js/libs/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/js/libs/jqueryui-editable.min.js"></script>
+<script type="text/javascript"  src="/static/js/libs/holder.js"></script>
+
+<script type="text/javascript">
+  "use strict";
+	$.fn.editable.defaults.mode = 'inline';
+
+  $.fn.inlineEdit = function(params) {
+    var form = $('#edit-form');
+
+    var checkImageSize = function(src, dimensions, failCallback) {
+        var image = new Image();
+        var prev_src = image.src;
+        image.onload = function (e) {
+          if (dimensions.width != this.width || dimensions.height != this.height) {
+            failCallback();
+          }
+        };
+        image.src = src;
+    };
+
+    var inputTypeMap = {text: 'text', textarea: 'text', number: 'number', url: 'url', email: 'email', dateui: 'time', time: 'time', file: 'file', image: 'file'}
+    var metaTypeMap = {text: 'string', textarea: 'string', number: 'number', url: 'string', email: 'string', dateui: 'datetime', time: 'datetime', file: 'file', image: 'file'}
+    var type = (params && params.type) ? params.type : 'text';
+    var inputType = function() {
+      if (inputTypeMap[type]) {
+        return inputTypeMap[type];
+      }
+      else {
+        return 'text';
+      }
+    }();
+    var metaType = function() {
+      if (metaTypeMap[type]) {
+        return metaTypeMap[type];
+      }
+      else {
+        return 'string';
+      }
+    }();
+    if (type == 'image') {
+      $(this).each(function() {
+        var $this = $(this);
+        var id = $this.attr('id');
+        var inputFor = $this.attr('data-for');
+        if (!inputFor) {
+          inputFor = (params && params.for) ? params.for : '';
+        }
+        if (!$this.attr('src')) {
+          $this.attr('src', '/static/js/libs/holder.js/'+$this.width()+'x'+$this.height());
+        }
+        var input = $('#'+inputFor);
+        if (input.length == 0) {
+          inputFor = 'meta-'+metaType+'-'+id;
+          input = $('#'+inputFor);
+          if (input.length == 0) {
+            form.prepend('<input id="'+inputFor+'" name="'+inputFor+'" type="file" />');
+            input = $('#'+inputFor);
+          }
+        }
+        input.change(function() {
+            var reader = new FileReader();
+            var file = this.files[0];
+            var img_id = id;
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+              var image = document.getElementById(img_id);
+              var prev_src = image.src;
+              image.onload = function (e) {
+                checkImageSize(this.src, {width: $this.width(), height: $this.height()}, function() {
+                  alert('圖片長寬必須為：'+$this.width()+'x'+$this.height());
+                  image.src = prev_src;
+                })
+              };
+              image.src = e.target.result;
+            };
+        });
+        $this.click(function() {
+          input.click();
+        });
+      });
+    }
+    else {
+      $(this).each(function() {
+        var $this = $(this);
+        var id = $this.attr('id');
+        var inputFor = $this.attr('data-for');
+        if (!inputFor) {
+          inputFor = (params && params.for) ? params.for : false;
+        }
+        var title = $this.attr('title');
+        if (!title) {
+          title = (params && params.title) ? params.title : false;
+        }
+        var placeholder = title ? '輸入' + title + '...' : '';
+        if (!placeholder) {
+          placeholder = (params && params.placeholder) ? params.placeholder : false;
+        }
+        var emptytext = title ? '點此輸入' + title + '...' : '';
+        if (type == 'number') {
+          emptytext = '0';
+        }
+        if (!emptytext) {
+          emptytext = (params && params.emptytext) ? params.emptytext : false;
+        }
+        if (type == 'select') {
+          emptytext = '';
+        }
+        var format = $this.attr('data-format');
+        if (!format) {
+          format = (params && params.format) ? params.format : false;
+        }
+
+        var input = $('#'+inputFor);
+        if (input.length == 0) {
+          inputFor = 'meta-'+metaType+'-'+id;
+          input = $('#'+inputFor);
+          if (input.length == 0) {
+            if (type == 'textarea') {
+              form.prepend('<textarea id="'+inputFor+'" name="'+inputFor+'" ></textarea>');
+            }
+            else {
+              form.prepend('<input id="'+inputFor+'" name="'+inputFor+'" type="'+inputType+'" />');
+            }
+            input = $('#'+inputFor);
+          }
+        }
+        var onCallback = function(callbackParams) {
+          if (input && input.length > 0) {
+            if (input.prop('tagName') == 'TEXTAREA') {
+              input.text(callbackParams.value);
+            }
+            else if (inputType = 'time') {
+              var dateVal = $.datepicker.parseDate(format, callbackParams.value);
+              var formatDateVal = $.datepicker.formatDate('yy-mm-dd', dateVal);
+              input.val(formatDateVal);
+            }
+            else {
+              input.val(callbackParams.value);
+            }
+          }
+          if (params && params.url) {
+            callbackParams['elem'] = $this;
+            params.url(callbackParams);
+          }
+        };
+        var thisParams = $.extend({}, params, {placeholder: placeholder, emptytext: emptytext, url: onCallback});
+        if (type == 'url') {
+          $this.click(function(e) {
+            var url = $(this).text();
+            if (url && e.altKey) {
+              window.open(url);
+            }
+          });
+        }
+        $this.editable(thisParams);
+      });
+    }
+  }
+  $.fn.changeElementType = function(newType) {
+      $(this).each(function() {
+        var attrs = {};
+
+        $.each(this.attributes, function(idx, attr) {
+            attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        $(this).replaceWith(function() {
+            return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      });
+  };
+  (function() {
+
+    //Sortable
+    $('.articles > tbody').sortable({
+      items: '.article-box',
+      placeholder: 'dnd-target-highlight',
+      helper: 'clone',
+      update: function(event, ui) {
+        var order = []
+        $('.articles .article-box').each(function(index, elem) {
+          order[$(elem).attr('data-index')-1] = index+1;
+        }).promise().done(function() {
+          $('#meta-article-order').val(order.toString());
+        });
+      }
+    });
+
+    //Main
+    $('#title').inlineEdit({
+      type: 'text',
+      url: function(params) {
+        $('title').text('Firefox 電子報第 {{ params.volume }} 期 － '+params.value+' － Mozilla Taiwan');
+      }
+    });
+    $('.header .issue .date').inlineEdit({type: 'dateui', format: 'yy年mm月dd號'});
+    $('.header .issue .volume').inlineEdit({type: 'number'});
+
+    // Images
+    $('#main-thumb, #banner, .article-thumb, #download-thumb').inlineEdit({type: 'image'});
+
+    // Text
+    $('#banner-title').inlineEdit({type: 'textarea', rows: 2});
+    $('#banner-link').inlineEdit({type: 'url'});
+    $('.article-box .article-title').inlineEdit();
+    $('.article-box .article-desc').inlineEdit({type: 'textarea', rows: 3});
+    $('.article-box .add-link').inlineEdit({type: 'url'});
+    $('#download-title').inlineEdit();
+    $('#download-link').inlineEdit({type: 'url'});
+    $('#quiz-question').inlineEdit({type: 'textarea', rows: 2});
+    $('.quiz .answer').inlineEdit();
+    $('#quiz-deadline').inlineEdit({type: 'dateui', format: 'yy/mm/dd'});
+
+    // Tags
+    $('.tag-label').inlineEdit({
+      url: function(params) {
+        params.elem.attr('style', 'background-image: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-'+params.value+'.png); opacity: 1.0;');
+      },
+      type:'select',
+      autotext:'never',
+      value: 1,
+      source: [
+        {value: 'firefox', text: 'Firefox'},
+        {value: 'firefoxforandroid', text: 'Firefox for Android'},
+        {value: 'firefoxos', text: 'Firefox OS'},
+        {value: 'identity', text: 'Identity'},
+        {value: 'mozilla', text: 'Mozilla'},
+        {value: 'news', text: 'News'},
+        {value: 'privacy', text: 'Privacy'},
+        {value: 'studentambassador', text: 'Student Ambassador'},
+        {value: 'webapp', text: 'Webapp'}
+      ]
+    });
+
+    $('.banner .main a, td.article-box a.article-link, a.web-link, a.download-link').changeElementType('div');
+    $('#edit-form input[type!=submit], #edit-form textarea, #edit-form label').hide();
+  })();
+</script>
+{% endif %}
+</body>
+</html>

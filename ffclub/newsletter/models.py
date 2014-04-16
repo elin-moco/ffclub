@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
-from django.contrib.auth.models import User
 from django.db import models
 from ffclub import settings
 
@@ -17,7 +16,7 @@ class Newsletter(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = u'電子報'
-        db_table = u'issue'
+        # db_table = u'issue'
 
 
 class Subscription(models.Model):
@@ -30,7 +29,7 @@ class Subscription(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = u'電子報訂閱'
-        db_table = u'newsletter'
+        # db_table = u'newsletter'
 
 
 class Metadata(models.Model):
@@ -41,13 +40,15 @@ class Metadata(models.Model):
                             default='string')
     index = models.PositiveIntegerField()
 
-    create_user = models.ForeignKey(User, related_name='+')
     create_time = models.DateTimeField(default=datetime.now)
 
     issue = models.ForeignKey(Newsletter, related_name='metadata')
 
     def __unicode__(self):
-        return unicode('%s = %s' % (self.name, self.value))
+        if hasattr(self, 'name') and hasattr(self, 'value'):
+            return unicode('%s = %s' % (self.name, self.value))
+        else:
+            return ''
 
     class Meta:
         verbose_name = verbose_name_plural = '電子報擴充欄位'
@@ -66,4 +67,4 @@ class MetaDatetime(Metadata):
 
 
 class MetaFile(Metadata):
-    value = models.FileField(upload_to=settings.FILE_PATH, max_length=255, db_index=True, verbose_name='檔案')
+    value = models.FileField(upload_to=settings.NEWSLETTER_UPLOAD_PATH, max_length=255, db_index=True, verbose_name='檔案')

@@ -708,7 +708,8 @@ CACHES = {
         'JOHNNY_CACHE': True,
     }
 }
-JOHNNY_MIDDLEWARE_KEY_PREFIX='ffclub'
+JOHNNY_MIDDLEWARE_KEY_PREFIX = 'ffclub'
+# JOHNNY_TABLE_BLACKLIST = ['newsletter', 'issue']
 
 
 
