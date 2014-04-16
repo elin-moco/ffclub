@@ -30,7 +30,7 @@ DATABASES = {
 }
 
 DEFAULT_FROM_EMAIL = 'no-reply@mozilla.com.tw'
-DEFAULT_REPLY_EMAIL = 'tw-mktg@mozilla.com'
+DEFAULT_REPLY_EMAIL = 'mozilla-tw@mozilla.com'
 
 EMAIL_HOST = 'mail.mozilla.com.tw'
 EMAIL_USE_TLS = True
