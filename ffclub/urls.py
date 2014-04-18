@@ -51,6 +51,7 @@ urlpatterns = patterns(
     (r'', include('%s.person.urls' % PROJECT_MODULE)),
     (r'', include('%s.event.urls' % PROJECT_MODULE)),
     (r'', include('%s.product.urls' % PROJECT_MODULE)),
+    (r'', include('%s.newsletter.urls' % PROJECT_MODULE)),
     url(r'^login/redirect$', login_redirect, name='login.redirect'),
     url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='intro.logout'),
     url(r'^browserid/', include('django_browserid.urls')),

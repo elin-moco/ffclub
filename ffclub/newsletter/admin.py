@@ -20,7 +20,8 @@ from django.utils.html import escape, escapejs
 import re
 from django.contrib import auth
 import os
-from ffclub.newsletter.utils import build_meta_params
+from ffclub.newsletter.utils import build_meta_params, generate_newsletter_images, generate_newsletter, send_newsletter
+
 
 META_PATTERN = re.compile('^meta-(string|datetime|number|file)-([A-z][-A-z]*)(-([0-9]+))?$')
 
@@ -131,26 +132,6 @@ class NewsletterAdmin(ModelAdmin):
     list_filter = ['issue', 'volume', 'publish_date']
     inlines = [MetaStringInline, MetaNumberInline, MetaDatetimeInline, MetaFileInline, ]
 
-    def get_inline_instances(self, request, obj=None):
-        inline_instances = []
-        for inline_class in self.inlines:
-            inline = inline_class(self.model, self.admin_site)
-            if request:
-                if not (inline.has_add_permission(request) or
-                        inline.has_change_permission(request, obj) or
-                        inline.has_delete_permission(request, obj)):
-                    continue
-                if not inline.has_add_permission(request):
-                    inline.max_num = 0
-            inline_instances.append(inline)
-
-        return inline_instances
-
-    @csrf_protect_m
-    @never_cache
-    def changelist_view(self, request, extra_context=None):
-        return super(NewsletterAdmin, self).changelist_view(request, extra_context)
-
     @csrf_protect_m
     @transaction.commit_on_success
     def add_view(self, request, form_url='', extra_context=None):
@@ -173,6 +154,12 @@ class NewsletterAdmin(ModelAdmin):
                                    (opts.app_label, opts.module_name),
                                    args=(issue.id, ),
                                    current_app=self.admin_site.name)
+                issue_number = issue.issue.strftime('%Y-%m-%d')
+                if 'publish' in request.POST:
+                    generate_newsletter_images(issue_number)
+                    generate_newsletter(issue_number, True)
+                elif 'pre-send-email' in request.POST:
+                    send_newsletter(issue_number, request.POST['pre-send-email'])
                 return HttpResponseRedirect(post_url)
 
             else:
@@ -194,7 +181,7 @@ class NewsletterAdmin(ModelAdmin):
             'is_popup': "_popup" in request.REQUEST,
             'app_label': opts.app_label,
             'params': params,
-            'NEWSLETTER_URL': 'http://'+MOCO_URL+'/newsletter/2014-01/',
+            'NEWSLETTER_URL': 'http://%s/newsletter/' % (MOCO_URL, ),
             'MOCO_URL': MOCO_URL,
             'MYFF_URL': MYFF_URL,
         }
@@ -226,6 +213,7 @@ class NewsletterAdmin(ModelAdmin):
             'issue': obj.issue.strftime('%Y年%m月%d號').decode('utf-8'),
             'volume': obj.volume
         }
+        issue_number = obj.issue.strftime('%Y-%m-%d')
 
         all_metadata = list(MetaString.objects.filter(issue=obj)) + \
                        list(MetaDatetime.objects.filter(issue=obj)) + \
@@ -246,6 +234,11 @@ class NewsletterAdmin(ModelAdmin):
                                list(MetaNumber.objects.filter(issue=obj)) + \
                                list(MetaFile.objects.filter(issue=obj))
 
+                if 'publish' in request.POST:
+                    generate_newsletter_images(issue_number)
+                    generate_newsletter(issue_number, True)
+                elif 'pre-send-email' in request.POST:
+                    send_newsletter(issue_number, request.POST['pre-send-email'])
             else:
                 print 'invalid'
         else:
@@ -258,14 +251,13 @@ class NewsletterAdmin(ModelAdmin):
             self.get_readonly_fields(request, obj),
             model_admin=self)
 
-
         context = {
             'admin': True,
             'adminform': admin_form,
             'is_popup': "_popup" in request.REQUEST,
             'app_label': opts.app_label,
             'params': params,
-            'NEWSLETTER_URL': 'http://'+MOCO_URL+'/newsletter/2014-01/',
+            'NEWSLETTER_URL': 'http://%s/newsletter/%s/' % (MOCO_URL, issue_number),
             'MOCO_URL': MOCO_URL,
             'MYFF_URL': MYFF_URL,
         }
@@ -280,5 +272,3 @@ class SubscriptionAdmin(ModelAdmin):
     list_filter = ['edit_date', 'status']
 
 admin.site.register(Subscription, SubscriptionAdmin)
-
-

@@ -15,7 +15,9 @@
 body {
   margin: 0;
   background-color: #CAE1F4;
+  {% if request %}
   background: url("http://{{ MOCO_URL }}/media/img/sandstone/bg-gradient-sky.png") repeat-x scroll 0 0px, url("http://{{ MOCO_URL }}/media/img/sandstone/grain.png") repeat scroll 0 0px, none repeat scroll 0 0 rgb(238, 238, 238);
+  {% endif %}
 }
 
 table, thead, tbody, tr, td {
@@ -293,12 +295,17 @@ table.footer td.license {
   display: inline;
 }
 .articles .article-box {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 17px;
+  padding-right: 17px;
+  text-align: left;
 }
 table.content {
-  width: 683px;
+  width: 700px;
   font-size: 0;
+  text-align: center;
+}
+table.links {
+  margin-bottom: 20px;
 }
 {% if admin %}
 #main-thumb {
@@ -593,11 +600,60 @@ td.article-box:hover .tag-label {
   color: rgb(51, 51, 51);
   pointer-events: none;
 }
+#admin-toolbar {
+  position: fixed;
+  color: #FFFFFF;
+  background: #000000;
+  bottom: 0;
+  right: 0;
+  padding: 10px 20px;
+  -webkit-box-shadow: -2px -2px 3px 0px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow:    -2px -2px 3px 0px rgba(0, 0, 0, 0.8);
+  box-shadow:         -2px -2px 3px 0px rgba(0, 0, 0, 0.8);
+}
+#admin-toolbar a {
+  color: #FFFFFF;
+  background: #333333;
+  border: 2px solid #666666;
+  border-radius: 3px;
+  font-size: 11px;
+  padding: 1px 3px;
+  margin-right: 10px;
+}
+
+#admin-toolbar input[type=submit] {
+  color: #FFFFFF;
+  background: #333333;
+  border: 2px solid #666666;
+  border-radius: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 {% endif %}
 </style>
-{#{% if request %}#}
-{#  {% include 'includes/google-analytics.html' %}#}
-{#{% endif %}#}
+{% if request %}
+<script>
+var _gaq = _gaq || [];
+var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+_gaq.push(['_setAccount', '{{ BEDROCK_GA_ACCOUNT_CODE }}']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_setAllowAnchor', true]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+
+    var prefix = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www');
+    ga.src = prefix + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+</script>
+{% endif %}
 </head>
 <body>
 <table class="container">
@@ -763,12 +819,13 @@ td.article-box:hover .tag-label {
         <tr>
           <td class="padleft2 padright2"><a href="http://{{ MOCO_URL }}/sumo{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-sumo.png"/></a></td>
           <td class="padright2"><a href="http://{{ MYFF_URL }}/videos/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-vision.png"/></a></td>
-          <td class="padright2"><a href="http://myfirefox.com.tw/" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-myfx.png"/></a></td>
+          <td class="padright2"><a href="http://{{ MYFF_URL }}/" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-myfx.png"/></a></td>
           <td class="padright2"><a href="http://tw.mall.yahoo.com/store/firefox" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-store.png"/></a></td>
         </tr>
       </table>
     </td>
   </tr>
+{#
   {% if admin or params['quiz-question'] %}
   <tr>
     <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-quiz.png"/></td>
@@ -796,9 +853,10 @@ td.article-box:hover .tag-label {
     </td>
   </tr>
   {% endif %}
+ #}
 </table>
 {% if not request %}
-<img src="{{ NEWSLETTER_URL }}email.gif"/>
+<img src="{{ NEWSLETTER_URL }}email.gif" style="display: block;"/>
 {% endif %}
 <table class="footer">
   <tr>
@@ -857,10 +915,15 @@ td.article-box:hover .tag-label {
 <form id="edit-form" enctype="multipart/form-data" method="POST" action="">
   {{ csrf() }}
   {{ adminform.form }}
-  <input type="hidden" id="meta-article-order" name="meta-article-order"/>
-  <a href="{{ url('admin:newsletter_newsletter_changelist') }}">回到列表</a>
-  <button>發佈</button>
-  <input type="submit" value="Save"/>
+  <div id="admin-toolbar">
+    <input type="hidden" id="meta-article-order" name="meta-article-order"/>
+    <a href="{{ url('admin:newsletter_newsletter_changelist') }}">« 回到列表</a>
+    <input type="hidden" id="pre-send-email" name="pre-send-email"/>
+    <input type="submit" name="save" value="儲存"/>
+    <input type="submit" name="publish" value="發佈"/>
+    <input type="submit" id="pre-send" name="pre-send" value="試寄"/>
+    <a href="{{ NEWSLETTER_URL }}" target="_blank">預覽</a>
+  </div>
 </form>
 
 <script type="text/javascript" src="/static/js/libs/jquery-1.9.1.js"></script>
@@ -997,7 +1060,7 @@ td.article-box:hover .tag-label {
             if (input.prop('tagName') == 'TEXTAREA') {
               input.text(callbackParams.value);
             }
-            else if (inputType = 'time') {
+            else if (inputType == 'time') {
               var dateVal = $.datepicker.parseDate(format, callbackParams.value);
               var formatDateVal = $.datepicker.formatDate('yy-mm-dd', dateVal);
               input.val(formatDateVal);
@@ -1102,6 +1165,15 @@ td.article-box:hover .tag-label {
 
     $('.banner .main a, td.article-box a.article-link, a.web-link, a.download-link').changeElementType('div');
     $('#edit-form input[type!=submit], #edit-form textarea, #edit-form label').hide();
+    $('#pre-send').click(function(e) {
+      e.preventDefault();
+      var email = prompt('請輸入要寄送的電子郵件位址：', 'tw-mktg@mozilla.com');
+      console.info(email);
+      if (email) {
+        $('#pre-send-email').val(email);
+        $('#edit-form').submit();
+      }
+    })
   })();
 </script>
 {% endif %}

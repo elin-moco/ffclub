@@ -20,3 +20,5 @@ tmp/*
 .idea
 media/uploads
 *.less.css
+media/newsletter/*.(jpg|png)
+media/newsletter/tagged/*.(jpg|png)
