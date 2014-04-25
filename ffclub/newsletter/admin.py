@@ -158,7 +158,7 @@ class NewsletterAdmin(ModelAdmin):
                 if 'publish' in request.POST:
                     generate_newsletter_images(issue_number)
                     generate_newsletter(issue_number, True)
-                elif 'pre-send' in request.POST and request.POST['pre-send-email']:
+                elif 'pre-send-email' in request.POST and request.POST['pre-send-email']:
                     send_newsletter(issue_number, request.POST['pre-send-email'])
                 return HttpResponseRedirect(post_url)
 
@@ -237,7 +237,7 @@ class NewsletterAdmin(ModelAdmin):
                 if 'publish' in request.POST:
                     generate_newsletter_images(issue_number)
                     generate_newsletter(issue_number, True)
-                elif 'pre-send' in request.POST and request.POST['pre-send-email']:
+                elif 'pre-send-email' in request.POST and request.POST['pre-send-email']:
                     send_newsletter(issue_number, request.POST['pre-send-email'])
             else:
                 print 'invalid'
