@@ -47,7 +47,7 @@ def newsletter(request, page_number='1'):
     context = {}
     ITEMS_PER_PAGE = 10
     if request.method == 'GET' and 'secret' in request.GET and request.GET['secret'] == API_SECRET:
-        query = Newsletter.objects.filter(publish_date__lte=datetime.now()).order_by('-issue')
+        query = Newsletter.objects.filter(issue__lte=datetime.now()).order_by('-issue')
         result = list(Paginator(query, ITEMS_PER_PAGE).page(page_number))
         meta = list(MetaFile.objects.filter(name='main-thumb', issue__in=result))
         response = []
