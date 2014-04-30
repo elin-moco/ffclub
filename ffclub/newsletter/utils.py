@@ -8,9 +8,10 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from .models import *
 import os
-from ffclub.settings import NEWSLETTER_ASSETS_URL, BEDROCK_NEWSLETTER_PATH, MOCO_URL, MYFF_URL, BEDROCK_GA_ACCOUNT_CODE, NEWSLETTER_PRESEND_LIST
+from ffclub.settings import NEWSLETTER_ASSETS_URL, BEDROCK_NEWSLETTER_PATH, MOCO_URL, MYFF_URL, FFCLUB_URL, TECH_URL, BEDROCK_GA_ACCOUNT_CODE, NEWSLETTER_PRESEND_LIST
 from PIL import Image
 import premailer
+
 
 log = commonware.log.getLogger('ffclub')
 
@@ -112,6 +113,8 @@ def read_newsletter_context(issue, is_web=False):
         'NEWSLETTER_URL': 'http://%s/newsletter/%s/' % (MOCO_URL, issue),
         'MOCO_URL': MOCO_URL,
         'MYFF_URL': MYFF_URL,
+        'FFCLUB_URL': FFCLUB_URL,
+        'TECH_URL': TECH_URL,
         'request': is_web
     }
 

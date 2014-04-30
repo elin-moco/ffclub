@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.views.decorators.cache import never_cache
 from johnny import cache
-from ffclub.settings import MOCO_URL, MYFF_URL
+from ffclub.settings import MOCO_URL, MYFF_URL, TECH_URL, FFCLUB_URL
 from ffclub.base import admin
 from django.contrib.admin import ModelAdmin, TabularInline
 from .models import *
@@ -184,6 +184,8 @@ class NewsletterAdmin(ModelAdmin):
             'NEWSLETTER_URL': 'http://%s/newsletter/' % (MOCO_URL, ),
             'MOCO_URL': MOCO_URL,
             'MYFF_URL': MYFF_URL,
+            'TECH_URL': TECH_URL,
+            'FFCLUB_URL': FFCLUB_URL
         }
         context.update(extra_context or {})
         return self.render_change_form(request, context, form_url=form_url, add=True)
@@ -260,6 +262,8 @@ class NewsletterAdmin(ModelAdmin):
             'NEWSLETTER_URL': 'http://%s/newsletter/%s/' % (MOCO_URL, issue_number),
             'MOCO_URL': MOCO_URL,
             'MYFF_URL': MYFF_URL,
+            'TECH_URL': TECH_URL,
+            'FFCLUB_URL': FFCLUB_URL
         }
         context.update(extra_context or {})
         return self.render_change_form(request, context, form_url=form_url, add=True)
