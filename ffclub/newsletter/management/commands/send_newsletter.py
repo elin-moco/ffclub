@@ -20,13 +20,15 @@ class Unbuffered:
     def __getattr__(self, attr):
         return getattr(self.stream, attr)
 
+
 class Command(BaseCommand):
     help = 'Send Newsletter'
     option_list = NoArgsCommand.option_list
 
     def handle(self, *args, **options):
         self.options = options
-        testing = True if 1 < len(args) else False
+        to_mail = args[1] if 1 < len(args) else None
         sys.stdout = Unbuffered(sys.stdout)
         issue_number = args[0]
-        send_newsletter(issue_number, args[1], testing)
+
+        send_newsletter(issue_number, to_mail)

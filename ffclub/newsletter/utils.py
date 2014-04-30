@@ -182,23 +182,16 @@ def named(email, name):
     return email
 
 
-def send_newsletter(issue_number, to_mail, testing=True):
+def send_newsletter(issue_number, to_mail):
     context = read_newsletter_context(issue_number)
-    # context['imgpath_prefix'] = 'cid:'
-    # newsletter_context_vars(context, issue_number)
-    # subject = Header((u'[試寄] ' if testing else '') + context['params']['title'], 'utf-8')
     from_email = '"Mozilla Taiwan" <no-reply@mozilla.com.tw>'
     text_content = render_to_string('newsletter/newsletter.txt', context)
     html_content = render_to_string('newsletter/custom_newsletter_form.html', context)
     mail_content = premailer.transform(html_content)
     soup = BeautifulSoup(html_content)
-    subject = Header((u'[測試] ' if testing else '') + soup.title.string, 'utf-8')
-    # headers = {'Reply-To': 'mozilla-tw@mozilla.com'}
+    subject = Header((u'[測試] ' if to_mail else '') + soup.title.string, 'utf-8')
     headers = {}
-    # charset = 'utf-8'
-    # image_path = 'bedrock/newsletter/templates/newsletter/%s/images/' % issue_number
-    # images = [f for f in listdir(image_path) if not f.startswith('.') and isfile(join(image_path, f))]
-    if not testing:
+    if not to_mail:
         with open('subscriptions.txt') as file:
             subscriptions = file.readlines()
             for subscription in subscriptions:
