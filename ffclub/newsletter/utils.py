@@ -90,6 +90,8 @@ def newsletter_unsubscribe(emailAddress):
 
 def read_newsletter_context(issue, is_web=False):
     newsletter = Newsletter.objects.get(issue=issue)
+    ymd = issue[2:4] + issue[5:7] + (issue[8:10] if len(issue) > 7 else '')
+
     params = {
         'title': newsletter.title,
         'issue': newsletter.issue.strftime('%Y年%m月%d號').decode('utf-8'),
@@ -100,6 +102,9 @@ def read_newsletter_context(issue, is_web=False):
                    list(MetaNumber.objects.filter(issue=newsletter)) + \
                    list(MetaFile.objects.filter(issue=newsletter))
     params = dict(params.items() + build_meta_params(all_metadata).items())
+
+    if not is_web:
+        params['tracking_code'] = '?utm_source=epaper&utm_medium=email&utm_campaign=epaper%s&utm_content=mozilla' % ymd
 
     return {
         'params': params,
