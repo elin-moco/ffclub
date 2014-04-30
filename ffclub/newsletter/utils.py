@@ -33,7 +33,7 @@ def build_meta_params(all_metadata=None, admin=False):
                 val = val.strftime('%Y/%m/%d')
             elif isinstance(meta, MetaFile):
                 key = meta.name[:meta.name.rfind('-')]
-                val = NEWSLETTER_ASSETS_URL + ('' if admin or key not in tags else '/tagged/') + os.path.basename(val.file.name)
+                val = NEWSLETTER_ASSETS_URL + ('' if admin or key not in tags else 'tagged/') + os.path.basename(val.file.name)
             if meta.index == 0:
                 params[meta.name] = val
             else:
