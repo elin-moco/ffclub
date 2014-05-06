@@ -284,13 +284,19 @@ table.footer table.social-media td,
 table.footer td.official,
 table.footer td.contact,
 table.footer td.license {
-  padding-bottom: 8px;
+  padding-bottom: 4px;
   padding-right: 12px;
 }
 table.footer td.license {
   font-size: 10px;
 }
-
+table.footer td.unsubscribe {
+  text-align: right;
+  font-size: 10px;
+}
+table.footer td.unsubscribe a {
+  color: gray;
+}
 .articles > tbody > tr {
   display: inline;
 }
@@ -885,6 +891,9 @@ _gaq.push(['_trackPageview']);
                       <td><a href="http://www.youtube.com/user/MozillaTaiwan" target="_blank">Youtube</a></td>
                       <td><a href="http://www.flickr.com/photos/mozillataiwan/" target="_blank">Flickr</a></td>
                       <td><a href="http://mozilla.com.tw/join_us/{{ params.tracking_code }}" target="_blank">電子報</a></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="unsubscribe"><a href="https://{{ MOCO_URL }}{{ params.tracking_code }}/newsletter/unsubscribe/" target="_blank">取消訂閱</a></td>
                     </tr>
                   </table>
                 </td>
