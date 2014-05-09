@@ -68,7 +68,7 @@ def newsletter_subscribe(email):
         log.info(email + ' subscribed!')
         return True
     else:
-        log.warn(email + ' already exists!')
+        log.warning(email + ' already exists!')
         for existingEmail in existingEmails:
             if 0 == existingEmail.status:
                 existingEmail.status = 1
@@ -85,7 +85,7 @@ def newsletter_unsubscribe(emailAddress):
             log.info(emailAddress + ' unsubscribed!')
         return True
     else:
-        log.warn(emailAddress + ' does not exists!')
+        log.warning(emailAddress + ' does not exists!')
         return False
 
 
