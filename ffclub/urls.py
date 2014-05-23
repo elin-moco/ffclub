@@ -6,7 +6,7 @@ from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import sitemaps
 from django.views.generic.simple import redirect_to
-from ffclub.base import ViewsSitemap
+from ffclub.base import ViewsSitemap, PathsSitemap
 from ffclub.intro.views import login_redirect
 from ffclub.settings import DEBUG, ENGAGE_ROBOTS
 
@@ -41,6 +41,9 @@ sitemaps = {
     'base_minor': ViewsSitemap(['tos'], 0.3, 'yearly'),
     'products': GenericSitemap(product_dict, 0.7, 'monthly'),
     'event_photos': GenericSitemap(event_photo_dict, 0.6, 'weekly'),
+    'campaign': PathsSitemap(
+        ['/campaign/lantern-festival/', '/campaign/every-moment/', '/events/attack-on-web/', '/events/microfilm-vote/'],
+        0.5, 'monthly'),
 }
 
 
