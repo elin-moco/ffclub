@@ -4,8 +4,10 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 <meta name="description" content="{{ params['banner-title'] }}">
 <title>Firefox 電子報第 {{ params['volume'] }} 期 － {{ params['title'] }} － Mozilla Taiwan</title>
+{% if admin %}
 <link type="text/css" href="/static/css/libs/jquery-ui-1.10.3.custom.min.css"/>
 <link type="text/css" href="/static/css/libs/jquery-ui-editable.css"/>
+{% endif %}
 <style>
 * {
   font-family: "Open Sans",Arial,Helvetica,"Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
