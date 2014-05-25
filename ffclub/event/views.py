@@ -68,7 +68,7 @@ def wall_page(request, page_number=1):
     paginator = Paginator(allEventPhotos, EVENT_WALL_PHOTOS_PER_PAGE)
     data = {
         'upload_form': uploadForm,
-        'event_photos': paginator.page(page_number),
+        'event_photos': paginator.page(page_number) if paginator.num_pages >= page_number else (),
     }
 
     return render(request, 'event/wall.html', data)
