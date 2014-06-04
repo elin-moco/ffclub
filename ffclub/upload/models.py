@@ -26,6 +26,13 @@ class ImageUpload(models.Model):
                              default='original')
 
     description = models.CharField(max_length=255, verbose_name='相片說明(*)')
+
+    link = models.URLField(verbose_name='超連結', default='', blank=True)
+    link_text = models.CharField(max_length=255, verbose_name='連結文字', default='', blank=True)
+
+    link2 = models.URLField(verbose_name='超連結2', default='', blank=True)
+    link2_text = models.CharField(max_length=255, verbose_name='連結文字2', default='', blank=True)
+
     status = models.CharField(max_length=20,
                               choices=(('normal', '正常'), ('reported', '被檢舉'), ('spam', '垃圾')),
                               default='normal')

@@ -22,12 +22,15 @@ class Product(models.Model):
     status = models.CharField(max_length=20,
                               choices=(('normal', '正常'), ('lack', '庫存不足')),
                               default='normal')
+    type = models.CharField(max_length=20,
+                            choices=(('souvenir', '宣傳品'), ('design', '設計品')),
+                            default='souvenir')
 
     def get_absolute_url(self):
         return reverse('product.photos', kwargs={'product_id': self.id})
 
     def __unicode__(self):
-        return unicode('%s (%d)' % (self.title, self.quantity))
+        return unicode('[%s] %s (%d)' % (self.type, self.title, self.quantity))
 
     class Meta:
         verbose_name = verbose_name_plural = '宣傳品'

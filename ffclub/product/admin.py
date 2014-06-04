@@ -7,7 +7,7 @@ from ffclub.upload.admin import ImageUploadInline
 class ProductAdmin(ModelAdmin):
     inlines = [ImageUploadInline]
     search_fields = ['title', 'description']
-    list_filter = ['quantity', 'create_time', 'status']
+    list_filter = ['quantity', 'create_time', 'status', 'type']
 
 
 class OrderDetailInline(TabularInline):

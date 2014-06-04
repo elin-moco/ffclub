@@ -18,11 +18,26 @@ import uuid
 log = commonware.log.getLogger('ffclub')
 
 
+def design_wall(request):
+    products = Product.objects.filter(type='design', status='normal').prefetch_related('photos')
+
+    for product in products:
+        previewPhotos = filter(lambda x: x.usage == 'preview', product.photos.all())
+        if len(previewPhotos) > 0:
+            product.preview_image_name = previewPhotos[0].get_large_path()
+
+    data = {
+        'products': products
+    }
+
+    return render(request, 'product/design_wall.html', data)
+
+
 def wall(request):
     # if request.user.is_authenticated() and not Person.objects.filter(user=request.user).exists():
     #     return redirect('user.register')
 
-    products = Product.objects.filter(status='normal').prefetch_related('photos')
+    products = Product.objects.filter(type='souvenir', status='normal').prefetch_related('photos')
     orderDetailData = []
 
     for product in products:

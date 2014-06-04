@@ -9,15 +9,19 @@ window.Modal = function () {
     };
 
     function slideTemplate(slide) {
-        return '<div class="slide"><div style="background-image:url(' + slide.url + ')"></div>'+
-            '<div class="slideTitle">('+(slide.slideNum+1)+'/'+slideData.length+')  '+slide.title+'</div></div>';
+        return '<div class="slide">' +
+            '<div style="background-image:url(' + slide.url + ')"></div>' +
+            '<div class="slideTitle">('+(slide.slideNum+1)+'/'+slideData.length+')  ' + slide.title + '</div>' +
+            (slide.buttonLink ? '<a class="button" href="'+slide.buttonLink+'">'+slide.buttonText+'</a>' : '') +
+            (slide.button2Link ? '&emsp;<a class="button" href="'+slide.button2Link+'">'+slide.button2Text+'</a>' : '') +
+            '</div>';
     }
 
     var container_node,
         wrapper,
         chromeBuilt,
         previousSlidesUrl,
-        heightFix = 88,
+        heightFix = 120,
         currentSlide = 0,
         slideData = [],
         preventHide = false,
@@ -419,12 +423,16 @@ window.Modal = function () {
                     $($.parseHTML(slides)).find('#main-content li').each(function (i, el) {
                         var thisSlide = {}, thisImg = $(el).find('img');
 
-                        thisSlide.url = $(el).find('a').attr('href');
+                        thisSlide.url = $(el).find('img').attr('src');
                         thisSlide.height = thisImg.attr('height');
                         thisSlide.width = thisImg.attr('width');
                         thisSlide.title = thisImg.attr('title');
-                        thisSlide.link = $(el).find('a').attr('href');
-
+                        thisSlide.link = thisSlide.url;
+                        var $buttons = $(el).find('a.button');
+                        thisSlide.buttonText = $buttons.eq(0).text();
+                        thisSlide.buttonLink = $buttons.eq(0).attr('href');
+                        thisSlide.button2Text = $buttons.eq(1).text();
+                        thisSlide.button2Link = $buttons.eq(1).attr('href');
                         slideData.push(thisSlide);
                     });
                     if (!chromeBuilt) {

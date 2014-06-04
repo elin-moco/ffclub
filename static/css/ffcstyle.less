@@ -1,3 +1,6 @@
+@import "sandstone/lib";
+@import "sandstone/buttons";
+
 @charset "utf-8";
 @font-face {
   font-family: "Open Sans";
@@ -220,6 +223,9 @@ body{
   &.order{
     background: url('/static/images/css/order_banner.jpg') top center no-repeat;
   }
+  &.download{
+    background: url('/static/img/design/donwloaddesign-banner.png') top center no-repeat;
+  }
   &.orderComplete{
     background: url('/static/images/css/order_complete_banner.jpg') top center no-repeat;
   }
@@ -270,6 +276,12 @@ body{
   }
   a:hover {
     color: @hover_link_color;
+  }
+  a.button {
+    color: @buttonTextColor;
+  }
+  a.button:hover {
+    color: @buttonTextColor;
   }
   ul li {
     font-size: @body_size;

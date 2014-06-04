@@ -31,8 +31,13 @@
                src="{{ STATIC_URL }}{{ photo.get_large_path() }}"
                alt="{{ photo.description }}" title="{{ photo.description }}"/>
         </a>
-
         <p>{{ photo.description }}</p>
+        {% if photo.link %}
+          <a class="button" href="{{ photo.link }}">{{ photo.link_text }}</a>
+        {% endif %}
+        {% if photo.link2 %}
+          &emsp;<a class="button" href="{{ photo.link2 }}">{{ photo.link2_text }}</a>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

@@ -47,6 +47,7 @@ div.eventWall {
     width: 100% !important;
     height: 20px !important;
     color: #ffffff;
+    margin-bottom: 10px;
 }
 
 .slide div {
