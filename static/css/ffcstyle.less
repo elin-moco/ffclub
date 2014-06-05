@@ -273,15 +273,35 @@ body{
   }
   a {
     color: @default_link_color;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
   a:hover {
     color: @hover_link_color;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
   a.button {
     color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
   a.button:hover {
     color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  a.submitButton {
+    color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  a.submitButton:hover {
+    color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  a.loginButton {
+    color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  a.loginButton:hover {
+    color: @buttonTextColor;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
   ul li {
     font-size: @body_size;
@@ -483,66 +503,13 @@ a#browserid:hover {
 .back (){
   .transform(rotateX(0deg) rotateY(-180deg));
 }
-/*mobile css*/
 
-@media only screen and (max-width: 640px){
-  
-  html, body{
-    width:100%;
-  }
-  #body_wrapper{
-    width:100%;
-    position:relative;
-    &.opennav{
-      width:100%;
-
-       #outer-wrapper{
-        //.back;
-         .transform(translate(85%,0));
-      }
-    }/* end of opennav */
-  }
-  
-  #outer-wrapper{
-    .transition_block (0.8s, ease-in-out, transform);
-    .backfacehide;
-  }
-
-  #masthead{
-    width:100%;
-    min-width:200px;
-    position: static;
-    h1{
-      margin:0px auto;
-      float:none;
-      
-    }
-  }/* end of masthead */
-
-  #main-feature{
-    &.huge{
-      width:100%;
-    }
-  }/* end of main-feature */
-
-  #main-content{
-    width:100%;
-    min-height:200px;
-  }
-
-
-  .joinCircle {
-    width: 80px;
-    height: 80px;
-    background-size: 100%;
-  }
-  .loveCircle {
-    width: 80px;
-    height: 80px;
-    background-size: 100%;
-  }
+#nav-main-menu {
+  left: -330px;
 }
-
+.slided-it #nav-main-menu {
+  left: -270px;
+}
 #nav-main-menu li {
   line-height: 1.55;
 }
@@ -602,5 +569,81 @@ a#browserid:hover {
   .persona-button span {
     padding: 6px 10px 6px 50px;
     font-size: 16px;
+  }
+}
+
+
+/*mobile css*/
+@media only screen and (max-width: @breakDesktop){
+  #masthead{
+    width: 740px;
+  }
+}
+@media only screen and (max-width: @breakTablet){
+  #masthead{
+    width: 620px;
+  }
+}
+@media only screen and (max-width: 640px){
+  
+  html, body{
+    width:100%;
+  }
+  #body_wrapper{
+    width:100%;
+    position:relative;
+    &.opennav{
+      width:100%;
+
+       #outer-wrapper{
+        //.back;
+         .transform(translate(85%,0));
+      }
+    }/* end of opennav */
+  }
+  
+  #outer-wrapper{
+    .transition_block (0.8s, ease-in-out, transform);
+    .backfacehide;
+  }
+
+  #masthead{
+    width: 460px;
+    min-width:200px;
+    position: static;
+    h1{
+      margin:0px auto;
+      float:none;
+      
+    }
+  }/* end of masthead */
+
+  #main-feature{
+    &.huge{
+      width:100%;
+    }
+  }/* end of main-feature */
+
+  #main-content{
+    width:100%;
+    min-height:200px;
+  }
+
+
+  .joinCircle {
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+  }
+  .loveCircle {
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+  }
+}
+
+@media only screen and (max-width: @breakMobileLandscape){
+  #masthead{
+    width: 300px;
   }
 }

@@ -77,6 +77,20 @@ li.bannerSupport {
   background: #fff;
   padding-top: 20px;
   padding-bottom: 30px;
+  h4 {
+    font-size: 28px;
+  }
+  p {
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .button {
+    width: 240px;
+    line-height: 31px;
+    span {
+      display: inline-block;
+    }
+  }
 }
 
 #intro-content .introHeading {
@@ -132,19 +146,18 @@ div.introPicture {
   left: 0px;
 }
 @media only screen and (max-width: 800px){
-  #masthead {
-    width: 100%;
-  }
   #main-content{
     width: 100%;
   }
-
+  div.introPicture {
+    margin: auto;
+  }
   #intro-content .introHeading {
-    padding-left: 0;
+    padding-left: 20px;
   }
   #intro-content .introRules {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
 }
@@ -176,6 +189,11 @@ div.introPicture {
 }
 
 @media only screen and (max-width: 480px) {
+  #intro-content {
+    h4 {
+      font-size: 22px;
+    }
+  }
   div.introPicture {
     height: 90px;
   }
