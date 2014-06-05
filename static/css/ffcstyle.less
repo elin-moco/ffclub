@@ -172,7 +172,7 @@ body{
 
 #wrapper{
   background: url(/static/images/css/bg_sand_gradient.png) left top repeat-x, url(/static/images/css/bg_sand.png) left top repeat;
-  padding-bottom:50px;
+  padding-bottom: 0px;
 }
 
 #masthead{
@@ -572,16 +572,28 @@ a#browserid:hover {
   }
 }
 
+#subscribe {
+  display: block;
+  margin: auto;
+  width: 800px;
+  border: none;
+}
 
 /*mobile css*/
 @media only screen and (max-width: @breakDesktop){
   #masthead{
     width: 740px;
   }
+  #subscribe {
+    width: 760px;
+  }
 }
 @media only screen and (max-width: @breakTablet){
   #masthead{
     width: 620px;
+  }
+  #subscribe {
+    width: 640px;
   }
 }
 @media only screen and (max-width: 640px){
@@ -640,10 +652,16 @@ a#browserid:hover {
     height: 80px;
     background-size: 100%;
   }
+  #subscribe {
+    width: 480px;
+  }
 }
 
 @media only screen and (max-width: @breakMobileLandscape){
   #masthead{
     width: 300px;
+  }
+  #subscribe {
+    width: 320px;
   }
 }
