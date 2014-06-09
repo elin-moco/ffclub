@@ -37,7 +37,7 @@ event_photo_dict = {
 }
 
 sitemaps = {
-    'base': ViewsSitemap(['intro.home', 'product.wall', 'event.wall'], 0.8, 'monthly'),
+    'base': ViewsSitemap(['intro.home', 'product.wall', 'event.wall', 'design.wall'], 0.8, 'monthly'),
     'base_minor': ViewsSitemap(['tos'], 0.3, 'yearly'),
     'products': GenericSitemap(product_dict, 0.7, 'monthly'),
     'event_photos': GenericSitemap(event_photo_dict, 0.6, 'weekly'),
