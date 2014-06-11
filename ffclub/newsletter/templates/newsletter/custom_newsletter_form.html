@@ -671,7 +671,7 @@ _gaq.push(['_trackPageview']);
           {% if admin %}
           <tr>
             <td class="header-subject" colspan="2">
-              <img id="main-thumb" src="{{ params['main-thumb'] }}" width="70" height="70"/>
+              <img id="main-thumb" src="{{ params['main-thumb'] }}" alt="{{ params.title }}" width="70" height="70"/>
               <h1><a id="title"title="電子報主旨" data-for="id_title">{{ params.title }}</a></h1>
             </td>
           </tr>
@@ -688,7 +688,8 @@ _gaq.push(['_trackPageview']);
           <tr>
             <td class="logo">
               <a class="web-link" href="http://{{ MOCO_URL }}{{ params.tracking_code }}">
-                <img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/header.png{{ '?vol=%d' % params.volume if not request else '' }} ">
+                <img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/header.png{{ '?vol=%d' % params.volume if not request else '' }} "
+                     alt="Firefox 電子報">
               </a>
             </td>
             <td class="issue">
@@ -703,7 +704,7 @@ _gaq.push(['_trackPageview']);
         <tr>
           <td class="main">
             <a href="{{ params['banner-link'] }}{{ params.tracking_code }}" target="_blank">
-              <img id="banner" width="502" height="203" src="{{ params['banner'] }}"/>
+              <img id="banner" width="502" height="203" src="{{ params['banner'] }}" alt="{{ params.title }}"/>
               <b id="banner-title" title="看板說明">
                 {{ params['banner-title'] }}
               </b>
@@ -716,7 +717,9 @@ _gaq.push(['_trackPageview']);
             <table>
               <tr>
                 <td>
-                  <a href="http://{{ MOCO_URL }}/firefox/download/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadfirefox.png"/></a>
+                  <a href="http://{{ MOCO_URL }}/firefox/download/{{ params.tracking_code }}"
+                     target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadfirefox.png"
+                                          alt="下載 Firefox"/></a>
                 </td>
               </tr>
               <tr>
@@ -726,26 +729,33 @@ _gaq.push(['_trackPageview']);
                       <td class="head">分享電子報至</td>
                     </tr>
                     <tr>
-                      <td class="link"><a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ NEWSLETTER_URL|urlencode }}&p[images][0]={{ (NEWSLETTER_URL + 'images/mainpic.png')|urlencode }}&p[title]={{ params.title|urlencode }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharefb.png"/>Facebook</a>
+                      <td class="link"><a href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D={{ NEWSLETTER_URL|urlencode }}&amp;p%5Bimages%5D%5B0%5D={{ params['banner']|urlencode }}&amp;p%5Btitle%5D={{ params.title|urlencode }}"
+                                          target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharefb.png" alt="Facebook"/>Facebook</a>
                       </td>
                     </tr>
                     <tr>
-                      <td class="link"><a href="https://plus.google.com/share?url={{ NEWSLETTER_URL|urlencode }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharegoogle.png"/>Google+</a>
+                      <td class="link"><a href="https://plus.google.com/share?url={{ NEWSLETTER_URL|urlencode }}"
+                                          target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharegoogle.png" alt="Google+"/>Google+</a>
                       </td>
                     </tr>
                     <tr>
-                      <td class="link"><a href="http://www.plurk.com/?qualifier=shares&status={{ NEWSLETTER_URL|urlencode }}({{ params['title']|urlencode }})" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-shareplurk.png"/>Plurk</a>
+                      <td class="link"><a href="http://www.plurk.com/?qualifier=shares&amp;status={{ NEWSLETTER_URL|urlencode }}({{ params['title']|urlencode }})"
+                                          target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-shareplurk.png" alt="Plurk"/>Plurk</a>
                       </td>
                     </tr>
                     <tr>
-                      <td class="link"><a href="mailto:?subject={{ params.title }}&body=詳見 Firefox 電子報第 {{ params.volume }} 期：{{ NEWSLETTER_URL }}"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharemail.png"/>Email</a></td>
+                      <td class="link"><a
+                              href="mailto:?subject={{ params.title|urlencode }}&amp;body=%E8%A9%B3%E8%A6%8B%20Firefox%20%E9%9B%BB%E5%AD%90%E5%A0%B1%E7%AC%AC%20{{ params.volume }}%20%E6%9C%9F%EF%BC%9A{{ NEWSLETTER_URL }}"><img
+                              src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-sharemail.png" alt="Email"/>Email</a></td>
                     </tr>
                   </table>
                 </td>
               </tr>
               <tr>
                 <td class="subscribe">
-                  <a href="http://{{ MOCO_URL }}/join_us/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadnewsletter-withtext.png"/></a>
+                  <a href="http://{{ MOCO_URL }}/join_us/{{ params.tracking_code }}"
+                     target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/button-downloadnewsletter-withtext.png"
+                                          alt="訂閱電子報"/></a>
                 </td>
               </tr>
             </table>
@@ -755,7 +765,8 @@ _gaq.push(['_trackPageview']);
     </td>
   </tr>
   <tr>
-    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-news.png"/></td>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-news.png"
+                                    alt="最新消息"/></td>
   </tr>
   <tr>
     <td>
@@ -769,7 +780,8 @@ _gaq.push(['_trackPageview']);
             {% if admin %}
               <div id="article-tag-{{ loop.index }}" class="tag-label" {% if params['article-tag'][loop.index] %}style="background: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-{{ params['article-tag'][loop.index] }}.png); opacity: 1.0;"{% endif %}></div>
             {% endif %}
-            <img id="article-thumb-{{ loop.index }}" class="article-thumb" width="194" height="128" src="{{ params['article-thumb'][loop.index] }}"/>
+            <img id="article-thumb-{{ loop.index }}" class="article-thumb" width="194" height="128"
+                 src="{{ params['article-thumb'][loop.index] }}" alt="{{ params['article-title'][loop.index] }}"/>
             <p>
               <b><span id="article-title-{{ loop.index }}" class="article-title" title="文章標題">{{ params['article-title'][loop.index] }}</span> » </b>
               <span id="article-desc-{{ loop.index }}" class="article-desc" title="文章說明">{{ params['article-desc'][loop.index] }}</span>
@@ -789,7 +801,9 @@ _gaq.push(['_trackPageview']);
     </td>
   </tr>
   <tr>
-    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-download.png"/></td>
+    <td class="section-header"><img
+            src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-download.png"
+            alt="好康下載"/></td>
   </tr>
   <tr>
     <td>
@@ -797,7 +811,8 @@ _gaq.push(['_trackPageview']);
         <tr>
           <td>
             <a class="download-link" target="_blank" href="{{ params['download-link'] }}{{ params.tracking_code }}">
-              <img id="download-thumb" class="download-thumb" width="652" height="128" src="{{ params['download-thumb'] }}"/>
+              <img id="download-thumb" class="download-thumb" width="652" height="128"
+                   src="{{ params['download-thumb'] }}" alt="{{ params['download-title'] }}"/>
               <p>
                 <b><span id="download-title" title="下載標題">{{ params['download-title'] }}</span> » </b>
               </p>
@@ -813,22 +828,48 @@ _gaq.push(['_trackPageview']);
     </td>
   </tr>
   <tr>
-    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-links.png"/></td>
+    <td class="section-header"><img
+            src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-links.png"
+            alt="與我同行"/></td>
   </tr>
   <tr>
     <td>
       <table class="links">
         <tr>
-          <td class="padleft2 padright2 padbottom2"><a href="http://{{ MOCO_URL }}/community/student/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-fsa.png"/></a></td>
-          <td class="padright2 padbottom2"><a href="http://{{ TECH_URL }}/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-blog.png"/></a></td>
-          <td class="padright2 padbottom2"><a href="https://developer.mozilla.org/" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-mdn.png"/></a></td>
-          <td class="padbottom2"><a href="http://{{ FFCLUB_URL }}{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-ffclub.png"/></a></td>
+          <td class="padleft2 padright2 padbottom2"><a
+                  href="http://{{ MOCO_URL }}/community/student/{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-fsa.png"
+                  alt="校園大使"/></a></td>
+          <td class="padright2 padbottom2"><a
+                  href="http://{{ TECH_URL }}/{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-blog.png"
+                  alt="謀智台客"/></a></td>
+          <td class="padright2 padbottom2"><a
+                  href="https://developer.mozilla.org/" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-mdn.png"
+                  alt="MDN"/></a></td>
+          <td class="padbottom2"><a
+                  href="http://{{ MOCO_URL }}/community/{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-people.png"
+                  alt="參與社群"/></a></td>
         </tr>
         <tr>
-          <td class="padleft2 padright2"><a href="http://{{ MOCO_URL }}/sumo{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-sumo.png"/></a></td>
-          <td class="padright2"><a href="http://{{ MYFF_URL }}/videos/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-vision.png"/></a></td>
-          <td class="padright2"><a href="http://{{ MYFF_URL }}/{{ params.tracking_code }}" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-myfx.png"/></a></td>
-          <td class="padright2"><a href="http://tw.mall.yahoo.com/store/firefox" target="_blank"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-store.png"/></a></td>
+          <td class="padleft2 padright2"><a
+                  href="http://{{ MOCO_URL }}/sumo{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-sumo.png"
+                  alt="支援中心"/></a></td>
+          <td class="padright2"><a
+                  href="http://{{ MYFF_URL }}/videos/{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-vision.png"
+                  alt="狐電視"/></a></td>
+          <td class="padright2"><a
+                  href="http://{{ MYFF_URL }}/{{ params.tracking_code }}" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-myfx.png"
+                  alt="MyFirefox"/></a></td>
+          <td class="padright2"><a
+                  href="http://tw.mall.yahoo.com/store/firefox" target="_blank"><img
+                  src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/icon-store.png"
+                  alt="火狐商城"/></a></td>
         </tr>
       </table>
     </td>
@@ -836,7 +877,7 @@ _gaq.push(['_trackPageview']);
 {#
   {% if admin or params['quiz-question'] %}
   <tr>
-    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-quiz.png"/></td>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-quiz.png" alt="有獎徵答"/></td>
   </tr>
   <tr>
     <td>
@@ -864,7 +905,7 @@ _gaq.push(['_trackPageview']);
  #}
 </table>
 {% if not request %}
-<img src="{{ NEWSLETTER_URL }}email.gif" style="display: block;"/>
+<img src="{{ NEWSLETTER_URL }}email.gif" alt="" style="display: block;"/>
 {% endif %}
 <table id="footer" class="footer">
   <tr>
