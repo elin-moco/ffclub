@@ -182,7 +182,8 @@ td.section-header img{
   padding-bottom: 12px;
 }
 
-td.article-box {
+td.article-box, td.video-box {
+  position: relative;
   display: inline-block;
   width: 194px;
   vertical-align: top;
@@ -190,11 +191,11 @@ td.article-box {
   line-height: 15px;
 }
 
-td.article-box p {
+td.article-box p, td.video-box p {
   margin: 0;
 }
 
-td.article-box a.article-link {
+td.article-box a.article-link, td.video-box a.video-link {
   display: block;
   height: 215px;
 }
@@ -219,7 +220,7 @@ td.padbottom2 {
   padding-bottom: 9px;
 }
 
-td.article-box img {
+td.article-box img, td.video-box img {
   width: 194px;
   height: 128px;
 }
@@ -299,10 +300,10 @@ table.footer td.unsubscribe {
 table.footer td.unsubscribe a {
   color: gray;
 }
-.articles > tbody > tr {
+.articles > tbody > tr, .videos > tbody > tr {
   display: inline;
 }
-.articles .article-box {
+.articles .article-box, .videos .video-box {
   padding-left: 17px;
   padding-right: 17px;
   text-align: left;
@@ -340,7 +341,7 @@ td.main:hover .banner-link {
   opacity: 0.5;
 }
 
-td.article-box:hover .add-link {
+td.article-box:hover .add-link, td.video-box:hover .add-link {
   opacity: 0.5;
 }
 
@@ -364,6 +365,36 @@ td.article-box:hover .tag-label {
   -webkit-border-bottom-right-radius: 100px;
   -moz-border-radius-bottomright: 100px;
   border-bottom-right-radius: 100px;
+}
+
+.video-length {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 17px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #000000;
+  padding: 6px;
+}
+.video-length.editable-open ~ .play-icon {
+  top: 103px;
+}
+.play-icon {
+  display: block;
+  position: absolute;
+  margin: auto;
+  top: 37px;
+  left: 0;
+  right: 0;
+  width: 53px;
+  height: 53px;
+  background: url(/static/img/newsletter/play-btn.png) no-repeat;
+  background-size: 100%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+td.video-box:hover .play-icon {
+  opacity: 0.8;
 }
 
 .dnd-target-highlight {
@@ -422,7 +453,7 @@ td.article-box:hover .tag-label {
   float: right;
 }
 
-.article-desc + .editable-inline textarea {
+.article-desc + .editable-inline textarea, .video-desc + .editable-inline textarea {
   font-size: 12px;
 }
 
@@ -771,7 +802,7 @@ _gaq.push(['_trackPageview']);
   <tr>
     <td>
       <table class="content articles">
-        {% for article in range(0, 6) %}
+        {% for article in range(0, 9) %}
           {% if 1 == loop.index % 3 %}
             <tr>
           {% endif %}
@@ -790,6 +821,43 @@ _gaq.push(['_trackPageview']);
           {% if admin %}
           <a id="article-link-{{ loop.index }}" class="add-link" target="_blank" href="{{ params['article-link'][loop.index] }}" title="文章連結">
             {{ params['article-link'][loop.index] }}
+          </a>
+          {% endif %}
+        </td>
+        {% if 0 == loop.index % 3 %}
+          </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-videos.png"
+                                    alt="精選影片"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="content videos">
+        {% for article in range(0, 3) %}
+          {% if 1 == loop.index % 3 %}
+            <tr>
+          {% endif %}
+        <td class="video-box {{ 'padright' if 0 != loop.index % 3 }} {{ 'padbottom' if loop.index <= 6 }}" data-index="{{ loop.index }}">
+          <a class="video-link" target="_blank" href="{{ params['video-link'][loop.index] }}{{ params.tracking_code }}">
+            {% if admin %}
+              <span id="video-length-{{ loop.index }}" class="video-length" title="影片長度">{{ params['video-length'][loop.index] }}</span>
+              <div class="play-icon"></div>
+            {% endif %}
+            <img id="video-thumb-{{ loop.index }}" class="video-thumb" width="194" height="128"
+                 src="{{ params['video-thumb'][loop.index] }}"{% if not admin %} alt="{{ params['video-title'][loop.index] }}"{% endif %}/>
+            <p>
+              <b><span id="video-title-{{ loop.index }}" class="video-title" title="影片標題">{{ params['video-title'][loop.index] }}</span> » </b>
+              <span id="video-desc-{{ loop.index }}" class="video-desc" title="影片說明">{{ params['video-desc'][loop.index] }}</span>
+            </p>
+          </a>
+          {% if admin %}
+          <a id="video-link-{{ loop.index }}" class="add-link" target="_blank" href="{{ params['video-link'][loop.index] }}" title="文章連結">
+            {{ params['video-link'][loop.index] }}
           </a>
           {% endif %}
         </td>
@@ -969,6 +1037,7 @@ _gaq.push(['_trackPageview']);
   {{ adminform.form }}
   <div id="admin-toolbar">
     <input type="hidden" id="meta-article-order" name="meta-article-order"/>
+    <input type="hidden" id="meta-video-order" name="meta-video-order"/>
     <a href="{{ url('admin:newsletter_newsletter_changelist') }}">« 回到列表</a>
     <input type="hidden" id="pre-send-email" name="pre-send-email"/>
     <input type="submit" name="save" value="儲存"/>
@@ -1169,6 +1238,20 @@ _gaq.push(['_trackPageview']);
       }
     });
 
+    $('.videos > tbody').sortable({
+      items: '.video-box',
+      placeholder: 'dnd-target-highlight',
+      helper: 'clone',
+      update: function(event, ui) {
+        var order = []
+        $('.videos .video-box').each(function(index, elem) {
+          order[$(elem).attr('data-index')-1] = index+1;
+        }).promise().done(function() {
+          $('#meta-video-order').val(order.toString());
+        });
+      }
+    });
+
     //Main
     $('#title').inlineEdit({
       type: 'text',
@@ -1180,7 +1263,7 @@ _gaq.push(['_trackPageview']);
     $('.header .issue .volume').inlineEdit({type: 'number'});
 
     // Images
-    $('#main-thumb, #banner, .article-thumb, #download-thumb').inlineEdit({type: 'image'});
+    $('#main-thumb, #banner, .article-thumb, .video-thumb, #download-thumb').inlineEdit({type: 'image'});
 
     // Text
     $('#banner-title').inlineEdit({type: 'textarea', rows: 2});
@@ -1188,6 +1271,11 @@ _gaq.push(['_trackPageview']);
     $('.article-box .article-title').inlineEdit();
     $('.article-box .article-desc').inlineEdit({type: 'textarea', rows: 3});
     $('.article-box .add-link').inlineEdit({type: 'url'});
+    $('.video-box .video-title').inlineEdit();
+    $('.video-box .video-desc').inlineEdit({type: 'textarea', rows: 3});
+    $('.video-box .add-link').inlineEdit({type: 'url'});
+    $('.video-box .video-length').inlineEdit();
+
     $('#download-title').inlineEdit();
     $('#download-link').inlineEdit({type: 'url'});
     $('#quiz-question').inlineEdit({type: 'textarea', rows: 2});
@@ -1215,7 +1303,7 @@ _gaq.push(['_trackPageview']);
       ]
     });
 
-    $('.banner .main a, td.article-box a.article-link, a.web-link, a.download-link').changeElementType('div');
+    $('.banner .main a, td.article-box a.article-link, td.video-box a.video-link, a.web-link, a.download-link').changeElementType('div');
     $('#edit-form input[type!=submit], #edit-form textarea, #edit-form label').hide();
     $('#pre-send').click(function(e) {
       e.preventDefault();

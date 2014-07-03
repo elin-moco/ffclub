@@ -34,7 +34,7 @@ def build_meta_params(all_metadata=None, admin=False):
                 val = val.strftime('%Y/%m/%d')
             elif isinstance(meta, MetaFile):
                 key = meta.name[:meta.name.rfind('-')]
-                val = NEWSLETTER_ASSETS_URL + ('' if admin or key not in tags else 'tagged/') + os.path.basename(val.file.name)
+                val = NEWSLETTER_ASSETS_URL + ('' if admin or not (key in tags or meta.name == 'video-thumb') else 'tagged/') + os.path.basename(val.file.name)
             if meta.index == 0:
                 params[meta.name] = val
             else:
@@ -52,6 +52,18 @@ def build_meta_params(all_metadata=None, admin=False):
         params['article-title'] = {}
     if 'article-desc' not in params:
         params['article-desc'] = {}
+    if 'video-thumb' not in params:
+        params['video-thumb'] = {}
+    if 'video-link' not in params:
+        params['video-link'] = {}
+    if 'video-tag' not in params:
+        params['video-tag'] = {}
+    if 'video-title' not in params:
+        params['video-title'] = {}
+    if 'video-desc' not in params:
+        params['video-desc'] = {}
+    if 'video-length' not in params:
+        params['video-length'] = {}
     if 'quiz-answer' not in params:
         params['quiz-answer'] = {}
 
@@ -153,12 +165,23 @@ def generate_newsletter_images(issue):
             file_path = os.path.dirname(meta_file.value.path)
             file_name = os.path.basename(meta_file.value.path)
             add_tag(file_path, file_name, tag)
+        elif meta_file.name == 'video-thumb':
+            file_path = os.path.dirname(meta_file.value.path)
+            file_name = os.path.basename(meta_file.value.path)
+            add_play_icon(file_path, file_name)
 
 
 def add_tag(path, name, category):
     background = Image.open(path + '/' + name)
     foreground = Image.open('static/img/newsletter/tag-%s.png' % category)
     background.paste(foreground, (0, 0), foreground)
+    background.save(path + '/tagged/' + name)
+
+
+def add_play_icon(path, name):
+    background = Image.open(path + '/' + name)
+    foreground = Image.open('static/img/newsletter/play-btn.png')
+    background.paste(foreground, (70, 37), foreground)
     background.save(path + '/tagged/' + name)
 
 
