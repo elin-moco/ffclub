@@ -225,6 +225,11 @@ td.article-box img, td.video-box img {
   height: 128px;
 }
 
+.more {
+  color: rgb(103, 167, 208) !important;
+  text-decoration: underline;
+}
+
 td p.quiz {
   color: #000000;
   font-size: 16px;
@@ -816,6 +821,10 @@ _gaq.push(['_trackPageview']);
             <p>
               <b><span id="article-title-{{ loop.index }}" class="article-title" title="文章標題">{{ params['article-title'][loop.index] }}</span> » </b>
               <span id="article-desc-{{ loop.index }}" class="article-desc" title="文章說明">{{ params['article-desc'][loop.index] }}</span>
+              {% if not admin %}
+                ...
+                <span class="more" title="閱讀全文">閱讀全文 »</span>
+              {% endif %}
             </p>
           </a>
           {% if admin %}
@@ -853,6 +862,10 @@ _gaq.push(['_trackPageview']);
             <p>
               <b><span id="video-title-{{ loop.index }}" class="video-title" title="影片標題">{{ params['video-title'][loop.index] }}</span> » </b>
               <span id="video-desc-{{ loop.index }}" class="video-desc" title="影片說明">{{ params['video-desc'][loop.index] }}</span>
+              {% if not admin %}
+                ...
+                <span class="more" title="觀看影片">觀看影片 »</span>
+              {% endif %}
             </p>
           </a>
           {% if admin %}

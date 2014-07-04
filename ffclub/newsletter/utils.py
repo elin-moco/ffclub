@@ -10,6 +10,8 @@ from .models import *
 import os
 from ffclub.settings import NEWSLETTER_ASSETS_URL, BEDROCK_NEWSLETTER_PATH, MOCO_URL, MYFF_URL, FFCLUB_URL, TECH_URL, BEDROCK_GA_ACCOUNT_CODE, NEWSLETTER_PRESEND_LIST
 from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 import premailer
 
 
@@ -150,12 +152,15 @@ def generate_newsletter_images(issue):
     all_meta_string = MetaString.objects.filter(issue=newsletter)
 
     tags = {}
+    vdo_lens = {}
     for meta_string in all_meta_string:
         if meta_string.name.endswith('-tag'):
             key = meta_string.name[:-4]
             if key not in tags:
                 tags[key] = {}
             tags[key][meta_string.index] = meta_string.value
+        elif meta_string.name == 'video-length':
+            vdo_lens[meta_string.index] = meta_string.value
 
     all_meta_file = MetaFile.objects.filter(issue=newsletter)
     for meta_file in all_meta_file:
@@ -169,6 +174,7 @@ def generate_newsletter_images(issue):
             file_path = os.path.dirname(meta_file.value.path)
             file_name = os.path.basename(meta_file.value.path)
             add_play_icon(file_path, file_name)
+            add_text(file_path, file_name, vdo_lens[meta_file.index], 12, (6, 6), 'right')
 
 
 def add_tag(path, name, category):
@@ -183,6 +189,26 @@ def add_play_icon(path, name):
     foreground = Image.open('static/img/newsletter/play-btn.png')
     background.paste(foreground, (70, 37), foreground)
     background.save(path + '/tagged/' + name)
+
+
+def add_text(path, name, text, size, position, align='left'):
+    image = Image.open(path + '/tagged/' + name)
+    draw = ImageDraw.Draw(image)
+    if isinstance(text, unicode):
+        font = ImageFont.truetype('media/fonts/wt014.ttf', size)
+    else:
+        font = ImageFont.truetype('bedrock/sandstone/media/fonts/OpenSans-Bold-webfont.ttf', size)
+    tw, th = draw.textsize(text, font=font)
+    if align == 'right':
+        pos = 194 - position[0] - tw, position[1]
+    elif align == 'center':
+        pos = (194 - tw) / 2, position[1]
+    else:
+        pos = position
+    shadow_pos = pos[0] + 1, pos[1] + 1
+    draw.text(shadow_pos, text, (0, 0, 0, 208), font=font)
+    draw.text(pos, text, (255, 255, 255), font=font)
+    image.save(path + '/tagged/' + name)
 
 
 def send_mail(subject, headers, from_email, to_mail, text_content, mail_content, issue_number):
