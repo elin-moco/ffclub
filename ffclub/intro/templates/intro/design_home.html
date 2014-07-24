@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block base_css %}
+  {{ css('intro') }}
+{% endblock %}
+{% block banner %}
+  <div id="main-feature" class="huge">
+    <hgroup>
+      <h1>Firefox 設計品</h1>
+
+      <h2>Welcom to you</h2>
+    </hgroup>
+    <ul class="carousel">
+      <li data-full-width="2000" data-full-height="370" class="bannerWelcome">
+        <a href="javascript:void(0)">
+          <img alt="Welcome!" title="Welcome!" width="2000" height="370"
+               src="{{ STATIC_URL }}img/design/design-banner1.png">
+        </a>
+      </li>
+      <li data-full-width="2000" data-full-height="370" class="bannerFree">
+        <a href="javascript:void(0)">
+          <img alt="Free, Open, Internet" title="Free, Open, Internet" width="2000" height="370"
+               src="{{ STATIC_URL }}img/design/design-banner2.png">
+        </a>
+      </li>
+      <li data-full-width="2000" data-full-height="370" class="bannerSupport">
+        <a href="javascript:void(0)">
+          <img alt="Support the Open Web" title="Support the Open Web" width="2000" height="370"
+               src="{{ STATIC_URL }}img/design/design-banner3.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="intro-content">
+
+    <div class="introHeading">
+
+      <h4>就是喜歡 Firefox，就是想時刻和它在一起！</h4>
+    </div>
+
+    <div class="introPicture"></div>
+    <div class="introRules">
+
+      <p>
+        Firefox 除了是一款自訂性高、功能齊全，附加元件豐富的瀏覽器，
+        它所傳達的「打造一個更開放自由的網路未來」理念，也是讓大家喜愛與推崇 Firefox 的主因之一。
+
+      <p>
+        在這裡我們收集了各式各樣 Firefox 相關的設計品供大家免費下載。
+        不論是生活週邊的佈置或是電腦上的應用皆可在這裡取得，讓你隨時隨地跟 Firefox 在一起。
+        更棒的是，下載物品將不定期更新，請記得時常回來看看！
+      <p>
+        <a class="button arrow" href="{{ url('design.wall') }}">下載 Firefox 設計品<span>&nbsp;</span></a>
+    </div>
+
+  </div>
+{% endblock %}
+{% block base_js %}
+  {{ js('intro') }}
+{% endblock %}
+

@@ -443,6 +443,8 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # The task can catch that and recover but should exit ASAP.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
 
+CELERYD_CONCURRENCY = 1
+
 ## Arecibo
 # when ARECIBO_SERVER_URL is set, it can use celery or the regular wrapper
 ARECIBO_USES_CELERY = True

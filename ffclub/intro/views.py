@@ -14,7 +14,7 @@ def index(request):
 def home(request):
     """Main view."""
     data = {}  # You'd add data here that you're sending to the template.
-    return render(request, 'intro/home.html', data)
+    return render(request, 'intro/design_home.html', data)
 
 
 def login_redirect(request):

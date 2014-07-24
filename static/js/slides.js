@@ -12,8 +12,8 @@ window.Modal = function () {
         return '<div class="slide">' +
             '<div style="background-image:url(' + slide.url + ')"></div>' +
             '<div class="slideTitle">('+(slide.slideNum+1)+'/'+slideData.length+')  ' + slide.title + '</div>' +
-            (slide.buttonLink ? '<a class="button" href="'+slide.buttonLink+'">'+slide.buttonText+'</a>' : '') +
-            (slide.button2Link ? '&emsp;<a class="button" href="'+slide.button2Link+'">'+slide.button2Text+'</a>' : '') +
+            (slide.buttonLink ? '<a target="_blank" class="button download" href="'+slide.buttonLink+'">'+slide.buttonText+'<span>&nbsp;</span></a>' : '') +
+            (slide.button2Link ? '&emsp;<a target="_blank" class="button download" href="'+slide.button2Link+'">'+slide.button2Text+'<span>&nbsp;</span></a>' : '') +
             '</div>';
     }
 
@@ -51,13 +51,11 @@ window.Modal = function () {
                 jumpToEnd();
             }
         }
+        else if (targ.hasClass('button')) {
+        }
         else if (targ.hasClass('slidewrap') || !preventHide) {
             e.preventDefault();
             hide();
-//            document.click();
-        }
-        else {
-//            document.click();
         }
     }
 

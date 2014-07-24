@@ -33,10 +33,10 @@
         </a>
         <p>{{ photo.description }}</p>
         {% if photo.link %}
-          <a class="button" href="{{ photo.link }}">{{ photo.link_text }}</a>
+          <a class="button download" href="{{ photo.link }}">{{ photo.link_text }}<span>&nbsp;</span></a>
         {% endif %}
         {% if photo.link2 %}
-          &emsp;<a class="button" href="{{ photo.link2 }}">{{ photo.link2_text }}</a>
+          &emsp;<a class="button download" href="{{ photo.link2 }}">{{ photo.link2_text }}<span>&nbsp;</span></a>
         {% endif %}
       </li>
     {% endfor %}

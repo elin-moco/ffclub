@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}下載 Firefox 風格設計品 - Mozilla Taiwan - 美商謀智台灣分公司{% endblock %}
+{% block title %}下載 Firefox 設計品 - Mozilla Taiwan - 美商謀智台灣分公司{% endblock %}
 
 {% block base_css %}
   {{ css('product') }}
@@ -7,7 +7,7 @@
 
 {% block banner %}
   <hgroup id="main-feature" class="default download">
-    <h1>Firefox 風格設計品</h1>
+    <h1>Firefox 設計品</h1>
 
     <h2>歡迎熱愛 Firefox 的你來下載</h2>
   </hgroup>
@@ -16,12 +16,12 @@
 {% block content %}
   <div class="loveCircle"></div>
   <div class="orderDescription">
-    <h3>下載 Firefox 風格設計品</h3>
+    <h3>下載 Firefox 設計品</h3>
 
     <p>
-      我們精心設計的各種 Firefox 風格設計品，將陪伴並豐富你的每一天。
+      我們精心設計的各種 Firefox 設計品，將陪伴並豐富你的每一天。
       除了讓你無時無刻保持好心情，也因為你的使用，Firefox 的影響力將更加無遠弗屆！
-      現在就下載使用你喜歡的風格設計品，也別忘了把這些作品分享給你的親朋好友喔！
+      現在就下載使用你喜歡的設計品，也別忘了把這些作品分享給你的親朋好友喔！
     </p>
   </div>
   <div class="orderForm">
@@ -29,9 +29,9 @@
     <ul class="products">
       <li class="product productHead">
         {% if request.user.is_active %}
-          <h3>選擇你喜愛的風格設計品：</h3>
+          <h3>選擇你喜愛的設計品：</h3>
         {% else %}
-          <h3>Firefox 風格設計品介紹：</h3>
+          <h3>Firefox 設計品介紹：</h3>
         {% endif %}
       </li>
       {% if products|length == 0 %}
@@ -51,7 +51,7 @@
               {% endif %}
 
               <div class="productDescription">
-                <h4>{{ product.title }} ({{ product.photos.count() }})</h4>
+                <h4>{{ product.title }} ({{ product.photos.count() - 1 }})</h4>
 
                 <p>{{ product.description }}</p>
               </div>

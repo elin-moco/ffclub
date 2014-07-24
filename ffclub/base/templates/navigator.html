@@ -1,43 +1,13 @@
 <nav id="nav-main" role="navigation">
   <span class="toggle" role="button" aria-controls="nav-main-menu" tabindex="0">Menu</span>
   <ul id="nav-main-menu" class="has-submenus" role="menubar">
-    <li id="nav-main-products" role="menuitem" class="topMenu first">
-      <a title="推廣 Firefox" href="{{ url('intro.home') }}" tabindex="0"
-         aria-owns="nav-main-submenu" aria-haspopup="true">活力軍</a>
-      <ul id="nav-main-submenu" aria-expanded="false" class="submenu">
-        <li class="first">
-          <a title="提供宣傳品申請" href="{{ url('product.wall') }}" tabindex="-1">申請宣傳品</a>
-        </li>
-        <li class="last">
-          <a title="推廣照片分享" href="{{ url('event.wall') }}" tabindex="-1">活力軍成果展</a>
-        </li>
-      </ul>
+    <li id="nav-main-home" role="menuitem" class="first">
+      <a title="Firefox 設計品首頁" class="no-submenu" href="{{ url('intro.home') }}" tabindex="-1"
+         aria-haspopup="false">設計品首頁</a>
     </li>
-    {% if request %}
-      {% if request.user.is_active %}
-        <li role="menuitem" class="topMenu no-mobile-submenu last">
-          <a title="個人帳號相關" href="{{ url('user.register') }}" tabindex="0"
-             aria-owns="nav-user-submenu" aria-haspopup="true">
-            帳號
-            {% if request.user.fullname %}
-              : {{ request.user.fullname }}
-            {% endif %}
-            </a>
-          <ul id="nav-user-submenu" aria-expanded="false" class="submenu">
-            <li class="first">
-              <a title="編輯個人資料" href="{{ url('user.register') }}" tabindex="-1">個人資料</a>
-            </li>
-            <li class="last">
-              <a title="登出網站" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}" tabindex="-1">登出</a>
-            </li>
-          </ul>
-        </li>
-      {% else %}
-        <li role="menuitem" class="last">
-          <a title="登入 Firefox 活力軍" class="loginLink no-submenu" tabindex="-1" href="javascript:void(0);"
-             aria-haspopup="false">登入</a>
-        </li>
-      {% endif %}
-    {% endif %}
+    <li id="nav-main-design" role="menuitem" class="last">
+      <a title="Firefox 設計品下載" class="no-submenu" href="{{ url('design.wall') }}" tabindex="-1"
+         aria-haspopup="false">設計品下載</a>
+    </li>
   </ul>
 </nav>

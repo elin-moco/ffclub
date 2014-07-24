@@ -62,7 +62,7 @@
 <body>
 {% include "sandstone/tabzilla.html" %}
 <div id="body_wrapper">
-<div id="outer-wrapper">
+<div id="outer-wrapper" class="slide-x">
   <div id="wrapper">
     {% block head %}
       <header id="masthead">
@@ -82,6 +82,9 @@
     <div id="main-content">
       {% block content %}{% endblock %}
     </div>
+    {% block email_subscription %}
+    <iframe id="subscribe" width="800" height="205" src="https://mozilla.com.tw/newsletter/subscribe/embed/"></iframe>
+    {% endblock %}
   </div>
   <!-- end of wrapper-->
 
