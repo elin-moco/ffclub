@@ -518,3 +518,8 @@ def lantern_claim_code(request):
         data = {'message': 'out.of.claim.code'}
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/json')
+
+
+def chinese_valentines_day(request):
+    currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
+    return render(request, 'event/chinese-valentines-day/index.html', {'campaign': currentCampaign})

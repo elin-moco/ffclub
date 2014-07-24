@@ -610,6 +610,9 @@ MINIFY_BUNDLES = {
         'lantern-festival-print': (
             'css/event/lantern-festival-print.less',
         ),
+        'chinese-valentines-day': (
+            'css/event/chinese-valentines-day.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -691,6 +694,9 @@ MINIFY_BUNDLES = {
             'js/libs/index.js',
             'js/libs/jquery.scrollTo.js',
             'js/event/lantern-festival.js',
+        ),
+        'chinese-valentines-day': (
+            'js/event/chinese-valentines-day.js',
         ),
     }
 }
