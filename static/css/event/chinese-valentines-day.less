@@ -8,79 +8,20 @@ iframe {
   border: 0;
 }
 
-.magpie-keyframes {
-   from { background-position: -0px -0px; }
-     to { background-position: -60px -0px; }
-}
-@-webkit-keyframes magpie-action {
-    .magpie-keyframes;
-}
-
-@-moz-keyframes magpie-action {
-    .magpie-keyframes;
-}
-
-@-ms-keyframes magpie-action {
-    .magpie-keyframes;
-}
-
-@-o-keyframes magpie-action {
-    .magpie-keyframes;
-}
-
-@keyframes magpie-action {
-    .magpie-keyframes;
-}
-
-.magpie {
-    width: 20px;
-    height: 18px;
-    background-repeat: no-repeat;
-    background-image: url(/static/img/event/chinese-valentines-day/magpie-spritesheet.png);
-    background-size: auto 18px;
-    .animation(magpie-action .3s steps(3) infinite forwards);
-}
-
-#magpie-bridge {
-  position: absolute;
-  margin: auto;
-  margin-top: -100px;
-  padding-right: 5%;
-  width: 56%;
-  height: 120px;
-  left: 0;
-  right: 0;
-}
-
-#cowboy {
-    position: absolute;
-    background: url(/static/img/event/chinese-valentines-day/boy.png) no-repeat;
-    background-size: 100% auto;
-    width: 20px;
-    height: 34px;
-//    top: 0;
-    left: 20%;
-}
-#weaver {
-    position: absolute;
-    background: url(/static/img/event/chinese-valentines-day/girl.png) no-repeat;
-    background-size: 100% auto;
-    width: 26px;
-    height: 33px;
-//    top: 0;
-    right: 24%;
-}
-
 body {
-    background-color:black;
-    background-image:
-    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    height: 100%;
+  background-color: #0e2f3f;
+  background-image: radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+  radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+  radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+  radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+  height: 100%;
+}
+
+#masthead nav li a, #masthead nav li a:link, #masthead nav li a:visited {
+  color: #FFFFFF;
+  text-shadow: none;
 }
 
 #outer-wrapper {
@@ -89,6 +30,272 @@ body {
 
 #wrapper {
   background: none;
+}
+
+.magpiePos(@left, @top, @delay: 0s, @rotate: 0deg) {
+  left: @left;
+  top: @top;
+  .transition(transform 1s ease-in-out, opacity 0.2s linear @delay);
+  //  .transform(rotate(@rotate));
+}
+
+.magpie {
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-image: url(/static/img/event/chinese-valentines-day/magpie-spritesheet.png);
+  background-size: auto 18px;
+  opacity: 0;
+  &.stage0 {
+
+  }
+  &.stage1 {
+    .transform(rotate(21deg));
+  }
+  &.stage2 {
+    .transform(rotate(42deg));
+  }
+  &.stage3 {
+    .transform(rotate(63deg));
+  }
+  &.stage4 {
+    .transform(rotate(85deg));
+  }
+  &.first {
+    .magpiePos(0, 0, 0.8s);
+  }
+  &#m1-2 {
+    .magpiePos(2%, -2.7%, 0.72s);
+  }
+  &#m1-3 {
+    .magpiePos(5%, -3%, 0.66s);
+  }
+  &#m1-4 {
+    .magpiePos(6%, -6%, 0.62s);
+  }
+  &#m1-5 {
+    .magpiePos(9%, -5.4%, 0.56s);
+  }
+  &#m1-6 {
+    .magpiePos(10%, -9%, 0.46s);
+  }
+  &#m1-7 {
+    .magpiePos(13%, -8%, 0.34s);
+  }
+  &#m1-8 {
+    .magpiePos(14.4%, -11.6%, 0.28s);
+  }
+  &#m1-9 {
+    .magpiePos(16.6%, -9%, 0.18s);
+  }
+  &#m1-10 {
+    .magpiePos(17.7%, -11.4%, 0.12s);
+  }
+  &#m1-11 {
+    .magpiePos(19%, -14%, 0.2s);
+  }
+  &#m1-12 {
+    .magpiePos(21%, -11%, 0s);
+  }
+  &#m2-1 {
+    .magpiePos(23%, -14%, 0.8s);
+  }
+  &#m2-2 {
+    .magpiePos(25%, -16.6%, 0.72s);
+  }
+  &#m2-3 {
+    .magpiePos(26%, -13%, 0.66s);
+  }
+  &#m2-4 {
+    .magpiePos(28.8%, -16.2%, 0.62s);
+  }
+  &#m2-5 {
+    .magpiePos(31%, -18.4%, 0.56s);
+  }
+  &#m2-6 {
+    .magpiePos(32%, -15.3%, 0.46s);
+  }
+  &#m2-7 {
+    .magpiePos(35%, -17.6%, 0.34s);
+  }
+  &#m2-8 {
+    .magpiePos(37.8%, -19.6%, 0.28s);
+  }
+  &#m2-9 {
+    .magpiePos(39%, -17%, 0.18s);
+  }
+  &#m2-10 {
+    .magpiePos(41.6%, -18.5%, 0.12s);
+  }
+  &#m2-11 {
+    .magpiePos(43.3%, -20.4%, 0.2s);
+  }
+  &#m2-12 {
+    .magpiePos(44%, -17%);
+  }
+  &#m3-1 {
+    .magpiePos(47%, -19%, 0.8s);
+  }
+  &#m3-2 {
+    .magpiePos(49%, -21%, 0.72s);
+  }
+  &#m3-3 {
+    .magpiePos(50%, -17.2%, 0.66s);
+  }
+  &#m3-4 {
+    .magpiePos(52.8%, -18.8%, 0.62s);
+  }
+  &#m3-5 {
+    .magpiePos(55%, -20.8%, 0.56s);
+  }
+  &#m3-6 {
+    .magpiePos(56%, -17.3%, 0.46s);
+  }
+  &#m3-7 {
+    .magpiePos(59%, -18.6%, 0.34s);
+  }
+  &#m3-8 {
+    .magpiePos(61%, -16.4%, 0.28s);
+  }
+  &#m3-9 {
+    .magpiePos(62%, -19.6%, 0.18s);
+  }
+  &#m3-10 {
+    .magpiePos(64%, -17.5%, 0.12s);
+  }
+  &#m3-11 {
+    .magpiePos(65%, -15%, 0.2s);
+  }
+  &#m3-12 {
+    .magpiePos(67.6%, -17.4%);
+  }
+  &#m4-1 {
+    .magpiePos(68%, -14%);
+  }
+  &#m4-2 {
+    .magpiePos(71%, -16%);
+  }
+  &#m4-3 {
+    .magpiePos(72%, -12.2%);
+  }
+  &#m4-4 {
+    .magpiePos(75%, -14.6%, 0.62s);
+  }
+  &#m4-5 {
+    .magpiePos(76%, -11%, 0.56s);
+  }
+  &#m4-6 {
+    .magpiePos(79.6%, -11.3%, 0.46s);
+  }
+  &#m4-7 {
+    .magpiePos(81%, -7.8%, 0.34s);
+  }
+  &#m4-8 {
+    .magpiePos(84%, -8.2%, 0.28s);
+  }
+  &#m4-9 {
+    .magpiePos(85.5%, -4.6%, 0.18s);
+  }
+  &#m4-10 {
+    .magpiePos(89%, -3%);
+  }
+  &.last {
+    .magpiePos(90%, 0);
+  }
+  &.d1 {
+    .animation-delay(.1s);
+  }
+  &.d2 {
+    .animation-delay(.2s);
+  }
+  .animation(magpie-action .3s steps(3) infinite forwards);
+}
+
+#magpie-bridge {
+  position: absolute;
+  margin: auto;
+  //  margin-top: -100px;
+  //  padding-right: 5%;
+  width: 60%;
+  left: 0;
+  right: 0;
+  .transform-origin(47% center);
+  #bridge-ratio {
+    width: 100%;
+    height: auto;
+  }
+  .transition(all 1s ease-in-out);
+}
+
+#cowboy {
+  position: absolute;
+  background: url(/static/img/event/chinese-valentines-day/boy.png) no-repeat;
+  background-size: 100% auto;
+  width: 20px;
+  height: 34px;
+  //    top: 0;
+  left: 20%;
+  z-index: 1000;
+}
+
+#weaver {
+  position: absolute;
+  background: url(/static/img/event/chinese-valentines-day/girl.png) no-repeat;
+  background-size: 100% auto;
+  width: 26px;
+  height: 33px;
+  //    top: 0;
+  right: 24%;
+  z-index: 1000;
+}
+
+#hearts {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100px;
+  text-align: center;
+  margin: auto;
+  margin-top: -12%;
+  padding-right: 2%;
+  opacity: 0;
+  .transition(opacity 0.2s linear);
+}
+
+.heart {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 50px;
+  vertical-align: bottom;
+  color: red;
+}
+
+.heart1 {
+  .heart;
+  height: 120px;
+  line-height: 120px;
+  .transform-origin(50% 100%);
+  .transform(rotate(-6deg));
+  .animation(love1 1s infinite ease-in-out);
+}
+.heart2 {
+  .heart;
+  height: 110px;
+  line-height: 110px;
+  .transform-origin(50% 100%);
+  .transform(rotate(6deg));
+  .animation(love2 1s infinite ease-in-out 0.3s);
+}
+.heart3 {
+  .heart;
+  height: 100px;
+  line-height: 100px;
+  .animation(love3 1s infinite ease-in-out 0.6s);
 }
 
 #main-content {
@@ -103,7 +310,7 @@ body {
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2), 0 -1px 0 0 rgba(0, 0, 0, 0.3) inset;
     color: rgb(255, 255, 255);
     display: inline-block;
-    font-family: "Open Sans",Arial,Helvetica,"Microsoft JhengHei","Apple LiGothic Medium",sans-serif;
+    font-family: "Open Sans", Arial, Helvetica, "Microsoft JhengHei", "Apple LiGothic Medium", sans-serif;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.1;
@@ -111,7 +318,7 @@ body {
     text-align: center;
     text-decoration: none;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    transition: all 0.25s linear 0s;
+    .transition(all 0.25s linear 0s);
     padding: 10px;
     &:hover {
       box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2), 0 -1px 0 0 rgba(0, 0, 0, 0.3) inset, inset 0px 12px 24px 2px saturate(#43a6e2, 10%);
@@ -165,6 +372,50 @@ body {
     background-size: 140% auto;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    &.step0 {
+      #magpie-bridge {
+        .transform(rotate(-63deg));
+      }
+      .stage3 {
+        opacity: 1;
+      }
+    }
+    &.step1 {
+      #magpie-bridge {
+        .transform(rotate(-44deg));
+      }
+      .stage3, .stage2 {
+        opacity: 1;
+      }
+    }
+    &.step2 {
+      #magpie-bridge {
+        .transform(rotate(-24deg));
+      }
+      .stage3, .stage2, .stage1 {
+        opacity: 1;
+      }
+    }
+    &.step3 {
+      #magpie-bridge {
+        .transform(rotate(0deg));
+      }
+      .stage3, .stage2, .stage1, .stage0 {
+        opacity: 1;
+      }
+      #cowboy {
+        .animation(boy-jump 2.5s normal forwards 1.5s);
+      }
+      #weaver {
+        .animation(girl-jump 2.5s normal forwards 1.5s);
+      }
+    }
+    &.celebrate {
+      #hearts {
+        opacity: 1;
+      }
+    }
   }
   #intro {
     display: block;
@@ -218,10 +469,11 @@ body {
     }
     position: fixed;
     z-index: 100;
-    display: inline-block;
+    display: none;
+    //    display: inline-block;
     width: 412px;
     height: 269px;
-    background-color: rgba(255,255,255,0.75);
+    background-color: rgba(255, 255, 255, 0.75);
     overflow: hidden;
     margin: auto;
     padding: 32px 0;
@@ -257,4 +509,223 @@ body {
       }
     }
   }
+}
+
+.magpie-keyframes {
+  from {
+    background-position: -0px -0px;
+  }
+  to {
+    background-position: -60px -0px;
+  }
+}
+
+@-webkit-keyframes magpie-action {
+  .magpie-keyframes;
+}
+
+@-moz-keyframes magpie-action {
+  .magpie-keyframes;
+}
+
+@-ms-keyframes magpie-action {
+  .magpie-keyframes;
+}
+
+@-o-keyframes magpie-action {
+  .magpie-keyframes;
+}
+
+@keyframes magpie-action {
+  .magpie-keyframes;
+}
+
+.loveKeyframes(@multiply: 1, @direction: 1) {
+  0% {
+    font-size: 0;
+    opacity: 0;
+    padding-left: 10px / @multiply;
+  }
+  25% {
+    font-size: 16px * @multiply;
+    opacity: 1;
+    padding-left: (10px + 10px * @direction) / @multiply;
+  }
+  50% {
+    padding-left: (10px - 10px * @direction) / @multiply;
+  }
+  75% {
+    font-size: 28px * @multiply;
+    opacity: 1;
+    padding-left: (10px + 10px * @direction) / @multiply;
+  }
+  100% {
+    font-size: 32px * @multiply;
+    opacity: 0;
+    line-height: 32px * @multiply;
+    padding-left: 10px / @multiply;
+  }
+}
+
+@keyframes love1 {
+  .loveKeyframes;
+}
+@-moz-keyframes love1 {
+  .loveKeyframes;
+}
+@-webkit-keyframes love1 {
+  .loveKeyframes;
+}
+@-o-keyframes love1 {
+  .loveKeyframes;
+}
+@-ms-keyframes love1 {
+  .loveKeyframes;
+}
+@keyframes love2 {
+  .loveKeyframes(1.2, -1);
+}
+@-moz-keyframes love2 {
+  .loveKeyframes(1.2, -1);
+}
+@-webkit-keyframes love2 {
+  .loveKeyframes(1.2, -1);
+}
+@-o-keyframes love2 {
+  .loveKeyframes(1.2, -1);
+}
+@-ms-keyframes love2 {
+  .loveKeyframes(1.2, -1);
+}
+@keyframes love3 {
+  .loveKeyframes(2);
+}
+@-moz-keyframes love3 {
+  .loveKeyframes(2);
+}
+@-webkit-keyframes love3 {
+  .loveKeyframes(2);
+}
+@-o-keyframes love3 {
+  .loveKeyframes(2);
+}
+@-ms-keyframes love3 {
+  .loveKeyframes(2);
+}
+.boyJumpKeyframes {
+  0% {
+    left: 20%;
+  }
+  10% {
+    margin-top: -10%;
+  }
+  20% {
+    left: 24%;
+    margin-top: -7%;
+  }
+  30% {
+    margin-top: -13%;
+  }
+  40% {
+    left: 28%;
+    margin-top: -10%;
+  }
+  50% {
+    margin-top: -16%;
+  }
+  60% {
+    left: 33%;
+    margin-top: -13%;
+  }
+  70% {
+    margin-top: -17%;
+  }
+  80% {
+    left: 39%;
+    margin-top: -14%;
+  }
+  90% {
+    margin-top: -18%;
+  }
+  100% {
+    left: 46%;
+    margin-top: -15%;
+  }
+}
+
+@keyframes boy-jump {
+  .boyJumpKeyframes;
+}
+
+@-moz-keyframes boy-jump {
+  .boyJumpKeyframes;
+}
+
+@-webkit-keyframes boy-jump {
+  .boyJumpKeyframes;
+}
+
+@-o-keyframes boy-jump {
+  .boyJumpKeyframes;
+}
+
+@-ms-keyframes boy-jump {
+  .boyJumpKeyframes;
+}
+
+.girlJumpKeyframes {
+  0% {
+    right: 24%;
+  }
+  10% {
+    margin-top: -10%;
+  }
+  20% {
+    right: 28%;
+    margin-top: -7%;
+  }
+  30% {
+    margin-top: -13%;
+  }
+  40% {
+    right: 32%;
+    margin-top: -10%;
+  }
+  50% {
+    margin-top: -16%;
+  }
+  60% {
+    right: 37%;
+    margin-top: -13%;
+  }
+  70% {
+    margin-top: -17%;
+  }
+  80% {
+    right: 43%;
+    margin-top: -14%;
+  }
+  90% {
+    margin-top: -18%;
+  }
+  100% {
+    right: 50%;
+    margin-top: -15%;
+  }
+}
+
+@keyframes girl-jump {
+  .girlJumpKeyframes;
+}
+@-moz-keyframes girl-jump {
+  .girlJumpKeyframes;
+}
+@-webkit-keyframes girl-jump {
+  .girlJumpKeyframes;
+}
+@-o-keyframes girl-jump {
+  .girlJumpKeyframes;
+}
+@-ms-keyframes girl-jump {
+  .girlJumpKeyframes;
 }

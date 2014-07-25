@@ -6,6 +6,11 @@
     var subscriber = '';
     var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%3));
     randomPost.css('display', 'block');
+
+    $('#weaver').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $('#earth').addClass('celebrate');
+    });
+
     var nextStage = function (next) {
         $('#steps').attr('class', 'step' + next);
     };
