@@ -698,6 +698,7 @@ MINIFY_BUNDLES = {
             'js/event/lantern-festival.js',
         ),
         'chinese-valentines-day': (
+            'js/libs/jquery.scrollTo.js',
             'js/event/chinese-valentines-day.js',
         ),
     }

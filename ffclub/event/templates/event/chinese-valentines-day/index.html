@@ -1,5 +1,5 @@
-{% set page_title = '在 Firefox 上搭起鵲橋' %}
-{% set page_description = '' %}
+{% set page_title = 'Firefox 愛在鵲橋狐你幸福' %}
+{% set page_description = 'Mozilla 致力於帶給世人更美好的網路未來，在浪漫七夕到來的時刻，邀請大家一起築起火狐愛的鵲橋，分享幸福傳遞知識，讓網路的福音散佈到每個角落！' %}
 {% set page_image = 'img/event/lantern-festival/firefox-lantern.png' %}
 {% set share_text = page_title %}
 
@@ -47,6 +47,11 @@
 {% block banner %}{% endblock %}
 
 {% block content %}
+  <div id="heading">
+    <h1>七夕鵲橋小遊戲</h1>
+    <h2>請依序完成四步驟，為牛郎織女築起鵲橋，<span>並參加 Firefox 精美贈品抽獎喔！</span></h2>
+  </div>
+  <div class="pyro"></div>
   <div id="earth" class="step0">
     <img id="valentine-positioning" width="100%" src="/static/img/event/chinese-valentines-day/valentine-positioning.png">
     <div id="cowboy"></div>
@@ -110,13 +115,9 @@
       <div class="heart3">&hearts;</div>
     </div>
     <div id="mini-game">
-      <a href="javascript:void(0);" onclick="document.getElementById('earth').className='step0';">Step 0</a>
-      <a href="javascript:void(0);" onclick="document.getElementById('earth').className='step1';">Step 1</a>
-      <a href="javascript:void(0);" onclick="document.getElementById('earth').className='step2';">Step 2</a>
-      <a href="javascript:void(0);" onclick="document.getElementById('earth').className='step3';">Step 3</a>
-      <div id="steps" class="step1">
+      <div id="steps">
         <div id="step-scroller">
-          <div id="step1" class="step">
+          <div id="step0" class="step">
             <p><strong class="step-title">步驟一：</strong></p>
 
             <p>加入 Mozilla Taiwan 粉絲團，<br>讓你的社交生活充滿火狐的趣味</p>
@@ -127,51 +128,46 @@
             <p>若已按過讚，請按登入鈕進行驗證</p>
             <a id="login-fb" class="submitButton" data-next="2" href="javascript:void(0);">登入驗證</a>
           </div>
-          <div id="step2" class="step">
+          <div id="step1" class="step">
             <p><strong class="step-title">步驟二：</strong></p>
 
-            <p>訂閱 Firefox 電子報，無時無刻掌握網路世界的第一手資訊</p>
-            <iframe id="subscription" border="0" width="100%" height="205"
-                    src="https://mozilla.com.tw/newsletter/subscribe/embed/"></iframe>
+            <p>分享部落格好文，<br>成為 Mozilla 產品與專案訊息通</p>
+            <a target="_blank" class="myfx-post" href="http://blog.mozilla.com.tw/posts/5952/first-commercial-web-games-launch-leveraging-mozilla-pioneered-technology">
+              <div class="myfx-content">
+                <div class="myfx-title">Mozilla 率先開發之技術首次應用於 Web 商業遊戲</div>
+                <div class="myfx-description">Mozilla 不斷透過新的技術與開發工具，讓遊戲開發者能將現有的高人氣作品移植到 Web 之上，在在證明 Web 就是強大的遊戲平台。</div>
+              </div>
+              <div class="myfx-thumb" width="100%" style="background: url(http://blog.mozilla.com.tw/wp-content/uploads/keeper-1024x607.jpg) center no-repeat; background-size: auto 100%"></div>
+            </a>
+            <a id="share-post" class="submitButton" data-next="4" href="javascript:void(0);">分享文章</a>
           </div>
-          <div id="step3" class="step">
+          <div id="step2" class="step">
             <p><strong class="step-title">步驟三：</strong></p>
 
-            <p>分享 MyFirefox 文章，成為科技生活萬事通</p>
-            <a target="_blank" class="myfx-post" href="http://myfirefox.com.tw/posts/20970/">
+            <p>分享狐電視影片，<br>成為科技生活萬事通</p>
+            <a target="_blank" class="myfx-video" href="https://myfirefox.com.tw/videos/23320" style="background: url(https://myfirefox.com.tw/assets/images/fb_thumb/23320.jpg) center no-repeat; background-size: 100% auto;">
               <div class="myfx-content">
-                <div class="myfx-title">隆重介紹 Mozilla Firefox Accounts</div>
-                <div class="myfx-description">Mozilla 是受大家極度信賴的非營利組織，時時推動網路的開放、創新、機會並作為己身使命。我們不斷研發開放的技術，藉以推動所有人都能從中受益的標準，進而讓 Web 成為業界與開發者都適用的平台。我們專心研發有趣、豐富、新奇、強大的產品，讓大家都能簡單上手且愛不釋手，確實體現我們使命的價值。</div>
+                <div class="myfx-title">簡介 Mozilla 與 Code Firefox</div>
               </div>
-              <div class="myfx-thumb" width="100%" style="background: url(https://blog.mozilla.com.tw/wp-content/uploads/Delicious-600x319.png) center no-repeat; background-size: 100% auto;"></div>
             </a>
-            <a target="_blank" class="myfx-post" href="http://myfirefox.com.tw/posts/20977/">
-              <div class="myfx-content">
-                <div class="myfx-title">更好的 Firefox Sync 同步功能</div>
-                <div class="myfx-description">Mozilla 很高興能發表新版 Firefox Sync 同步功能，現已能於 Firefox 曙光版 (Aurora) 上進行測試。現有 Firefox Sync 使用者當然愛用這項服務，但也反應說相關設定仍稍嫌繁瑣，要新增其他裝置並不是很輕鬆；若要從遺失的裝置恢復設定資料更是困難。我們聽到了這些意見，也設計出更簡單的方式，期待能在 Firefox 桌面版與行動版之間安全同步資料。</div>
-              </div>
-              <div class="myfx-thumb" width="100%" style="background: url(https://blog.mozilla.com.tw/wp-content/uploads/welcome-to-sync-1024x772.png) center no-repeat; background-size: 100% auto;"></div>
-            </a>
-            <a target="_blank" class="myfx-post" href="http://myfirefox.com.tw/posts/20203/">
-              <div class="myfx-content">
-                <div class="myfx-title">一起動手做吧！用迷你積木拼出一隻小火狐</div>
-                <div class="myfx-description">難得破例不講技術，耶誕節快到了，應該要來點輕鬆的。 狐迷們，今天我們一起用積木來做一隻小火狐吧！首先要準備的積木材料如下圖： 底下開始詳細的圖文分解步驟，只要一步步照著做，很快就可以完成你的積木小火狐囉！ 1. 首先照上圖把小火狐的頭組裝起來，注意第四步最左邊的方塊底下要裝鼻子（如圖 3 ）， 所以不要讓底部的卡榫擋住中間，否則鼻子會裝不上去。</div>
-              </div>
-              <div class="myfx-thumb" width="100%" style="background: url(https://tech.mozilla.com.tw/wp-content/uploads/2013/12/nanoblock-firefox-preview.jpg) center no-repeat; background-size: 100% auto;"></div>
-            </a>
-            <a id="share-myfx" class="submitButton" data-next="4" href="javascript:void(0);">分享文章</a>
+            <a id="share-video" class="submitButton" data-next="4" href="javascript:void(0);">分享影片</a>
+          </div>
+          <div id="step3" class="step">
+            <p><strong class="step-title">步驟四：</strong></p>
+
+            <p>訂閱 Firefox 電子報，<br>無時無刻掌握網路世界的第一手資訊</p>
+            <iframe id="subscription" border="0" width="100%" height="205"
+                    src="https://mozilla.com.tw/newsletter/subscribe/embed/?opaque=true"></iframe>
           </div>
           <div id="step4" class="step">
             {% if campaign.status == 'running' %}
-              <p>恭喜你點亮火狐元宵燈籠，<br/>並成為 Mozilla 捍衛網路自由的一份子！</p>
-              <p>您的火狐燈籠免費序號：<span id="claim-code"></span></p>
-              <a id="print-claim" class="submitButton" data-next="4" href="javascript:void(0);">友善列印</a>
-              <p class="notice">提醒：<br/>火狐燈籠免費領取，開放時間為<br/> 2014/2/13~14 10am~17pm，<br/>地點為 <a target="_blank" href="http://mozilla.com.tw/about/contact/#address">Mozilla Taiwan 辦公室</a>，數量有限，請把握機會。</p>
+              <p>恭喜你搭起七夕鵲橋，<br>並成為 Mozilla 捍衛網路自由的一份子！</p>
+              <p>抽獎結果將於 8/11 公佈，<br>請密切注意粉粉絲團及電子郵件的消息。</p>
             {% else %}
-              <p>恭喜你點亮火狐元宵燈籠，並成為 Mozilla 捍衛網路自由的一份子！</p>
-              <p>目前火狐燈籠已全數發放完畢，請下載火狐燈籠檔案列印製作</p>
-              <a id="download-lantern" class="submitButton" target="_blank" download="firefox-lantern.jpg" href="{{ static('img/event/lantern-festival/firefox-lantern.jpg') }}">下載燈籠 DIY</a>
+              <p>恭喜你搭起七夕鵲橋，<br>並成為 Mozilla 捍衛網路自由的一份子！</p>
+              <p>抽獎結果已公佈，<br>看看自己有沒有幸運中獎吧！</p>
             {% endif %}
+            <img src="/static/img/event/chinese-valentines-day/notebook.jpg">
           </div>
         </div>
       </div>

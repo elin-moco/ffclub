@@ -1,11 +1,29 @@
 @import "../ffcstyle";
+@import "fireworks.css";
 
 * {
   letter-spacing: 0;
 }
+#nav-main-menu {
+  background: none;
+}
+.pyro {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
 iframe {
   border: 0;
+}
+
+html, body {
+  min-height: 640px;
+  height: 100%;
+  padding: 0;
 }
 
 body {
@@ -17,6 +35,7 @@ body {
   background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
   background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
   height: 100%;
+  overflow: auto;
 }
 
 #masthead nav li a, #masthead nav li a:link, #masthead nav li a:visited {
@@ -26,10 +45,17 @@ body {
 
 #outer-wrapper {
   background: none;
+  transform-style: flat;
 }
 
 #wrapper {
   background: none;
+//  min-height: 640px;
+}
+
+#fireworks {
+  position: absolute;
+  top: 0;
 }
 
 .magpiePos(@left, @top, @delay: 0s, @rotate: 0deg) {
@@ -41,11 +67,13 @@ body {
 
 .magpie {
   position: absolute;
-  width: 20px;
-  height: 18px;
+  width: 2.4%;
+  height: 2.4%;
+//  width: 20px;
+//  height: 18px;
   background-repeat: no-repeat;
   background-image: url(/static/img/event/chinese-valentines-day/magpie-spritesheet.png);
-  background-size: auto 18px;
+  background-size: auto 100%;
   opacity: 0;
   &.stage0 {
 
@@ -215,8 +243,7 @@ body {
 #magpie-bridge {
   position: absolute;
   margin: auto;
-  //  margin-top: -100px;
-  //  padding-right: 5%;
+//  margin-top: 0.2%;
   width: 60%;
   left: 0;
   right: 0;
@@ -227,13 +254,22 @@ body {
   }
   .transition(all 1s ease-in-out);
 }
-
+#valentine-positioning {
+  display: block;
+  margin: auto;
+  width: 98%;
+  margin-top: 50px;
+  height: auto;
+}
 #cowboy {
   position: absolute;
   background: url(/static/img/event/chinese-valentines-day/boy.png) no-repeat;
   background-size: 100% auto;
-  width: 25px;
-  height: 42px;
+  width: 2.4%;
+  height: 100px;
+//  margin-top: -1.6%;
+//  width: 25px;
+//  height: 42px;
   //    top: 0;
   left: 20%;
   z-index: 1000;
@@ -243,8 +279,11 @@ body {
   position: absolute;
   background: url(/static/img/event/chinese-valentines-day/girl.png) no-repeat;
   background-size: 100% auto;
-  width: 35px;
-  height: 42px;
+  width: 3.2%;
+  height: 100px;
+//  margin-top: -1.6%;
+//  width: 35px;
+//  height: 42px;
   //    top: 0;
   right: 24%;
   z-index: 1000;
@@ -262,6 +301,9 @@ body {
   padding-right: 2%;
   opacity: 0;
   .transition(opacity 0.2s linear);
+  &.popping {
+    opacity: 1;
+  }
 }
 
 .heart {
@@ -299,7 +341,33 @@ body {
 }
 
 #main-content {
-
+  position: absolute;
+  margin: auto;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 640px;
+  background: none;
+  padding-top: 0px;
+  font-size: 16px;
+  overflow: hidden;
+  #heading {
+    text-align: center;
+    margin-top: 56px;
+    h1 {
+      color: #FFF;
+      text-shadow: none;
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 14px;
+      color: #FFF;
+      text-shadow: none;
+      span {
+        display: inline-block;
+      }
+    }
+  }
   .button {
     position: relative;
     background-color: rgb(39, 122, 193);
@@ -351,12 +419,6 @@ body {
     text-indent: 15px;
   }
 
-  margin: auto;
-  width: 100%;
-  height: auto;
-  background: none;
-  padding-top: 20px;
-  font-size: 16px;
   .submitButton, .submitButton:hover {
     color: #FFFFFF;
     text-shadow: 0 1px #333333;
@@ -366,10 +428,14 @@ body {
     line-height: 42px;
   }
   #earth {
-    position: fixed;
+    position: absolute;
     display: block;
-    background: url(/static/img/event/chinese-valentines-day/firefox_logo-only_RGB.png) center -50px no-repeat;
+    background: url(/static/img/event/chinese-valentines-day/firefox_logo-only_RGB.png) center top no-repeat;
     background-size: 140% auto;
+    top: 66px;
+    left: -1000px;
+    right: -1000px;
+    margin: auto;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -411,11 +477,6 @@ body {
         .animation(girl-jump 2.5s normal forwards 1.5s);
       }
     }
-    &.celebrate {
-      #hearts {
-        opacity: 1;
-      }
-    }
   }
   #intro {
     display: block;
@@ -427,20 +488,24 @@ body {
   }
 
   .myfx-post {
+    position: relative;
     display: none;
     background: #EAEFF2;
     text-decoration: none;
     color: #4D4E53;
+    .box-shadow(1px 1px 1px 1px rgba(0, 0, 0, 0.5));
+    #gradient > .vertical(#EEEEEE, #CAE1F4);
 
     .myfx-content {
       display: inline-block;
-      width: 200px;
-      height: 104px;
+      width: 92%;
+      height: 88px;
       overflow: hidden;
       padding: 12px;
     }
     .myfx-title {
       display: inline-block;
+      width: 220px;
       font-size: 14px;
       font-weight: bold;
       padding-bottom: 12px;
@@ -452,11 +517,48 @@ body {
       color: #4D4E53;
     }
     .myfx-thumb {
+      position: absolute;
+      top: 8px;
+      right: 8px;
       display: inline-block;
-      width: 128px;
-      height: 128px;
+      width: 48px;
+      height: 48px;
+      vertical-align: top;
+      border: 2px solid #FFF;
+      .box-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
     }
     margin-bottom: 12px;
+  }
+  .myfx-video {
+    position: relative;
+    display: none;
+    background: #EAEFF2;
+    text-decoration: none;
+    color: #4D4E53;
+    margin-bottom: 12px;
+    .box-shadow(1px 1px 1px 1px rgba(0, 0, 0, 0.5));
+
+    .myfx-content {
+      display: inline-block;
+      width: 90%;
+      height: 88px;
+      overflow: hidden;
+      padding: 12px;
+    }
+    .myfx-title {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 32px;
+      line-height: 32px;
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, .5);
+      color: #FFF;
+      text-indent: 12px;
+    }
   }
   #steps {
     strong.step-title {
@@ -467,38 +569,40 @@ body {
       color: #4D4E53;
       font-size: 14px;
     }
-    position: fixed;
-    z-index: 100;
-    display: none;
-    //    display: inline-block;
-    width: 412px;
+    position: absolute;
+    z-index: 1000;
+//    display: none;
+        display: inline-block;
+    width: 320px;
     height: 269px;
     background-color: rgba(255, 255, 255, 0.75);
     overflow: hidden;
     margin: auto;
-    padding: 32px 0;
+    padding: 10px 0;
     left: 0;
     right: 0;
-    bottom: 40px;
+    bottom: 88px;
     .border-radius(10px);
     #step-scroller {
-      width: 1668px;
+      width: 2075px;
+//      width: 2355px;
+//      width: 1668px;
       height: 269px;
     }
     .step {
       display: inline-block;
-      width: 372px;
+      width: 300px;
       height: 100%;
-      padding: 0 20px;
+      padding: 0 10px;
       vertical-align: top;
     }
     #step4 {
       p {
-        font-size: 18px;
-        margin-top: 24px;
+        font-size: 16px;
+        margin-top: 12px;
       }
       p.notice {
-        font-size: 14px;
+        font-size: 16px;
         color: #C13832;
         a {
           font-size: 14px;
@@ -513,10 +617,10 @@ body {
 
 .magpie-keyframes {
   from {
-    background-position: -0px -0px;
+    background-position: 0 0;
   }
   to {
-    background-position: -60px -0px;
+    background-position: 98% 0;
   }
 }
 
@@ -648,7 +752,7 @@ body {
     margin-top: -18%;
   }
   100% {
-    left: 46%;
+    left: 45.6%;
     margin-top: -15%;
   }
 }
@@ -709,7 +813,7 @@ body {
     margin-top: -18%;
   }
   100% {
-    right: 50%;
+    right: 49.4%;
     margin-top: -15%;
   }
 }
@@ -728,4 +832,71 @@ body {
 }
 @-ms-keyframes girl-jump {
   .girlJumpKeyframes;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  #valentine-positioning {
+    width: 92%;
+  }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+  #valentine-positioning {
+    width: 88%;
+  }
+  #hearts {
+    margin-top: -11%;
+  }
+}
+
+@media only screen and (max-width: @breakTablet) {
+  #main-content {
+    #heading {
+//      margin-top: 22px;
+      h1 {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 11px;
+      }
+    }
+    #earth {
+      top: 60px;
+      width: 500px;
+      background-size: 660px auto;
+    }
+  }
+
+  #cowboy {
+    width: 18px;
+    height: 50px;
+    margin-left: -0.4%;
+  }
+
+  #weaver {
+    width: 24px;
+    height: 50px;
+    margin-right: -1.8%;
+  }
+  .magpie {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+  }
+  #valentine-positioning {
+    width: 300px;
+  }
+  #magpie-bridge {
+    margin-top: 1.6%;
+    width: 54%;
+  }
+
+  #hearts {
+    margin-top: -10%;
+    .transform(scale(0.6, 0.6));
+  }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
 }

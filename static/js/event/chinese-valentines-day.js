@@ -4,19 +4,55 @@
     var page_id = "229264713799595";
     var pageLiked = false;
     var subscriber = '';
-    var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%3));
+    var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%1));
     randomPost.css('display', 'block');
+    var randomVideo = $('.myfx-video').eq(Math.floor((Math.random()*1000)%1));
+    randomVideo.css('display', 'block');
 
-    $('#weaver').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-        $('#earth').addClass('celebrate');
+    $(document).keydown(function(e) {
+        switch(e.keyCode) {
+            case 49:
+                $('.pyro').hide();
+                $('#hearts').attr('class', '');
+                nextStage(0);
+                break;
+            case 50:
+                $('.pyro').hide();
+                $('#hearts').attr('class', '');
+                nextStage(1);
+                break;
+            case 51:
+                $('.pyro').hide();
+                $('#hearts').attr('class', '');
+                nextStage(2);
+                break;
+            case 52:
+                $('.pyro').hide();
+                nextStage(3);
+                break;
+            case 53:
+                nextStage(4);
+                break;
+            default :
+                break;
+        }
     });
 
+    $('#weaver').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $('#hearts').attr('class', 'popping');
+    });
     var nextStage = function (next) {
-        $('#steps').attr('class', 'step' + next);
+        if (4 == next) {
+            $('.pyro').show();
+        }
+        else {
+            $('#earth').attr('class', 'step' + next);
+        }
+        $('#steps').scrollTo('#step' + next, 1000, {axis: 'x'});
     };
     $('#login-fb').click(function () {
         if (pageLiked) {
-            nextStage(2);
+            nextStage(1);
         }
         else {
             FB.login(function (response) {
@@ -25,7 +61,7 @@
                     var fql_query = "SELECT uid FROM page_fan WHERE page_id = " + page_id + "and uid=" + user_id;
                     FB.Data.query(fql_query).wait(function (rows) {
                         if (rows.length == 1 && rows[0].uid == user_id) {
-                            nextStage(2);
+                            nextStage(1);
                         }
                     });
                 }
@@ -34,7 +70,7 @@
     });
     window.fbAsyncInit = function () {
         FB.Event.subscribe('edge.create', function (response) {
-            nextStage(2);
+            nextStage(1);
         });
         FB.getLoginStatus(function (response) {
             if (response && response.authResponse) {
@@ -59,19 +95,33 @@
             var segments = e.data.split('=');
             if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
                 subscriber = segments[1];
-                nextStage(3);
+                nextStage(4);
             }
         }
     },false);
-    $('#share-myfx').click(function () {
+
+    $('#share-post').click(function () {
         FB.ui(
             {
                 method: 'feed',
-                link: randomPost.attr('href'),
+                link: randomPost.attr('href')
             },
             function (response) {
                 if (response && response.post_id) {
-                    nextStage(4);
+                    nextStage(2);
+                }
+            }
+        );
+    });
+    $('#share-video').click(function () {
+        FB.ui(
+            {
+                method: 'feed',
+                link: randomVideo.attr('href')
+            },
+            function (response) {
+                if (response && response.post_id) {
+                    nextStage(3);
                 }
             }
         );
