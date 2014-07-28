@@ -27,6 +27,10 @@ from social_auth.db.django_models import UserSocialAuth
 
 log = commonware.log.getLogger('ffclub')
 
+everyMomentCampaignSlug = 'every-moment'
+lanternFestivalCampaignSlug = 'lantern-festival'
+chineseValentinesDayCampaignSlug = 'chinese-valentines-day'
+
 
 def wall(request):
     return wall_page(request, 1)
@@ -167,9 +171,6 @@ def generic_vote(request, type, id):
 
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
-
-everyMomentCampaignSlug = 'every-moment'
-lanternFestivalCampaignSlug = 'lantern-festival'
 
 
 def every_moment(request):
@@ -521,5 +522,5 @@ def lantern_claim_code(request):
 
 
 def chinese_valentines_day(request):
-    currentCampaign = Campaign.objects.get(slug=lanternFestivalCampaignSlug)
+    currentCampaign = Campaign.objects.get(slug=chineseValentinesDayCampaignSlug)
     return render(request, 'event/chinese-valentines-day/index.html', {'campaign': currentCampaign})

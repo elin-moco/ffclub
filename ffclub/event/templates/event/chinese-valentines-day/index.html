@@ -157,17 +157,21 @@
 
             <p>訂閱 Firefox 電子報，<br>無時無刻掌握網路世界的第一手資訊</p>
             <iframe id="subscription" border="0" width="100%" height="205"
-                    src="https://mozilla.com.tw/newsletter/subscribe/embed/?opaque=true"></iframe>
+                    src="https://mozilla.com.tw/newsletter/subscribe/embed/?opaque=true&hide_archive=true"></iframe>
           </div>
           <div id="step4" class="step">
+            <p>恭喜你搭起七夕鵲橋，<br>並成為 Mozilla 捍衛網路自由的一份子！</p>
+            <div id="share-with-friends">
+              快和朋友分享：
+              <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
             {% if campaign.status == 'running' %}
-              <p>恭喜你搭起七夕鵲橋，<br>並成為 Mozilla 捍衛網路自由的一份子！</p>
-              <p>抽獎結果將於 8/11 公佈，<br>請密切注意粉粉絲團及電子郵件的消息。</p>
+              <p class="notice">抽獎結果將於 8/11 公佈，<br>請密切注意粉粉絲團及電子郵件的消息。</p>
             {% else %}
-              <p>恭喜你搭起七夕鵲橋，<br>並成為 Mozilla 捍衛網路自由的一份子！</p>
-              <p>抽獎結果已公佈，<br>看看自己有沒有幸運中獎吧！</p>
+              <p class="notice">抽獎結果已公佈，<br>看看自己有沒有幸運中獎吧！</p>
             {% endif %}
-            <img src="/static/img/event/chinese-valentines-day/notebook.jpg">
+            <p class="notice">獎品為 Firefox 筆記本一本（三種款式隨機分配）</p>
+            <img width="160" src="/static/img/event/chinese-valentines-day/notebook.jpg">
           </div>
         </div>
       </div>
