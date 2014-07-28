@@ -42,6 +42,7 @@
         $('#hearts').attr('class', 'popping');
     });
     var nextStage = function (next) {
+        $.scrollTo(0, 100);
         if (4 == next) {
             $('.pyro').show();
         }
