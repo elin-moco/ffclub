@@ -96,6 +96,9 @@
             var segments = e.data.split('=');
             if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
                 subscriber = segments[1];
+                var token = $('#subscription').attr('data-csrf-token');
+                $.post('/campaign/chinese-valentines-day/participate/', {csrfmiddlewaretoken: token, subscriber: subscriber}, function(response) {
+                });
                 nextStage(4);
             }
         }

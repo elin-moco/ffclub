@@ -2,6 +2,7 @@
 from cStringIO import StringIO
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import auth
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied, SuspiciousOperation
 from django.core.paginator import Paginator
@@ -524,3 +525,26 @@ def lantern_claim_code(request):
 def chinese_valentines_day(request):
     currentCampaign = Campaign.objects.get(slug=chineseValentinesDayCampaignSlug)
     return render(request, 'event/chinese-valentines-day/index.html', {'campaign': currentCampaign})
+
+
+def chinese_valentines_day_participate(request):
+    currentCampaign = Campaign.objects.get(slug=chineseValentinesDayCampaignSlug)
+    data = {}
+    if request.method == 'POST':
+        if 'running' == currentCampaign.status:
+            email = request.POST['subscriber']
+            if not Participation.objects.filter(activity=currentCampaign, note=email).exists():
+                user = User.objects.get(pk=1)
+                participation = Participation(activity=currentCampaign, participant=user, note=email, status='attend')
+                participation.save()
+                data['result'] = 'success'
+            else:
+                data['result'] = 'failed'
+        else:
+            data['result'] = 'failed'
+    else:
+        data['result'] = 'failed'
+
+    json = simplejson.dumps(data)
+    return HttpResponse(json, mimetype='application/x-javascript')
+

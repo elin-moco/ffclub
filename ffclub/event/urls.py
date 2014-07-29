@@ -22,6 +22,7 @@ urlpatterns = patterns(
     url(r'^campaign/lantern-festival/(?P<subpath>(firefox-lantern/)?)$', views.lantern_festival, name='campaign.lantern.festival'),
     url(r'^campaign/lantern-festival/claim/$', views.lantern_claim_code, name='campaign.lantern.claim'),
     url(r'^campaign/chinese-valentines-day/$', views.chinese_valentines_day, name='campaign.chinese.valentines.day'),
+    url(r'^campaign/chinese-valentines-day/participate/$', views.chinese_valentines_day_participate, name='campaign.chinese.valentines.day.participate'),
     url(r'^campaign/every-moment/$', views.every_moment, name='campaign.every.moment'),
     url(r'^campaign/every-moment/upload/$', views.every_moment_upload, name='campaign.every.moment.upload'),
     url(r'^campaign/every-moment/exceed/$', views.every_moment_exceed, name='campaign.every.moment.exceed'),
