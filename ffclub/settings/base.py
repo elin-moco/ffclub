@@ -613,6 +613,7 @@ MINIFY_BUNDLES = {
             'css/event/lantern-festival-print.less',
         ),
         'chinese-valentines-day': (
+            'css/event/fireworks.css',
             'css/event/chinese-valentines-day.less',
         ),
     },
