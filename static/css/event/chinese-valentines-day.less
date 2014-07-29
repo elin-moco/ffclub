@@ -4,6 +4,14 @@
 * {
   letter-spacing: 0;
 }
+
+.fb-like {
+    height: 22px;
+    overflow: hidden;
+}
+#tabzilla-panel {
+  z-index: 1000;
+}
 #nav-main-menu {
   background: none;
 }
@@ -263,6 +271,7 @@ body {
     width: 100%;
     height: auto;
   }
+  z-index: 500;
   .transition(all 1s ease-in-out);
 }
 #valentine-positioning {
@@ -311,6 +320,7 @@ body {
   margin-top: -12%;
   padding-right: 2%;
   opacity: 0;
+  z-index: 500;
   .transition(opacity 0.2s linear);
   &.popping {
     opacity: 1;
@@ -615,6 +625,8 @@ body {
       p.notice {
         font-size: 13px;
         color: #C13832;
+        margin-top: 8px;
+        margin-bottom: 0px;
         a {
           font-size: 13px;
           color: #C13832;
@@ -632,6 +644,48 @@ body {
   }
   to {
     background-position: 98% 0;
+  }
+}
+
+.step0 ~ #banner {
+  opacity: 1;
+  .transform(scale(1.0));
+}
+
+#banner {
+  position: absolute;
+  display: block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 144px;
+  z-index: 100;
+  opacity: 0;
+  .transform(scale(2.0));
+  .transition-vararg-transform(.5s ease-in-out, opacity .5s ease-in-out);
+}
+
+#popup {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  #notebook-large {
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 1632px;
+    max-height: 1040px;
+    height: 80%;
+    vertical-align: bottom;
   }
 }
 
@@ -906,6 +960,12 @@ body {
   #hearts {
     margin-top: -10%;
     .transform(scale(0.6, 0.6));
+  }
+  #banner {
+    top: 208px;
+    width: 260px;
+    height: auto;
+    padding-right: 36px;
   }
 }
 

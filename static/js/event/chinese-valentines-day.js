@@ -60,9 +60,9 @@ function gaTrack(eventArray, callback) {
     var page_id = "229264713799595";
     var pageLiked = false;
     var subscriber = '';
-    var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%1));
+    var randomPost = $('.myfx-post').eq(Math.floor((Math.random()*1000)%3));
     randomPost.css('display', 'block');
-    var randomVideo = $('.myfx-video').eq(Math.floor((Math.random()*1000)%1));
+    var randomVideo = $('.myfx-video').eq(Math.floor((Math.random()*1000)%3));
     randomVideo.css('display', 'block');
 
     $(document).keydown(function(e) {
@@ -129,7 +129,9 @@ function gaTrack(eventArray, callback) {
     });
     window.fbAsyncInit = function () {
         FB.Event.subscribe('edge.create', function (response) {
-            nextStage(1);
+            if ('https://facebook.com/MozillaTaiwan' == response) {
+                nextStage(1);
+            }
         });
         FB.getLoginStatus(function (response) {
             if (response && response.authResponse) {
@@ -200,6 +202,15 @@ function gaTrack(eventArray, callback) {
                 description: '請依步驟點亮 Firefox 火狐燈籠，為新的一年衝個吉利好彩頭，狐狐生風！'
             }, function(response) {
             });
+        }
+    });
+
+    $('#enlarge-notebook').click(function() {
+        $('#popup').show();
+    });
+    $('#popup').click(function(e) {
+        if (e.target == this) {
+            $('#popup').hide();
         }
     });
 })();
