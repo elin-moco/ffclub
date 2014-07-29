@@ -65,35 +65,6 @@ function gaTrack(eventArray, callback) {
     var randomVideo = $('.myfx-video').eq(Math.floor((Math.random()*1000)%3));
     randomVideo.css('display', 'block');
 
-    $(document).keydown(function(e) {
-        switch(e.keyCode) {
-            case 49:
-                $('.pyro').hide();
-                $('#hearts').attr('class', '');
-                nextStage(0);
-                break;
-            case 50:
-                $('.pyro').hide();
-                $('#hearts').attr('class', '');
-                nextStage(1);
-                break;
-            case 51:
-                $('.pyro').hide();
-                $('#hearts').attr('class', '');
-                nextStage(2);
-                break;
-            case 52:
-                $('.pyro').hide();
-                nextStage(3);
-                break;
-            case 53:
-                nextStage(4);
-                break;
-            default :
-                break;
-        }
-    });
-
     $('#weaver').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
         $('#hearts').attr('class', 'popping');
     });

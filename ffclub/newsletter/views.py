@@ -29,9 +29,9 @@ def subscribed(request):
 def subscribe(request):
     if request.method == 'POST' and 'secret' in request.POST and request.POST['secret'] == API_SECRET and 'email' in request.POST:
         result = newsletter_subscribe(request.POST['email'])
+        return HttpResponse(str(result), content_type='application/json')
     else:
         raise PermissionDenied
-    return HttpResponse(str('True'), content_type='application/json')
 
 
 @csrf_exempt
