@@ -76,10 +76,13 @@
     eventer(messageEvent,function(e) {
         //run function//
         if (e.data) {
-            var segments = e.data.split('=');
-            if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
-                subscriber = segments[1];
-                nextStage(3);
+            var parts = e.data.split('&');
+            if (parts.length == 2) {
+                var segments = parts[0].split('=');
+                if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
+                    subscriber = segments[1];
+                    nextStage(3);
+                }
             }
         }
     },false);

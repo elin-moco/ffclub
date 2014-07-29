@@ -131,6 +131,10 @@ function gaTrack(eventArray, callback) {
         FB.Event.subscribe('edge.create', function (response) {
             if ('https://facebook.com/MozillaTaiwan' == response) {
                 nextStage(1);
+                gaTrack(['_trackEvent', 'New Fans', 'like', response]);
+            }
+            else {
+                gaTrack(['_trackEvent', 'Social Interaction', 'like', response]);
             }
         });
         FB.getLoginStatus(function (response) {
@@ -153,13 +157,20 @@ function gaTrack(eventArray, callback) {
     eventer(messageEvent,function(e) {
         //run function//
         if (e.data) {
-            var segments = e.data.split('=');
-            if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
-                subscriber = segments[1];
-                var token = $('#subscription').attr('data-csrf-token');
-                $.post('/campaign/chinese-valentines-day/participate/', {csrfmiddlewaretoken: token, subscriber: subscriber}, function(response) {
-                });
-                nextStage(4);
+            var parts = e.data.split('&');
+            if (parts.length == 2) {
+                var segments = parts[0].split('=');
+                if (segments.length == 2 && segments[0] == 'subscriber' && segments[1].indexOf('@') != -1) {
+                    subscriber = segments[1];
+                    var token = $('#subscription').attr('data-csrf-token');
+                    $.post('/campaign/chinese-valentines-day/participate/', {csrfmiddlewaretoken: token, subscriber: subscriber}, function (response) {
+                    });
+                    nextStage(4);
+                    var segments2 = parts[1].split('=');
+                    if (segments2.length == 2 && segments2[0] == 'new') {
+                        gaTrack(['_trackEvent', 'Newsletter Subscription', 'subscribe', segments2[1]]);
+                    }
+                }
             }
         }
     },false);
@@ -173,6 +184,7 @@ function gaTrack(eventArray, callback) {
             function (response) {
                 if (response && response.post_id) {
                     nextStage(2);
+                    gaTrack(['_trackEvent', 'Post Promote', 'share', randomPost.attr('href')]);
                 }
             }
         );
@@ -186,6 +198,7 @@ function gaTrack(eventArray, callback) {
             function (response) {
                 if (response && response.post_id) {
                     nextStage(3);
+                    gaTrack(['_trackEvent', 'Video Promote', 'share', randomVideo.attr('href')]);
                 }
             }
         );
