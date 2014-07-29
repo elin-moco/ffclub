@@ -28,12 +28,23 @@ html, body {
 
 body {
   background-color: #0e2f3f;
-  background-image: radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-  radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
-  radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
-  radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
-  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+
+  /* Webkit */
+  background-image:
+    -webkit-gradient(radial, 50% 50%, 2, 50% 50%, 20, from(white), color-stop(0.1, rgba(255,255,255,.2)), to(transparent)),
+    -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 15, from(white), color-stop(0.1, rgba(255,255,255,.15)), to(transparent)),
+    -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 20, from(rgba(255,255,255,.9)), color-stop(0.05, rgba(255,255,255,.1)), to(transparent)),
+    -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 15, from(rgba(255,255,255,.4)), color-stop(0.03, rgba(255,255,255,.05)), to(transparent));
+
+  /* Firefox */
+  background-image:
+    -moz-radial-gradient(circle, #FFFFFF 2px, rgba(255,255,255,.2) 4px, transparent 40px),
+    -moz-radial-gradient(circle, #FFFFFF 1px, rgba(255,255,255,.15) 3px, transparent 30px),
+    -moz-radial-gradient(circle, rgba(255,255,255,.9) 1px, rgba(255,255,255,.1) 2px, transparent 40px),
+    -moz-radial-gradient(circle, rgba(255,255,255,.4), rgba(255,255,255,.05) 1px, transparent 30px);
+
+  background-size: 550px 510px, 310px 350px, 250px 200px, 170px 190px;
+  background-position: 40px 0, 0px 60px, 90px 250px, 170px 210px;
   height: 100%;
   overflow: auto;
 }
@@ -61,7 +72,7 @@ body {
 .magpiePos(@left, @top, @delay: 0s, @rotate: 0deg) {
   left: @left;
   top: @top;
-  .transition-vararg(transform 1s ease-in-out, opacity 0.2s linear @delay);
+  .transition-vararg-transform(1s ease-in-out, opacity 0.2s linear @delay);
   //  .transform(rotate(@rotate));
 }
 
