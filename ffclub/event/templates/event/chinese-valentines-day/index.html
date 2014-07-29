@@ -11,7 +11,8 @@
         (('status-'+ campaign.status) if campaign and campaign.status else '') }}
 {% endblock %}
 
-{% block canonical %}{{ request.build_absolute_uri(url('campaign.lantern.festival', '')) }}{% endblock %}
+{% block canonical %}{{ request.build_absolute_uri(url('campaign.chinese.valentines.day')) }}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri(url('campaign.chinese.valentines.day')) }}{% endblock %}
 
 {% block base_css %}
   {{ css('base') }}
