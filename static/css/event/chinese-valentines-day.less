@@ -688,6 +688,74 @@ body {
   }
 }
 
+.not-supported {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  margin: auto;
+  bottom: 50px;
+  left: -1000px;
+  right: -1000px;
+  width: 659px;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.75);
+  .download-firefox {
+    display: block;
+    z-index: 1000;
+    width: 314px;
+    height: 117px;
+    text-shadow: 0 1px #333333;
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+    text-indent: 130px;
+    vertical-align: middle;
+    line-height: 110px;
+    font-size: 28px;
+    margin: auto auto 20px;
+    color: #FFFFFF;
+  }
+  #download-firefox-button {
+    .not-supported > .download-firefox;
+  }
+  #download-firefox-text {
+    .not-supported > .download-firefox;
+  }
+  #caution {
+    position: absolute;
+    z-index: 100;
+    padding: 40px;
+    p {
+      display: inline-block;
+      color: #ffffff;
+      text-shadow: 0 1px #333333;
+      font-size: 18px;
+      vertical-align: top;
+      margin-left: 40px;
+      width: 360px;
+    }
+    img {
+      display: inline-block;
+    }
+  }
+}
+
+#not-supported {
+  display: none;
+}
+
+.no-js, .no-cssanimations {
+  #not-supported {
+    .not-supported;
+  }
+  #main-content #earth #steps {
+    display: none;
+  }
+}
+
 @-webkit-keyframes magpie-action {
   .magpie-keyframes;
 }
