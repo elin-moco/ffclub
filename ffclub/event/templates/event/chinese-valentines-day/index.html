@@ -6,8 +6,8 @@
 {% extends "base.html" %}
 
 {% block html_classes %}
-  {{ (' lt-ie9' if LT_IE9 else '') +
-        (' lt-ie10' if LT_IE10 else '') +
+  {{ (' lt-ie9 ' if LT_IE9 else '') +
+        (' lt-ie10 ' if LT_IE10 else '') +
         (('status-'+ campaign.status) if campaign and campaign.status else '') }}
 {% endblock %}
 
