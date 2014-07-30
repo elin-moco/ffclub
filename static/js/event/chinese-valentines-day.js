@@ -65,13 +65,19 @@ function gaTrack(eventArray, callback) {
     var randomVideo = $('.myfx-video').eq(Math.floor((Math.random()*1000)%3));
     randomVideo.css('display', 'block');
 
+    var showFireworks = function() {
+        var fwElement = '<div class="pyro"><div class="before"></div><div class="after"></div></div>';
+        $(fwElement).insertAfter('#heading');
+    }
+
     $('#weaver').bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
         $('#hearts').attr('class', 'popping');
     });
     var nextStage = function (next) {
         $.scrollTo(0, 100);
         if (4 == next) {
-            $('.pyro').show();
+            showFireworks();
+//            $('.pyro').show();
         }
         else {
             $('#earth').attr('class', 'step' + next);
