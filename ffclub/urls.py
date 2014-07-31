@@ -42,7 +42,8 @@ sitemaps = {
     'products': GenericSitemap(product_dict, 0.7, 'monthly'),
     'event_photos': GenericSitemap(event_photo_dict, 0.6, 'weekly'),
     'campaign': PathsSitemap(
-        ['/campaign/lantern-festival/', '/campaign/every-moment/', '/events/attack-on-web/', '/events/microfilm-vote/'],
+        ['/campaign/chinese-valentines-day/',
+         '/campaign/lantern-festival/', '/campaign/every-moment/', '/events/attack-on-web/', '/events/microfilm-vote/'],
         0.5, 'monthly'),
 }
 
