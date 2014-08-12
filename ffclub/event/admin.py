@@ -106,8 +106,11 @@ class ActivityAdmin(ModelAdmin):
         object_name = force_unicode(opts.verbose_name)
         participations = Participation.objects.filter(activity=obj).prefetch_related('participant', 'participant__person')
         participants = []
+        anonymous_participants = []
         for participation in participations:
-            if not participation.participant in participants:
+            if participation.note and not participation.note in anonymous_participants:
+                anonymous_participants += [participation.note, ]
+            elif not participation.participant in participants:
                 participants += [participation.participant, ]
         uploads = ImageUpload.objects.filter(
             entity_id=obj.id,
@@ -171,6 +174,27 @@ class ActivityAdmin(ModelAdmin):
                     award = Award(name=u'投票幸運獎', order=index+startIndex, winner=voter, activity=obj)
                     award.save()
                 self.message_user(request, u'已完成 %s 頒獎！' % award_name)
+            elif award_name == u'隨機抽獎':
+                if reaward == 'yes':
+                    Award.objects.filter(name=u'隨機抽獎', activity=obj).delete()
+                    startIndex = 1
+                else:
+                    startIndex = Award.objects.filter(name=u'隨機抽獎', activity=obj).aggregate(Max('order'))['order__max'] + 1
+                if repeat == 'no':
+                    awardedWinners = Award.objects.filter(activity=obj).values('winner_extra')
+                    awardedIds = [awardedWinner['winner_extra'] for awardedWinner in awardedWinners]
+                    filtered_participants = [participant for participant in anonymous_participants if participant not in awardedIds]
+                else:
+                    filtered_participants = anonymous_participants
+                from random import shuffle
+                shuffle(filtered_participants)
+                user = User.objects.get(pk=1)
+                for index, participant in enumerate(filtered_participants):
+                    if index == winner_amount:
+                        break
+                    award = Award(name=u'隨機抽獎', order=index+startIndex, winner=user, winner_extra=participant, activity=obj)
+                    award.save()
+                self.message_user(request, u'已完成 %s 頒獎！' % award_name)
             elif award_name == u'產生認領碼':
                 if reaward == 'yes':
                     Award.objects.filter(name=u'產生認領碼', activity=obj).delete()
@@ -191,6 +215,7 @@ class ActivityAdmin(ModelAdmin):
         popularAwards = Award.objects.filter(name=u'最高人氣獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
         luckyAwards = Award.objects.filter(name=u'投票幸運獎', activity=obj).prefetch_related('winner', 'winner__person').order_by('order')
         claimCodes = Award.objects.filter(name=u'產生認領碼', activity=obj).order_by('order')
+        randomAwards = Award.objects.filter(name=u'隨機抽獎', activity=obj).order_by('order')
         for claimCode in claimCodes:
             claimCode.no_profile = True
         data = {
@@ -200,9 +225,11 @@ class ActivityAdmin(ModelAdmin):
             'opts': opts,
             'app_label': app_label,
             'participants': participants,
+            'anonymous_participants': anonymous_participants,
             'uploaders': uploaders,
             'voters': voters,
             'awards': {
+                u'隨機抽獎': randomAwards,
                 u'最高人氣獎': popularAwards,
                 u'投票幸運獎': luckyAwards,
                 u'產生認領碼': claimCodes,

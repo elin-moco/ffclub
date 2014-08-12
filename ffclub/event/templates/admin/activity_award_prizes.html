@@ -24,6 +24,7 @@
       <li>
         <label for="award_name">獎項名稱：</label>
         <select id="award_name" name="award_name">
+          <option value="隨機抽獎" selected>隨機抽獎</option>
           <option value="最高人氣獎">最高人氣獎</option>
           <option value="投票幸運獎">投票幸運獎</option>
           <option value="產生認領碼">產生認領碼</option>
@@ -61,7 +62,9 @@
       {% for awarded in awarded_list %}
       <tr class="{% cycle 'odd' 'even' %}">
           <td>{{ awarded.order }}</td>
-          {% if not awarded.no_profile %}
+          {% if awarded.winner_extra %}
+            <td>{{ awarded.winner_extra }}</td>
+          {% elif not awarded.no_profile %}
             {% if awarded.winner.person %}
             <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
             {% else %}
@@ -80,7 +83,13 @@
   <h2>活動參與名單</h2>
   <h3>活動報名者</h3>
   <table>
-    {% if participants|length > 0 %}
+    {% if anonymous_participants|length > 0 %}
+      {% for participant in anonymous_participants %}
+        <tr class="{% cycle 'odd' 'even' %}">
+          <td>{{ participant }}</td>
+        </tr>
+      {% endfor %}
+    {% elif participants|length > 0 %}
       {% for participant in participants %}
         <tr class="{% cycle 'odd' 'even' %}">
           {% if participant.person %}

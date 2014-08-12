@@ -50,9 +50,15 @@
 {% block content %}
   <div id="heading">
     <h1>七夕鵲橋小遊戲</h1>
-    <h2>請依序完成四步驟，為牛郎織女築起鵲橋，<span>並參加 Firefox 精美贈品抽獎喔！（8/13 截止）</span></h2>
+    {% if campaign.status == 'running' %}
+      <h2>請依序完成四步驟，為牛郎織女築起鵲橋，<span>並參加 Firefox 精美贈品抽獎喔！（8/13 截止）</span></h2>
+    {% elif campaign.status == 'result' %}
+      <h2>請依序完成四步驟，為牛郎織女築起鵲橋！<span>（結果已公佈，<a href="{{ url('campaign.chinese.valentines.day.result') }}">看看自己有沒有中獎吧！</a>）</span></h2>
+    {% else %}
+      <h2>請依序完成四步驟，為牛郎織女築起鵲橋！<span>（抽獎活動已截止）</span></h2>
+    {% endif %}
   </div>
-  <div id="earth" class="step0">
+  <div id="earth" class="{% block step %}step0{% endblock %}">
     <img id="valentine-positioning" width="100%" src="/static/img/event/chinese-valentines-day/valentine-positioning.png">
     <div id="cowboy"></div>
     <div id="weaver"></div>
@@ -114,6 +120,7 @@
       <div class="heart2">&hearts;</div>
       <div class="heart3">&hearts;</div>
     </div>
+    {% block dialog %}
     <div id="mini-game">
       <div id="steps">
         <div id="step-scroller">
@@ -205,8 +212,10 @@
             </div>
             {% if campaign.status == 'running' %}
               <p class="notice">抽獎結果將於活動截止後公告，<br>請密切注意粉粉絲團及電子郵件的消息。</p>
+            {% elif campaign.status == 'result' %}
+              <p class="notice">抽獎結果已公佈，<br><a href="{{ url('campaign.chinese.valentines.day.result') }}">看看自己有沒有幸運中獎吧！</a></p>
             {% else %}
-              <p class="notice">抽獎結果已公佈，<br>看看自己有沒有幸運中獎吧！</p>
+              <p class="notice">活動已截止，抽獎結果將於 8/15 公佈，<br>請密切注意粉絲團和信箱。</p>
             {% endif %}
             <p class="notice">獎品為 Firefox 筆記本一本（三種款式隨機分配）</p>
             <a id="enlarge-notebook" href="javascript:void(0);">
@@ -216,6 +225,7 @@
         </div>
       </div>
     </div>
+    {% endblock %}
   </div>
   <img id="banner" src="/static/img/event/chinese-valentines-day/word.png">
   <div id="popup">

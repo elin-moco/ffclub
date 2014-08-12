@@ -548,3 +548,14 @@ def chinese_valentines_day_participate(request):
     json = simplejson.dumps(data)
     return HttpResponse(json, mimetype='application/x-javascript')
 
+
+def chinese_valentines_day_result(request):
+    currentCampaign = Campaign.objects.get(slug=chineseValentinesDayCampaignSlug)
+    if currentCampaign.status != 'result':
+        return redirect('/campaign/chinese-valentines-day/')
+    randomAwards = Award.objects.filter(name=u'隨機抽獎', activity=currentCampaign).order_by('order')
+    return render(request, 'event/chinese-valentines-day/result.html',
+                  {
+                      'campaign': currentCampaign,
+                      'randomAwards': randomAwards
+                  })

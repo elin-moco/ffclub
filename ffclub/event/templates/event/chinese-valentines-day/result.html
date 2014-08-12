@@ -1,0 +1,28 @@
+{% extends "event/chinese-valentines-day/index.html" %}
+
+{% block base_css %}
+  {{ css('base') }}
+  {{ css('chinese-valentines-day-result') }}
+{% endblock %}
+
+{% block base_js %}
+  {{ js('chinese-valentines-day-result') }}
+{% endblock %}
+
+{% block step %}step3{% endblock %}
+
+{% block dialog %}
+  <div id="result-message">
+
+    <h1>得獎公佈</h1>
+    <ul>
+      {% for award in randomAwards %}
+      <li>{{ award.winner_extra|blackout_email }}</li>
+      {% endfor %}
+    </ul>
+
+    <p></p>
+
+    <p>恭喜以上的得奬者，主辦單位會在本週透過 Email 與您聯繫，請密切注意您的郵件信箱！</p>
+  </div>
+{% endblock %}

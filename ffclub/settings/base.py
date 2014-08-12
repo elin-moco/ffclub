@@ -616,6 +616,10 @@ MINIFY_BUNDLES = {
             'css/event/fireworks.css',
             'css/event/chinese-valentines-day.less',
         ),
+        'chinese-valentines-day-result': (
+            'css/event/fireworks.css',
+            'css/event/chinese-valentines-day-result.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -702,6 +706,9 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.cssanimation.js',
             'js/libs/jquery.scrollTo.js',
             'js/event/chinese-valentines-day.js',
+        ),
+        'chinese-valentines-day-result': (
+            'js/event/chinese-valentines-day-result.js',
         ),
     }
 }
