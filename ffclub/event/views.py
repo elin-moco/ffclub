@@ -25,6 +25,7 @@ from ffclub.person.models import Person
 from ffclub.person.views import genderMap
 from ffclub.upload.utils import generate_share_image
 from social_auth.db.django_models import UserSocialAuth
+from django.db.models import Q
 
 log = commonware.log.getLogger('ffclub')
 
@@ -472,7 +473,11 @@ def campaign_claim_award(request, campaign_slug):
             for currentAward in currentAwards:
                 currentAward.status = 'claimed'
                 currentAward.save()
-            if not Participation.objects.filter(activity=currentCampaign, participant=currentUser).exists():
+            for unregCurrentAward in unregCurrentAwards:
+                unregCurrentAward.status = 'claimed'
+                unregCurrentAward.winner = currentUser
+                unregCurrentAward.save()
+            if not Participation.objects.filter(Q(activity=currentCampaign) & Q(Q(participant=currentUser) | Q(note=currentUser.email))).exists():
                 participation = Participation(activity=currentCampaign, participant=currentUser, status='attend')
                 participation.save()
             data['registered'] = True

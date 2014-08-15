@@ -62,17 +62,19 @@
       {% for awarded in awarded_list %}
       <tr class="{% cycle 'odd' 'even' %}">
           <td>{{ awarded.order }}</td>
-          {% if awarded.winner_extra %}
-            <td>{{ awarded.winner_extra }}</td>
-          {% elif not awarded.no_profile %}
-            {% if awarded.winner.person %}
-            <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
+          {% if not awarded.no_profile %}
+            {% if awarded.winner_extra and awarded.status != 'claimed' %}
+              <td>{{ awarded.winner_extra }}</td>
             {% else %}
-            <td>{{ awarded.winner.last_name }} {{ awarded.winner.first_name }}</td>
+              {% if awarded.winner.person %}
+              <td>{{ awarded.winner.person.fullname }} ({{ awarded.winner.person.nickname }})</td>
+              {% else %}
+              <td>{{ awarded.winner.last_name }} {{ awarded.winner.first_name }}</td>
+              {% endif %}
+              <td>{{ awarded.winner.email }}</td>
+              <td>{{ awarded.winner.person.phone }}</td>
+              <td>{{ awarded.winner.person.address }}</td>
             {% endif %}
-            <td>{{ awarded.winner.email }}</td>
-            <td>{{ awarded.winner.person.phone }}</td>
-            <td>{{ awarded.winner.person.address }}</td>
           {% endif %}
           <td>{{ awarded.note }}</td>
           <td>{{ awarded.status }}</td>
