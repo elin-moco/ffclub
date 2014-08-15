@@ -23,7 +23,7 @@
 {% block content %}
   <h1>{{ campaign.title }}活動領獎</h1>
   <h2>{{ campaign.description }}</h2>
-  <div class="campaignBanner" style="background: url(/static/img/event/{{ campaign.slug }}/award-claim-banner.png) left bottom no-repeat">
+  <div class="campaignBanner" style="background: url(/static/img/event/{{ campaign.slug }}/award-claim-banner.png) left top/100% auto no-repeat">
   </div>
   <div class="campaignClaimAward">
   {% if campaign.status == 'result' %}
@@ -67,3 +67,4 @@
   {% endif %}
   </div>
 {% endblock %}
+{% block email_subscription %}{% endblock %}
