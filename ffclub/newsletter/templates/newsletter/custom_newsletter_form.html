@@ -76,7 +76,7 @@ table.header {
   font-size: 12px;
 }
 
-table.banner, table.content, table.downloads, table.links, table.quiz {
+table.banner, table.content, table.cool-website, table.downloads, table.links, table.quiz {
   width: 653px;
   margin: 0 auto 0 auto;
 }
@@ -86,6 +86,14 @@ table.downloads {
 }
 
 table.downloads p {
+  margin: 0;
+}
+
+table.cool-website {
+  font-size: 12px;
+}
+
+table.cool-website p {
   margin: 0;
 }
 
@@ -356,7 +364,11 @@ table.downloads:hover #download-link {
   opacity: 0.5;
 }
 
-td.article-box:hover .tag-label {
+table.cool-website:hover #cool-website-link {
+  opacity: 0.5;
+}
+
+  td.article-box:hover .tag-label {
   opacity: 0.8;
 }
 
@@ -444,6 +456,22 @@ td.video-box:hover .play-icon {
   width: 90%;
 }
 
+#download-link + .editable-inline {
+  float: right;
+}
+
+#cool-website-title + .editable-inline {
+  width: 90%;
+}
+
+#cool-website-title + .editable-inline input {
+  width: 90%;
+}
+
+#cool-website-link + .editable-inline {
+  float: right;
+}
+
 #quiz-question + .editable-inline {
   width: 90%;
 }
@@ -456,9 +484,6 @@ td.video-box:hover .play-icon {
   float: right;
 }
 
-#download-link + .editable-inline {
-  float: right;
-}
 
 .article-desc + .editable-inline textarea, .video-desc + .editable-inline textarea {
   font-size: 12px;
@@ -885,6 +910,33 @@ _gaq.push(['_trackPageview']);
   </tr>
   <tr>
     <td class="section-header"><img
+            src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-cool-website.png"
+            alt="好站推薦"/></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="cool-website">
+        <tr>
+          <td>
+            <a class="cool-website-link" target="_blank" href="{{ params['cool-website-link'] }}{{ params.tracking_code }}">
+              <img id="cool-website-thumb" class="download-thumb" width="652" height="128"
+                   src="{{ params['cool-website-thumb'] }}"{% if not admin %} alt="{{ params['cool-website-title'] }}"{% endif %}/>
+              <p>
+                <span id="cool-website-title" title="好站標題">{{ params['cool-website-title'] }}</span> »
+              </p>
+            </a>
+            {% if admin %}
+            <a id="cool-website-link" class="add-link" target="_blank" href="{{ params['cool-website-link'] }}" title="好站連結">
+              {{ params['cool-website-link'] }}
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="section-header"><img
             src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-download.png"
             alt="好康下載"/></td>
   </tr>
@@ -1278,7 +1330,7 @@ _gaq.push(['_trackPageview']);
     $('.header .issue .volume').inlineEdit({type: 'number'});
 
     // Images
-    $('#main-thumb, #banner, .article-thumb, .video-thumb, #download-thumb').inlineEdit({type: 'image'});
+    $('#main-thumb, #banner, .article-thumb, .video-thumb, #download-thumb, #cool-website-thumb').inlineEdit({type: 'image'});
 
     // Text
     $('#banner-title').inlineEdit({type: 'textarea', rows: 2});
@@ -1293,6 +1345,8 @@ _gaq.push(['_trackPageview']);
 
     $('#download-title').inlineEdit();
     $('#download-link').inlineEdit({type: 'url'});
+    $('#cool-website-title').inlineEdit();
+    $('#cool-website-link').inlineEdit({type: 'url'});
     $('#quiz-question').inlineEdit({type: 'textarea', rows: 2});
     $('.quiz .answer').inlineEdit();
     $('#quiz-deadline').inlineEdit({type: 'dateui', format: 'yy/mm/dd'});
@@ -1318,7 +1372,7 @@ _gaq.push(['_trackPageview']);
       ]
     });
 
-    $('.banner .main a, td.article-box a.article-link, td.video-box a.video-link, a.web-link, a.download-link').changeElementType('div');
+    $('.banner .main a, td.article-box a.article-link, td.video-box a.video-link, a.web-link, a.cool-website-link, a.download-link').changeElementType('div');
     $('#edit-form input[type!=submit], #edit-form textarea, #edit-form label').hide();
     $('#pre-send').click(function(e) {
       e.preventDefault();
