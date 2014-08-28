@@ -386,7 +386,21 @@ table.cool-website:hover #cool-website-link {
   border-bottom-right-radius: 100px;
 }
 
-.video-length {
+.cool-website-tag-label {
+  display: block;
+  position: absolute;
+  width: 106px;
+  height: 106px;
+  background: linear-gradient(135deg, #000000, #FFFFFF);
+  color: transparent;
+  opacity: 0.5;
+  font-size: 0px;
+  -webkit-border-bottom-right-radius: 100px;
+  -moz-border-radius-bottomright: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+  .video-length {
   display: inline-block;
   position: absolute;
   top: 0;
@@ -919,6 +933,9 @@ _gaq.push(['_trackPageview']);
         <tr>
           <td>
             <a class="cool-website-link" target="_blank" href="{{ params['cool-website-link'] }}{{ params.tracking_code }}">
+              {% if admin %}
+                <div id="cool-website-tag" class="cool-website-tag-label" {% if params['cool-website-tag'] %}style="background: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-{{ params['cool-website-tag'] }}.png); opacity: 1.0;"{% endif %}></div>
+              {% endif %}
               <img id="cool-website-thumb" class="download-thumb" width="652" height="128"
                    src="{{ params['cool-website-thumb'] }}"{% if not admin %} alt="{{ params['cool-website-title'] }}"{% endif %}/>
               <p>
@@ -1373,6 +1390,21 @@ _gaq.push(['_trackPageview']);
         {value: 'privacy', text: 'Privacy'},
         {value: 'studentambassador', text: 'Student Ambassador'},
         {value: 'webapp', text: 'Webapp'}
+      ]
+    });
+
+    $('.cool-website-tag-label').inlineEdit({
+      url: function(params) {
+        params.elem.attr('style', 'background-image: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-'+params.value+'.png); opacity: 1.0;');
+      },
+      type:'select',
+      autotext:'never',
+      value: 1,
+      source: [
+        {value: 'inspiration', text: '設計靈感'},
+        {value: 'source', text: '設計素材'},
+        {value: 'service', text: '網站服務'},
+        {value: 'tool', text: '實用工具'}
       ]
     });
 
