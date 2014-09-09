@@ -31,8 +31,11 @@ DATABASES = {
 
 DEFAULT_FROM_EMAIL = 'no-reply@mozilla.com.tw'
 DEFAULT_REPLY_EMAIL = 'mozilla-tw@mozilla.com'
+DEFAULT_NOTIFY_EMAIL = ('mozilla-tw@mozilla.com',)
 
-EMAIL_HOST = 'mail.mozilla.com.tw'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 
 # Uncomment this and set to all slave DBs in use on the site.
@@ -93,67 +96,30 @@ ENGAGE_ROBOTS = True
 
 # Uncomment this line if you are running a local development install without
 # HTTPS to disable HTTPS-only cookies.
-# SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 FILE_PATH = 'uploads/'
+NEWSLETTER_UPLOAD_PATH = 'newsletter/'
+BEDROCK_NEWSLETTER_PATH = '/home/elin/Srcs/bedrock/bedrock/newsletter/templates/newsletter/'
 
-LOGGING = {
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'generic': {
-            'format': '%(asctime)s [%(process)d] [%(levelname)s] %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
-            'class': 'logging.Formatter',
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        },
-        'error_file': {
-            'class': 'logging.FileHandler',
-            'formatter': 'generic',
-            'filename': '/home/elin/Logs/gunicorn/ffclub_error.log',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'WARNING',
-            'handlers': ['console', 'error_file'],
-            'propagate': False,
-        },
-        'gunicorn.error': {
-            'level': 'WARNING',
-            'handlers': ['console', 'error_file'],
-            'propagate': True,
-        },
-        'django_browserid': {
-            'level': 'WARNING',
-            'handlers': ['console', 'error_file'],
-        },
-        '': {
-            'level': 'WARNING',
-            'handlers': ['console', 'error_file'],
-        },
-        'ffclub': {
-            'level': 'WARNING',
-            'handlers': ['console', 'error_file'],
-        },
-    },
+BROWSERID_REQUEST_ARGS = {
+    'siteName': u'Firefox 活力軍', 'siteLogo': '/static/images/logo.png',
+    'termsOfService': '/tos', 'privacyPolicy': 'https://www.mozilla.org/en-US/privacy/',
+    'backgroundColor': '#F6F4EC'
 }
 
 
-EVENT_WALL_PHOTOS_PER_PAGE = 30
+EVENT_WALL_PHOTOS_PER_PAGE = 15
 
-FB_APP_ID = '109615012545623'
-FB_APP_SECRET = 'beb1b04781d2f9364f5bbf297a4eb0ae'
 
-PRODUCT_INVENTORY_PATH = u'/Users/yshlin/Desktop/2013 宣傳品庫存.xlsx'
+PRODUCT_INVENTORY_PATH = u'/home/elin/mocotw_fs1/MKTG/Share/宣傳品庫存/2013 宣傳品庫存.xlsx'
 SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
+# SECURE_HSTS_SECONDS = 1
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 
 # for debugging toolbar
 if DEBUG:
@@ -169,7 +135,7 @@ if DEBUG:
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
 
-    INTERNAL_IPS = ('127.0.0.1',)
+    INTERNAL_IPS = ('127.0.0.1', '10.247.24.73', '10.247.24.76')
 
     DEBUG_TOOLBAR_PANELS = (
         'debug_toolbar.panels.version.VersionDebugPanel',
@@ -188,5 +154,72 @@ if DEBUG:
         'HIDE_DJANGO_SQL': False,
         'ENABLE_STACKTRACES': True,
     }
+    LOGGING = {
+        'formatters': {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            },
+            'generic': {
+                'format': '%(asctime)s [%(process)d] [%(levelname)s] %(message)s',
+                'datefmt': '%Y-%m-%d %H:%M:%S',
+                'class': 'logging.Formatter',
+            },
+        },
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            },
+            'error_file': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'formatter': 'generic',
+                'filename': '/home/elin/Logs/gunicorn/ffclub_error.log',
+            },
+        },
+        'loggers': {
+            'ffclub': {
+                'level': 'DEBUG',
+                'handlers': ['error_file', 'sentry', 'console'],
+                'propagate': True,
+            },
+            'django': {
+                'level': 'WARNING',
+                'handlers': ['console', 'error_file'],
+                'propagate': True,
+            },
+            'gunicorn': {
+                'level': 'WARNING',
+                'handlers': ['console', 'error_file'],
+                'propagate': True,
+            },
+            'django.db.backends': {
+                'level': 'WARNING',
+                'handlers': ['console', 'error_file'],
+                'propagate': True,
+            },
+
+        },
+    }
 
 
+JAVA_BIN = '/usr/bin/java'
+LESS_BIN = '/usr/local/bin/lessc'
+
+FB_APP_ID = FACEBOOK_APP_ID = '109615012545623'
+FB_APP_SECRET = FACEBOOK_API_SECRET = 'beb1b04781d2f9364f5bbf297a4eb0ae'
+FB_APP_NAMESPACE = 'ffclubtw-test'
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'publish_actions']
+LOGIN_REDIRECT_URL = '/login/redirect'
+LOGIN_ERROR_URL = '/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+NEWSLETTER_ASSETS_URL = 'http://%s/media/img/mocotw/newsletter/upload/' % MOCO_URL
+
+API_SECRET = 'generate-a-random-string'
+
+BEDROCK_GA_ACCOUNT_CODE = 'UA-28913145-1'
+
+NEWSLETTER_PRESEND_LIST = ('nli@mozilla.com', 'mozilla-tw@mozilla.com', 'tw-bd@mozilla.com', 'gchen@mozilla.com')
