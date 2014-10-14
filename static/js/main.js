@@ -3,7 +3,7 @@
 $(function(){
     var loginPopup = new Modal().Popup('.loginPopup');
     var loginHandler = function (e, msg) {
-        var title = '登入 Firefox 活力軍';
+        var title = '登入 Firefox 俱樂部';
         if ($(this).attr('title')) {
             title = $(this).attr('title');
         }

@@ -10,6 +10,9 @@ from ffclub.event.models import Vote
 from django.db.models import Count
 from random import choice
 import string
+import bisect
+import random
+from collections import Sequence
 
 log = commonware.log.getLogger('ffclub')
 
@@ -65,3 +68,26 @@ def send_photo_report_mail(from_name, to_name, photo_id):
 
 def generate_claim_code(length=6):
     return ''.join(choice(string.ascii_uppercase + string.digits) for x in range(length))
+
+
+def weighted_sample(population, weights, k):
+    return random.sample(WeightedPopulation(population, weights), k)
+
+
+class WeightedSequence(Sequence):
+    def __init__(self, population, weights):
+        assert len(population) == len(weights) > 0
+        self.population = population
+        self.cumweights = []
+        cumsum = 0
+        for w in weights:
+            cumsum += w
+            self.cumweights.append(cumsum)
+
+    def __len__(self):
+        return self.cumweights[-1]
+
+    def __getitem__(self, i):
+        if not 0 <= i < len(self):
+            raise IndexError(i)
+        return self.population[bisect.bisect(self.cumweights, i)]

@@ -216,6 +216,10 @@ LOGIN_REDIRECT_URL = '/login/redirect'
 LOGIN_ERROR_URL = '/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
+MOCO_URL = 'bedrock.inspire.mozilla.com.tw'
+MYFF_URL = 'myfirefox.inspire.mozilla.com.tw'
+FFCLUB_URL = 'ffclub.inspire.mozilla.com.tw'
+TECH_URL = 'tech.inspire.mozilla.com.tw'
 NEWSLETTER_ASSETS_URL = 'http://%s/media/img/mocotw/newsletter/upload/' % MOCO_URL
 
 API_SECRET = 'generate-a-random-string'

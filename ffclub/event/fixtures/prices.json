@@ -1,0 +1,92 @@
+[
+    {
+        "pk": 1,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 999,
+            "name": "sorry",
+            "description": "\u9298\u8b1d\u60e0\u9867"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 5,
+            "name": "mug",
+            "description": "Firefox \u8a2d\u8a08\u99ac\u514b\u676f"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 15,
+            "name": "nbsticker",
+            "description": "\u9177\u70ab\u96fb\u8166\u8cbc10\u540b\u300113\u540b\u5404\u4e00\u679a"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 15,
+            "name": "taipeipass",
+            "description": "Firefox \u7368\u5bb6\u60a0\u904a\u5361"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 5,
+            "name": "backpack",
+            "description": "\u9650\u91cf\u80cc\u5305"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 25,
+            "name": "totebag",
+            "description": "\u647a\u758a\u5f0f\u8cfc\u7269\u888b"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 19,
+            "name": "carsticker",
+            "description": "Firefox \u7cbe\u7dfb\u8eca\u8cbc"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 1,
+            "name": "fxosphone",
+            "description": "Firefox OS \u624b\u6a5f"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "event.price",
+        "fields": {
+            "status": "normal",
+            "quantity": 15,
+            "name": "notebook",
+            "description": "Firefox \u5178\u85cf\u7b46\u8a18\u672c"
+        }
+    }
+]

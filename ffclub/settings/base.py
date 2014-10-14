@@ -620,6 +620,9 @@ MINIFY_BUNDLES = {
             'css/event/fireworks.css',
             'css/event/chinese-valentines-day-result.less',
         ),
+        '10years-firefox-family-award': (
+            'css/event/10years-firefox-family-award.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -709,6 +712,9 @@ MINIFY_BUNDLES = {
         ),
         'chinese-valentines-day-result': (
             'js/event/chinese-valentines-day-result.js',
+        ),
+        '10years-firefox-family-award': (
+            'js/event/10years-firefox-family-award.js',
         ),
     }
 }

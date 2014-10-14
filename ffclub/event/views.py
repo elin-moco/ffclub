@@ -8,11 +8,9 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied, Suspici
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
 import commonware.log
 import random
-
-from django.utils import simplejson
+import json
 from django.utils.encoding import force_unicode
 import facebook
 from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp
@@ -26,6 +24,8 @@ from ffclub.person.views import genderMap
 from ffclub.upload.utils import generate_share_image
 from social_auth.db.django_models import UserSocialAuth
 from django.db.models import Q
+from commonware.response.decorators import xframe_allow
+from django.views.decorators.csrf import csrf_exempt
 
 log = commonware.log.getLogger('ffclub')
 
@@ -99,8 +99,8 @@ def activity_photo_remove(request, type, photo_id):
     except PermissionDenied:
         data = {'result': 'failed', 'errorMessage': '無存取權限！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def activity_photo_report(request, type, photo_id):
@@ -125,8 +125,8 @@ def activity_photo_report(request, type, photo_id):
     except PermissionDenied:
         data = {'result': 'failed', 'errorMessage': '無存取權限！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def activity_photo_vote(request, type, photo_id):
@@ -150,8 +150,8 @@ def activity_photo_vote(request, type, photo_id):
     except SuspiciousOperation:
         data = {'result': 'failed', 'errorMessage': '一張照片只能投一票喔！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def generic_vote(request, type, id):
@@ -171,8 +171,8 @@ def generic_vote(request, type, id):
     except SuspiciousOperation:
         data = {'result': 'failed', 'errorMessage': '一部微電影只能投一票喔！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def every_moment(request):
@@ -523,8 +523,8 @@ def lantern_claim_code(request):
         data = {'claim_code': claimCode.note}
     else:
         data = {'message': 'out.of.claim.code'}
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/json')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/json')
 
 
 def chinese_valentines_day(request):
@@ -550,8 +550,8 @@ def chinese_valentines_day_participate(request):
     else:
         data['result'] = 'failed'
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def chinese_valentines_day_result(request):
@@ -564,3 +564,34 @@ def chinese_valentines_day_result(request):
                       'campaign': currentCampaign,
                       'randomAwards': randomAwards
                   })
+
+
+@xframe_allow
+@csrf_exempt
+def firefox_family_award(request, template):
+    return render(request, template)
+
+
+def firefox_family_get_ticket(request):
+    periods = ('10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00',
+               '15:30', '16:00', '16:30')
+    weights = (4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
+    data = {}
+    if request.method == 'POST':
+        day = request.POST['day']
+    else:
+        data['result'] = 'faild'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
+
+
+def firefox_family_lottery(request):
+    prices = (('sorry', 'notebook', 'totebag', 'carsticker', 'nbsticker'),
+              ('mug', 'taipeipass', 'backpack', 'fxosphone'))
+    data = {}
+    if request.method == 'POST':
+        level = request.POST['level']
+    else:
+        data['result'] = 'faild'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
