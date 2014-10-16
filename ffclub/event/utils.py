@@ -3,7 +3,7 @@ from email.header import Header
 import commonware.log
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, DEFAULT_REPLY_EMAIL, DEFAULT_NOTIFY_EMAIL, BEDROCK_NEWSLETTER_PATH, FFCLUB_URL
+from ffclub.settings import DEFAULT_FROM_EMAIL, SITE_URL, DEFAULT_REPLY_EMAIL, DEFAULT_NOTIFY_EMAIL, BEDROCK_PATH, FFCLUB_URL
 from ffclub.product.tasks import send_mail
 from ffclub.person.models import Person
 from ffclub.event.models import Vote
@@ -142,4 +142,4 @@ def generate_10years_ticket(session, code):
     draw.text((116, 152), rules3, (0, 0, 0), font=rules_font)
     draw.text((116, 192), rules4, (0, 0, 0), font=rules_font)
 
-    bg.save(BEDROCK_NEWSLETTER_PATH + 'media/img/mocotw/10years/fx-day/tickets/' + filename)
+    bg.save(BEDROCK_PATH + 'media/img/mocotw/10years/fx-day/tickets/' + filename)
