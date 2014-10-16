@@ -131,7 +131,7 @@ def generate_10years_ticket(session, code):
     qr = make_white_transparent(qr)
     qr.thumbnail((200, 200), Image.NEAREST)
 
-    bg = Image.open(BEDROCK_NEWSLETTER_PATH + 'media/img/mocotw/10years/fx-family/ticket/ticket-print.png')
+    bg = Image.open(BEDROCK_PATH + 'media/img/mocotw/10years/fx-family/ticket/ticket-print.png')
     bg.paste(qr, (380, 56), qr)
 
     draw = ImageDraw.Draw(bg)
