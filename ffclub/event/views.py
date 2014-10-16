@@ -14,7 +14,7 @@ import json
 from django.utils.encoding import force_unicode
 import facebook
 from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp, Price
-from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes, weighted_sample, generate_claim_code
+from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes, weighted_sample, generate_claim_code, generate_10years_ticket
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
@@ -604,6 +604,7 @@ def firefox_family_get_ticket(request):
             data['code'] = verification_code
             data['result'] = 'success'
             data['existing'] = False
+            generate_10years_ticket(data['session'], data['code'])
         elif ticketExists:
             data['result'] = 'success'
             data['session'] = existing[0].winner_extra
