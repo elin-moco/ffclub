@@ -126,6 +126,7 @@ class Award(models.Model):
     winner_extra = models.CharField(max_length=255, blank=True, default='')
     price = models.ForeignKey(Price, related_name='+', blank=True, null=True, default=None)
     activity = models.ForeignKey(Activity, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
     status = models.CharField(max_length=20,
                               choices=(('waiting', '待確認'), ('claimed', '已確認'), ('awarded', '已頒發')),
                               default='waiting')

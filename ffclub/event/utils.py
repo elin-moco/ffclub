@@ -70,8 +70,8 @@ def generate_claim_code(length=6):
     return ''.join(choice(string.ascii_uppercase + string.digits) for x in range(length))
 
 
-def weighted_sample(population, weights, k):
-    return random.sample(WeightedPopulation(population, weights), k)
+def weighted_sample(population, weights, amount=1):
+    return random.sample(WeightedSequence(population, weights), amount)
 
 
 class WeightedSequence(Sequence):

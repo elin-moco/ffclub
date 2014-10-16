@@ -12,18 +12,16 @@
 </head>
 <body>
   {% if not request.user.is_active %}
-  <div class="loginPopup">
-    <div class="loginBox">
-      <span class="popupTitle"></span>
-      <div class="innerBox">
-        <a class="persona-button browserid-login browserid" href="/events/"><span>使用 Persona 登入</span></a>
-        <p>
-          更簡易、更安全的登入方式－<a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
-        </p>
-        <p>或者你也可以：</p>
-        <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}{{ '?next=' + request.build_absolute_uri(login_url) if login_url else '' }}" target="_blank"><span>使用 Facebook 登入</span></a>
-        <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
-      </div>
+  <div class="loginBox">
+    <span class="popupTitle">請登入以領券抽獎</span>
+    <div class="innerBox">
+      <a class="persona-button browserid-login browserid" href="/events/"><span>使用 Persona 登入</span></a>
+      <p>
+        更簡易、更安全 － <a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
+      </p>
+      <p>或者你也可以：</p>
+      <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}{{ '?next=' + request.build_absolute_uri(login_url) if login_url else '' }}" target="_blank"><span>使用 Facebook 登入</span></a>
+      <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
     </div>
   </div>
   <form method="POST" action="{{ url('browserid_verify') }}">
@@ -34,7 +32,12 @@
     {{ browserid_form.as_p() }}
   </form>
   {% else %}
-    <a title="登出網站" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}" tabindex="-1">登出</a>
+    <script>
+    //Notify embedding parent if already login
+    if (window.parent) {
+      window.parent.postMessage('login=success', '*');
+    }
+    </script>
   {% endif %}
 
   {{ js('site') }}
