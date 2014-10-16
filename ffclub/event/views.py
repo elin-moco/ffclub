@@ -27,6 +27,7 @@ from django.db.models import Q
 from commonware.response.decorators import xframe_allow
 from django.views.decorators.csrf import csrf_exempt
 from ffclub.base.decorators import cors_allow, enable_jsonp
+from ffclub.settings import MOCO_URL
 
 log = commonware.log.getLogger('ffclub')
 
@@ -658,3 +659,7 @@ def firefox_family_lottery(request):
         data['message'] = 'unauthorized'
     response = json.dumps(data)
     return HttpResponse(response, mimetype='application/x-javascript')
+
+
+def firefox_day_verify(request):
+    return redirect('//%s/10years/' % MOCO_URL)
