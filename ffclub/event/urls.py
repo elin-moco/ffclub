@@ -39,7 +39,7 @@ urlpatterns = patterns(
         name='campaign.10years.firefox.family.award'),
     url(r'^campaign/10years/firefox-family-award/ticket/$', views.firefox_family_get_ticket),
     url(r'^campaign/10years/firefox-family-award/lottery/$', views.firefox_family_lottery),
-    url(r'^campaign/10years/firefox-family-award/verify/', views.firefox_day_verify),
+    url(r'^campaign/10years/firefox-family/validate/', views.firefox_day_verify),
     url(r'^events/attack-on-web/$', views.attack_on_web, name='event.attack.on.web'),
     url(r'^events/attack-on-web/prizes/$', views.prizes, name='event.attack.on.web.prizes'),
     url(r'^events/attack-on-web/apply/$', views.apply, name='event.attack.on.web.apply'),
