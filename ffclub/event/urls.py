@@ -42,7 +42,7 @@ urlpatterns = patterns(
     url(r'^campaign/10years/firefox-family-award/lottery/$', views.firefox_family_lottery),
     url(r'^campaign/10years/firefox-family/validate/', views.firefox_day_verify),
     url(r'^campaign/10years/browser-survey/claim-award/$', views.campaign_claim_award,
-        {'campaign_slug': '10years-survey', 'award_name': u'隨機抽獎'},
+        {'campaign_slug': '10years-survey', 'award_name': u'抽獎'},
         name='campaign.10years.browser.survey.claim.award'),
     url(r'^campaign/10years/firefox-family/claim-award/$', views.campaign_claim_award,
         {'campaign_slug': '10years', 'award_name': u'幸運轉輪'},

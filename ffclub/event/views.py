@@ -455,11 +455,11 @@ def campaign_claim_award(request, campaign_slug, award_name=None):
     if request.user.is_active:
         currentUser = auth.get_user(request)
         if award_name:
-            currentAwards = Award.objects.filter(~Q(price=None) | ~Q(price__name='sorry'), activity=currentCampaign,
+            currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser, name=award_name)
             unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email, name=award_name)
         else:
-            currentAwards = Award.objects.filter(~Q(price=None) | ~Q(price__name='sorry'), activity=currentCampaign,
+            currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser)
             unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
         awarded = currentAwards.exists() or unregCurrentAwards.exists()
