@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import *
 from . import views
 
@@ -40,6 +41,12 @@ urlpatterns = patterns(
     url(r'^campaign/10years/firefox-family-award/ticket/$', views.firefox_family_get_ticket),
     url(r'^campaign/10years/firefox-family-award/lottery/$', views.firefox_family_lottery),
     url(r'^campaign/10years/firefox-family/validate/', views.firefox_day_verify),
+    url(r'^campaign/10years/browser-survey/claim-award/$', views.campaign_claim_award,
+        {'campaign_slug': '10years-survey', 'award_name': u'隨機抽獎'},
+        name='campaign.10years.browser.survey.claim.award'),
+    url(r'^campaign/10years/firefox-family/claim-award/$', views.campaign_claim_award,
+        {'campaign_slug': '10years', 'award_name': u'幸運轉輪'},
+        name='campaign.10years.firefox.family.claim.award'),
     url(r'^events/attack-on-web/$', views.attack_on_web, name='event.attack.on.web'),
     url(r'^events/attack-on-web/prizes/$', views.prizes, name='event.attack.on.web.prizes'),
     url(r'^events/attack-on-web/apply/$', views.apply, name='event.attack.on.web.apply'),

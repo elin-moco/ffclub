@@ -111,7 +111,7 @@ class Price(models.Model):
                               default='normal')
 
     def __unicode__(self):
-        return unicode('%s' % (self.name, ))
+        return unicode('%s - %s (%s) x %d' % (self.name, self.description, self.status, self.quantity))
 
     class Meta:
         verbose_name = verbose_name_plural = '活動獎品'
@@ -132,7 +132,7 @@ class Award(models.Model):
                               default='waiting')
 
     def __unicode__(self):
-        return unicode('%s+%s@%s: %s' % (self.winner.username, self.name, self.activity.title, self.status))
+        return unicode('%s+%s@%s: %s' % (self.winner.username if self.winner else self.winner_extra, self.name, self.activity.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '活動頒獎'
