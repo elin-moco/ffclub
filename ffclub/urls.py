@@ -60,7 +60,7 @@ urlpatterns = patterns(
     (r'', include('%s.newsletter.urls' % PROJECT_MODULE)),
     url(r'^login/redirect$', login_redirect, name='login.redirect'),
     url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='intro.logout'),
-    url('^browserid/browserid/verify/', xframe_allow(Verify.as_view()),
+    url(r'^browserid/browserid/verify/?$', xframe_allow(Verify.as_view()),
         name='browserid_verify'),
     # url(r'^browserid/', include('django_browserid.urls')),
     url(r'', include('social_auth.urls')),

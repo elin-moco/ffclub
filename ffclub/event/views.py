@@ -448,7 +448,7 @@ def event_register(request, event_slug):
     return render(request, 'event/event_register.html', data)
 
 
-def campaign_claim_award(request, campaign_slug, award_name=None):
+def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=None):
     print campaign_slug
     currentCampaign = Campaign.objects.get(slug=campaign_slug, status='result')
     awarded = None
@@ -463,7 +463,7 @@ def campaign_claim_award(request, campaign_slug, award_name=None):
                                                  winner=currentUser)
             unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
         awarded = currentAwards.exists() or unregCurrentAwards.exists()
-    data = {'campaign': currentCampaign, 'awarded': awarded}
+    data = {'campaign': currentCampaign, 'awarded': awarded, 'nav_template': nav_template, 'MOCO_URL': MOCO_URL}
     if request.method == 'POST':
         if not request.user.is_authenticated():
             raise PermissionDenied

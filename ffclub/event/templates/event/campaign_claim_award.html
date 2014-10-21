@@ -14,7 +14,11 @@
   <header id="masthead">
     <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
     {% with logout_url = logout_url %}
-      {% include "navigator.html" %}
+      {% if nav_template %}
+        {% include nav_template %}
+      {% else %}
+        {% include "navigator.html" %}
+      {% endif %}
     {% endwith %}
   </header>
 {% endblock %}
