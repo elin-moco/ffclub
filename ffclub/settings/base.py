@@ -357,6 +357,7 @@ INSTALLED_APPS = (
     '%s.event' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.event.templatetags' % PROJECT_MODULE,
+    '%s.thememaker' % PROJECT_MODULE,
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -620,6 +621,11 @@ MINIFY_BUNDLES = {
             'css/event/fireworks.css',
             'css/event/chinese-valentines-day-result.less',
         ),
+        'thememaker': (
+            #'css/ffcstyle.css',
+            'css/libs/owl.carousel.css',
+            'css/thememaker/themes.css',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -710,6 +716,22 @@ MINIFY_BUNDLES = {
         'chinese-valentines-day-result': (
             'js/event/chinese-valentines-day-result.js',
         ),
+        'thememaker': (
+            'js/libs/jquery.infinitescroll.js',
+            'js/libs/owl.carousel.min.js',
+            #'js/main.js',
+            'js/thememaker/index.js',
+        ),
+        'thememaker_create': (
+            'js/libs/fabric.min.js',
+            'js/libs/owl.carousel.min.js',
+            #'js/main.js',
+            'js/thememaker/create.js',
+        ),
+        'thememaker_preview': (
+            #'js/main.js',
+            'js/thememaker/preview.js',
+        ),
     }
 }
 
@@ -773,7 +795,8 @@ PRODUCT_INVENTORY_MIN = 50
 SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
 
 FILE_PATH = 'uploads/'
-
+TEMPLATE_THEME_FILE_PATH = 'static/thememaker/'
+USER_THEME_FILE_PATH = 'static/uploads/theme_maker/user/'
 
 # Uncomment this and set to all slave DBs in use on the site.
 # SLAVE_DATABASES = ['slave']
