@@ -34,6 +34,8 @@
     {% if request.user.is_active %}
       {% if registered %}
         登錄完成！感謝你的參與。
+        <p></p>
+        <a class="button" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}">登出</a>
       {% elif awarded %}
       <form method="post">
         <div class="registerHeading">
@@ -61,6 +63,8 @@
       </form>
       {% else %}
         銘謝惠顧囉！請再接再勵！
+        <p></p>
+        <a class="button" href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}">登出</a>
       {% endif %}
     {% else %}
       <p>請先用得獎的帳號登入：</p>

@@ -4,6 +4,7 @@ from ffclub import settings
 lt_ie9_pattern = re.compile(".*MSIE [6-8]\.")
 lt_ie10_pattern = re.compile(".*MSIE [6-9]\.")
 
+
 def constants(request):
     lt_ie9 = False
     lt_ie10 = False
