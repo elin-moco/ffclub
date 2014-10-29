@@ -95,14 +95,13 @@ function drag_image_listener() {
 }
 
 function template_theme_slider() {
-  const ITEM_PER_LIST = 8;
   var slider = $('#theme_Canned');
 
   slider.owlCarousel({
     items : ITEM_PER_LIST, 
     itemsDesktop : [1000,5],
     itemsMobile : false,
-    afterMove: moved,
+    afterMove: moved
   });
 
   var slider_obj = $('#theme_Canned').data('owlCarousel');
