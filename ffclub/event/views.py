@@ -8,15 +8,13 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied, Suspici
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
 import commonware.log
 import random
-
-from django.utils import simplejson
+import json
 from django.utils.encoding import force_unicode
 import facebook
-from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp
-from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes
+from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp, Price
+from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes, weighted_sample, generate_claim_code, generate_10years_ticket
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
@@ -26,12 +24,17 @@ from ffclub.person.views import genderMap
 from ffclub.upload.utils import generate_share_image
 from social_auth.db.django_models import UserSocialAuth
 from django.db.models import Q
+from commonware.response.decorators import xframe_allow
+from django.views.decorators.csrf import csrf_exempt
+from ffclub.base.decorators import cors_allow, enable_jsonp
+from ffclub.settings import MOCO_URL
 
 log = commonware.log.getLogger('ffclub')
 
 everyMomentCampaignSlug = 'every-moment'
 lanternFestivalCampaignSlug = 'lantern-festival'
 chineseValentinesDayCampaignSlug = 'chinese-valentines-day'
+tenYearsCampaignSlug = '10years'
 
 
 def wall(request):
@@ -99,8 +102,8 @@ def activity_photo_remove(request, type, photo_id):
     except PermissionDenied:
         data = {'result': 'failed', 'errorMessage': '無存取權限！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def activity_photo_report(request, type, photo_id):
@@ -125,8 +128,8 @@ def activity_photo_report(request, type, photo_id):
     except PermissionDenied:
         data = {'result': 'failed', 'errorMessage': '無存取權限！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def activity_photo_vote(request, type, photo_id):
@@ -150,8 +153,8 @@ def activity_photo_vote(request, type, photo_id):
     except SuspiciousOperation:
         data = {'result': 'failed', 'errorMessage': '一張照片只能投一票喔！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def generic_vote(request, type, id):
@@ -171,8 +174,8 @@ def generic_vote(request, type, id):
     except SuspiciousOperation:
         data = {'result': 'failed', 'errorMessage': '一部微電影只能投一票喔！'}
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def every_moment(request):
@@ -445,15 +448,22 @@ def event_register(request, event_slug):
     return render(request, 'event/event_register.html', data)
 
 
-def campaign_claim_award(request, campaign_slug):
-    currentCampaign = Campaign.objects.get(slug=campaign_slug, status=('result'))
+def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=None):
+    print campaign_slug
+    currentCampaign = Campaign.objects.get(slug=campaign_slug, status='result')
     awarded = None
     if request.user.is_active:
         currentUser = auth.get_user(request)
-        currentAwards = Award.objects.filter(activity=currentCampaign, winner=currentUser)
-        unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+        if award_name:
+            currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
+                                                 winner=currentUser, name=award_name)
+            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email, name=award_name)
+        else:
+            currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
+                                                 winner=currentUser)
+            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
         awarded = currentAwards.exists() or unregCurrentAwards.exists()
-    data = {'campaign': currentCampaign, 'awarded': awarded}
+    data = {'campaign': currentCampaign, 'awarded': awarded, 'nav_template': nav_template, 'MOCO_URL': MOCO_URL}
     if request.method == 'POST':
         if not request.user.is_authenticated():
             raise PermissionDenied
@@ -523,8 +533,8 @@ def lantern_claim_code(request):
         data = {'claim_code': claimCode.note}
     else:
         data = {'message': 'out.of.claim.code'}
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/json')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/json')
 
 
 def chinese_valentines_day(request):
@@ -550,8 +560,8 @@ def chinese_valentines_day_participate(request):
     else:
         data['result'] = 'failed'
 
-    json = simplejson.dumps(data)
-    return HttpResponse(json, mimetype='application/x-javascript')
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 def chinese_valentines_day_result(request):
@@ -564,3 +574,99 @@ def chinese_valentines_day_result(request):
                       'campaign': currentCampaign,
                       'randomAwards': randomAwards
                   })
+
+
+@xframe_allow
+@csrf_exempt
+def firefox_family_award(request, template):
+    return render(request, template)
+
+
+@enable_jsonp
+def firefox_family_get_ticket(request):
+    periods = ('10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00',
+               '15:30', '16:00', '16:30')
+    weights = (4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
+    day_mapping = {
+        '1': '11/22',
+        '2': '11/23',
+    }
+    data = {'result': 'failed'}
+    if request.user.is_active:
+        currentCampaign = Campaign.objects.get(slug=tenYearsCampaignSlug)
+        existing = Award.objects.filter(name=u'早鳥票', activity=currentCampaign, winner=request.user)
+        ticketExists = existing.exists()
+        if not ticketExists and 'day' in request.GET:
+            day = day_mapping[request.GET['day']]
+            suggested_period = weighted_sample(periods, weights)[0]
+            #save award
+            session = '%s %s' % (day, suggested_period)
+            while True:
+                verification_code = generate_claim_code()
+                if not Award.objects.filter(name=u'早鳥票', activity=currentCampaign, note=verification_code).exists():
+                    break
+            ticket = Award(name=u'早鳥票', activity=currentCampaign, note=verification_code,
+                           winner=request.user, winner_extra=session)
+            ticket.save()
+            data['session'] = session
+            data['code'] = verification_code
+            data['result'] = 'success'
+            data['existing'] = False
+            generate_10years_ticket(data['session'], data['code'])
+        elif ticketExists:
+            data['result'] = 'success'
+            data['session'] = existing[0].winner_extra
+            data['code'] = existing[0].note
+            data['existing'] = True
+        else:
+            data['message'] = 'invalid request'
+    else:
+        data['message'] = 'unauthorized'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
+
+
+@enable_jsonp
+def firefox_family_lottery(request):
+    prices_levels = (('sorry', 'notebook', 'totebag', 'carsticker', 'nbsticker'),
+                     ('mug', 'taipeipass', 'backpack', 'fxosphone'))
+    data = {'result': 'failed'}
+    if request.user.is_active:
+        currentCampaign = Campaign.objects.get(slug=tenYearsCampaignSlug)
+        existing = Award.objects.filter(name=u'幸運轉輪', activity=currentCampaign, winner=request.user)
+        if not existing.exists() and 'level' in request.GET:
+            level = int(request.GET['level'])
+            price_keys = prices_levels[0] if level == 0 else prices_levels[0] + prices_levels[1]
+            prices = Price.objects.filter(name__in=price_keys)
+            weights = []
+            for price in prices:
+                if price.name == 'sorry':
+                    weights += [1000, ]
+                else:
+                    weights += [price.quantity, ]
+            winning_price = weighted_sample(prices, weights)[0]
+            #save award, decrease price quantity
+            if winning_price.name != 'sorry':
+                winning_price.quantity -= 1
+                winning_price.save()
+            lottery_award = Award(name=u'幸運轉輪', activity=currentCampaign, winner=request.user, price=winning_price)
+            lottery_award.save()
+            data['slug'] = winning_price.name
+            data['name'] = winning_price.description
+            data['result'] = 'success'
+            data['existing'] = False
+        elif existing.exists():
+            data['result'] = 'success'
+            data['slug'] = existing[0].price.name
+            data['name'] = existing[0].price.description
+            data['existing'] = True
+        else:
+            data['message'] = 'invalid request'
+    else:
+        data['message'] = 'unauthorized'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
+
+
+def firefox_day_verify(request):
+    return redirect('//%s/10years/' % MOCO_URL)

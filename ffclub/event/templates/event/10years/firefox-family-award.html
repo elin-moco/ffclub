@@ -1,0 +1,60 @@
+{% set login_url = url('campaign.10years.firefox.family.award') %}
+{% set logout_url = url('campaign.10years.firefox.family.award') %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  {{ css('site') }}
+  {{ css('base') }}
+  {{ css('10years-firefox-family-award') }}
+</head>
+<body>
+  {% if not request.user.is_active %}
+  <div class="loginBox">
+    <span class="popupTitle">請登入以領券抽獎</span>
+    <div class="innerBox">
+      <a class="persona-button browserid-login browserid" href="/events/"><span>使用 Persona 登入</span></a>
+      <p>
+        更簡易、更安全 － <a target="_blank" href="https://login.persona.org/about">認識 Persona »</a>
+      </p>
+      <p>或者你也可以：</p>
+      <a class="persona-button facebook-login" href="{{ url("socialauth_begin", "facebook") }}{{ '?next=' + request.build_absolute_uri(login_url) if login_url else '' }}" target="_blank"><span>使用 Facebook 登入</span></a>
+      <div class="fbpile" data-app-id="{{ FB_APP_ID }}"></div>
+    </div>
+  </div>
+  <form method="POST" action="{{ url('browserid_verify') }}">
+    {{ csrf() }}
+    {% if login_url %}
+      <input type="hidden" name="next" value="{{ login_url }}">
+    {% endif %}
+    {{ browserid_form.as_p() }}
+  </form>
+  {% else %}
+    <script>
+    //Notify embedding parent if already login
+    if (window.parent) {
+      window.parent.postMessage('login=success', '*');
+    }
+    </script>
+  {% endif %}
+
+  {{ js('site') }}
+  {% if not request.user.is_active %}
+    {{ js('browserid') }}
+  {% endif %}
+  <div id="fb-root"></div>
+  <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId={{ FB_APP_ID }}";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+  {{ js('10years-firefox-family-award') }}
+
+</body>
+</html>

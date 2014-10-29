@@ -9,6 +9,7 @@ from django.views.generic.simple import redirect_to
 from ffclub.base import ViewsSitemap, PathsSitemap
 from ffclub.intro.views import login_redirect
 from ffclub.settings import DEBUG, ENGAGE_ROBOTS
+from commonware.response.decorators import xframe_allow
 
 # from examples import urls
 
@@ -16,6 +17,7 @@ from funfactory.monkeypatches import patch
 from ffclub.product.models import Product
 from ffclub.upload.models import ImageUpload
 from ffclub.base import admin
+from django_browserid.views import Verify
 
 patch()
 
@@ -59,7 +61,9 @@ urlpatterns = patterns(
     (r'', include('%s.thememaker.urls' % PROJECT_MODULE)),
     url(r'^login/redirect$', login_redirect, name='login.redirect'),
     url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='intro.logout'),
-    url(r'^browserid/', include('django_browserid.urls')),
+    url(r'^browserid/browserid/verify/?$', xframe_allow(Verify.as_view()),
+        name='browserid_verify'),
+    # url(r'^browserid/', include('django_browserid.urls')),
     url(r'', include('social_auth.urls')),
     ('^media/uploads/(?P<path>.*)$', redirect_to, {'url': '/static/uploads/%(path)s'}),
     ('^media/share/(?P<path>.*)$', redirect_to, {'url': '/static/share/%(path)s'}),

@@ -315,12 +315,20 @@ class VoteAdmin(ModelAdmin):
 admin.site.register(Vote, VoteAdmin)
 
 
+class PriceAdmin(ModelAdmin):
+    search_fields = ['name', 'description']
+    list_filter = ['quantity', 'status']
+
+admin.site.register(Price, PriceAdmin)
+
+
 class VideoAdmin(ModelAdmin):
     search_fields = ['title', 'description']
     list_filter = ['create_time', 'status']
 
 
 admin.site.register(Video, VideoAdmin)
+
 
 class DemoAppAdmin(ModelAdmin):
     search_fields = ['en_title', 'description']

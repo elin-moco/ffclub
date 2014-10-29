@@ -626,6 +626,9 @@ MINIFY_BUNDLES = {
             'css/libs/owl.carousel.css',
             'css/thememaker/themes.css',
         ),
+        '10years-firefox-family-award': (
+            'css/event/10years-firefox-family-award.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -731,6 +734,9 @@ MINIFY_BUNDLES = {
         'thememaker_preview': (
             #'js/main.js',
             'js/thememaker/preview.js',
+        ),
+        '10years-firefox-family-award': (
+            'js/event/10years-firefox-family-award.js',
         ),
     }
 }

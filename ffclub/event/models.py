@@ -8,6 +8,7 @@ from django.contrib.contenttypes import generic
 
 from ffclub.upload.models import ImageUpload
 
+
 class Activity(models.Model):
     title = models.CharField(max_length=255, verbose_name='活動名稱(*)')
     description = models.CharField(max_length=255, blank=True, default='', verbose_name='活動說明')
@@ -99,20 +100,39 @@ class Vote(models.Model):
         verbose_name = verbose_name_plural = '活動投票'
 
 
+class Price(models.Model):
+    name = models.CharField(max_length=255, blank=True, default='', verbose_name='獎品名稱',
+                            help_text='用於網址和程式查詢，訂定後勿改動。')
+    description = models.CharField(max_length=255, verbose_name='描述')
+    quantity = models.IntegerField(verbose_name='數量')
+    photos = generic.GenericRelation(ImageUpload, content_type_field='content_type', object_id_field='entity_id')
+    status = models.CharField(max_length=20,
+                              choices=(('normal', '正常'), ('lack', '庫存不足')),
+                              default='normal')
+
+    def __unicode__(self):
+        return unicode('%s - %s (%s) x %d' % (self.name, self.description, self.status, self.quantity))
+
+    class Meta:
+        verbose_name = verbose_name_plural = '活動獎品'
+
+
 class Award(models.Model):
     name = models.CharField(max_length=255, blank=True, default='', verbose_name='獎項名稱',
                             help_text='用於網址和程式查詢，訂定後勿改動。')
     order = models.IntegerField(default=0, verbose_name='得獎順位')
     note = models.CharField(max_length=255, blank=True, default='')
-    winner = models.ForeignKey(User, related_name='+', verbose_name='得獎者')
+    winner = models.ForeignKey(User, related_name='+', verbose_name='得獎者', blank=True, null=True, default=None)
     winner_extra = models.CharField(max_length=255, blank=True, default='')
+    price = models.ForeignKey(Price, related_name='+', blank=True, null=True, default=None)
     activity = models.ForeignKey(Activity, related_name='+')
+    create_time = models.DateTimeField(default=datetime.now)
     status = models.CharField(max_length=20,
                               choices=(('waiting', '待確認'), ('claimed', '已確認'), ('awarded', '已頒發')),
                               default='waiting')
 
     def __unicode__(self):
-        return unicode('%s+%s@%s: %s' % (self.winner.username, self.name, self.activity.title, self.status))
+        return unicode('%s+%s@%s: %s' % (self.winner.username if self.winner else self.winner_extra, self.name, self.activity.title, self.status))
 
     class Meta:
         verbose_name = verbose_name_plural = '活動頒獎'
@@ -134,6 +154,7 @@ class Video(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '影片'
+
 
 class DemoApp(models.Model):
     en_title = models.CharField(max_length=255, blank=True, default='')
