@@ -95,6 +95,7 @@ function drag_image_listener() {
 }
 
 function template_theme_slider() {
+  var ITEM_PER_LIST = 8;
   var slider = $('#theme_Canned');
 
   slider.owlCarousel({
