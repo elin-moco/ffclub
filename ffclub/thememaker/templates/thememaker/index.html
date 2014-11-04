@@ -6,153 +6,156 @@
 {% extends "base.html" %}
 
 {% block base_css %}
-  {{ css('thememaker') }}
+{{ css('thememaker') }}
 {% endblock %}
 
 {% block base_js %}
-  {{ js('thememaker') }}
+{{ js('thememaker') }}
 {% endblock %}
 
 {% block head %}
-      <header id="masthead">
-        <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
-        {% include "navigator.html" %}
-      </header>
-    {% endblock %}
+<header id="masthead">
+	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+	{% include "navigator.html" %}
+</header>
+{% endblock %}
 
 {% block banner %}
-        <div id="wrapper_inside" class="theme_index">
-            {% include "thememaker/sub_header.html" %}
+<div id="wrapper_inside" class="theme_index">
+	{% include "thememaker/sub_header.html" %}
 
-			<div class="creat_theme">
-				<h2>打造你專屬的佈景主題</h2>
-				<a href="/thememaker/create" title="提交我的主題" class="btn_blue">提交我的主題</a>
-			</div><!-- end creat_theme -->
-			<div id="main_cover" class="Yellowcolor">
-				<div id="cover_container">
-					<a href="#" title="next" class="cover_next">next</a>
-					<a href="#" title="pre" class="cover_pre">pre</a>
-					<div id="cover_theme"><!-- define font color -->
-						<ul id="cover_ul" class="owl-carousel">
-                            {% for theme in cover_themes %}
-							<li class="item">
-								<h3 title="theme title">{{ theme.title }}
-									<a href="#" class="install" title="馬上下載">馬上下載</a>
-								</h3>
-								<div class="demo_section">
-									<span class="demo_bg" style="background:url('/{{theme.preview_image}}') no-repeat;"></span>
-									<span class="demo_mask"></span>
-									<span class="demo_font1">Firefox</span>
-									<span class="demo_font2">Firefox</span>
-									<span class="demo_font3">Firefox</span>
-								</div><!-- end demo_section -->
-								<div class="demo_LB">
-									<p>{{ theme.description }}</p>
-									<ul>
-										<li class="info_date">{{ theme.create_time.date() }}</li>
-										<li class="info_download">{{ theme.download }} 次</li>
-										<li class="info_fb">{{ theme.likes }} 人說讚</a></li>
-									</ul>
-								</div><!-- end demo_LB -->
-								<div class="demo_RB">
-									<ul>
-										<li class="share_fb"><a href="#" title="FB 分享">FB 分享</a></li>
-										<li class="share_google"><a href="#" title="goggle+ 分享">goggle+ 分享</a></li>
-										<li class="share_twitter"><a href="#" title="twitter 分享">twitter 分享</a></li>
-										<li class="share_pinterest"><a href="#" title="pinterest 分享">pinterest</a></li>
-									</ul>
-								</div><!-- end demo_RB -->
-							</li><!-- li item -->
-                            {% endfor %}
-						</ul>
-					</div><!-- end cover_theme -->
-				</div><!-- end cover_container -->
-				<div id="cover_list">
-					<ul>
-                        {% for theme in cover_themes %}
-                        <li><a href="#" title="{{ loop.index }}">{{ loop.index }}</a></li>
-						{% endfor %}
-					</ul>
-				</div><!-- end cover_list -->
-			</div><!-- end main_cover -->
-		</div><!-- end wrapper_inside -->
+	<div class="creat_theme">
+		<h2>打造你專屬的佈景主題</h2>
+		<a href="/thememaker/create" title="提交我的主題" class="btn_blue">提交我的主題</a>
+	</div><!-- end creat_theme -->
+	<div id="main_cover" class="Yellowcolor">
+		<div id="cover_container">
+			<a href="#" title="next" class="cover_next">next</a>
+			<a href="#" title="pre" class="cover_pre">pre</a>
+			<div id="cover_theme"><!-- define font color -->
+				<ul id="cover_ul" class="owl-carousel">
+					{% for theme in cover_themes %}
+					<li class="item">
+						<h3 title="theme title">{{ theme.title }}
+							<a href="#" class="install" title="馬上下載">馬上下載</a>
+						</h3>
+						<div class="demo_section">
+							<span class="demo_bg" style="background:url('/{{theme.preview_image}}') no-repeat;"></span>
+							<span class="demo_mask"></span>
+							<span class="demo_font1">Firefox</span>
+							<span class="demo_font2">Firefox</span>
+							<span class="demo_font3">Firefox</span>
+						</div><!-- end demo_section -->
+						<div class="demo_LB">
+							<p>{{ theme.description }}</p>
+							<ul>
+								<li class="info_date">{{ theme.create_time.date() }}</li>
+								<li class="info_download">{{ theme.download }} 次</li>
+								<li class="info_fb">{{ theme.likes }} 人說讚</a></li>
+							</ul>
+						</div><!-- end demo_LB -->
+						<div class="demo_RB">
+							<ul>
+								<li class="share_fb"><a href="#" title="FB 分享">FB 分享</a></li>
+								<li class="share_google"><a href="#" title="goggle+ 分享">goggle+ 分享</a></li>
+								<li class="share_twitter"><a href="#" title="twitter 分享">twitter 分享</a></li>
+								<li class="share_pinterest"><a href="#" title="pinterest 分享">pinterest</a></li>
+							</ul>
+						</div><!-- end demo_RB -->
+					</li><!-- li item -->
+					{% endfor %}
+				</ul>
+			</div><!-- end cover_theme -->
+		</div><!-- end cover_container -->
+		<div id="cover_list">
+			<ul>
+				{% for theme in cover_themes %}
+				<li><a href="#" title="{{ loop.index }}">{{ loop.index }}</a></li>
+				{% endfor %}
+			</ul>
+		</div><!-- end cover_list -->
+	</div><!-- end main_cover -->
+</div><!-- end wrapper_inside -->
 {% endblock %}
 
 {% block content %}
-        <div id="theme_list">
-				<div id="theme_tab">
+<div id="theme_list">
+	<div id="theme_tab">
+		<ul>
+			<li><a href="/thememaker/new" title="最新佈景" class="{{menu_mapping['theme_latest']}}">最新佈景</a></li>
+			<li><a href="/thememaker/hot" title="熱門佈景" class="{{menu_mapping['theme_hot']}}">熱門佈景</a></li>
+			<li><a href="/thememaker/fav" title="最愛佈景" class="{{menu_mapping['theme_favorite']}}">最愛佈景</a></li>
+		</ul>
+	</div><!-- end theme_tab -->
+	<div id="theme_detail" style="display:none" class="theme_info Yellowcolor">
+		<div class="theme_arrow">
+			<span id="expand_arrow" class="info_arrow arrow01 Redcolor_border"></span>
+		</div><!-- end theme_arrow -->
+		<div class="theme_info_container">
+			<div id="theme_detail_panel" class="theme_center">
+				<a href="#" title="關閉" class="btn_close">關閉</a>
+				<div class="demo_section">
+					<span class="demo_bg theme01"></span>
+					<span class="demo_mask"></span>
+					<span class="demo_font1">Firefox</span>
+					<span class="demo_font2">Firefox</span>
+					<span class="demo_font3">Firefox</span>
+				</div><!-- end demo_section -->
+				<h3>我愛林火狐</h3>
+				<div class="demo_LB">
+					<p>完整佈景主題改造視窗框架，位址列，按鈕，標籤與選單來改變瀏覽器的外觀。</p>
 					<ul>
-						<li><a href="/thememaker/new" title="最新佈景" class="{{menu_mapping['theme_latest']}}">最新佈景</a></li>
-						<li><a href="/thememaker/hot" title="熱門佈景" class="{{menu_mapping['theme_hot']}}">熱門佈景</a></li>
-						<li><a href="/thememaker/fav" title="最愛佈景" class="{{menu_mapping['theme_favorite']}}">最愛佈景</a></li>
+						<li class="info_date">2014.08.27</li>
+						<li class="info_download">333 次</li>
+						<li class="info_fb">333 人說讚</a></li>
 					</ul>
-				</div><!-- end theme_tab -->
-                <div id="theme_detail" style="display:none" class="theme_info Yellowcolor">
-					<div class="theme_arrow">
-						<span id="expand_arrow" class="info_arrow arrow01 Redcolor_border"></span>
-					</div><!-- end theme_arrow -->
-					<div class="theme_info_container">
-						<div id="theme_detail_panel" class="theme_center">
-							<a href="#" title="關閉" class="btn_close">關閉</a>
-							<div class="demo_section">
-								<span class="demo_bg theme01"></span>
-								<span class="demo_mask"></span>
-								<span class="demo_font1">Firefox</span>
-								<span class="demo_font2">Firefox</span>
-								<span class="demo_font3">Firefox</span>
-							</div><!-- end demo_section -->
-							<h3>我愛林火狐</h3>
-							<div class="demo_LB">
-									<p>完整佈景主題改造視窗框架，位址列，按鈕，標籤與選單來改變瀏覽器的外觀。</p>
-									<ul>
-										<li class="info_date">2014.08.27</li>
-										<li class="info_download">333 次</li>
-										<li class="info_fb">333 人說讚</a></li>
-									</ul>
-								</div><!-- end demo_LB -->
-								<div class="demo_RB">
-									<ul>
-										<li class="share_fb"><a href="#" title="FB 分享">FB 分享</a></li>
-										<li class="share_google"><a href="#" title="goggle+ 分享">goggle+ 分享</a></li>
-										<li class="share_twitter"><a href="#" title="twitter 分享">twitter 分享</a></li>
-										<li class="share_pinterest"><a href="#" title="pinterest 分享">pinterest</a></li>
-									</ul>
-								</div><!-- end demo_RB -->
-						</div><!-- end theme_center -->
-					</div><!-- end theme_info_container -->
-				</div><!-- end theme_info -->
-				<div id="theme_container">
-					<ul class="{{ theme_block }}">
-                        {% for theme in user_themes %}
-                            <li class="{{ theme_class[theme_type] }}">
-                                <p class="tab_type">
-                                    <span class="type_latest" style="{{display_mapping['theme_latest']}}">{{ theme.create_time.date() }}</span>
-                                    <span class="type_hot" style="{{display_mapping['theme_hot']}}">{{ theme.download }} 次下載</span>
-                                    <span class="type_favorite" style="{{display_mapping['theme_favorite']}}">{{ theme.likes }} 人按讚</span>
-                                </p>
-                                <dl>
-                                    <dt><img src="/{{ theme.preview_image }}"></dt>
-                                    <dd class="theme_mask"></dd>
-                                    <dd class="theme_text outer_shadow2">Firefox</dd>
-                                </dl>
-                                <h3 class="meta_title">{{ theme.title }}</h3>
-                                <p class="meta_desc">{{ theme.description }}</p>
-                                <div class="theme_bottom_btn">
-                                    <a href="#" title="馬上下載" class="install">馬上下載</a>
-                                    <a href="#" title="佈景主題完整訊息" class="expand"><span>佈景主題完整訊息</span></a>
-                                </div><!-- end theme_bottom_btn -->
-                            </li>
-                            {% if loop.index != user_themes|length and loop.index % 3 == 0 %}
-                                </ul><ul class="{{ theme_block }}">
-                            {% endif %}
-                        {% endfor %}
+				</div><!-- end demo_LB -->
+				<div class="demo_RB">
+					<ul>
+						<li class="share_fb"><a href="#" title="FB 分享">FB 分享</a></li>
+						<li class="share_google"><a href="#" title="goggle+ 分享">goggle+ 分享</a></li>
+						<li class="share_twitter"><a href="#" title="twitter 分享">twitter 分享</a></li>
+						<li class="share_pinterest"><a href="#" title="pinterest 分享">pinterest</a></li>
 					</ul>
-
-				</div><!-- end theme_container -->
-			</div><!-- end theme_list -->
-            <div id="page-nav">
-                <a href="/thememaker/{{ url_mapping[theme_type] }}/2"></a>
-            </div>
+				</div><!-- end demo_RB -->
+			</div><!-- end theme_center -->
+		</div><!-- end theme_info_container -->
+	</div><!-- end theme_info -->
+	<ul id="theme_wrap">
+		<li>
+			<div class="theme_container {{theme_block}}">
+				<ul>
+				{% for theme in user_themes %}				
+					<li class="{{ theme_class[theme_type] }}">
+						<p class="tab_type">
+							<span class="type_latest" style="{{display_mapping['theme_latest']}}">{{ theme.create_time.date() }}</span>
+							<span class="type_hot" style="{{display_mapping['theme_hot']}}">{{ theme.download }} 次下載</span>
+							<span class="type_favorite" style="{{display_mapping['theme_favorite']}}">{{ theme.likes }} 人按讚</span>
+						</p>
+						<dl>
+							<dt><img src="/{{ theme.preview_image }}"></dt>
+							<dd class="theme_mask"></dd>
+							<dd class="theme_text outer_shadow2">Firefox</dd>
+						</dl>
+						<h3 class="meta_title">{{ theme.title }}</h3>
+						<p class="meta_desc">{{ theme.description }}</p>
+						<div class="theme_bottom_btn">
+							<a href="#" title="馬上下載" class="install">馬上下載</a>
+							<a href="#" title="佈景主題完整訊息" class="expand"><span>佈景主題完整訊息</span></a>
+						</div><!-- end theme_bottom_btn -->
+					</li>
+				{% if loop.index != user_themes|length and loop.index % 3 == 0 %}
+				</ul></div></li>
+				<li><div class="theme_container"><ul>
+				{% endif %}
+			{% endfor %}		
+			</div><!-- end theme_container -->
+		</li>
+	</ul>
+</div><!-- end theme_list -->
+<div id="page-nav">
+	<a href="/thememaker/{{ url_mapping[theme_type] }}/2"></a>
+</div>
 {% endblock %}
 
 {% block email_subscription %}{% endblock %}

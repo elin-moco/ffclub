@@ -28,23 +28,22 @@
                 {% include "thememaker/sub_header.html" %}
             {% endwith %}
 
-
 			<div id="preview_container">
 				<div id="preview_section" class="Yellowcolor">
 					<div class="demo_section">
-						<span class="demo_bg theme01"></span>
+						<span class="demo_bg" style="background:url('/{{ user_theme.preview_image }}') no-repeat;"></span>
 						<span class="demo_mask"></span>
 						<span class="demo_font1">Firefox</span>
 						<span class="demo_font2">Firefox</span>
 						<span class="demo_font3">Firefox</span>
 					</div><!-- end demo_section -->
 					<div id="preview_type">
-						<span style="background:url('/static/img/thememaker/theme_sample02.png') no-repeat;"></span>
+						<span style="background:url('/{{ user_theme.icon_image }}') no-repeat;"></span>
 					</div><!-- end preview_type -->
 					<div id="preview_detail">
 						<h3>我愛火狐</h3>
 						<p>超過三十萬個設計個人化您的瀏覽器! 移動您的滑鼠游標至佈景主題的上方來嘗試看看!</p>
-						<p class="date">2014.08.12</p>
+						<p class="date">{{ user_theme.create_time }}</p>
 						<ul>
 							<li class="cc_1" style="display:none;">保留所有權利</li>
 							<li class="cc_2" style="display:none;">Creative Commons 姓名標示 3.0</li>
