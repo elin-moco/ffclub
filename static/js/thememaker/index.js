@@ -33,8 +33,8 @@ function install_theme_listener() {
     var theme = {
       id         : li_tag.attr('theme-id'),
       name       : li_tag.children('h3.meta_title').text(),
-      headerURL  : 'http://localhost:8000' + li_tag.children('dl').children('dt').children('img').attr('header-img'),
-      footerURL  : 'http://localhost:8000/static/uploads/theme_maker/user/00.png',
+      headerURL  : li_tag.children('dl').children('dt').children('img').attr('header-img'),
+      footerURL  : '/static/uploads/theme_maker/user/00.png',
       textcolor  : li_tag.children('dl').children('dd.theme_text').attr('color'),
       accentcolor: li_tag.children('dl').children('dd.theme_mask').attr('color'),
     };
