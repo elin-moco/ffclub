@@ -40,7 +40,7 @@
 							<a href="#" class="install" title="馬上下載">馬上下載</a>
 						</h3>
 						<div class="demo_section">
-							<span class="demo_bg" style="background:url('/{{theme.preview_image}}') no-repeat;"></span>
+							<span class="demo_bg" style="background:url('/{{ theme.preview_image }}') no-repeat;"></span>
 							<span class="demo_mask"></span>
 							<span class="demo_font1">Firefox</span>
 							<span class="demo_font2">Firefox</span>
@@ -82,9 +82,9 @@
 <div id="theme_list">
 	<div id="theme_tab">
 		<ul>
-			<li><a href="/thememaker/new" title="最新佈景" class="{{menu_mapping['theme_latest']}}">最新佈景</a></li>
-			<li><a href="/thememaker/hot" title="熱門佈景" class="{{menu_mapping['theme_hot']}}">熱門佈景</a></li>
-			<li><a href="/thememaker/fav" title="最愛佈景" class="{{menu_mapping['theme_favorite']}}">最愛佈景</a></li>
+			<li><a href="/thememaker/new" title="最新佈景" class="{{ menu_mapping['theme_latest'] }}">最新佈景</a></li>
+			<li><a href="/thememaker/hot" title="熱門佈景" class="{{ menu_mapping['theme_hot'] }}">熱門佈景</a></li>
+			<li><a href="/thememaker/fav" title="最愛佈景" class="{{ menu_mapping['theme_favorite'] }}">最愛佈景</a></li>
 		</ul>
 	</div><!-- end theme_tab -->
 	<div id="theme_detail" style="display:none" class="theme_info Yellowcolor">
@@ -123,19 +123,19 @@
 	</div><!-- end theme_info -->
 	<ul id="theme_wrap">
 		<li>
-			<div class="theme_container {{theme_block}}">
+			<div class="theme_container {{ theme_block }}">
 				<ul>
 				{% for theme in user_themes %}				
-					<li class="{{ theme_class[theme_type] }}">
+					<li class="{{ theme_class[theme_type] }}" theme-id="{{ theme.id }}">
 						<p class="tab_type">
-							<span class="type_latest" style="{{display_mapping['theme_latest']}}">{{ theme.create_time.date() }}</span>
-							<span class="type_hot" style="{{display_mapping['theme_hot']}}">{{ theme.download }} 次下載</span>
-							<span class="type_favorite" style="{{display_mapping['theme_favorite']}}">{{ theme.likes }} 人按讚</span>
+							<span class="type_latest" style="{{ display_mapping['theme_latest'] }}">{{ theme.create_time.date() }}</span>
+							<span class="type_hot" style="{{ display_mapping['theme_hot'] }}">{{ theme.download }} 次下載</span>
+							<span class="type_favorite" style="{{ display_mapping['theme_favorite'] }}">{{ theme.likes }} 人按讚</span>
 						</p>
 						<dl>
-							<dt><img src="/{{ theme.preview_image }}"></dt>
-							<dd class="theme_mask"></dd>
-							<dd class="theme_text outer_shadow2">Firefox</dd>
+							<dt><img src="/{{ theme.preview_image }}" header-img="/{{ theme.header_image }}"></dt>
+							<dd class="theme_mask" color="{{ theme.bg_color }}"></dd>
+							<dd class="theme_text outer_shadow2" color="{{ theme.font_color }}">Firefox</dd>
 						</dl>
 						<h3 class="meta_title">{{ theme.title }}</h3>
 						<p class="meta_desc">{{ theme.description }}</p>

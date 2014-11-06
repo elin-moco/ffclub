@@ -25,17 +25,33 @@ function infinitescroll_listener() {
 
 function install_theme_listener() {
   // TODO: install theme
+  $('a.install').on('click', function(e){
+    var $that = $(this);
+    e.preventDefault();
+    console.log('install...');
+    var li_tag = $that.parent().parent();
+    var theme = {
+      id         : li_tag.attr('theme-id'),
+      name       : li_tag.children('h3.meta_title').text(),
+      headerURL  : 'http://localhost:8000' + li_tag.children('dl').children('dt').children('img').attr('header-img'),
+      footerURL  : 'http://localhost:8000/static/uploads/theme_maker/user/00.png',
+      textcolor  : li_tag.children('dl').children('dd.theme_text').attr('color'),
+      accentcolor: li_tag.children('dl').children('dd.theme_mask').attr('color'),
+    };
+    setTheme($that.get(0), theme, INSTALL);
+  });
 }
 
 function expand_theme_listener() {
   $('div.theme_bottom_btn > a.expand').unbind();
   $('div.theme_bottom_btn > a.expand').on('click', function(e){
     e.preventDefault();
-    var isOpen = $(this).hasClass('on');
-    var li_tag = $(this).parent().parent();
-    var ul_tag = $(this).parent().parent().parent();
+    var $that = $(this);
+    var isOpen = $that.hasClass('on');
+    var li_tag = $that.parent().parent();
+    var ul_tag = $that.parent().parent().parent();
     var li_idx = $(ul_tag).children('li').index(li_tag) + 1;
-    var div_tag = $(this).parent().parent().parent().parent();
+    var div_tag = $that.parent().parent().parent().parent();
     $('div.theme_bottom_btn > a.expand').removeClass('on');
     $('#theme_detail').slideUp(400, function(){
       $('#expand_arrow').removeClass('arrow01 arrow02 arrow03').addClass('arrow0' + li_idx);  
@@ -43,7 +59,7 @@ function expand_theme_listener() {
       fill_data(li_tag);
     });
     if (!isOpen) {
-      $(this).addClass('on');
+      $that.addClass('on');
       $('#theme_detail').slideDown(400);
     }   
   });
@@ -103,9 +119,10 @@ function slider_listener() {
 
   // slider_pagination
   $("#cover_list > ul > li").on('click', function(e){
+    var $that = $(this);
       e.preventDefault();
       var slider = $("#cover_ul").data('owlCarousel');
-      var index = $(this).index();
+      var index = $that.index();
       slider.goTo(index);
   });
 

@@ -7,8 +7,8 @@ $(function() {
 
 function drag_image_listener() {
   var canvas = new fabric.Canvas('pic_canvas');
-  canvas.setHeight(250);
-  canvas.setWidth(980);
+  canvas.setHeight(300);
+  canvas.setWidth(1000);
 
   var holder = document.getElementById('upload_area'),
   tests = {

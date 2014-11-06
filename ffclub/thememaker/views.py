@@ -114,14 +114,16 @@ def submit(request):
     user_theme.save()
     print user_theme.id
 
-    header_image = Image.new('RGBA',(3000, 200))
-    header_image.paste(user_image, (2000, 0), user_image)
+    user_image = user_image.crop((45, 60, 1000, 300))
+
+    header_image = Image.new('RGBA', (3000, 200))
+    header_image.paste(user_image, (2094, 0), user_image)
     header_image.paste(template_image, (0, 0), template_image)
     header_image_path = USER_THEME_FILE_PATH + str(user_theme.id) + ".png"
     header_image.save(header_image_path)
 
-    preview_image = Image.new('RGBA',(928, 200))
-    preview_image.paste(user_image, (0, 0), user_image)
+    preview_image = Image.new('RGBA', (928, 200))
+    preview_image.paste(user_image, (22, 0), user_image)
     preview_image.paste(edit_image, (0, 0), edit_image)
     preview_image_path = USER_THEME_FILE_PATH + str(user_theme.id) + "-cut.png"
     preview_image.save(preview_image_path)
@@ -130,11 +132,15 @@ def submit(request):
     user_theme.preview_image = preview_image_path
     user_theme.save()
     request.session['theme_id'] = user_theme.id
+
     return redirect(preview)
 
 
 def preview(request):
+
     theme_id = request.session.get('theme_id', 35)
+    print theme_id
+
     user_theme = UserTheme.objects.get(id=int(theme_id))
     data = {
         'user_theme': user_theme,

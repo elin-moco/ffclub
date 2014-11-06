@@ -723,6 +723,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.infinitescroll.js',
             'js/libs/owl.carousel.min.js',
             #'js/main.js',
+            'js/thememaker/lighttheme.js',
             'js/thememaker/index.js',
         ),
         'thememaker_create': (
@@ -733,6 +734,7 @@ MINIFY_BUNDLES = {
         ),
         'thememaker_preview': (
             #'js/main.js',
+            'js/thememaker/lighttheme.js',
             'js/thememaker/preview.js',
         ),
         '10years-firefox-family-award': (
@@ -838,3 +840,5 @@ API_SECRET = 'hush'
 
 DEFAULT_FILTERS['blackout_name'] = blackout_name
 DEFAULT_FILTERS['blackout_email'] = blackout_email
+
+BEDROCK_PATH = ''
