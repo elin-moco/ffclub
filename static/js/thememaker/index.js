@@ -4,6 +4,7 @@ $(function() {
     infinitescroll_listener();
     slider_listener();
     expand_theme_listener();
+    install_cover_theme_listener();
     install_theme_listener();
 });
 
@@ -23,16 +24,31 @@ function infinitescroll_listener() {
     });
 }
 
-function install_theme_listener() {
-  // TODO: install theme
-  $('a.install').on('click', function(e){
+function install_cover_theme_listener() {
+  $('#cover_theme a.install').on('click', function(e){
+    console.log('click cover');
     var $that = $(this);
-    e.preventDefault();
-    console.log('install...');
     var li_tag = $that.parent().parent();
     var theme = {
       id         : li_tag.attr('theme-id'),
-      name       : li_tag.children('h3.meta_title').text(),
+      name       : li_tag.children('h3.meta_title').attr('title'),
+      headerURL  : li_tag.children('div.demo_section').children('span.demo_bg').attr('header-img'),
+      footerURL  : '/static/uploads/theme_maker/user/00.png',
+      textcolor  : li_tag.children('div.demo_section').children('span.demo_font1').attr('color'),
+      accentcolor: li_tag.children('div.demo_section').children('span.demo_mask').attr('color'),
+    };
+    setTheme($that.get(0), theme, INSTALL);
+  });
+}
+
+function install_theme_listener() {
+  $('div.theme_bottom_btn > a.install').on('click', function(e){
+    var $that = $(this);
+    e.preventDefault();
+    var li_tag = $that.parent().parent();
+    var theme = {
+      id         : li_tag.attr('theme-id'),
+      name       : li_tag.children('h3.meta_title').attr('title'),
       headerURL  : li_tag.children('dl').children('dt').children('img').attr('header-img'),
       footerURL  : '/static/uploads/theme_maker/user/00.png',
       textcolor  : li_tag.children('dl').children('dd.theme_text').attr('color'),
@@ -79,12 +95,17 @@ function expand_theme_listener() {
     var meta_date = p_tag.children('span.type_latest').text();
     var meta_download = p_tag.children('span.type_hot').text();
     var meta_likes = p_tag.children('span.type_favorite').text();
+    var preview_img = ele.children('dl').children('dt').children('img').attr('src');
+
+    console.log('img');
+    console.log(preview_img);
 
     $('#theme_detail_panel h3').text(meta_title);
     $('#theme_detail_panel p').text(meta_desc);
     $('#theme_detail_panel ul li.info_date').text(meta_date);
     $('#theme_detail_panel ul li.info_download').text(meta_download);
     $('#theme_detail_panel ul li.info_fb').text(meta_likes);
+    $('#theme_detail_panel div.demo_section span.demo_bg').css("background-image", "url('" + preview_img + "')");
 
   }
 }

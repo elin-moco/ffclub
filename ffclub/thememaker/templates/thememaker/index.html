@@ -35,14 +35,14 @@
 			<div id="cover_theme"><!-- define font color -->
 				<ul id="cover_ul" class="owl-carousel">
 					{% for theme in cover_themes %}
-					<li class="item">
-						<h3 title="theme title">{{ theme.title }}
+					<li class="item" theme-id="{{ theme.id }}">
+						<h3 title="{{ theme.title }}" class="meta_title">{{ theme.title }}
 							<a href="#" class="install" title="馬上下載">馬上下載</a>
 						</h3>
 						<div class="demo_section">
-							<span class="demo_bg" style="background:url('/{{ theme.preview_image }}') no-repeat;"></span>
-							<span class="demo_mask"></span>
-							<span class="demo_font1">Firefox</span>
+							<span class="demo_bg" style="background:url('/{{ theme.preview_image }}') no-repeat;" header-img="/{{ theme.header_image }}"></span>
+							<span class="demo_mask" color="{{ theme.bg_color }}"></span>
+							<span class="demo_font1" color="{{ theme.font_color }}">Firefox</span>
 							<span class="demo_font2">Firefox</span>
 							<span class="demo_font3">Firefox</span>
 						</div><!-- end demo_section -->
@@ -95,7 +95,7 @@
 			<div id="theme_detail_panel" class="theme_center">
 				<a href="#" title="關閉" class="btn_close">關閉</a>
 				<div class="demo_section">
-					<span class="demo_bg theme01"></span>
+					<span class="demo_bg"></span>
 					<span class="demo_mask"></span>
 					<span class="demo_font1">Firefox</span>
 					<span class="demo_font2">Firefox</span>
@@ -137,7 +137,7 @@
 							<dd class="theme_mask" color="{{ theme.bg_color }}"></dd>
 							<dd class="theme_text outer_shadow2" color="{{ theme.font_color }}">Firefox</dd>
 						</dl>
-						<h3 class="meta_title">{{ theme.title }}</h3>
+						<h3 class="meta_title" title="{{ theme.title }}">{{ theme.title }}</h3>
 						<p class="meta_desc">{{ theme.description }}</p>
 						<div class="theme_bottom_btn">
 							<a href="#" title="馬上下載" class="install">馬上下載</a>

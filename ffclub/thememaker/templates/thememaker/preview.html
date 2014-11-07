@@ -6,84 +6,84 @@
 {% extends "base.html" %}
 
 {% block base_css %}
-  {{ css('thememaker') }}
+{{ css('thememaker') }}
 {% endblock %}
 
 {% block base_js %}
-  {{ js('thememaker') }}
+{{ js('thememaker_preview') }}
 {% endblock %}
 
 {% block head %}
-      <header id="masthead">
-        <a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
-        {% include "navigator.html" %}
-      </header>
-    {% endblock %}
+<header id="masthead">
+	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+	{% include "navigator.html" %}
+</header>
+{% endblock %}
 
 {% block banner %}{% endblock %}
 
 {% block content %}
-    <div id="wrapper_inside" class="theme_index">
-            {% with sub_navi = True %}
-                {% include "thememaker/sub_header.html" %}
-            {% endwith %}
+<div id="wrapper_inside" class="theme_index">
+	{% with sub_navi = True %}
+	{% include "thememaker/sub_header.html" %}
+	{% endwith %}
 
-			<div id="preview_container">
-				<div id="preview_section" class="Yellowcolor">
-					<div class="demo_section">
-						<span class="demo_bg" style="background:url('/{{ user_theme.preview_image }}') no-repeat;"></span>
-						<span class="demo_mask"></span>
-						<span class="demo_font1">Firefox</span>
-						<span class="demo_font2">Firefox</span>
-						<span class="demo_font3">Firefox</span>
-					</div><!-- end demo_section -->
-					<div id="preview_type">
-						<span style="background:url('/{{ user_theme.icon_image }}') no-repeat;"></span>
-					</div><!-- end preview_type -->
-					<div id="preview_detail">
-						<h3>我愛火狐</h3>
-						<p>超過三十萬個設計個人化您的瀏覽器! 移動您的滑鼠游標至佈景主題的上方來嘗試看看!</p>
-						<p class="date">{{ user_theme.create_time }}</p>
-						<ul>
-							<li class="cc_1" style="display:none;">保留所有權利</li>
-							<li class="cc_2" style="display:none;">Creative Commons 姓名標示 3.0</li>
-							<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性 3.0</li>
-							<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性-禁止改作 3.0</li>
-							<li class="cc_4">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</li>
-							<li class="cc_5" style="display:none;">Creative Commons 姓名標示-禁止改作 3.0</li>
-							<li class="cc_4" style="display:none;">Creative Commons 姓名標示-相同方式分享 3.0</li>
-						</ul>
-					</div><!-- end preview_detail -->
-					<div class="divide_section"></div>
-					<p class="preview_words">恭喜，你已經完成專屬的佈景主題，您可以選擇直接下載安裝或者登入提交分享</p>
-					<div id="download_section">
-						<p>直接下載安裝專屬的佈景主題</p>
-						<a href="#" title="下載安裝" class="btn_blue"><span></span>下載安裝</a>
-					</div><!-- end preview_action -->
-					<div id="share_section">
-						<p>上傳與分享</p>
-						<a href="#" title="上傳佈景主題" class="btn_blue upload"><span></span>上傳佈景主題</a>
-					</div><!-- end share_section -->
-					<div id="upload_section">
-						<p>直接下載安裝專屬的佈景主題</p>
-						<ul>
-							<li class="share_fb"><a title="FB 分享" href="#">FB 分享</a></li>
-							<li class="share_google"><a title="goggle+ 分享" href="#">goggle+ 分享</a></li>
-							<li class="share_twitter"><a title="twitter 分享" href="#">twitter 分享</a></li>
-							<li class="share_pinterest"><a title="pinterest 分享" href="#">pinterest</a></li>
-						</ul>
-						<div id="address_section">
-							<span>我愛火狐 佈景主題專屬網址</span>
-							<a href="#">https://addons.mozilla.org/zh-tw/developers/theme/submit</a>
-						</div>
-					</div><!-- end upload_section -->
-				</div><!-- end preview_section -->
+	<div id="preview_container">
+		<div id="preview_section" class="Yellowcolor" theme-id="{{ user_theme.id }}">
+			<div class="demo_section">
+				<span class="demo_bg" style="background:url('/{{ user_theme.preview_image }}') no-repeat;" header-img="/{{ user_theme.header_image }}"></span>
+				<span class="demo_mask" color="{{ user_theme.bg_color }}"></span>
+				<span class="demo_font1" color="{{ user_theme.font_color }}">Firefox</span>
+				<span class="demo_font2">Firefox</span>
+				<span class="demo_font3">Firefox</span>
+			</div><!-- end demo_section -->
+			<div id="preview_type">
+				<span style="background:url('/{{ user_theme.icon_image }}') no-repeat;"></span>
+			</div><!-- end preview_type -->
+			<div id="preview_detail">
+				<h3 title="{{ user_theme.title }}" class="meta_title">{{ user_theme.title }}</h3>
+				<p>{{ user_theme.description }}</p>
+				<p class="date">{{ user_theme.create_time }}</p>
+				<ul>
+					<li class="cc_1" style="display:none;">保留所有權利</li>
+					<li class="cc_2" style="display:none;">Creative Commons 姓名標示 3.0</li>
+					<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性 3.0</li>
+					<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性-禁止改作 3.0</li>
+					<li class="cc_4">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</li>
+					<li class="cc_5" style="display:none;">Creative Commons 姓名標示-禁止改作 3.0</li>
+					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-相同方式分享 3.0</li>
+				</ul>
+			</div><!-- end preview_detail -->
+			<div class="divide_section"></div>
+			<p class="preview_words">恭喜，你已經完成專屬的佈景主題，您可以選擇直接下載安裝或者登入提交分享</p>
+			<div id="download_section">
+				<p>直接下載安裝專屬的佈景主題</p>
+				<a href="#" title="下載安裝" class="btn_blue install_theme"><span></span>下載安裝</a>
+			</div><!-- end preview_action -->
+			<div id="share_section">
+				<p>上傳與分享</p>
+				<a href="#" title="上傳佈景主題" class="btn_blue upload"><span></span>上傳佈景主題</a>
+			</div><!-- end share_section -->
+			<div id="upload_section">
+				<p>直接下載安裝專屬的佈景主題</p>
+				<ul>
+					<li class="share_fb"><a title="FB 分享" href="#">FB 分享</a></li>
+					<li class="share_google"><a title="goggle+ 分享" href="#">goggle+ 分享</a></li>
+					<li class="share_twitter"><a title="twitter 分享" href="#">twitter 分享</a></li>
+					<li class="share_pinterest"><a title="pinterest 分享" href="#">pinterest</a></li>
+				</ul>
+				<div id="address_section">
+					<span>我愛火狐 佈景主題專屬網址</span>
+					<a href="#">https://addons.mozilla.org/zh-tw/developers/theme/submit</a>
+				</div>
+			</div><!-- end upload_section -->
+		</div><!-- end preview_section -->
 
-			</div><!-- end preview_container -->
-			<div class="creat_more">
-				<a href="/thememaker/create">再挑戰設計一個</a>
-			</div>
-		</div><!-- end wrapper_inside -->
+	</div><!-- end preview_container -->
+	<div class="creat_more">
+		<a href="/thememaker/create">再挑戰設計一個</a>
+	</div>
+</div><!-- end wrapper_inside -->
 {% endblock %}
 
 {% block email_subscription %}{% endblock %}
