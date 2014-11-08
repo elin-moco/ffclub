@@ -47,9 +47,23 @@ function drag_image_listener() {
     });
   }
 
+  function is_valid_input() {
+    var title = $.trim($('input[name="title"]').val());
+    var description = $.trim($('textarea[name="description"]').val());
+    if((title=="") || (description=="")) {
+      return false;  
+    }
+    return true;
+  }
+
   function submit_form_listener(canvasPanel) {
     $('#btn_section a').on('click', function(e){
       e.preventDefault();
+      
+      if(!is_valid_input()) {
+        return false;
+      }
+
       if(canvasPanel.item(0) === undefined) {
         console.log('no user image');
         return false;

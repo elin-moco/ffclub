@@ -10,8 +10,11 @@
     </div><!-- end sub_navi -->
     {% endif %}
     <div id="login_section">
+        {% if not request.user.is_active %}
         <a class="login_account on loginButton" href="#" title="選擇登入帳號" class="default_login">選擇登入帳號</a>
+        {% else %}
         <a class="logined_account" href="#" title="歡迎 Vitlalalalawlejrlwerljlks" class="default_login" style="display:none;">歡迎 Vitlalalalawlejrlwerljlks</a>
+        {% endif %}
         <ul>
             <li><a href="#" title="Persona 登入" class="persona_login">Persona 登入</a></li>
             <li><a href="#" title="Facebook 登入" class="fb_login">Facebook 登入</a></li>

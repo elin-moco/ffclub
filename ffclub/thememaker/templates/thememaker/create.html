@@ -2,6 +2,7 @@
 {% set page_description = 'Mozilla 致力於帶給世人更美好的網路未來！' %}
 {% set page_image = 'img/event/chinese-valentines-day/ogimg.png' %}
 {% set share_text = page_title %}
+{% set login_url  = '/thememaker/create' %}
 
 {% extends "base.html" %}
 
@@ -16,7 +17,6 @@
 {% block head %}
 <header id="masthead">
 	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
-	{% include "navigator.html" %}
 </header>
 {% endblock %}
 
@@ -70,8 +70,8 @@
 				<form action="/thememaker/submit/" method="post" id="theme-form">
 					{{ csrf() }}
 					<p class="step_wording"><span>step3</span>為你的佈景主題取個名稱與敘述吧</p>
-					<input type="text" name="title" class="" placeholder="幫我取個名字吧 ....">
-					<textarea rows="8" name="description" placeholder = "也幫我寫上一些特徵吧...."></textarea>
+					<input type="text" name="title" class="" placeholder="幫我取個名字吧 ...." required>
+					<textarea rows="8" name="description" placeholder = "也幫我寫上一些特徵吧...." required></textarea>
 					<input type="hidden" name="template_id" id="template_id" value="777"/>
 					<input type="hidden" name="user_image" id="user_image" value=""/>
 				</form>
