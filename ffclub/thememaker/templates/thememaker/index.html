@@ -22,7 +22,9 @@
 
 {% block banner %}
 <div id="wrapper_inside" class="theme_index">
+	{% with sub_navi = True %}
 	{% include "thememaker/sub_header.html" %}
+	{% endwith %}
 
 	<div class="creat_theme">
 		<h2>打造你專屬的佈景主題</h2>
