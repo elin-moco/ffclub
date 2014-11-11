@@ -1,9 +1,19 @@
 "use strict";
 
 $(function() {
+  input_listener();
   template_theme_slider();
   drag_image_listener();
 });
+
+function input_listener() {
+  $('input').on('focus', function(){
+    $(this).removeClass('error');
+  });
+  $('textarea').on('focus', function(){
+    $(this).removeClass('error');
+  });
+}
 
 function drag_image_listener() {
   var canvas = new fabric.Canvas('pic_canvas');
@@ -51,6 +61,8 @@ function drag_image_listener() {
     var title = $.trim($('input[name="title"]').val());
     var description = $.trim($('textarea[name="description"]').val());
     if((title=="") || (description=="")) {
+      $('input').addClass('error');
+      $('textarea').addClass('error');
       return false;  
     }
     return true;
@@ -65,7 +77,7 @@ function drag_image_listener() {
       }
 
       if(canvasPanel.item(0) === undefined) {
-        console.log('no user image');
+        $('#upload_area').text('您尚未上傳任何圖片');
         return false;
       }
 
