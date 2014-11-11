@@ -47,6 +47,14 @@ def show_themes(request, page_number, theme_type):
         'likes': 'fav'
     }
 
+    color_mapping = {
+        '#FFF': 'Whitecolor',
+        '#FD3C60': 'Redcolor',
+        '#FADC49': 'Yellowcolor',
+        '#33F340': 'Greencolor',
+        '#88E8FC': 'Bluecolor',
+    }
+
     class_mapping = {
         'create_time': 'theme_latest',
         'download': 'theme_hot',
@@ -72,6 +80,7 @@ def show_themes(request, page_number, theme_type):
         'url_mapping': url_mapping,
         'menu_mapping': menu_mapping,
         'display_mapping': display_mapping,
+        'color_mapping': color_mapping,
         'cover_themes': cover_themes,
         'user_themes': user_themes,
     }

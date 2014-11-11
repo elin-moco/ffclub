@@ -30,7 +30,7 @@
 		<h2>打造你專屬的佈景主題</h2>
 		<a href="/thememaker/create" title="提交我的主題" class="btn_blue">提交我的主題</a>
 	</div><!-- end creat_theme -->
-	<div id="main_cover" class="Yellowcolor">
+	<div id="main_cover" class="">
 		<div id="cover_container">
 			<a href="#" title="next" class="cover_next">next</a>
 			<a href="#" title="pre" class="cover_pre">pre</a>
@@ -43,7 +43,7 @@
 						</h3>
 						<div class="demo_section">
 							<span class="demo_bg" style="background:url('/{{ theme.preview_image }}') no-repeat;" header-img="/{{ theme.header_image }}"></span>
-							<span class="demo_mask" color="{{ theme.bg_color }}"></span>
+							<span class="demo_mask" color="{{ color_mapping[theme.bg_color] }}"></span>
 							<span class="demo_font1" color="{{ theme.font_color }}">Firefox</span>
 							<span class="demo_font2">Firefox</span>
 							<span class="demo_font3">Firefox</span>
@@ -89,9 +89,9 @@
 			<li><a href="/thememaker/fav" title="最愛佈景" class="{{ menu_mapping['theme_favorite'] }}">最愛佈景</a></li>
 		</ul>
 	</div><!-- end theme_tab -->
-	<div id="theme_detail" style="display:none" class="theme_info Yellowcolor">
+	<div id="theme_detail" style="display:none" class="theme_info">
 		<div class="theme_arrow">
-			<span id="expand_arrow" class="info_arrow arrow01 Redcolor_border"></span>
+			<span id="expand_arrow" class="info_arrow arrow01"></span>
 		</div><!-- end theme_arrow -->
 		<div class="theme_info_container">
 			<div id="theme_detail_panel" class="theme_center">
@@ -124,7 +124,7 @@
 		</div><!-- end theme_info_container -->
 	</div><!-- end theme_info -->
 	<ul id="theme_wrap">
-		<li>
+		<li class="theme_row">
 			<div class="theme_container {{ theme_block }}">
 				<ul>
 				{% for theme in user_themes %}				
@@ -136,7 +136,7 @@
 						</p>
 						<dl>
 							<dt><img src="/{{ theme.preview_image }}" header-img="/{{ theme.header_image }}"></dt>
-							<dd class="theme_mask" color="{{ theme.bg_color }}"></dd>
+							<dd class="theme_mask" color="{{ color_mapping[theme.bg_color] }}"></dd>
 							<dd class="theme_text outer_shadow2" color="{{ theme.font_color }}">Firefox</dd>
 						</dl>
 						<h3 class="meta_title" title="{{ theme.title }}">{{ theme.title }}</h3>
@@ -148,7 +148,7 @@
 					</li>
 				{% if loop.index != user_themes|length and loop.index % 3 == 0 %}
 				</ul></div></li>
-				<li><div class="theme_container"><ul>
+				<li class="theme_row"><div class="theme_container {{ theme_block }}"><ul>
 				{% endif %}
 			{% endfor %}		
 			</div><!-- end theme_container -->

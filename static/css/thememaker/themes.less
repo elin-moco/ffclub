@@ -48,7 +48,7 @@
 				#login_section{
 					position:absolute;
 					top:10px;
-					right:120px;
+					right:22px;
 					width:140px;
 					a{
 						display:block;
@@ -56,9 +56,9 @@
 						font-size:12px;
 					}
 					a.login_account{
-						background: url("/static/img/thememaker/login_icon.png") no-repeat 90px 10px;
-						width:100px;
-						padding:10px;
+						background: url("/static/img/thememaker/login_icon.png") no-repeat 85px 7px;
+						width:92px;
+						padding:6px;
 						margin:0 auto;
 						.round4;
 						background-color:#c5c1b3;
@@ -254,14 +254,19 @@
 					.transition_box_shadow;
 					list-style:none;
 					width:300px;
-					height:320px;
+					height:225px;
 					background-color:#fff;
-					margin:20px 18px 0 0;
+					margin:20px 18px 50px 0;
 					display:inline-block;
 					vertical-align:top;
+					position:relative;
+					cursor: pointer;
 					p.tab_type{
 						text-align:center;
-						margin:15px 0 10px 0;
+						width:280px;
+						position:absolute;
+						left:10px;
+						bottom:15px;
 						span{
 							height:16px;
 							background:url("/static/img/thememaker/cover_icon.png") no-repeat left top;
@@ -269,6 +274,9 @@
 						}
 					}
 					dl{
+						position:absolute;
+						left:0;
+						top:10px;
 						.grey_gradient2;
 						width:260px;
 						height:100px;
@@ -310,33 +318,34 @@
 					}
 					h3{
 						width:280px;
-						margin:20px auto 10px auto;
 						font-weight:normal;
 						.cutting_words;
+						position:absolute;
+						left:10px;
+						top:150px;
+						overflow : hidden;
+ 						text-overflow : ellipsis;
+ 						text-align:center;
 					}
-					p{
+					p.meta_desc{
 						width:280px;
-						margin:0 auto 20px auto;
+						position:absolute;
+						left:10px;
+						top:205px;
+						overflow : hidden;
+						text-overflow : ellipsis;
+						display:none;
 					}
 					div.theme_bottom_btn{
+						position:absolute;
+						left:10px;
+						top:240px;
 						padding-left:80px;
 						a:first-child{
 							.btn_grey;
 						}
 						a:last-child{
-							display:inline-block;
-							vertical-align:top;
-							.round14;
-							border:1px #ccc solid;
-							width:26px;
-							height:26px;
-							margin:0 0 0 8px;
-							.grey_gradient;
-							span{
-								background:url("/static/img/thememaker/cover_icon.png") no-repeat 5px -151px;
-								display:block;
-								text-indent:-9999px;
-							}
+							display:none;
 						}
 						a.on{
 							background:#fff;
@@ -774,7 +783,7 @@
 							top:10px;
 							width:100%;
 							height:200px;
-							background-color:green;
+							background-color:#ccc;
 						}
 						span.upload_theme{
 							pointer-events: none;
@@ -909,6 +918,9 @@
 						height:14px;
 						line-height:24px;
 						margin-bottom:10px;
+					}
+					input.error{
+						border:1px solid red;
 					}
 				} /* step_sectionthird end */
 			} /* step_sectionB end */
