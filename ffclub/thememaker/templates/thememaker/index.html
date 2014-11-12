@@ -124,8 +124,8 @@
 		</div><!-- end theme_info_container -->
 	</div><!-- end theme_info -->
 	<ul id="theme_wrap">
-		<li class="theme_row">
-			<div class="theme_container {{ theme_block }}">
+		<li class="{{ theme_block }}">
+			<div class="theme_container">
 				<ul>
 				{% for theme in user_themes %}				
 					<li class="{{ theme_class[theme_type] }}" theme-id="{{ theme.id }}">
@@ -148,7 +148,7 @@
 					</li>
 				{% if loop.index != user_themes|length and loop.index % 3 == 0 %}
 				</ul></div></li>
-				<li class="theme_row"><div class="theme_container {{ theme_block }}"><ul>
+				<li class="{{ theme_block }}"><div class="theme_container"><ul>
 				{% endif %}
 			{% endfor %}		
 			</div><!-- end theme_container -->
