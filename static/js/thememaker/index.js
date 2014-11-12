@@ -28,7 +28,7 @@ function infinitescroll_listener() {
   $('#theme_wrap').infinitescroll({
     navSelector: '#page-nav',
     nextSelector: '#page-nav > a',
-    itemSelector: 'li.theme_row',
+    itemSelector: 'li.theme_block',
         //debug: true,
         loadingImg: '',
         loadingText: '',
@@ -132,6 +132,8 @@ function expand_theme_listener() {
 
 function slider_listener() {
   $($("#cover_list > ul > li").get(0)).children('a').addClass('on');
+  var color = $($('li.item').get(0)).children('div.demo_section').children('span.demo_mask').attr('color');
+  $('div#main_cover').addClass(color);
 
   var slider = $("#cover_ul");
 
@@ -168,12 +170,13 @@ function slider_listener() {
   });
 
   function update_slider_status(pos) {
-    var item = $("#cover_list > ul > li").get(pos);
+    var dot = $("#cover_list > ul > li").get(pos);
+    var item = $('li.item').get(pos);
     var color = $(item).children('div.demo_section').children('span.demo_mask').attr('color');
     $('div#main_cover').removeClass('Whitecolor Redcolor Yellowcolor Greencolor Bluecolor');
     $('div#main_cover').addClass(color);
     $("#cover_list > ul > li > a").removeClass('on');
-    $(item).children('a').addClass('on');
+    $(dot).children('a').addClass('on');
   }
 }
 
