@@ -66,6 +66,7 @@ class UserTheme(models.Model):
     template = models.ForeignKey(ThemeTemplate, null=True)
     category = models.ForeignKey(ThemeCategory, null=True)
     user = models.ForeignKey(User, null=True)
+    cc_type = models.IntegerField(verbose_name='版權', default=0)
     enabled = models.IntegerField(verbose_name='啟用', default=0)
     covered = models.IntegerField(verbose_name='置頂', default=0)
     viewed = models.IntegerField(verbose_name='瀏覽次數', default=0)
