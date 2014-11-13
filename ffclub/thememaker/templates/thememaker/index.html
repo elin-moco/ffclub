@@ -22,7 +22,7 @@
 
 {% block banner %}
 <div id="wrapper_inside" class="theme_index">
-	{% with sub_navi = True %}
+	{% with logout_url  = '/thememaker/' %}
 	{% include "thememaker/sub_header.html" %}
 	{% endwith %}
 
@@ -137,7 +137,7 @@
 						<dl>
 							<dt><img src="/{{ theme.preview_image }}" header-img="/{{ theme.header_image }}"></dt>
 							<dd class="theme_mask" color="{{ color_mapping[theme.bg_color] }}"></dd>
-							<dd class="theme_text outer_shadow2" color="{{ theme.font_color }}">Firefox</dd>
+							<dd class="theme_text outer_shadow2" color="{{ theme.font_color }}" style="color:{{ theme.font_color }};">Firefox</dd>
 						</dl>
 						<h3 class="meta_title" title="{{ theme.title }}">{{ theme.title }}</h3>
 						<p class="meta_desc">{{ theme.description }}</p>

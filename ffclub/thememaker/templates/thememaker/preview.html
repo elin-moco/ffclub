@@ -24,15 +24,15 @@
 
 {% block content %}
 <div id="wrapper_inside" class="theme_index">
-	{% with sub_navi = True %}
+	{% with logout_url  = '/thememaker/' %}
 	{% include "thememaker/sub_header.html" %}
 	{% endwith %}
 
 	<div id="preview_container">
-		<div id="preview_section" class="Yellowcolor" theme-id="{{ user_theme.id }}">
+		<div id="preview_section" class="{{ color_mapping[user_theme.bg_color] }}" theme-id="{{ user_theme.id }}">
 			<div class="demo_section">
 				<span class="demo_bg" style="background:url('/{{ user_theme.preview_image }}') no-repeat;" header-img="/{{ user_theme.header_image }}"></span>
-				<span class="demo_mask" color="{{ user_theme.bg_color }}"></span>
+				<span class="demo_mask" color="{{ color_mapping[user_theme.bg_color] }}"></span>
 				<span class="demo_font1" color="{{ user_theme.font_color }}">Firefox</span>
 				<span class="demo_font2">Firefox</span>
 				<span class="demo_font3">Firefox</span>
@@ -64,8 +64,21 @@
 				<p>上傳與分享</p>
 				<a href="#" title="上傳佈景主題" class="btn_blue upload"><span></span>上傳佈景主題</a>
 			</div><!-- end share_section -->
-			<div id="upload_section">
-				<p>直接下載安裝專屬的佈景主題</p>
+			<div id="share_cc" style="display:none">
+				<p>選擇分享模式</p>
+				<select>
+					<option class="cc_1" >保留所有權利</option>
+					<option class="cc_2" >Creative Commons 姓名標示 3.0</option>
+					<option class="cc_3" >Creative Commons 姓名標示-非商業性 3.0</option>
+					<option class="cc_3" >Creative Commons 姓名標示-非商業性-禁止改作 3.0</option>
+					<option class="cc_4" >Creative Commons 姓名標示-非商業性-相同方式分享 3.0</option>
+					<option class="cc_5" >Creative Commons 姓名標示-禁止改作 3.0</option>
+					<option class="cc_4" >Creative Commons 姓名標示-相同方式分享 3.0</option>
+				</select>
+				<a href="#" title="確定" class="btn_blue select_share_cc"><span></span>確定</a>
+			</div>
+			<div id="upload_section" style="display:none">
+				<p>上傳與分享</p>
 				<ul>
 					<li class="share_fb"><a title="FB 分享" href="#">FB 分享</a></li>
 					<li class="share_google"><a title="goggle+ 分享" href="#">goggle+ 分享</a></li>

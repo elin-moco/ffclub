@@ -48,6 +48,7 @@ def show_themes(request, page_number, theme_type):
     }
 
     color_mapping = {
+        '#555': 'Whitecolor',
         '#FFF': 'Whitecolor',
         '#FD3C60': 'Redcolor',
         '#FADC49': 'Yellowcolor',
@@ -148,11 +149,20 @@ def submit(request):
 def preview(request):
 
     theme_id = request.session.get('theme_id', 35)
-    print theme_id
+
+    color_mapping = {
+        '#555': 'Whitecolor',
+        '#FFF': 'Whitecolor',
+        '#FD3C60': 'Redcolor',
+        '#FADC49': 'Yellowcolor',
+        '#33F340': 'Greencolor',
+        '#88E8FC': 'Bluecolor',
+    }
 
     user_theme = UserTheme.objects.get(id=int(theme_id))
     data = {
         'user_theme': user_theme,
+        'color_mapping': color_mapping,
     }
     return render(request, 'thememaker/preview.html', data)
 
