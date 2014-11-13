@@ -120,7 +120,7 @@ def submit(request):
                            icon_image=theme_template.icon_image,
                            preview_image='000.png',
                            bg_color=color_bundle.bg_color, font_color=color_bundle.font_color,
-                           template=theme_template, category=theme_template.category)
+                           template=theme_template, category=theme_template.category, cc_type=0)
     user_theme.save()
     print user_theme.id
 
