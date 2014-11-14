@@ -30,7 +30,7 @@
 
 	<div id="creat_container">
 		<div id="theme_upload">
-			<div id="theme_outline" class="Yellowcolor">
+			<div id="theme_outline" class="Blackcolor">
 				<div id="creat_setion">
 					<canvas id="pic_canvas">
 					</canvas>
@@ -49,7 +49,7 @@
 			<ul id="theme_Canned">
                 {% for theme in template_themes %}
                 <li>
-                    <a data-id="{{ theme.id }}" href="/{{ theme.edit_image }}" title="theme{{ theme.title }}" class="" style="background:url('/{{theme.icon_image}}') no-repeat;"></a>
+                    <a data-id="{{ theme.id }}" href="/{{ theme.edit_image }}" title="theme{{ theme.title }}" class="" color="{{ color_mapping[theme.color.bg_color] }}" style="background:url('/{{theme.icon_image}}') no-repeat;"></a>
                 </li>
 				{% endfor %}
 			</ul>

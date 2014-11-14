@@ -53,6 +53,7 @@ function install_cover_theme_listener() {
       accentcolor: li_tag.children('div.demo_section').children('span.demo_mask').attr('color'),
     };
     setTheme($that.get(0), theme, INSTALL);
+    $.post('/thememaker/inc_downloads', {theme_id: li_tag.attr('theme-id'), }, function (response) {});
   });
 }
 
@@ -72,6 +73,11 @@ function install_theme_listener() {
       accentcolor: li_tag.children('dl').children('dd.theme_mask').attr('color'),
     };
     setTheme($that.get(0), theme, INSTALL);
+    $.post('/thememaker/inc_downloads', {theme_id: li_tag.attr('theme-id'), }, function (response) {
+      var download_times = li_tag.children('p.tab_type').children('span.type_hot').text().split(" ");
+      var new_download_times = (parseInt(download_times[0]) + 1).toString() + " " + download_times[1];
+      li_tag.children('p.tab_type').children('span.type_hot').text(new_download_times);
+    });
   });
 }
 
@@ -87,17 +93,18 @@ function expand_theme_listener() {
     var ul_tag = $that.parent();
     var li_idx = $(ul_tag).children('li').index(li_tag) + 1;
     var div_tag = $that.parent().parent();
-    
 
     $('div.theme_bottom_btn > a.expand').removeClass('on');
     $('#theme_detail').slideUp(400, function(){
       $('#expand_arrow').removeClass('arrow01 arrow02 arrow03').addClass('arrow0' + li_idx);  
       $(div_tag).after($('#theme_detail'));
       fill_data(li_tag);
+      build_theme_url(li_tag.attr('theme-id'));
     });
     if (!isOpen) {
       expand.addClass('on');
       $('#theme_detail').slideDown(400);
+      $.post('/thememaker/inc_views', {theme_id: li_tag.attr('theme-id'), }, function (response) {});
     }   
   });
 
@@ -127,6 +134,19 @@ function expand_theme_listener() {
     $('#theme_detail_panel div.demo_section span.demo_bg').css("background-image", "url('" + preview_img + "')");
     $('div#theme_detail').removeClass('Whitecolor Redcolor Yellowcolor Greencolor Bluecolor');
     $('div#theme_detail').addClass(color);
+  }
+
+  function build_theme_url(id) {
+    $('div#address_section > a').text(get_theme_url(id));
+    $('div#address_section > a').attr('href', get_theme_url(id));
+    $('li.share_fb > a').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + get_theme_url(id));
+    $('li.share_google > a').attr('href', 'http://plus.google.com/share?url=' + get_theme_url(id));
+    $('li.share_twitter > a').attr('href', 'http://twitter.com/share?text=Firefox自製佈景主題&url=' + get_theme_url(id));
+    $('li.share_pinterest > a').attr('href', 'http://pinterest.com/pin/create/button/?media=' + get_theme_url(id));
+  }
+
+  function get_theme_url(id) {
+    return "http://" + window.location.hostname + "/thememaker/theme/" + id;  
   }
 }
 
@@ -178,5 +198,5 @@ function slider_listener() {
     $("#cover_list > ul > li > a").removeClass('on');
     $(dot).children('a').addClass('on');
   }
-}
 
+}
