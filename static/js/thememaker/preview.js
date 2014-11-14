@@ -92,6 +92,7 @@ function share_theme_listener() {
     $('div#share_cc').hide();
     $('div#upload_section').show();
     $('div#qrcode').show();
+    history.pushState({}, null, '/thememaker/theme/' + $('#preview_section').attr('theme-id'));
   });
 }
 
