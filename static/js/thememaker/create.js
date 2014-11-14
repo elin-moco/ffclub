@@ -142,6 +142,8 @@ function template_theme_slider() {
     e.preventDefault();
     $('ul#theme_Canned li a').removeClass('on');
     set_template_image($(this).children('a'));
+    $('#theme_outline').removeClass('Whitecolor Redcolor Yellowcolor Greencolor Bluecolor');
+    $('#theme_outline').addClass($(this).children('a').attr('color'));
   });
 
   // pagination

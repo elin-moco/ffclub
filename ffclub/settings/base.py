@@ -734,6 +734,7 @@ MINIFY_BUNDLES = {
         ),
         'thememaker_preview': (
             #'js/main.js',
+            'js/libs/qrcode.min.js',
             'js/thememaker/lighttheme.js',
             'js/thememaker/preview.js',
         ),

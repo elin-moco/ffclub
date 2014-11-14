@@ -66,30 +66,33 @@
 			</div><!-- end share_section -->
 			<div id="share_cc" style="display:none">
 				<p>選擇分享模式</p>
-				<select>
-					<option class="cc_1" >保留所有權利</option>
-					<option class="cc_2" >Creative Commons 姓名標示 3.0</option>
-					<option class="cc_3" >Creative Commons 姓名標示-非商業性 3.0</option>
-					<option class="cc_3" >Creative Commons 姓名標示-非商業性-禁止改作 3.0</option>
-					<option class="cc_4" >Creative Commons 姓名標示-非商業性-相同方式分享 3.0</option>
-					<option class="cc_5" >Creative Commons 姓名標示-禁止改作 3.0</option>
-					<option class="cc_4" >Creative Commons 姓名標示-相同方式分享 3.0</option>
+				<select id="cc_option" cctype="{{ user_theme.cc_type }}">
+					<option class="cc_1" value="1">保留所有權利</option>
+					<option class="cc_2" value="2">Creative Commons 姓名標示 3.0</option>
+					<option class="cc_3" value="3">Creative Commons 姓名標示-非商業性 3.0</option>
+					<option class="cc_3" value="4">Creative Commons 姓名標示-非商業性-禁止改作 3.0</option>
+					<option class="cc_4" value="5">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</option>
+					<option class="cc_5" value="6">Creative Commons 姓名標示-禁止改作 3.0</option>
+					<option class="cc_4" value="7">Creative Commons 姓名標示-相同方式分享 3.0</option>
 				</select>
 				<a href="#" title="確定" class="btn_blue select_share_cc"><span></span>確定</a>
 			</div>
 			<div id="upload_section" style="display:none">
 				<p>上傳與分享</p>
 				<ul>
-					<li class="share_fb"><a title="FB 分享" href="#">FB 分享</a></li>
-					<li class="share_google"><a title="goggle+ 分享" href="#">goggle+ 分享</a></li>
-					<li class="share_twitter"><a title="twitter 分享" href="#">twitter 分享</a></li>
-					<li class="share_pinterest"><a title="pinterest 分享" href="#">pinterest</a></li>
+					<li class="share_fb"><a title="FB 分享" target="_blank" href="#">FB 分享</a></li>
+					<li class="share_google"><a title="goggle+ 分享" target="_blank" href="#">goggle+ 分享</a></li>
+					<li class="share_twitter"><a title="twitter 分享" target="_blank" href="#">twitter 分享</a></li>
+					<li class="share_pinterest"><a title="pinterest 分享" target="_blank" href="#">pinterest</a></li>
 				</ul>
 				<div id="address_section">
 					<span>我愛火狐 佈景主題專屬網址</span>
 					<a href="#">https://addons.mozilla.org/zh-tw/developers/theme/submit</a>
 				</div>
 			</div><!-- end upload_section -->
+			<div id="qrcode" style="display:none">
+				<p>QR Code 連結分享</p>
+			</div>
 		</div><!-- end preview_section -->
 
 	</div><!-- end preview_container -->

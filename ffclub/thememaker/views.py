@@ -1,11 +1,21 @@
 import Image
-import ImageDraw
+from django.contrib import auth
+from django.http import HttpResponse
 from StringIO import StringIO
 from django.shortcuts import render, redirect
 import re
+from django.views.decorators.csrf import csrf_exempt
 from ffclub.thememaker.models import ThemeTemplate, UserTheme
-from ffclub.settings import THEMES_PER_PAGE, TEMPLATE_THEME_FILE_PATH, USER_THEME_FILE_PATH
+from ffclub.settings import THEMES_PER_PAGE, USER_THEME_FILE_PATH
 
+COLOR_MAPPING = {
+    '#555': 'Whitecolor',
+    '#FFF': 'Whitecolor',
+    '#FD3C60': 'Redcolor',
+    '#FADC49': 'Yellowcolor',
+    '#33F340': 'Greencolor',
+    '#88E8FC': 'Bluecolor',
+}
 
 def index(request):
     return new(request, 0)
@@ -33,8 +43,8 @@ def show_themes(request, page_number, theme_type):
 
     offset = ((page - 1) * THEMES_PER_PAGE)
     limit = offset + THEMES_PER_PAGE
-    cover_themes = UserTheme.objects.filter(covered=1)[0:5]
-    user_themes = UserTheme.objects.order_by('-' + theme_type)[offset:limit]
+    cover_themes = UserTheme.objects.filter(covered=1, enabled=1)[0:5]
+    user_themes = UserTheme.objects.filter(enabled=1).order_by('-' + theme_type)[offset:limit]
 
     if len(user_themes) == 0:
         theme_block = 'theme_none'
@@ -45,15 +55,6 @@ def show_themes(request, page_number, theme_type):
         'create_time': 'new',
         'download': 'hot',
         'likes': 'fav'
-    }
-
-    color_mapping = {
-        '#555': 'Whitecolor',
-        '#FFF': 'Whitecolor',
-        '#FD3C60': 'Redcolor',
-        '#FADC49': 'Yellowcolor',
-        '#33F340': 'Greencolor',
-        '#88E8FC': 'Bluecolor',
     }
 
     class_mapping = {
@@ -81,7 +82,7 @@ def show_themes(request, page_number, theme_type):
         'url_mapping': url_mapping,
         'menu_mapping': menu_mapping,
         'display_mapping': display_mapping,
-        'color_mapping': color_mapping,
+        'color_mapping': COLOR_MAPPING,
         'cover_themes': cover_themes,
         'user_themes': user_themes,
     }
@@ -94,6 +95,7 @@ def create(request):
 
     data = {
         'template_themes': template_themes,
+        'color_mapping': COLOR_MAPPING,
     }
     return render(request, 'thememaker/create.html', data)
 
@@ -120,7 +122,7 @@ def submit(request):
                            icon_image=theme_template.icon_image,
                            preview_image='000.png',
                            bg_color=color_bundle.bg_color, font_color=color_bundle.font_color,
-                           template=theme_template, category=theme_template.category)
+                           template=theme_template, category=theme_template.category, cc_type=0)
     user_theme.save()
     print user_theme.id
 
@@ -147,52 +149,95 @@ def submit(request):
 
 
 def preview(request):
+    if not request.session.get('theme_id'):
+        return redirect(index)
 
-    theme_id = request.session.get('theme_id', 35)
-
-    color_mapping = {
-        '#555': 'Whitecolor',
-        '#FFF': 'Whitecolor',
-        '#FD3C60': 'Redcolor',
-        '#FADC49': 'Yellowcolor',
-        '#33F340': 'Greencolor',
-        '#88E8FC': 'Bluecolor',
-    }
-
+    theme_id = request.session.get('theme_id')
     user_theme = UserTheme.objects.get(id=int(theme_id))
     data = {
         'user_theme': user_theme,
-        'color_mapping': color_mapping,
+        'color_mapping': COLOR_MAPPING,
     }
     return render(request, 'thememaker/preview.html', data)
 
 
 def theme(request, theme_id):
     user_theme = UserTheme.objects.get(id=theme_id)
+
+    if user_theme.enabled != 1:
+        return redirect(index)
+
     data = {
         'user_theme': user_theme,
+        'color_mapping': COLOR_MAPPING,
     }
     return render(request, 'thememaker/preview.html', data)
 
 
-def publish(request, theme_id):
+@csrf_exempt
+def publish(request):
     """ AJAX method to publish user theme """
+    if request.method != 'POST':
+        return HttpResponse("FAIL", mimetype='text/plain')
+
+    theme_id = request.POST.get('theme_id')
+    user = auth.get_user(request)
     user_theme = UserTheme.objects.get(id=theme_id)
+    user_theme.user = user
     user_theme.enabled = 1
     user_theme.save()
-    return "OK"
+    return HttpResponse("OK", mimetype='text/plain')
 
 
-def inc_views(request, theme_id):
+@csrf_exempt
+def cc_option(request):
+    """ AJAX method to determine cc option """
+    if request.method != 'POST':
+        return HttpResponse("FAIL", mimetype='text/plain')
+
+    theme_id = request.POST.get('theme_id')
+    option = request.POST.get('option')
+    user_theme = UserTheme.objects.get(id=theme_id)
+    user_theme.cc_type = option
+    user_theme.save()
+    return HttpResponse("OK", mimetype='text/plain')
+
+
+@csrf_exempt
+def inc_views(request):
     """ AJAX method to increase the views of specific user theme """
-    return "OK"
+    if request.method != 'POST':
+        return HttpResponse("FAIL", mimetype='text/plain')
+
+    theme_id = request.POST.get('theme_id')
+    user_theme = UserTheme.objects.get(id=theme_id)
+    user_theme.viewed += 1
+    user_theme.save()
+    return HttpResponse("OK", mimetype='text/plain')
 
 
-def inc_downloads(request, theme_id):
+@csrf_exempt
+def inc_downloads(request):
     """ AJAX method to increase the downloads of specific user theme """
-    return "OK"
+    if request.method != 'POST':
+        return HttpResponse("FAIL", mimetype='text/plain')
+
+    theme_id = request.POST.get('theme_id')
+    user_theme = UserTheme.objects.get(id=theme_id)
+    user_theme.download += 1
+    user_theme.save()
+    return HttpResponse("OK", mimetype='text/plain')
 
 
-def update_likes(request, theme_id, likes):
+@csrf_exempt
+def update_likes(request):
     """ AJAX method to update the likes of specific user theme """
-    return "OK"
+    if request.method != 'POST':
+        return HttpResponse("FAIL", mimetype='text/plain')
+
+    theme_id = request.POST.get('theme_id')
+    likes = request.POST.get('likes')
+    user_theme = UserTheme.objects.get(id=theme_id)
+    user_theme.likes = likes
+    user_theme.save()
+    return HttpResponse("OK", mimetype='text/plain')
