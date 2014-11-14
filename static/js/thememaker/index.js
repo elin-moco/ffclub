@@ -29,15 +29,24 @@ function infinitescroll_listener() {
     navSelector: '#page-nav',
     nextSelector: '#page-nav > a',
     itemSelector: 'li.theme_block',
-        //debug: true,
-        loadingImg: '',
-        loadingText: '',
-        donetext: '',
-        animate: true
-      }, function() {
-        expand_theme_listener();
-        install_theme_listener();
-      });
+    loadingImg: '',
+    loadingText: '<em>載入中...</em>',
+    donetext: '<em>捲到底囉！</em>',
+    animate: true,
+    loading: {
+      finished: undefined,
+      finishedMsg: "<em>捲到底囉！</em>",
+      img: "",
+      msg: null,
+      msgText: "<em>載入中...</em>",
+      selector: null,
+      speed: 'fast',
+      start: undefined
+    },
+  }, function() {
+    expand_theme_listener();
+    install_theme_listener();
+  });
 }
 
 function install_cover_theme_listener() {
