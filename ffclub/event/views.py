@@ -27,7 +27,8 @@ from django.db.models import Q
 from commonware.response.decorators import xframe_allow
 from django.views.decorators.csrf import csrf_exempt
 from ffclub.base.decorators import cors_allow, enable_jsonp
-from ffclub.settings import MOCO_URL
+from ffclub.settings import MOCO_URL, API_SECRET
+
 
 log = commonware.log.getLogger('ffclub')
 
@@ -670,3 +671,18 @@ def firefox_family_lottery(request):
 
 def firefox_day_verify(request):
     return redirect('//%s/10years/' % MOCO_URL)
+
+
+def list_recent_events(request):
+    data = {}
+    if request.method == 'GET' and 'secret' in request.GET and request.GET['secret'] == API_SECRET:
+        events = Event.objects.filter(status='enrolling').order_by('-create_time')[:5]
+        event_list = []
+        for event in events:
+            event_list += [{'title': event.title, 'date': event.start_time.strftime('%Y-%m-%d %H:%M:%S'), 'url': event.url}, ]
+        data['result'] = 'success'
+        data['events'] = event_list
+    else:
+        data['result'] = 'failed'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/json')
