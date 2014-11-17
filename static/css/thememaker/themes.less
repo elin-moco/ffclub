@@ -1,4 +1,5 @@
 @import "../sandstone/reset";
+@import "../ffcstyle";
 @import "basic_setting.less";
 /* https://github.com/elin-moco/sandstone */
 
@@ -6,6 +7,48 @@
 	color:#757575;
 }
 @dark_color:#484848;
+
+/* Fix conflict with ffcstyle */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: none;
+}
+p {
+  text-shadow: none;
+}
+#masthead {
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+#main-content {
+  margin: 0 auto;
+  a, a.loginButton {
+    text-shadow: none;
+  }
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    li {
+      margin-left: 0;
+      list-style-type: none;
+    }
+  }
+}
+#tabzilla {
+  pointer-events: all;
+}
+
+.loginButton {
+  height: auto;
+  line-height: inherit;
+}
+
+a, a:hover, a:link, a:visited {
+  text-shadow: none;
+}
+/* End ffcstyle fix */
+
 
 #outer-wrapper{
 	background: url("/media/img/sandstone/bg-sky.png") repeat scroll 0 0 #eeeeee;
@@ -36,6 +79,7 @@
 						display:inline-block;
 						vertical-align:top;
 						a{
+                            color: #757575;
 							font-size:14px;
 							background: url("/static/img/thememaker/sub_navi.png") no-repeat right 2px;
 							padding:0 16px 0 0;
@@ -48,16 +92,17 @@
 				#login_section{
 					position:absolute;
 					top:10px;
-					right:22px;
+					right:252px;
 					width:140px;
 					a{
+                        color: #757575;
 						//display:block;
 						text-decoration:none;
 						font-size:12px;
 					}
 					a.login_account{
-						background: url("/static/img/thememaker/login_icon.png") no-repeat 85px 7px;
-						width:92px;
+						background: url("/static/img/thememaker/login_icon.png") no-repeat 100px 7px;
+						width:112px;
 						padding:6px;
 						margin:0 auto;
 						.round4;
@@ -256,7 +301,7 @@
 					width:300px;
 					height:225px;
 					background-color:#fff;
-					margin:20px 18px 50px 0;
+					margin:20px 16px 50px 0;
 					display:inline-block;
 					vertical-align:top;
 					position:relative;
@@ -633,6 +678,7 @@
 					a.btn_blue{
 						.blue_gradient;
 						.round4;
+                        color: #FFF;
 						width:250px;
 						height:46px;
 						line-height:46px;
@@ -763,6 +809,7 @@
 		div.creat_more{
 			padding:0 0 60px 0;
 			a{
+                color: #757575;
 				.grey_gradient;
 				padding:10px 20px;
 				.round4;
@@ -911,7 +958,8 @@
 					li{
 						display:inline-block;
 						vertical-align:top;
-						margin-right:4px;
+						margin-left:0px;
+						margin-right:3px;
 						a{
 							display:block;
 							border:2px #fff solid;
@@ -956,6 +1004,7 @@
 					display:inline-block;
 					vertical-align:top;
 					input , textarea{
+                        height: auto;
 						.marginL15;
 						border:1px #dddcdc solid;
 						font-size:14px;
@@ -976,6 +1025,7 @@
 			div#btn_section{
 				border-top:1px #f0f3f6 solid;
 				a{
+                    color: #757575;
 					.grey_gradient;
 					padding:10px 20px;
 					.round4;
@@ -993,5 +1043,5 @@
 }/* outer-wrapper end */
 
 
-@import "tabzilla.css";
-@import "footer.css";
+//@import "tabzilla.css";
+//@import "footer.css";
