@@ -51,7 +51,7 @@ function drag_image_listener() {
   function add_image_on_panel(ifile, canvasPanel) {
     canvasPanel.clear().renderAll();
     fabric.Image.fromURL(ifile, function(img) {
-      var oImg = img.set({ left: 50, top: 100, angle: -15 }).scaleToWidth(600);
+      var oImg = img.set({ left: 400, top: 100, angle: -15 }).scaleToWidth(600);
       canvasPanel.add(oImg).renderAll();
       canvasPanel.setActiveObject(oImg);
     });
