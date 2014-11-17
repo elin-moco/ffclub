@@ -624,7 +624,7 @@ MINIFY_BUNDLES = {
         'thememaker': (
             #'css/ffcstyle.css',
             'css/libs/owl.carousel.css',
-            'css/thememaker/themes.css',
+            'css/thememaker/themes.less',
         ),
         '10years-firefox-family-award': (
             'css/event/10years-firefox-family-award.less',
