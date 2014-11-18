@@ -22,7 +22,7 @@ function is_firefox_browser() {
 }
 
 function replace_with_firefox_download() {
-  var message = '下載 Firefox';
+  var message = '下載 Firefox 以安裝佈景';
   $('a.install').attr('title', message);
   $('a.install').text(message);
   $('a.install').on('click', function(e){
@@ -77,7 +77,8 @@ function infinitescroll_listener() {
 
 function install_cover_theme_listener() {
   $('#cover_theme a.install').on('click', function(e){
-
+    e.preventDefault();
+    e.stopPropagation();
     var $that = $(this);
     var li_tag = $that.parent().parent();
     var theme = {
