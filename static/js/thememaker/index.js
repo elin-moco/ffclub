@@ -5,9 +5,30 @@ $(function() {
   infinitescroll_listener();
   slider_listener();
   expand_theme_listener();
-  install_cover_theme_listener();
-  install_theme_listener();
+
+  if (!is_firefox_browser()) {
+    replace_with_firefox_download();
+  } else {
+    install_cover_theme_listener();
+    install_theme_listener();
+  }
 });
+
+function is_firefox_browser() {
+  if (navigator.userAgent.search("Firefox") > -1) {
+    return true;
+  }
+  return false;
+}
+
+function replace_with_firefox_download() {
+  var message = '下載 Firefox';
+  $('a.install').attr('title', message);
+  $('a.install').text(message);
+  $('a.install').on('click', function(e){
+    e.stopPropagation();
+  });
+}
 
 function scroll_to_tab_listener() {
   var path = window.location.pathname;
@@ -19,7 +40,7 @@ function scroll_to_tab_listener() {
   if (isScroll) {
     $('html, body').animate({
       scrollTop: $("#theme_list").offset().top
-    }, 2000);
+    }, 1000);
   }
 
 }
@@ -45,12 +66,18 @@ function infinitescroll_listener() {
     },
   }, function() {
     expand_theme_listener();
-    install_theme_listener();
+    if (!is_firefox_browser()) {
+      replace_with_firefox_download();
+    } else {
+      install_cover_theme_listener();
+      install_theme_listener();
+    }
   });
 }
 
 function install_cover_theme_listener() {
   $('#cover_theme a.install').on('click', function(e){
+
     var $that = $(this);
     var li_tag = $that.parent().parent();
     var theme = {

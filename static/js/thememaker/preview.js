@@ -4,10 +4,32 @@ $(function() {
   init();
   build_theme_url();
   login_check();
-  install_theme_listener();
+
+  if (!is_firefox_browser()) {
+    replace_with_firefox_download();
+  } else {
+    install_theme_listener();
+  }
+  
   share_theme_listener();
   create_qrcode();
 });
+
+function is_firefox_browser() {
+  if (navigator.userAgent.search("Firefox") > -1) {
+    return true;
+  }
+  return false;
+}
+
+function replace_with_firefox_download() {
+  var message = '下載 Firefox';
+  $('a.install_theme').attr('title', message);
+  $('a.install_theme').text(message);
+  $('a.install_theme').on('click', function(e){
+    e.stopPropagation();
+  });
+}
 
 function init() {
   var cc_type = $('select#cc_option').attr('cctype');
