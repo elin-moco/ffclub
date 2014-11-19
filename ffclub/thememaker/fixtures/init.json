@@ -49,18 +49,18 @@
         }
     },
     {
-        "pk": 21,
+        "pk": 1,
         "model": "thememaker.themetemplate",
         "fields": {
             "category": 1,
             "used": 0,
-            "description": "01",
-            "title": "01",
-            "edit_image": "static/thememaker/01-cut.png",
-            "enabled": 1,
-            "icon_image": "static/thememaker/01-s.png",
-            "color": 1,
-            "template_image": "static/thememaker/01.png"
+            "description": "21",
+            "title": "21",
+            "edit_image": "static/thememaker/21-cut.png",
+            "enabled": 0,
+            "icon_image": "static/thememaker/21-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/21.png"
         }
     },
     {
@@ -72,7 +72,7 @@
             "description": "02",
             "title": "02",
             "edit_image": "static/thememaker/02-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/02-s.png",
             "color": 3,
             "template_image": "static/thememaker/02.png"
@@ -87,7 +87,7 @@
             "description": "03",
             "title": "03",
             "edit_image": "static/thememaker/03-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/03-s.png",
             "color": 2,
             "template_image": "static/thememaker/03.png"
@@ -102,7 +102,7 @@
             "description": "04",
             "title": "04",
             "edit_image": "static/thememaker/04-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/04-s.png",
             "color": 2,
             "template_image": "static/thememaker/04.png"
@@ -117,7 +117,7 @@
             "description": "05",
             "title": "05",
             "edit_image": "static/thememaker/05-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/05-s.png",
             "color": 5,
             "template_image": "static/thememaker/05.png"
@@ -132,7 +132,7 @@
             "description": "06",
             "title": "06",
             "edit_image": "static/thememaker/06-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/06-s.png",
             "color": 1,
             "template_image": "static/thememaker/06.png"
@@ -147,7 +147,7 @@
             "description": "07",
             "title": "07",
             "edit_image": "static/thememaker/07-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/07-s.png",
             "color": 1,
             "template_image": "static/thememaker/07.png"
@@ -162,7 +162,7 @@
             "description": "08",
             "title": "08",
             "edit_image": "static/thememaker/08-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/08-s.png",
             "color": 1,
             "template_image": "static/thememaker/08.png"
@@ -177,7 +177,7 @@
             "description": "09",
             "title": "09",
             "edit_image": "static/thememaker/09-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/09-s.png",
             "color": 5,
             "template_image": "static/thememaker/09.png"
@@ -192,7 +192,7 @@
             "description": "10",
             "title": "10",
             "edit_image": "static/thememaker/10-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/10-s.png",
             "color": 4,
             "template_image": "static/thememaker/10.png"
@@ -207,7 +207,7 @@
             "description": "11",
             "title": "11",
             "edit_image": "static/thememaker/11-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/11-s.png",
             "color": 1,
             "template_image": "static/thememaker/11.png"
@@ -222,7 +222,7 @@
             "description": "12",
             "title": "12",
             "edit_image": "static/thememaker/12-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/12-s.png",
             "color": 3,
             "template_image": "static/thememaker/12.png"
@@ -237,7 +237,7 @@
             "description": "13",
             "title": "13",
             "edit_image": "static/thememaker/13-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/13-s.png",
             "color": 5,
             "template_image": "static/thememaker/13.png"
@@ -252,7 +252,7 @@
             "description": "14",
             "title": "14",
             "edit_image": "static/thememaker/14-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/14-s.png",
             "color": 4,
             "template_image": "static/thememaker/14.png"
@@ -267,7 +267,7 @@
             "description": "15",
             "title": "15",
             "edit_image": "static/thememaker/15-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/15-s.png",
             "color": 1,
             "template_image": "static/thememaker/15.png"
@@ -282,7 +282,7 @@
             "description": "16",
             "title": "16",
             "edit_image": "static/thememaker/16-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/16-s.png",
             "color": 3,
             "template_image": "static/thememaker/16.png"
@@ -297,7 +297,7 @@
             "description": "17",
             "title": "17",
             "edit_image": "static/thememaker/17-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/17-s.png",
             "color": 1,
             "template_image": "static/thememaker/17.png"
@@ -312,7 +312,7 @@
             "description": "18",
             "title": "18",
             "edit_image": "static/thememaker/18-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/18-s.png",
             "color": 1,
             "template_image": "static/thememaker/18.png"
@@ -327,7 +327,7 @@
             "description": "19",
             "title": "19",
             "edit_image": "static/thememaker/19-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/19-s.png",
             "color": 5,
             "template_image": "static/thememaker/19.png"
@@ -342,25 +342,85 @@
             "description": "20",
             "title": "20",
             "edit_image": "static/thememaker/20-cut.png",
-            "enabled": 1,
+            "enabled": 0,
             "icon_image": "static/thememaker/20-s.png",
             "color": 4,
             "template_image": "static/thememaker/20.png"
         }
     },
     {
-        "pk": 1,
+        "pk": 21,
         "model": "thememaker.themetemplate",
         "fields": {
             "category": 1,
             "used": 0,
-            "description": "21",
-            "title": "21",
-            "edit_image": "static/thememaker/21-cut.png",
+            "description": "01",
+            "title": "01",
+            "edit_image": "static/thememaker/01-cut.png",
+            "enabled": 0,
+            "icon_image": "static/thememaker/01-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/01.png"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "10th-main",
+            "title": "10th-main",
+            "edit_image": "static/thememaker/10th-main-cut.png",
             "enabled": 1,
-            "icon_image": "static/thememaker/21-s.png",
+            "icon_image": "static/thememaker/10th-main-s.png",
             "color": 3,
-            "template_image": "static/thememaker/21.png"
+            "template_image": "static/thememaker/10th-main.png"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "10th-home",
+            "title": "10th-home",
+            "edit_image": "static/thememaker/10th-home-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/10th-home-s.png",
+            "color": 5,
+            "template_image": "static/thememaker/10th-home.png"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "fox",
+            "title": "fox",
+            "edit_image": "static/thememaker/fox-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/fox-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/fox.png"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "turtle",
+            "title": "turtle",
+            "edit_image": "static/thememaker/turtle-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/turtle-s.png",
+            "color": 2,
+            "template_image": "static/thememaker/turtle.png"
         }
     }
 ]
