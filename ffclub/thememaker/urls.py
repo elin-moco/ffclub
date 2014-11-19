@@ -12,7 +12,7 @@ urlpatterns = patterns(
     url(r'^thememaker/create/$', views.create),
     url(r'^thememaker/submit/$', views.submit),
     url(r'^thememaker/preview/$', views.preview),
-    url(r'^thememaker/theme/(?P<theme_id>\d*)$', views.theme),
+    url(r'^thememaker/theme/(?P<theme_id>\d*)$', views.theme, name='thememaker.theme'),
     url(r'^thememaker/publish$', views.publish),
     url(r'^thememaker/cc_option$', views.cc_option),
     url(r'^thememaker/inc_views$', views.inc_views),
