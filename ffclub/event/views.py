@@ -597,7 +597,9 @@ def firefox_family_get_ticket(request):
         currentCampaign = Campaign.objects.get(slug=tenYearsCampaignSlug)
         existing = Award.objects.filter(name=u'早鳥票', activity=currentCampaign, winner=request.user)
         ticketExists = existing.exists()
-        if not ticketExists and 'day' in request.GET:
+        if currentCampaign.status == 'end':
+            data['result'] = 'ended'
+        elif not ticketExists and 'day' in request.GET:
             day = day_mapping[request.GET['day']]
             suggested_period = weighted_sample(periods, weights)[0]
             #save award
@@ -635,7 +637,9 @@ def firefox_family_lottery(request):
     if request.user.is_active:
         currentCampaign = Campaign.objects.get(slug=tenYearsCampaignSlug)
         existing = Award.objects.filter(name=u'幸運轉輪', activity=currentCampaign, winner=request.user)
-        if not existing.exists() and 'level' in request.GET:
+        if currentCampaign.status == 'end':
+            data['result'] = 'ended'
+        elif not existing.exists() and 'level' in request.GET:
             level = int(request.GET['level'])
             price_keys = prices_levels[0] if level == 0 else prices_levels[0] + prices_levels[1]
             prices = Price.objects.filter(name__in=price_keys)
