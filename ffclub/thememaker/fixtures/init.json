@@ -1,0 +1,366 @@
+[
+    {
+        "pk": 1,
+        "model": "thememaker.colorbundle",
+        "fields": {
+            "bg_color": "#555",
+            "font_color": "#555"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "thememaker.colorbundle",
+        "fields": {
+            "bg_color": "#FD3C60",
+            "font_color": "#FD3C60"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "thememaker.colorbundle",
+        "fields": {
+            "bg_color": "#FADC49",
+            "font_color": "#FADC49"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "thememaker.colorbundle",
+        "fields": {
+            "bg_color": "#33F340",
+            "font_color": "#33F340"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "thememaker.colorbundle",
+        "fields": {
+            "bg_color": "#88E8FC",
+            "font_color": "#88E8FC"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "thememaker.themecategory",
+        "fields": {
+            "enabled": 1,
+            "description": "default category",
+            "title": "Default"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "01",
+            "title": "01",
+            "edit_image": "static/thememaker/01-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/01-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/01.png"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "02",
+            "title": "02",
+            "edit_image": "static/thememaker/02-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/02-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/02.png"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "03",
+            "title": "03",
+            "edit_image": "static/thememaker/03-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/03-s.png",
+            "color": 2,
+            "template_image": "static/thememaker/03.png"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "04",
+            "title": "04",
+            "edit_image": "static/thememaker/04-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/04-s.png",
+            "color": 2,
+            "template_image": "static/thememaker/04.png"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "05",
+            "title": "05",
+            "edit_image": "static/thememaker/05-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/05-s.png",
+            "color": 5,
+            "template_image": "static/thememaker/05.png"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "06",
+            "title": "06",
+            "edit_image": "static/thememaker/06-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/06-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/06.png"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "07",
+            "title": "07",
+            "edit_image": "static/thememaker/07-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/07-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/07.png"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "08",
+            "title": "08",
+            "edit_image": "static/thememaker/08-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/08-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/08.png"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "09",
+            "title": "09",
+            "edit_image": "static/thememaker/09-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/09-s.png",
+            "color": 5,
+            "template_image": "static/thememaker/09.png"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "10",
+            "title": "10",
+            "edit_image": "static/thememaker/10-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/10-s.png",
+            "color": 4,
+            "template_image": "static/thememaker/10.png"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "11",
+            "title": "11",
+            "edit_image": "static/thememaker/11-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/11-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/11.png"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "12",
+            "title": "12",
+            "edit_image": "static/thememaker/12-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/12-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/12.png"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "13",
+            "title": "13",
+            "edit_image": "static/thememaker/13-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/13-s.png",
+            "color": 5,
+            "template_image": "static/thememaker/13.png"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "14",
+            "title": "14",
+            "edit_image": "static/thememaker/14-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/14-s.png",
+            "color": 4,
+            "template_image": "static/thememaker/14.png"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "15",
+            "title": "15",
+            "edit_image": "static/thememaker/15-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/15-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/15.png"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "16",
+            "title": "16",
+            "edit_image": "static/thememaker/16-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/16-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/16.png"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "17",
+            "title": "17",
+            "edit_image": "static/thememaker/17-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/17-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/17.png"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "18",
+            "title": "18",
+            "edit_image": "static/thememaker/18-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/18-s.png",
+            "color": 1,
+            "template_image": "static/thememaker/18.png"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "19",
+            "title": "19",
+            "edit_image": "static/thememaker/19-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/19-s.png",
+            "color": 5,
+            "template_image": "static/thememaker/19.png"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "20",
+            "title": "20",
+            "edit_image": "static/thememaker/20-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/20-s.png",
+            "color": 4,
+            "template_image": "static/thememaker/20.png"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "thememaker.themetemplate",
+        "fields": {
+            "category": 1,
+            "used": 0,
+            "description": "21",
+            "title": "21",
+            "edit_image": "static/thememaker/21-cut.png",
+            "enabled": 1,
+            "icon_image": "static/thememaker/21-s.png",
+            "color": 3,
+            "template_image": "static/thememaker/21.png"
+        }
+    }
+]

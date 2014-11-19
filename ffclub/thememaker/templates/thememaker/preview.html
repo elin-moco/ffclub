@@ -1,0 +1,106 @@
+{% set page_title = 'Firefox 自訂佈景主題 - 打造你專屬的佈景主題' %}
+{% set page_description = 'Mozilla 致力於帶給世人更美好的網路未來！' %}
+{% set page_image = 'img/event/chinese-valentines-day/ogimg.png' %}
+{% set share_text = page_title %}
+{% set login_url  = '/thememaker/preview' %}
+
+{% extends "base.html" %}
+
+{% block base_css %}
+{{ css('thememaker') }}
+{% endblock %}
+
+{% block base_js %}
+{{ js('thememaker_preview') }}
+{% endblock %}
+
+{% block head %}
+<header id="masthead">
+	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+</header>
+{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+<div id="wrapper_inside" class="theme_index">
+	{% with logout_url  = '/thememaker/' %}
+	{% include "thememaker/sub_header.html" %}
+	{% endwith %}
+
+	<div id="preview_container">
+		<div id="preview_section" class="{{ color_mapping[user_theme.bg_color] }}" theme-id="{{ user_theme.id }}">
+			<div class="demo_section">
+				<span class="demo_bg" style="background:url('/{{ user_theme.preview_image }}') no-repeat;" header-img="/{{ user_theme.header_image }}"></span>
+				<span class="demo_mask" color="{{ color_mapping[user_theme.bg_color] }}"></span>
+				<span class="demo_font1" color="{{ user_theme.font_color }}">Firefox</span>
+				<span class="demo_font2">Firefox</span>
+				<span class="demo_font3">Firefox</span>
+			</div><!-- end demo_section -->
+			<div id="preview_type">
+				<span style="background:url('/{{ user_theme.icon_image }}') no-repeat;"></span>
+			</div><!-- end preview_type -->
+			<div id="preview_detail">
+				<h3 title="{{ user_theme.title }}" class="meta_title">{{ user_theme.title }}</h3>
+				<p>{{ user_theme.description }}</p>
+				<p class="date">{{ user_theme.create_time }}</p>
+				<ul>
+					<li class="cc_1" style="display:none;">保留所有權利</li>
+					<li class="cc_2" style="display:none;">Creative Commons 姓名標示 3.0</li>
+					<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性 3.0</li>
+					<li class="cc_3" style="display:none;">Creative Commons 姓名標示-非商業性-禁止改作 3.0</li>
+					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</li>
+					<li class="cc_5" style="display:none;">Creative Commons 姓名標示-禁止改作 3.0</li>
+					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-相同方式分享 3.0</li>
+				</ul>
+			</div><!-- end preview_detail -->
+			<div class="divide_section"></div>
+			<p class="preview_words">恭喜，你已經完成專屬的佈景主題，您可以選擇直接下載安裝或者登入提交分享</p>
+			<div id="download_section">
+				<p>直接下載安裝專屬的佈景主題</p>
+				<a href="https://mozilla.com.tw/firefox/download/" target="_blank" title="下載安裝" class="btn_blue install_theme"><span></span>下載安裝</a>
+			</div><!-- end preview_action -->
+			<div id="share_section">
+				<p>上傳與分享</p>
+				<a href="#" title="上傳佈景主題" class="btn_blue upload"><span></span>上傳佈景主題</a>
+			</div><!-- end share_section -->
+			<div id="share_cc" style="display:none">
+				<p>選擇分享模式</p>
+				<select id="cc_option" cctype="{{ user_theme.cc_type }}">
+					<option class="cc_1" value="1">保留所有權利</option>
+					<option class="cc_2" value="2">Creative Commons 姓名標示 3.0</option>
+					<option class="cc_3" value="3">Creative Commons 姓名標示-非商業性 3.0</option>
+					<option class="cc_3" value="4">Creative Commons 姓名標示-非商業性-禁止改作 3.0</option>
+					<option class="cc_4" value="5">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</option>
+					<option class="cc_5" value="6">Creative Commons 姓名標示-禁止改作 3.0</option>
+					<option class="cc_4" value="7">Creative Commons 姓名標示-相同方式分享 3.0</option>
+				</select>
+				<a href="#" title="確定" class="btn_blue select_share_cc"><span></span>確定</a>
+			</div>
+			<div id="upload_section" style="display:none">
+				<p>上傳與分享</p>
+				<ul>
+					<li class="share_fb"><a title="FB 分享" target="_blank" href="#">FB 分享</a></li>
+					<li class="share_google"><a title="goggle+ 分享" target="_blank" href="#">goggle+ 分享</a></li>
+					<li class="share_twitter"><a title="twitter 分享" target="_blank" href="#">twitter 分享</a></li>
+					<li class="share_pinterest"><a title="pinterest 分享" target="_blank" href="#">pinterest</a></li>
+				</ul>
+				<div id="address_section">
+					<span>我愛火狐 佈景主題專屬網址</span>
+					<a href="#">https://addons.mozilla.org/zh-tw/developers/theme/submit</a>
+				</div>
+			</div><!-- end upload_section -->
+			<div id="qrcode" style="display:none">
+				<p>QR Code 連結分享</p>
+			</div>
+		</div><!-- end preview_section -->
+
+	</div><!-- end preview_container -->
+	<div class="creat_more">
+		<a href="/thememaker/create">再挑戰設計一個</a>
+	</div>
+</div><!-- end wrapper_inside -->
+{% endblock %}
+
+{% block email_subscription %}{% endblock %}
+

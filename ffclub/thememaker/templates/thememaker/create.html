@@ -1,0 +1,89 @@
+{% set page_title = 'Firefox 自訂佈景主題 - 打造你專屬的佈景主題' %}
+{% set page_description = 'Mozilla 致力於帶給世人更美好的網路未來！' %}
+{% set page_image = 'img/event/chinese-valentines-day/ogimg.png' %}
+{% set share_text = page_title %}
+{% set login_url  = '/thememaker/create' %}
+
+{% extends "base.html" %}
+
+{% block base_css %}
+{{ css('thememaker') }}
+{% endblock %}
+
+{% block base_js %}
+{{ js('thememaker_create') }}
+{% endblock %}
+
+{% block head %}
+<header id="masthead">
+	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
+</header>
+{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+<div id="wrapper_inside" class="theme_index">
+	{% with logout_url  = '/thememaker/create' %}
+	{% include "thememaker/sub_header.html" %}
+	{% endwith %}
+
+	<div id="creat_container">
+		<div id="theme_upload">
+			<div id="theme_outline" class="Blackcolor">
+				<div id="creat_setion">
+					<canvas id="pic_canvas">
+					</canvas>
+					<span class="upload_pic"></span>
+					<span class="upload_theme"><img src="/static/img/thememaker/bg02.png"></span>
+					<span class="upload_tab"></span>
+					<span class="demo_font1">Firefox</span>
+					<span class="demo_font2">Firefox</span>
+					<span class="demo_font3">Firefox</span>
+				</div><!-- end creat_setion -->
+			</div><!-- end theme_outline -->
+		</div><!-- end theme_upload -->
+
+		<div id="step_sectionfir">
+			<p class="step_wording"><span>step1</span>請先選擇佈景主題，接著上傳你的照片</p>
+			<ul id="theme_Canned">
+                {% for theme in template_themes %}
+                <li>
+                    <a data-id="{{ theme.id }}" href="/{{ theme.edit_image }}" title="theme{{ theme.title }}" class="" color="{{ color_mapping[theme.color.bg_color] }}" style="background:url('/{{theme.icon_image}}') no-repeat;"></a>
+                </li>
+				{% endfor %}
+			</ul>
+			<ul id="next_theme">
+				<li><a href="#" title="01"></a></li>
+				<li><a href="#" title="02"></a></li>
+				<li><a href="#" title="03"></a></li>
+			</ul>
+		</div><!-- end step_sectionfir -->
+
+		<div id="step_sectionB">
+			<div id="step_sectionsec">
+				<p class="step_wording"><span>step2</span>請上傳 PNG 或 JPG 檔案，檔案大小不得超過500 KB</p>
+				<div id="upload_area">圖片可直接拖曳此區上傳</div>
+				<input id="upload_field" type="file">
+			</div><!-- end step_sectionsec -->
+			<div id="step_sectionthird">
+				<form action="/thememaker/submit/" method="post" id="theme-form">
+					{{ csrf() }}
+					<p class="step_wording"><span>step3</span>為你的佈景主題取個名稱與敘述吧</p>
+					<input type="text" name="title" class="" placeholder="幫我取個名字吧 ...." required>
+					<textarea rows="8" name="description" placeholder = "也幫我寫上一些特徵吧...." required></textarea>
+					<input type="hidden" name="template_id" id="template_id" value="777"/>
+					<input type="hidden" name="user_image" id="user_image" value=""/>
+				</form>
+			</div><!-- end step_sectionthird -->
+		</div><!-- end step_sectionB -->
+
+		<div id="btn_section">
+			<a href="/thememaker/preview" title="下一步" class="next_step">下一步</a>
+		</div><!-- end step_sectionthird -->
+
+	</div><!-- end creat_container -->
+</div><!-- end wrapper_inside -->
+{% endblock %}
+
+{% block email_subscription %}{% endblock %}

@@ -1,0 +1,17 @@
+<div id="header">
+    <a href="/thememaker" title="Firefox" id="firefox_logo">Firefox</a>
+    <div id="sub_navi">
+        <ul>
+            <li><a href="/thememaker/new" title="最新佈景" class="">最新佈景</a></li>
+            <li><a href="/thememaker/hot" title="熱門佈景" class="">熱門佈景</a></li>
+            <li><a href="/thememaker/fav" title="最愛佈景" class="">最愛佈景</a></li>
+        </ul>
+    </div><!-- end sub_navi -->
+    <div id="login_section">
+        {% if not request.user.is_active %}
+        <a class="login_account on loginButton default_login" href="#" title="選擇登入帳號" >選擇登入帳號</a>
+        {% else %}
+        歡迎 {{ request.user.fullname }} <a href="{{ url('intro.logout') }}{{ '?next=' + logout_url if logout_url else '' }}" title="登出" class="logined_account">登出</a>
+        {% endif %}
+    </div><!-- end login_section -->
+</div><!-- end header -->

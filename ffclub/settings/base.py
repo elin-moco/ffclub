@@ -357,6 +357,7 @@ INSTALLED_APPS = (
     '%s.event' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
     '%s.event.templatetags' % PROJECT_MODULE,
+    '%s.thememaker' % PROJECT_MODULE,
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -599,13 +600,13 @@ MINIFY_BUNDLES = {
         'every-moment-result': (
             'css/event/every-moment-result.less',
         ),
-        'microfilm-vote':{
-            'css/event/microfilm-vote.less'
-        },
-        'demo':{
+        'microfilm-vote': (
+            'css/event/microfilm-vote.less',
+        ),
+        'demo': (
             'css/event/demo.less',
-            'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
-        },
+            'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css',
+        ),
         'lantern-festival': (
             'css/event/lantern-festival.less',
         ),
@@ -619,6 +620,11 @@ MINIFY_BUNDLES = {
         'chinese-valentines-day-result': (
             'css/event/fireworks.css',
             'css/event/chinese-valentines-day-result.less',
+        ),
+        'thememaker': (
+            #'css/ffcstyle.css',
+            'css/libs/owl.carousel.css',
+            'css/thememaker/themes.less',
         ),
         '10years-firefox-family-award': (
             'css/event/10years-firefox-family-award.less',
@@ -693,13 +699,13 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.infinitescroll.js',
             'js/event/every-moment-wall.js',
         ),
-        'microfilm-vote':{
+        'microfilm-vote': (
             'js/main.js',
-            'js/event/microfilm-vote.js'
-        },
-        'demo': {
-            'js/event/demo.js'
-        },
+            'js/event/microfilm-vote.js',
+        ),
+        'demo': (
+            'js/event/demo.js',
+        ),
         'lantern-festival': (
             'js/libs/index.js',
             'js/libs/jquery.scrollTo.js',
@@ -712,6 +718,25 @@ MINIFY_BUNDLES = {
         ),
         'chinese-valentines-day-result': (
             'js/event/chinese-valentines-day-result.js',
+        ),
+        'thememaker': (
+            'js/libs/jquery.infinitescroll.js',
+            'js/libs/owl.carousel.min.js',
+            #'js/main.js',
+            'js/thememaker/lighttheme.js',
+            'js/thememaker/index.js',
+        ),
+        'thememaker_create': (
+            'js/libs/fabric.min.js',
+            'js/libs/owl.carousel.min.js',
+            #'js/main.js',
+            'js/thememaker/create.js',
+        ),
+        'thememaker_preview': (
+            #'js/main.js',
+            'js/libs/qrcode.min.js',
+            'js/thememaker/lighttheme.js',
+            'js/thememaker/preview.js',
         ),
         '10years-firefox-family-award': (
             'js/event/10years-firefox-family-award.js',
@@ -779,7 +804,8 @@ PRODUCT_INVENTORY_MIN = 50
 SUBSCRIBER_EMAILS_PATH = 'subscribers.txt'
 
 FILE_PATH = 'uploads/'
-
+TEMPLATE_THEME_FILE_PATH = 'static/thememaker/'
+USER_THEME_FILE_PATH = 'static/uploads/theme_maker/user/'
 
 # Uncomment this and set to all slave DBs in use on the site.
 # SLAVE_DATABASES = ['slave']
@@ -815,3 +841,5 @@ API_SECRET = 'hush'
 
 DEFAULT_FILTERS['blackout_name'] = blackout_name
 DEFAULT_FILTERS['blackout_email'] = blackout_email
+
+BEDROCK_PATH = ''
