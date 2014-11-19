@@ -28,6 +28,7 @@ from commonware.response.decorators import xframe_allow
 from django.views.decorators.csrf import csrf_exempt
 from ffclub.base.decorators import cors_allow, enable_jsonp
 from ffclub.settings import MOCO_URL
+from datetime import datetime
 
 log = commonware.log.getLogger('ffclub')
 
@@ -668,5 +669,24 @@ def firefox_family_lottery(request):
     return HttpResponse(response, mimetype='application/x-javascript')
 
 
-def firefox_day_verify(request):
-    return redirect('//%s/10years/' % MOCO_URL)
+def firefox_day_verify(request, template):
+    currentCampaign = Campaign.objects.get(slug=tenYearsCampaignSlug)
+    code = request.GET['code'] if request.GET else None
+    data = {}
+    if code:
+        award = Award.objects.filter(name=u'早鳥票', activity=currentCampaign, note=code)
+        if award.exists():
+            ticket = award[0]
+            if ticket.status == 'waiting':
+                ticket.status = 'claimed'
+                ticket.save()
+                data['result'] = 'success'
+            else:
+                data['result'] = 'claimed'
+            if ticket.create_time > datetime(2014, 11, 11):
+                data['type'] = 'normal'
+            else:
+                data['type'] = 'earlybird'
+        else:
+            data['result'] = 'failed'
+    return render(request, template, data)

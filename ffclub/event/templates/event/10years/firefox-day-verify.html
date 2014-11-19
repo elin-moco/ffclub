@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  {{ css('site') }}
+  {{ css('base') }}
+  <style>
+    body {
+      background: black;
+      font-size: 66px;
+      color: #FFFFFF;
+    }
+    #main-content {
+      background: black;
+      margin: auto;
+      padding-top: 120px;
+    }
+    .result {
+      padding-bottom: 60px;
+    }
+    input {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-content">
+    <div class="result">
+    {% if result == 'success' %}
+      報到成功！
+    {% elif result == 'failed' %}
+      序號不存在！
+    {% elif result == 'claimed' %}
+      序號已失效！
+    {% endif %}
+    </div>
+    <div class="result">
+    票種：
+    {% if type == 'earlybird' %}
+      早鳥票
+    {% else %}
+      普通票
+    {% endif %}
+    </div>
+    <form method="GET">
+      <input type="text" name="code" placeholder="請輸入報到序號">
+      <input type="submit" value="送出">
+    </form>
+  </div>
+  {{ js('site') }}
+
+</body>
+</html>
