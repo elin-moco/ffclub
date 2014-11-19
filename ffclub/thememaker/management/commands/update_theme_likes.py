@@ -33,7 +33,7 @@ class Command(BaseCommand):
                     theme.save()
                     updated += 1
 
-        print '%d theme updated.' % updated
+        print '%d/%d theme updated.' % (updated, len(urls))
 
     def get_fblikes(self, urls):
         fbShareData = dict()
@@ -46,4 +46,3 @@ class Command(BaseCommand):
                                json.loads(urllib2.urlopen('https://graph.facebook.com/?%s' %
                                                           urlencode({'ids': urls})).read()).items())
         return fbShareData
-
