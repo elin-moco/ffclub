@@ -169,6 +169,7 @@ function expand_theme_listener() {
     $('#theme_detail_panel ul li.info_download').text(meta_download);
     $('#theme_detail_panel ul li.info_fb').text(meta_likes);
     $('#theme_detail_panel div.demo_section span.demo_bg').css("background-image", "url('" + preview_img + "')");
+    $('#theme_detail_panel div.demo_section span.demo_bg').css("background-position", "right top");
     $('div#theme_detail').removeClass('Whitecolor Redcolor Yellowcolor Greencolor Bluecolor');
     $('div#theme_detail').addClass(color);
   }
