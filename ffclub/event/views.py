@@ -27,13 +27,9 @@ from django.db.models import Q
 from commonware.response.decorators import xframe_allow
 from django.views.decorators.csrf import csrf_exempt
 from ffclub.base.decorators import cors_allow, enable_jsonp
-<<<<<<< HEAD
-from ffclub.settings import MOCO_URL
-from datetime import datetime
-=======
 from ffclub.settings import MOCO_URL, API_SECRET
+from datetime import datetime
 
->>>>>>> master
 
 log = commonware.log.getLogger('ffclub')
 
