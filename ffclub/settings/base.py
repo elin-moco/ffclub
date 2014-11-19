@@ -512,9 +512,9 @@ MINIFY_BUNDLES = {
         # 'site' is automatically included across whole site
         'site': (
             'css/normalize.css',
-            'css/sandstone/tabzilla.less.css',
-            'css/sandstone/navigator.less.css',
-            'css/sandstone/footer.less.css',
+            'css/sandstone/tabzilla.less',
+            'css/sandstone/navigator.less',
+            'css/sandstone/footer.less',
             'css/persona-buttons.css',
             'css/slides.css',
             # imported using less
