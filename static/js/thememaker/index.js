@@ -135,6 +135,7 @@ function expand_theme_listener() {
     $('#theme_detail').slideUp(400, function(){
       $('#expand_arrow').removeClass('arrow01 arrow02 arrow03').addClass('arrow0' + li_idx);  
       $(div_tag).after($('#theme_detail'));
+      loadSocialButtons(li_tag.attr('theme-id'));
       fill_data(li_tag);
       build_theme_url(li_tag.attr('theme-id'));
     });
@@ -151,6 +152,24 @@ function expand_theme_listener() {
     $('#theme_detail').slideUp(400);
     $('div.theme_bottom_btn > a.expand').removeClass('on');
   });
+
+  function loadSocialButtons(id) {
+    if (FB && gapi) {
+      var url = get_theme_url(id);
+      var fb = $('li.facebookLike');
+      var gp = $('li.googlePlus');
+      if (fb.children().length == 0) {
+        fb.append('<div class="fb-like" data-send="false"' +
+          'data-href="' + url + '"' +
+          'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
+        FB.XFBML.parse(fb.get(0));
+      }
+      if (gp.children().length == 0) {
+        gp.append('<div class="g-plusone" data-size="medium" data-href="' + url + '"></div>');
+        gapi.plusone.go(gp.get(0));
+      }
+    }
+  };
 
   // fill data into #theme_detail element
   function fill_data(ele) {
@@ -184,7 +203,7 @@ function expand_theme_listener() {
   }
 
   function get_theme_url(id) {
-    return "http://" + window.location.hostname + "/thememaker/theme/" + id;  
+    return "https://" + window.location.hostname + "/thememaker/theme/" + id;  
   }
 }
 

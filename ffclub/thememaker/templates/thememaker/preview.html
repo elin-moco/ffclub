@@ -10,10 +10,6 @@
 {{ css('thememaker') }}
 {% endblock %}
 
-{% block base_js %}
-{{ js('thememaker_preview') }}
-{% endblock %}
-
 {% block head %}
 <header id="masthead">
 	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
@@ -52,6 +48,10 @@
 					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-非商業性-相同方式分享 3.0</li>
 					<li class="cc_5" style="display:none;">Creative Commons 姓名標示-禁止改作 3.0</li>
 					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-相同方式分享 3.0</li>
+				</ul>
+				<ul>
+					<li class="facebookLike"></li>
+					<li class="googlePlus"></li>
 				</ul>
 			</div><!-- end preview_detail -->
 			<div class="divide_section"></div>
@@ -104,3 +104,18 @@
 
 {% block email_subscription %}{% endblock %}
 
+{% block base_js %}
+<script type="text/javascript">
+window.___gcfg = {lang: 'zh-TW'};
+
+(function () {
+	var po = document.createElement('script');
+	po.type = 'text/javascript';
+	po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(po, s);
+})();
+</script>
+{{ js('thememaker_preview') }}
+{% endblock %}
