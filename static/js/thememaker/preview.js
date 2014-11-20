@@ -3,7 +3,6 @@
 $(function() {
   init();
   build_theme_url();
-  loadSocialButtons();
   login_check();
 
   if (!is_firefox_browser()) {
@@ -14,6 +13,10 @@ $(function() {
   
   share_theme_listener();
   create_qrcode();
+
+  window.fbAsyncInit = function () {
+    loadSocialButtons();
+  };
 });
 
 function is_firefox_browser() {
@@ -48,8 +51,8 @@ function init() {
 function loadSocialButtons() {
   if (FB && gapi) {
     var url = get_theme_url();
-    var fb = $('li.facebookLike');
-    var gp = $('li.googlePlus');
+    var fb = $('div.facebookLike');
+    var gp = $('div.googlePlus');
     if (fb.children().length == 0) {
       fb.append('<div class="fb-like" data-send="false"' +
         'data-href="' + url + '"' +
