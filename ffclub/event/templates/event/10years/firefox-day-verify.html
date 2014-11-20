@@ -27,6 +27,7 @@
 <body>
   <div id="main-content">
     <div class="result">
+    {{ request.GET.code }}
     {% if result == 'success' %}
       報到成功！
     {% elif result == 'failed' %}
@@ -43,9 +44,10 @@
       普通票
     {% endif %}
     </div>
+    <hr>
     <form method="GET">
-      <input type="text" name="code" placeholder="請輸入報到序號">
-      <input type="submit" value="送出">
+      <input type="text" name="code" placeholder="手動輸入報到序號">
+      <input type="submit" value="送出驗證">
     </form>
   </div>
   {{ js('site') }}
