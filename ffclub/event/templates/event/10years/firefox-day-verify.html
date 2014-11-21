@@ -36,14 +36,16 @@
       序號已失效！
     {% endif %}
     </div>
-    <div class="result">
-    票種：
-    {% if type == 'earlybird' %}
-      早鳥票
-    {% else %}
-      普通票
+    {% if type %}
+      <div class="result">
+      票種：
+      {% if type == 'earlybird' %}
+        早鳥票
+      {% else %}
+        普通票
+      {% endif %}
+      </div>
     {% endif %}
-    </div>
     <hr>
     <form method="GET">
       <input type="text" name="code" placeholder="手動輸入報到序號">
