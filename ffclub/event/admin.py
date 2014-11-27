@@ -245,6 +245,8 @@ class ActivityAdmin(ModelAdmin):
         writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
         for award in awards:
             winner = award.winner
+            if award.price and award.price.name == 'sorry':
+                continue
             if winner is None:
                 row = [award.name.encode('utf-8'), ]
                 row += [award.order, ]
