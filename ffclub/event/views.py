@@ -355,6 +355,7 @@ def demo(request, app_name=None, app_id=None):
         else:
             raise ObjectDoesNotExist
 
+
 def microfilm(request):
     filmList = range(4)
     filmName = [u"謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"夢想，從現在開始"]
@@ -405,6 +406,7 @@ def microfilm_vote_video(request, video_id):
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
                    'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
+
 
 def event_register(request, event_slug):
     currentEvent = Event.objects.get(slug=event_slug, status__in=('preparing', 'enrolling', 'enrolled'))
@@ -458,11 +460,18 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
         if award_name:
             currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser, name=award_name)
-            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email, name=award_name)
+            if currentUser.email:
+                unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email,
+                                                          name=award_name)
+            else:
+                unregCurrentAwards = []
         else:
             currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser)
-            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+            if currentUser.email:
+                unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+            else:
+                unregCurrentAwards = []
         awarded = currentAwards.exists() or unregCurrentAwards.exists()
     data = {'campaign': currentCampaign, 'awarded': awarded, 'nav_template': nav_template, 'MOCO_URL': MOCO_URL}
     if request.method == 'POST':
