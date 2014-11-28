@@ -502,13 +502,14 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
                 participation.save()
             data['registered'] = True
     elif request.user.is_active:
-        if Person.objects.filter(user=currentUser).exists():
-            data['form'] = AwardClaimForm(instance=currentUser.get_profile())
+        profiles = Person.objects.filter(user=currentUser)
+        if profiles.exists():
+            data['form'] = AwardClaimForm(instance=profiles.latest('user'))
         else:
             fbAuth = UserSocialAuth.objects.filter(user=currentUser, provider='facebook')
             initData = {}
             if fbAuth.exists():
-                token = fbAuth.get().tokens['access_token']
+                token = fbAuth.latest('uid').tokens['access_token']
                 if token:
                     graph = facebook.GraphAPI(token)
                     me = graph.get_object('me', locale='zh_TW')
