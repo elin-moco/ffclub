@@ -479,7 +479,7 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
             raise PermissionDenied
         is_update = Person.objects.filter(user=request.user).exists()
         if is_update:
-            form = AwardClaimForm(request.POST, instance=Person.objects.get(user=request.user))
+            form = AwardClaimForm(request.POST, instance=Person.objects.filter(user=request.user).latest('user'))
         else:
             form = AwardClaimForm(request.POST)
         data['form'] = form
