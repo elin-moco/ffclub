@@ -239,16 +239,18 @@ class ActivityAdmin(ModelAdmin):
 
     def activity_export_winners(self, request, object_id, extra_context=None):
         obj = self.get_object(request, unquote(object_id))
-        awards = Award.objects.filter(activity=obj).prefetch_related('winner', 'winner__person').order_by('name', 'order')
+        awards = Award.objects.filter(activity=obj).prefetch_related(
+            'winner', 'winner__person', 'price').order_by('name', 'order')
         output = StringIO.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
+        writer.writerow(['獎項', '獎品', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
         for award in awards:
             winner = award.winner
             if award.price and award.price.name == 'sorry':
                 continue
             if winner is None:
                 row = [award.name.encode('utf-8'), ]
+                row += [award.price.description.encode('utf-8') if award.price else '', ]
                 row += [award.order, ]
                 row += ['', ]
                 row += ['', ]
@@ -261,6 +263,7 @@ class ActivityAdmin(ModelAdmin):
             else:
                 profile = winner.person if hasattr(winner, 'person') else None
                 row = [award.name.encode('utf-8'), ]
+                row += [award.price.description.encode('utf-8') if award.price else '', ]
                 row += [award.order, ]
                 row += [profile.fullname.encode('utf-8') if profile else '%s %s' % (winner.last_name.encode('utf-8'), winner.first_name.encode('utf-8')), ]
                 row += [profile.nickname.encode('utf-8') if profile else '']
