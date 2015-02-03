@@ -10,10 +10,6 @@
 {{ css('thememaker') }}
 {% endblock %}
 
-{% block base_js %}
-{{ js('thememaker_create') }}
-{% endblock %}
-
 {% block head %}
 <header id="masthead">
 	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
@@ -87,3 +83,7 @@
 {% endblock %}
 
 {% block email_subscription %}{% endblock %}
+
+{% block base_js %}
+{{ js('thememaker_create') }}
+{% endblock %}

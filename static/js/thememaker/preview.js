@@ -13,6 +13,10 @@ $(function() {
   
   share_theme_listener();
   create_qrcode();
+
+  window.fbAsyncInit = function () {
+    loadSocialButtons();
+  };
 });
 
 function is_firefox_browser() {
@@ -43,6 +47,24 @@ function init() {
     $('div#qrcode').show();
   }
 }
+
+function loadSocialButtons() {
+  if (FB && gapi) {
+    var url = get_theme_url();
+    var fb = $('div.facebookLike');
+    var gp = $('div.googlePlus');
+    if (fb.children().length == 0) {
+      fb.append('<div class="fb-like" data-send="false"' +
+        'data-href="' + url + '"' +
+        'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
+      FB.XFBML.parse(fb.get(0));
+    }
+    if (gp.children().length == 0) {
+      gp.append('<div class="g-plusone" data-size="medium" data-href="' + url + '"></div>');
+      gapi.plusone.go(gp.get(0));
+    }
+  }
+};
 
 function build_theme_url() {
   $('div#address_section > a').text(get_theme_url());
@@ -123,5 +145,5 @@ function create_qrcode() {
 }
 
 function get_theme_url() {
-  return "http://" + window.location.hostname + "/thememaker/theme/" + $('#preview_section').attr('theme-id');  
+  return "https://" + window.location.hostname + "/thememaker/theme/" + $('#preview_section').attr('theme-id');  
 }

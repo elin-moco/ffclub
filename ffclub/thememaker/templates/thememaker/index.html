@@ -10,10 +10,6 @@
 {{ css('thememaker') }}
 {% endblock %}
 
-{% block base_js %}
-{{ js('thememaker') }}
-{% endblock %}
-
 {% block head %}
 <header id="masthead">
 	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
@@ -109,7 +105,8 @@
 					<ul>
 						<li class="info_date">2014.08.27</li>
 						<li class="info_download">333 次</li>
-						<li class="info_fb">333 人說讚</a></li>
+						<li class="info_fb facebookLike"></li>
+						<li class="info_google googlePlus"></li>
 					</ul>
 				</div><!-- end demo_LB -->
 				<div class="demo_RB">
@@ -127,7 +124,7 @@
 		<li class="{{ theme_block }}">
 			<div class="theme_container">
 				<ul>
-				{% for theme in user_themes %}				
+					{% for theme in user_themes %}				
 					<li class="{{ theme_class[theme_type] }}" theme-id="{{ theme.id }}">
 						<p class="tab_type">
 							<span class="type_latest" style="{{ display_mapping['theme_latest'] }}">{{ theme.create_time.date() }}</span>
@@ -146,11 +143,11 @@
 							<a href="#" title="佈景主題完整訊息" class="expand"><span>佈景主題完整訊息</span></a>
 						</div><!-- end theme_bottom_btn -->
 					</li>
-				{% if loop.index != user_themes|length and loop.index % 3 == 0 %}
-				</ul></div></li>
-				<li class="{{ theme_block }}"><div class="theme_container"><ul>
-				{% endif %}
-			{% endfor %}		
+					{% if loop.index != user_themes|length and loop.index % 3 == 0 %}
+						</ul></div></li><li class="{{ theme_block }}"><div class="theme_container"><ul>
+					{% endif %}
+					{% endfor %}	
+				</ul>	
 			</div><!-- end theme_container -->
 		</li>
 	</ul>
@@ -162,3 +159,18 @@
 
 {% block email_subscription %}{% endblock %}
 
+{% block base_js %}
+<script type="text/javascript">
+window.___gcfg = {lang: 'zh-TW'};
+
+(function () {
+	var po = document.createElement('script');
+	po.type = 'text/javascript';
+	po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(po, s);
+})();
+</script>
+{{ js('thememaker') }}
+{% endblock %}

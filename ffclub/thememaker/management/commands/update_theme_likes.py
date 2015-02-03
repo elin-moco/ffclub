@@ -38,7 +38,7 @@ class Command(BaseCommand):
     def get_fblikes(self, urls):
         fbShareData = dict()
         chunk_size = 100
-        chunks = int(math.floor(len(urls) / chunk_size)) + 1
+        chunks = int(math.ceil(float(len(urls)) / chunk_size))
         for i in range(chunks):
             url_chunk = urls[i * chunk_size: (i + 1) * chunk_size]
             urls = ','.join(url_chunk)

@@ -28,9 +28,9 @@ class ParticipationInline(TabularInline):
     extra = 0
 
 
-class AwardInline(TabularInline):
-    model = Award
-    extra = 0
+# class AwardInline(TabularInline):
+#     model = Award
+#     extra = 0
 
 
 class OrderInline(StackedInline):
@@ -239,14 +239,18 @@ class ActivityAdmin(ModelAdmin):
 
     def activity_export_winners(self, request, object_id, extra_context=None):
         obj = self.get_object(request, unquote(object_id))
-        awards = Award.objects.filter(activity=obj).prefetch_related('winner', 'winner__person').order_by('name', 'order')
+        awards = Award.objects.filter(activity=obj).prefetch_related(
+            'winner', 'winner__person', 'price').order_by('name', 'order')
         output = StringIO.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['獎項', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
+        writer.writerow(['獎項', '獎品', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
         for award in awards:
             winner = award.winner
+            if award.price and award.price.name == 'sorry':
+                continue
             if winner is None:
                 row = [award.name.encode('utf-8'), ]
+                row += [award.price.description.encode('utf-8') if award.price else '', ]
                 row += [award.order, ]
                 row += ['', ]
                 row += ['', ]
@@ -259,6 +263,7 @@ class ActivityAdmin(ModelAdmin):
             else:
                 profile = winner.person if hasattr(winner, 'person') else None
                 row = [award.name.encode('utf-8'), ]
+                row += [award.price.description.encode('utf-8') if award.price else '', ]
                 row += [award.order, ]
                 row += [profile.fullname.encode('utf-8') if profile else '%s %s' % (winner.last_name.encode('utf-8'), winner.first_name.encode('utf-8')), ]
                 row += [profile.nickname.encode('utf-8') if profile else '']
@@ -278,7 +283,7 @@ class EventAdmin(ActivityAdmin):
                      'orders__usage', 'orders__fullname', 'orders__email',
                      'orders__address', 'orders__occupation', 'orders__feedback']
     list_filter = ['num_of_ppl', 'create_time', 'status', 'orders__create_time', 'orders__status']
-    inlines = [AwardInline, OrderInline, ParticipationInline, ImageUploadInline]
+    inlines = [OrderInline, ParticipationInline, ImageUploadInline]
 
 
 admin.site.register(Event, EventAdmin)
@@ -287,10 +292,17 @@ admin.site.register(Event, EventAdmin)
 class CampaignAdmin(ActivityAdmin):
     search_fields = ['title', 'description']
     list_filter = ['create_time', 'status']
-    inlines = [AwardInline, ParticipationInline, ImageUploadInline]
+    inlines = [ParticipationInline, ImageUploadInline]
 
 
 admin.site.register(Campaign, CampaignAdmin)
+
+
+class AwardAdmin(ModelAdmin):
+    search_fields = ['name', 'note', 'winner_extra']
+    list_filter = ['create_time', 'status', 'activity', 'price']
+
+admin.site.register(Award, AwardAdmin)
 
 
 class VoteAdmin(ModelAdmin):

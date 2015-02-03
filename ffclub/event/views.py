@@ -357,6 +357,7 @@ def demo(request, app_name=None, app_id=None):
         else:
             raise ObjectDoesNotExist
 
+
 def microfilm(request):
     filmList = range(4)
     filmName = [u"謀智其中", u"火狐女孩爭奪戰", u"移動火狐，暢行無阻", u"夢想，從現在開始"]
@@ -407,6 +408,7 @@ def microfilm_vote_video(request, video_id):
     return render(request, 'event/microfilm-vote/video.html',
                   {'filmName': video.title, 'filmYurl': video.url, 'filmId': video.id,
                    'voteCount': video.vote_count, 'voted': video.voted, 'imageId': str(int(video_id)-1),'description': video_descriptions[int(video_id)-1]})
+
 
 def event_register(request, event_slug):
     currentEvent = Event.objects.get(slug=event_slug, status__in=('preparing', 'enrolling', 'enrolled'))
@@ -460,11 +462,18 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
         if award_name:
             currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser, name=award_name)
-            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email, name=award_name)
+            if currentUser.email:
+                unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email,
+                                                          name=award_name)
+            else:
+                unregCurrentAwards = []
         else:
             currentAwards = Award.objects.filter(~Q(price=None) & ~Q(price__name='sorry'), activity=currentCampaign,
                                                  winner=currentUser)
-            unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+            if currentUser.email:
+                unregCurrentAwards = Award.objects.filter(activity=currentCampaign, winner_extra=currentUser.email)
+            else:
+                unregCurrentAwards = []
         awarded = currentAwards.exists() or unregCurrentAwards.exists()
     data = {'campaign': currentCampaign, 'awarded': awarded, 'nav_template': nav_template, 'MOCO_URL': MOCO_URL}
     if request.method == 'POST':
@@ -472,7 +481,7 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
             raise PermissionDenied
         is_update = Person.objects.filter(user=request.user).exists()
         if is_update:
-            form = AwardClaimForm(request.POST, instance=Person.objects.get(user=request.user))
+            form = AwardClaimForm(request.POST, instance=Person.objects.filter(user=request.user).latest('user'))
         else:
             form = AwardClaimForm(request.POST)
         data['form'] = form
@@ -495,13 +504,14 @@ def campaign_claim_award(request, campaign_slug, nav_template=None, award_name=N
                 participation.save()
             data['registered'] = True
     elif request.user.is_active:
-        if Person.objects.filter(user=currentUser).exists():
-            data['form'] = AwardClaimForm(instance=currentUser.get_profile())
+        profiles = Person.objects.filter(user=currentUser)
+        if profiles.exists():
+            data['form'] = AwardClaimForm(instance=profiles.latest('user'))
         else:
             fbAuth = UserSocialAuth.objects.filter(user=currentUser, provider='facebook')
             initData = {}
             if fbAuth.exists():
-                token = fbAuth.get().tokens['access_token']
+                token = fbAuth.latest('uid').tokens['access_token']
                 if token:
                     graph = facebook.GraphAPI(token)
                     me = graph.get_object('me', locale='zh_TW')

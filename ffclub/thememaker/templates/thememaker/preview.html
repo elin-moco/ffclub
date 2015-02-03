@@ -10,10 +10,6 @@
 {{ css('thememaker') }}
 {% endblock %}
 
-{% block base_js %}
-{{ js('thememaker_preview') }}
-{% endblock %}
-
 {% block head %}
 <header id="masthead">
 	<a title="打開" role="button" href="/" id="tabzilla">Mozilla</a>
@@ -53,6 +49,10 @@
 					<li class="cc_5" style="display:none;">Creative Commons 姓名標示-禁止改作 3.0</li>
 					<li class="cc_4" style="display:none;">Creative Commons 姓名標示-相同方式分享 3.0</li>
 				</ul>
+				<div class="socialShare">
+					<div class="facebookLike"></div>
+					<div class="googlePlus"></div>
+				</div>
 			</div><!-- end preview_detail -->
 			<div class="divide_section"></div>
 			<p class="preview_words">恭喜，你已經完成專屬的佈景主題，您可以選擇直接下載安裝或者登入提交分享</p>
@@ -104,3 +104,18 @@
 
 {% block email_subscription %}{% endblock %}
 
+{% block base_js %}
+<script type="text/javascript">
+window.___gcfg = {lang: 'zh-TW'};
+
+(function () {
+	var po = document.createElement('script');
+	po.type = 'text/javascript';
+	po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(po, s);
+})();
+</script>
+{{ js('thememaker_preview') }}
+{% endblock %}

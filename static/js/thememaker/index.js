@@ -135,6 +135,7 @@ function expand_theme_listener() {
     $('#theme_detail').slideUp(400, function(){
       $('#expand_arrow').removeClass('arrow01 arrow02 arrow03').addClass('arrow0' + li_idx);  
       $(div_tag).after($('#theme_detail'));
+      loadSocialButtons(li_tag.attr('theme-id'));
       fill_data(li_tag);
       build_theme_url(li_tag.attr('theme-id'));
     });
@@ -152,6 +153,26 @@ function expand_theme_listener() {
     $('div.theme_bottom_btn > a.expand').removeClass('on');
   });
 
+  function loadSocialButtons(id) {
+    if (FB && gapi) {
+      var url = get_theme_url(id);
+      var fb = $('li.facebookLike');
+      var gp = $('li.googlePlus');
+      fb.html('');
+      gp.html('');
+      if (fb.children().length == 0) {
+        fb.append('<div class="fb-like" data-send="false"' +
+          'data-href="' + url + '"' +
+          'data-layout="button_count" data-width="150" data-show-faces="false"></div>');
+        FB.XFBML.parse(fb.get(0));
+      }
+      if (gp.children().length == 0) {
+        gp.append('<div class="g-plusone" data-size="medium" data-href="' + url + '"></div>');
+        gapi.plusone.go(gp.get(0));
+      }
+    }
+  };
+
   // fill data into #theme_detail element
   function fill_data(ele) {
     var p_tag = ele.children('p.tab_type');
@@ -159,7 +180,6 @@ function expand_theme_listener() {
     var meta_desc = ele.children('p.meta_desc').text();
     var meta_date = p_tag.children('span.type_latest').text();
     var meta_download = p_tag.children('span.type_hot').text();
-    var meta_likes = p_tag.children('span.type_favorite').text();
     var preview_img = ele.children('dl').children('dt').children('img').attr('src');
     var color = ele.children('dl').children('dd.theme_mask').attr('color');
 
@@ -167,7 +187,6 @@ function expand_theme_listener() {
     $('#theme_detail_panel p').text(meta_desc);
     $('#theme_detail_panel ul li.info_date').text(meta_date);
     $('#theme_detail_panel ul li.info_download').text(meta_download);
-    $('#theme_detail_panel ul li.info_fb').text(meta_likes);
     $('#theme_detail_panel div.demo_section span.demo_bg').css("background-image", "url('" + preview_img + "')");
     $('#theme_detail_panel div.demo_section span.demo_bg').css("background-position", "right top");
     $('div#theme_detail').removeClass('Whitecolor Redcolor Yellowcolor Greencolor Bluecolor');
@@ -184,7 +203,7 @@ function expand_theme_listener() {
   }
 
   function get_theme_url(id) {
-    return "http://" + window.location.hostname + "/thememaker/theme/" + id;  
+    return "https://" + window.location.hostname + "/thememaker/theme/" + id;  
   }
 }
 
