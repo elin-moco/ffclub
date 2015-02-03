@@ -55,7 +55,11 @@ class AwardClaimForm(ModelForm):
         #self.fields['email'].required = True
         self.fields['phone'].required = True
         self.fields['address'].required = True
-
+        self.fields['address'].widget.attrs.update({
+            'pattern':'^[0-9]{3,5}.+',
+            'onchange': 'setCustomValidity(\'\')',
+            'oninvalid': 'setCustomValidity(\'請在地址開頭輸入郵遞區號\')'
+        })
     class Meta:
         model = Person
         fields = ('fullname', 'phone', 'address', 'subscribing')
