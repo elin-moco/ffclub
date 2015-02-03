@@ -18,6 +18,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 import re
+from datetime import datetime, timedelta
 
 log = commonware.log.getLogger('ffclub')
 
@@ -143,3 +144,9 @@ def generate_10years_ticket(session, code):
     draw.text((116, 192), rules4, (0, 0, 0), font=rules_font)
 
     bg.save(BEDROCK_PATH + 'media/img/mocotw/10years/fx-day/tickets/' + filename)
+
+
+def get_1day_range(date):
+    day_begin = datetime(date.year, date.month, date.day)
+    day_end = day_begin + timedelta(days=1)
+    return [day_begin, day_end]

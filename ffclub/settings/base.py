@@ -629,6 +629,9 @@ MINIFY_BUNDLES = {
         '10years-firefox-family-award': (
             'css/event/10years-firefox-family-award.less',
         ),
+        '2014review-login': (
+            'css/event/2014review-login.less',
+        ),
     },
     'js': {
         # 'site' is automatically included across whole site
@@ -740,6 +743,9 @@ MINIFY_BUNDLES = {
         ),
         '10years-firefox-family-award': (
             'js/event/10years-firefox-family-award.js',
+        ),
+        '2014review-login': (
+            'js/event/2014review-login.js',
         ),
     }
 }

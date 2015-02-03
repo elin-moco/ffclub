@@ -14,7 +14,7 @@ import json
 from django.utils.encoding import force_unicode
 import facebook
 from ffclub.event.models import Activity, Event, Campaign, Vote, Video, Participation, Award, DemoApp, Price
-from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes, weighted_sample, generate_claim_code, generate_10years_ticket
+from ffclub.event.utils import send_photo_report_mail, prefetch_profile_name, prefetch_votes, weighted_sample, generate_claim_code, generate_10years_ticket, get_1day_range
 from ffclub.upload.forms import ImageUploadForm, CampaignImageUploadForm
 from ffclub.upload.models import ImageUpload
 from ffclub.settings import EVENT_WALL_PHOTOS_PER_PAGE, SITE_URL, FB_APP_NAMESPACE
@@ -37,6 +37,7 @@ everyMomentCampaignSlug = 'every-moment'
 lanternFestivalCampaignSlug = 'lantern-festival'
 chineseValentinesDayCampaignSlug = 'chinese-valentines-day'
 tenYearsCampaignSlug = '10years'
+review2014CampaignSlug = '2014review'
 
 
 def wall(request):
@@ -576,6 +577,69 @@ def chinese_valentines_day_result(request):
                       'campaign': currentCampaign,
                       'randomAwards': randomAwards
                   })
+
+
+@xframe_allow
+@csrf_exempt
+def review2014_login(request, template):
+    return render(request, template)
+
+
+@enable_jsonp
+def review2014_quota(request):
+    data = {'result': 'failed'}
+    try:
+        currentCampaign = Campaign.objects.get(slug=review2014CampaignSlug)
+        price = Price.objects.get(name='redenvelope')
+        awards = Award.objects.filter(name=u'贈獎', activity=currentCampaign, price=price,
+                                          create_time__range=get_1day_range(datetime.now())).count()
+        quota = min(price.quantity, 200 - awards)
+        data['result'] = 'success'
+        data['quota'] = quota
+    except Exception as e:
+        print e
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
+
+
+@enable_jsonp
+def review2014_award(request):
+    data = {'result': 'failed'}
+    if request.user.is_active:
+        currentCampaign = Campaign.objects.get(slug=review2014CampaignSlug)
+        existing = Award.objects.filter(name=u'贈獎', activity=currentCampaign, winner=request.user)
+        if currentCampaign.status == 'end':
+            data['result'] = 'ended'
+        elif not existing.exists() and 'score' in request.GET:
+            price = Price.objects.get(name='redenvelope')
+            # check total quota and daily quota
+            quota = min(price.quantity,
+                        200 - Award.objects.filter(name=u'贈獎', activity=currentCampaign, price=price,
+                                                   create_time__range=get_1day_range(datetime.now())).count())
+            if quota > 0:
+                # save award, decrease price quantity
+                price.quantity -= 1
+                price.save()
+                award = Award(name=u'贈獎', activity=currentCampaign, winner=request.user, price=price)
+                award.save()
+
+                data['slug'] = price.name
+                data['name'] = price.description
+                data['result'] = 'success'
+                data['existing'] = False
+            else:
+                data['message'] = 'quota exceeded'
+        elif existing.exists():
+            data['result'] = 'success'
+            data['slug'] = existing[0].price.name
+            data['name'] = existing[0].price.description
+            data['existing'] = True
+        else:
+            data['message'] = 'invalid request'
+    else:
+        data['message'] = 'unauthorized'
+    response = json.dumps(data)
+    return HttpResponse(response, mimetype='application/x-javascript')
 
 
 @xframe_allow
