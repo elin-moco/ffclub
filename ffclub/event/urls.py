@@ -44,7 +44,7 @@ urlpatterns = patterns(
         name='campaign.every.moment.wall.page'),
     url(r'^campaign/10years/firefox-family-award/ticket/$', views.firefox_family_get_ticket),
     url(r'^campaign/10years/firefox-family-award/lottery/$', views.firefox_family_lottery),
-    url(r'^campaign/10years/firefox-family/validate/', views.firefox_day_verify, {'template': 'event/10years/firefox-day-verify.html'}),
+    # url(r'^campaign/10years/firefox-family/validate/', views.firefox_day_verify, {'template': 'event/10years/firefox-day-verify.html'}),
     url(r'^campaign/10years/browser-survey/claim-award/$', views.campaign_claim_award,
         {'campaign_slug': '10years-survey', 'award_name': u'抽獎', 'nav_template': 'event/10years/navigator.html'},
         name='campaign.10years.browser.survey.claim.award'),
