@@ -19,7 +19,7 @@ log = commonware.log.getLogger('ffclub')
 
 
 def design_wall(request):
-    products = Product.objects.filter(type='design', status='normal').prefetch_related('photos')
+    products = Product.objects.filter(type='design', status='normal').order_by('-update_time').prefetch_related('photos')
 
     for product in products:
         previewPhotos = filter(lambda x: x.usage == 'preview', product.photos.all())
