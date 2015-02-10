@@ -229,3 +229,5 @@ BEDROCK_GA_ACCOUNT_CODE = 'UA-28913145-1'
 NEWSLETTER_PRESEND_LIST = ('nli@mozilla.com', 'mozilla-tw@mozilla.com', 'tw-bd@mozilla.com', 'gchen@mozilla.com')
 
 THEMES_PER_PAGE = 18
+
+REVIEW2014_DAILY_QUOTA = 200

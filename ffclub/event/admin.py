@@ -243,7 +243,7 @@ class ActivityAdmin(ModelAdmin):
             'winner', 'winner__person', 'price').order_by('name', 'order')
         output = StringIO.StringIO()
         writer = csv.writer(output)
-        writer.writerow(['獎項', '獎品', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態'])
+        writer.writerow(['獎項', '獎品', '順序', '姓名', '暱稱', 'Email', '電話', '地址', '註記', '狀態', '時間'])
         for award in awards:
             winner = award.winner
             if award.price and award.price.name == 'sorry':
@@ -259,6 +259,7 @@ class ActivityAdmin(ModelAdmin):
                 row += ['', ]
                 row += [award.note, ]
                 row += [award.status, ]
+                row += [award.create_time, ]
                 writer.writerow(row)
             else:
                 profile = winner.person if hasattr(winner, 'person') else None
@@ -272,6 +273,7 @@ class ActivityAdmin(ModelAdmin):
                 row += [profile.address.encode('utf-8') if profile else '']
                 row += [award.note, ]
                 row += [award.status, ]
+                row += [award.create_time, ]
                 writer.writerow(row)
         response = HttpResponse(output.getvalue(), mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=%s-campaign-awards.csv' % obj.slug

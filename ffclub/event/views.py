@@ -27,7 +27,8 @@ from django.db.models import Q
 from commonware.response.decorators import xframe_allow
 from django.views.decorators.csrf import csrf_exempt
 from ffclub.base.decorators import cors_allow, enable_jsonp
-from ffclub.settings import MOCO_URL, API_SECRET
+from ffclub.settings import MOCO_URL, API_SECRET, REVIEW2014_DAILY_QUOTA
+
 from datetime import datetime
 
 
@@ -603,8 +604,10 @@ def review2014_quota(request):
         price = Price.objects.get(name='redenvelope')
         awards = Award.objects.filter(name=u'贈獎', activity=currentCampaign, price=price,
                                           create_time__range=get_1day_range(datetime.now())).count()
-        quota = min(price.quantity, 200 - awards)
+        quotaToday = REVIEW2014_DAILY_QUOTA - awards
+        quota = min(price.quantity, quotaToday)
         data['result'] = 'success'
+        data['inventory'] = 'normal' if price.quantity > 0 else 'out-of-stock'
         data['quota'] = quota
     except Exception as e:
         print e
@@ -623,9 +626,10 @@ def review2014_award(request):
         elif not existing.exists() and 'score' in request.GET:
             price = Price.objects.get(name='redenvelope')
             # check total quota and daily quota
-            quota = min(price.quantity,
-                        200 - Award.objects.filter(name=u'贈獎', activity=currentCampaign, price=price,
-                                                   create_time__range=get_1day_range(datetime.now())).count())
+            quotaToday = REVIEW2014_DAILY_QUOTA - Award.objects.filter(
+                name=u'贈獎', activity=currentCampaign, price=price,
+                create_time__range=get_1day_range(datetime.now())).count()
+            quota = min(price.quantity, quotaToday)
             if quota > 0:
                 # save award, decrease price quantity
                 price.quantity -= 1
@@ -638,6 +642,7 @@ def review2014_award(request):
                 data['result'] = 'success'
                 data['existing'] = False
             else:
+                data['inventory'] = 'normal' if price.quantity > 0 else 'out-of-stock'
                 data['message'] = 'quota exceeded'
         elif existing.exists():
             data['result'] = 'success'
