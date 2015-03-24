@@ -16,12 +16,9 @@
 
 body {
   margin: 0;
-{#  background-color: #CAE1F4;#}
-  background-color: #C13832;
+  background-color: #CAE1F4;
   {% if request %}
-  background-image: url('http://{{ MOCO_URL }}/media/img/mocotw/edm/2014review-bg.png');
-  background-repeat: repeat;
-{#  background: url("http://{{ MOCO_URL }}/media/img/sandstone/bg-gradient-sky.png") repeat-x scroll 0 0px, url("http://{{ MOCO_URL }}/media/img/sandstone/grain.png") repeat scroll 0 0px, none repeat scroll 0 0 rgb(238, 238, 238);#}
+  background: url("http://{{ MOCO_URL }}/media/img/sandstone/bg-gradient-sky.png") repeat-x scroll 0 0px, url("http://{{ MOCO_URL }}/media/img/sandstone/grain.png") repeat scroll 0 0px, none repeat scroll 0 0 rgb(238, 238, 238);
   {% endif %}
 }
 
@@ -44,13 +41,11 @@ a, a p, a p b {
 }
 
 b, p b {
-{#  color: #000000;#}
-  color: #FFFFFF;
+  color: #000000;
 }
 
 td, p, a {
-{#  color: #4D4E53;#}
-  color: #FFFFFF;
+  color: #4D4E53;
 }
 
 table.container {
@@ -70,15 +65,14 @@ td.header-tip {
   text-align: center;
 }
 td.header-tip small{
-  color: #CCCCCC;
+  color: #808080;
   text-decoration: underline;
 }
 table.header {
   margin: 0 auto 8px auto;
   width: 653px;
   font-weight: bold;
-{#  color: #4D4E53;#}
-  color: #FFFFFF;
+  color: #4D4E53;
   font-size: 12px;
 }
 
@@ -773,7 +767,7 @@ _gaq.push(['_trackPageview']);
           <tr>
             <td class="logo">
               <a class="web-link" href="http://{{ MOCO_URL }}{{ params.tracking_code }}">
-                <img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/header-inversed.png{{ '?vol=%d' % params.volume if not request else '' }} "
+                <img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/header.png{{ '?vol=%d' % params.volume if not request else '' }} "
                      alt="Firefox 電子報">
               </a>
             </td>
