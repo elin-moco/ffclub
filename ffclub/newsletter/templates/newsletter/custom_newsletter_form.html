@@ -1353,7 +1353,7 @@ _gaq.push(['_trackPageview']);
     $('#edit-form input[type!=submit], #edit-form textarea, #edit-form label').hide();
     $('#pre-send').click(function(e) {
       e.preventDefault();
-      var email = prompt('請輸入要寄送的電子郵件位址：', 'tw-mktg@mozilla.com');
+      var email = prompt('請輸入要寄送的電子郵件位址：', '@mozilla.com');
       console.info(email);
       if (email) {
         $('#pre-send-email').val(email);
