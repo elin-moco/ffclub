@@ -885,65 +885,6 @@ _gaq.push(['_trackPageview']);
   </tr>
   <tr>
     <td class="section-header"><img
-            src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-cool-website.png"
-            alt="好站推薦"/></td>
-  </tr>
-  <tr>
-    <td>
-      <table class="cool-website">
-        <tr>
-          <td>
-            <a class="cool-website-link" target="_blank" href="{{ params['cool-website-link'] }}{{ params.tracking_code }}">
-              {% if admin %}
-                <div id="cool-website-tag" class="cool-website-tag-label" {% if params['cool-website-tag'] %}style="background: url(http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/tag-{{ params['cool-website-tag'] }}.png); opacity: 1.0;"{% endif %}></div>
-              {% endif %}
-              <img id="cool-website-thumb" class="download-thumb" width="652" height="128"
-                   src="{{ params['cool-website-thumb'] }}"{% if not admin %} alt="{{ params['cool-website-title'] }}"{% endif %}/>
-              <p>
-                <b><span id="cool-website-title" title="好站標題">{{ params['cool-website-title'] }}</span> »</b>
-                <span id="cool-website-description" title="好站說明">{{ params['cool-website-description'] }}</span>
-              </p>
-            </a>
-            {% if admin %}
-            <a id="cool-website-link" class="add-link" target="_blank" href="{{ params['cool-website-link'] }}" title="好站連結">
-              {{ params['cool-website-link'] }}
-            </a>
-            {% endif %}
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td class="section-header"><img
-            src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-download.png"
-            alt="好康下載"/></td>
-  </tr>
-  <tr>
-    <td>
-      <table class="downloads">
-        <tr>
-          <td>
-            <a class="download-link" target="_blank" href="{{ params['download-link'] }}{{ params.tracking_code }}">
-              <img id="download-thumb" class="download-thumb" width="652" height="128"
-                   src="{{ params['download-thumb'] }}"{% if not admin %} alt="{{ params['download-title'] }}"{% endif %}/>
-              <p>
-                <b><span id="download-title" title="下載標題">{{ params['download-title'] }}</span> » </b>
-                <span id="download-description" title="下載說明">{{ params['download-description'] }}</span>
-              </p>
-            </a>
-            {% if admin %}
-            <a id="download-link" class="add-link" target="_blank" href="{{ params['download-link'] }}" title="下載連結">
-              {{ params['download-link'] }}
-            </a>
-            {% endif %}
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td class="section-header"><img
             src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-links.png"
             alt="與我同行"/></td>
   </tr>
@@ -971,35 +912,6 @@ _gaq.push(['_trackPageview']);
       </table>
     </td>
   </tr>
-{#
-  {% if admin or params['quiz-question'] %}
-  <tr>
-    <td class="section-header"><img src="http://{{ MOCO_URL }}/media/img/mocotw/newsletter/2013/menu-quiz.png" alt="有獎徵答"/></td>
-  </tr>
-  <tr>
-    <td>
-      <table class="quiz">
-        <tr>
-          <td>
-            <p id="quiz-question" class="question" title="題目">
-              {{ params['quiz-question'] }}
-            </p>
-            <ol class="answers">
-              {% for answer in range(0, 3) %}
-                <li><a id="quiz-answer-{{ loop.index }}" class="answer" href="mailto:mozevent-tw@mozilla.com?subject=電子報有獎徵答&body={{ 'ABCDE'[loop.index - 1] }}. {{ params['quiz-answer'][loop.index] }}" title="答案">{{ params['quiz-answer'][loop.index] }}</a></li>
-              {% endfor %}
-            </ol>
-            <p class="deadline">
-              請<b>點選</b>一個上述的正確答案並將它寄給我們。<br>
-              我們會抽出 3 位得獎者，贈送 Firefox 貼心好禮一份！截止日期 <span id="quiz-deadline" title="截止日期">{{ params['quiz-deadline'] }}</span>。
-            </p>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  {% endif %}
- #}
 </table>
 {% if not request %}
 <img src="{{ NEWSLETTER_URL }}email.gif" alt="" style="display: block;"/>
